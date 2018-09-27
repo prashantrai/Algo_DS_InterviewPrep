@@ -7,7 +7,8 @@ public class FindConsecutiveNumsWithSumN {
 //		findConsecutives(10);
 //		findConsecutives(100);
 //		findConsecutives(125);
-		findConsecutives(10);
+//		findConsecutives(10);
+		findConsecutives(28);
 		
 		System.out.println(">>"+countConsecutive(10));
 	}

@@ -63,30 +63,4 @@ public class LargestRectangleInHistogramDemo {
 		return maxArea;
 	}
 
-	
-	public static int getMaxRectArea2(int[] hist) {
-		
-		int max = 0;
-		int i = 0;
-		
-		Stack<Integer> stk = new Stack<Integer>();
-
-		while (i<hist.length) {
-			
-			if(stk.isEmpty() || stk.peek() < hist[i]) {
-				stk.push(i++);
-			} else {
-				int top = stk.pop();
-				int rightIndex = i;
-				int leftIndex = stk.peek();
-				max = 
-			}
-			
-			
-		}
-		
-		return 0;
-	}
-	
-	
 }

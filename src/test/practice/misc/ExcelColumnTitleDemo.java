@@ -4,9 +4,9 @@ public class ExcelColumnTitleDemo {
 
 	public static void main(String[] args) {
 
-		printColumnTitle(26);
+		//printColumnTitle(26);
 		printColumnTitle(51);
-		printColumnTitle(705);
+		//printColumnTitle(705);
 		
 	}
 
