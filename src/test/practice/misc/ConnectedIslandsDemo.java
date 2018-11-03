@@ -29,7 +29,7 @@ public class ConnectedIslandsDemo {
             	System.out.println(Arrays.toString(M[r]));
     		}*/
 	
-            System.out.println("2nd:: "+countIslands2(M));
+            System.out.println("2nd:: "+countIslands(M));
             
          
             

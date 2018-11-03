@@ -53,6 +53,7 @@ public class WordBreakDemo {
 	}
 
 
+	//not workingß
 	private static void wordBreakUtil(String s, int length, StringBuilder result, Set<String> dict) {
 
 		//int length = s.length();
