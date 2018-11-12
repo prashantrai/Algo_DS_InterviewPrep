@@ -1,0 +1,15 @@
+dir
+mkdir sub1
+mkdir sub2
+dir
+mkdir sub2
+dir
+cd sub1
+dir
+mkdir sub12
+dir
+up
+mkdir sub3
+up
+up
+dir

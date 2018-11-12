@@ -53,33 +53,7 @@ public class WordBreakDemo {
 	}
 
 
-	//not workingß
-	private static void wordBreakUtil(String s, int length, StringBuilder result, Set<String> dict) {
-
-		//int length = s.length();
-		for(int i=1; i<=length; i++) {
-			
-			String prefix = s.substring(0, i);
-			
-			if(dict.contains(prefix)) {
-				if(i == length) { //--reached end of string
-					result.append(prefix);
-					System.out.println(result);
-					result.setLength(0); //--clear buffer
-					return;
-				}
-				result.append(prefix);
-				result.append(" ");
-				//System.out.println(">>"+ (length-i));
-				//System.out.println(">>s.substring("+i+", "+length+"-"+i+")" );
-				
-				wordBreakUtil(s.substring(i), length-i, result, dict);
-			}
-			
-		}
-		
-		
-	}
+	
 	
 	//--https://www.youtube.com/watch?v=9B4f4ZR00jM
 	public static List<String> helper (String s, Map<String, List<String>> map, Set<String> dict) {

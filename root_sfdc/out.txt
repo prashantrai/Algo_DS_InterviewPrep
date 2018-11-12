@@ -1,0 +1,28 @@
+Commmand: dir
+Directory of /Users/prash/Documents/MyWorkspace/InterviewPrep/root_sfdc:
+No subdirectories
+Commmand: mkdir	sub1
+Commmand: mkdir	sub2
+Commmand: dir
+Directory of /Users/prash/Documents/MyWorkspace/InterviewPrep/root_sfdc:
+sub1 sub2 
+Commmand: mkdir	sub2
+Subdirectory already exists
+Commmand: dir
+Directory of /Users/prash/Documents/MyWorkspace/InterviewPrep/root_sfdc:
+sub1 sub2 
+Commmand: cd	sub1
+Commmand: dir
+Directory of /Users/prash/Documents/MyWorkspace/InterviewPrep/root_sfdc/sub1:
+No subdirectories
+Commmand: mkdir	sub12
+Commmand: dir
+Directory of /Users/prash/Documents/MyWorkspace/InterviewPrep/root_sfdc/sub1:
+sub12 
+Commmand: up
+Commmand: mkdir	sub3
+Commmand: up
+Commmand: up
+Commmand: dir
+Directory of /Users/prash/Documents/MyWorkspace/InterviewPrep/root_sfdc:
+sub1 sub2 sub3 
