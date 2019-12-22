@@ -59,7 +59,7 @@ public class StringCompressionDemo {
 				System.out.println(">> String.valueOf(countConsecutive).length()="+String.valueOf(countConsecutive).length());
 				
 				System.out.println("1. compressedLenght = "+compressedLenght);
-				compressedLenght += 1+ String.valueOf(countConsecutive).length();
+				compressedLenght += 1+ String.valueOf(countConsecutive).length(); //---why length of countConsecutive? because it can be 1, 2 or more digits long which will be added to compressed string length
 				
 				System.out.println("2. compressedLenght = "+compressedLenght);
 				countConsecutive = 0;

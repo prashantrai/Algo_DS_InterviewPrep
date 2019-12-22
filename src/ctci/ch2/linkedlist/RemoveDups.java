@@ -19,6 +19,26 @@ public class RemoveDups {
 	}
 
 	
+	
+	
+	
+	// O(n^2)
+	public static void removeDupsWithNoExtraBuffer_2(LinkedList list) {
+		
+		LinkedList.Node currNode = list.head;
+		
+		while (currNode != null) {
+			LinkedList.Node runner = currNode;
+			 while (runner.next != null) {
+				 if(currNode.data == runner.next.data) {
+					 runner.next = runner.next.next;
+				 } else {
+					 runner = runner.next;
+				 }
+			 }
+			currNode = currNode.next;
+		}
+	}
 	/* 1, 2, 2, 3, 3, 4, 5 
 	 * 
 	 * 1, 2, 3, 4, 2, 5
