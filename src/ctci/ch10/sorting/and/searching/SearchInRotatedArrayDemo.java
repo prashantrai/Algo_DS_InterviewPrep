@@ -58,7 +58,7 @@ public class SearchInRotatedArrayDemo {
 				int index = binarySearch(arr, left, mid-1, v);
 				
 				if(index == -1) {
-					index = binarySearch(arr, mid+1, right, v);
+					return binarySearch(arr, mid+1, right, v);
 				}
 				else {
 					return index;
