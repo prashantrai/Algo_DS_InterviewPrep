@@ -22,6 +22,41 @@ public class FindCelebrity {
 		
 		findCelebrity(celeb);
 		findCelebrity2(celeb);
+		System.out.println (findCelebrity3(celeb));
+	}
+	
+	
+	//--Leetcode video:: https://www.youtube.com/watch?v=LZJBZEnoYLQ
+	public static int findCelebrity3(boolean[][] celeb) {
+		
+		if(celeb == null || celeb.length == 0) {
+			return -1;
+		}
+		
+		int candidate = 0;
+		
+		for (int i=1; i<celeb.length; i++) {
+			if(knows(candidate, i, celeb)) {
+				candidate = i;
+			}
+		}
+		
+		for (int i=0; i<celeb.length; i++) {
+			
+			 /**
+			  * candidate != i :: Candidate is not himself
+			  * &&
+			  * knows(candidate, i, celeb) :: candidate knows the person - then also candidate is not a celeb
+			  * OR
+			  * !knows(i, candidate, celeb) :: If the person doesn't know the candidate
+			  */
+			if(candidate != i && knows(candidate, i, celeb) || !knows(i, candidate, celeb)) {
+				return -1;
+			}
+		
+		}		
+		return candidate;	
+				
 	}
 
 	public static void findCelebrity2(boolean[][] celeb) {

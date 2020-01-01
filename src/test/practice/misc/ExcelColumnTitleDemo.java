@@ -6,6 +6,7 @@ public class ExcelColumnTitleDemo {
 
 		//printColumnTitle(26);
 		printColumnTitle(51);
+		printColumnTitle(52);
 		//printColumnTitle(705);
 		
 	}
