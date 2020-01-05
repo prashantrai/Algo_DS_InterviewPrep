@@ -5,13 +5,14 @@ public class PermutationOfPalindromDemo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		boolean result = isPermutationOfPalindrom("Tact Coa");
+		//boolean result = isPermutationOfPalindrom("Tact Coa");
+		boolean result = isPermutationofPalindrom_Sol2("Tact Coa");
 		
 		System.out.println(">> result="+result);
 	}
 	
 	//--Solution: 2
-	private	boolean isPermutationofPalindrom_Sol2 (String phrase) {
+	private static boolean isPermutationofPalindrom_Sol2 (String phrase) {
 		char[] chArr = phrase.toCharArray();
 		int[] table = new int[(Character.getNumericValue('z') - Character.getNumericValue('a'))+1]; //26
 		

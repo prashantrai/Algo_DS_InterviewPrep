@@ -3,6 +3,11 @@ package test.practice.misc;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+
+//--Flipping is different from invert or create a mirror image of a binary tree
+
+//https://www.geeksforgeeks.org/flip-binary-tree/
+
 public class FlipABinaryTreeDemo {
 
 	public static void main(String[] args) {

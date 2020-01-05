@@ -22,7 +22,8 @@ public class MirrorImageOfBinaryTree {
 	}
 	
 	/**
-	 * See GeeksforGeeks for more details
+	 * See GeeksforGeeks for more details :: 
+	 * https://www.geeksforgeeks.org/write-an-efficient-c-function-to-convert-a-tree-into-its-mirror-tree/
 	 * In mirror image : Left child will be right and right will left
 	 * */
 
