@@ -2,6 +2,8 @@ package test.practice.misc;
 
 import java.util.Stack;
 
+//--https://tech.pic-collage.com/algorithm-largest-area-in-histogram-84cc70500f0c
+
 public class LargestRectangleInHistogramDemo {
 
 	/**
@@ -13,54 +15,51 @@ public class LargestRectangleInHistogramDemo {
 	
 	public static void main(String[] args) {
 		//int hist[] = { 6, 2, 5, 4, 5, 1, 6 };
-		int hist[] = { 2,1,5,6,2,3 };
-        System.out.println("Maximum area is " + getMaxRectArea(hist));
+		//int hist[] = { 2,1,5,6,2,3 };
+		int hist[] = { 1, 1};
+        System.out.println("Maximum area is " + largestRectangleArea(hist));
 	}
 	
 	
-	public static int getMaxRectArea(int[] hist) {
-
-		if(hist == null || hist.length == 0) 
-			return 0;
-		
-		Stack<Integer> stack = new Stack<Integer>();
-		int i = 0;
-		int maxArea = 0;
-		
-		while (i < hist.length) {
-			
-			if(stack.isEmpty() || hist[i] >= hist[stack.peek()]) {
-				stack.push(i);  //--push the index of current rectangle
-				i++;
-				
-			} else {  //--if the lower rectangle seen pop the stack and calculate the area
-				
-				int item = stack.pop();
-				int rightIndex = i;  //--it should be i as we are incrementing this after every PUSH
-				int leftIndex = !stack.isEmpty() ? stack.peek() : 0; //--left index of current rectangle
-				
-//				int area = hist[item] * (stack.isEmpty() ? i :  rightIndex - leftIndex - 1); 
-				//--we don't need extra checkk as we have already calculated left for empty stack
-				int area = hist[item] * (rightIndex - leftIndex - 1);
-				
-				maxArea = area > maxArea ? area : maxArea;
-				
-			}
-		}
-		
-		while (!stack.isEmpty()) {
-			int item = stack.pop();
-			int rightIndex = i;  //--it should be i as we are incrementing this after every PUSH
-			int leftIndex = !stack.isEmpty() ? stack.peek() : 0; //--left index of current rectangle
-			
-//			int area = hist[item] * (stack.isEmpty() ? i :  rightIndex - leftIndex - 1); 
-			//--we don't need extra checkk as we have already calculated left for empty stack
-			int area = hist[item] * (rightIndex - leftIndex - 1);
-			
-			maxArea = area > maxArea ? area : maxArea;
-		}
-		
-		return maxArea;
-	}
+	//--https://leetcode.com/problems/largest-rectangle-in-histogram/submissions/
+	public static int largestRectangleArea(int[] heights) {
+	       
+        if(heights == null || heights.length == 0) 
+            return 0;
+               
+        
+        int i = 0; //--track the array pos
+        int max = 0; //--max area
+        Stack<Integer> stk = new Stack<Integer>();
+        
+        while (i<heights.length) {
+            
+            if(stk.isEmpty() || heights[i] >= heights[stk.peek()]) {
+                stk.push(i);
+                i++;
+            } else {
+                int item = stk.pop();
+                int right_index = i;
+                int width = stk.isEmpty() ? i : (right_index - stk.peek() - 1);
+                
+                int area = heights[item] * width;
+                max = max < area ? area : max;
+            }
+        }
+        
+        while (!stk.isEmpty()) {
+            int item = stk.pop();
+            int right_index = i;
+            int width = stk.isEmpty() ? i : right_index - stk.peek() -1;
+            
+            int area = heights[item] * width;
+            max = max < area ? area : max;
+            
+        }
+        
+        return max;
+    }
+	
+	
 
 }

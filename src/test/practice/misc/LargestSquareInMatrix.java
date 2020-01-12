@@ -4,6 +4,13 @@ import java.util.Arrays;
 
 public class LargestSquareInMatrix {
 
+	/*
+	 * Leet code submission of similar prob: 
+	 * 	https://leetcode.com/problems/maximal-square/submissions/
+	 * 	https://leetcode.com/problems/maximal-square/
+	 *  https://leetcode.com/articles/maximal-square/
+	 */
+	
 	public static void main(String[] args) {
 
 		/*int[][] mat = {

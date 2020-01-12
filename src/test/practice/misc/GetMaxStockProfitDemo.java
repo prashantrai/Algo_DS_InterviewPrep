@@ -16,7 +16,33 @@ public class GetMaxStockProfitDemo {
 //		int[] stockPricesYesterday2 = new int[] {10, 7, 5, 8, 11, 9};
 		getMaxProfit_2(stockPricesYesterday2); 		// returns 3 (buying for $10 and selling for $6) -- minimize the loss
 		
+		int[] prices = {7,1,5,3,6,4};
+		getMaxProfit_3(prices);
 	}
+	
+	/*
+	 * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+	 * 	https://leetcode.com/problems/best-time-to-buy-and-sell-stock/solution/
+		Complexity Analysis
+			Time complexity : O(n)O(n). Only a single pass is needed.
+			Space complexity : O(1)O(1). Only two variables are used.
+	*/
+	private static void getMaxProfit_3(int[] prices) {
+		
+		int maxProfit = 0;
+		int minPrice = Integer.MAX_VALUE;
+		
+		for(int i=0; i<prices.length; i++) {
+			if(prices[i] < minPrice) {
+				minPrice = prices[i];
+			} else { //--calculate max profit
+				if(prices[i] - minPrice > maxProfit) 
+					maxProfit = prices[i] - minPrice;
+			}
+		}
+		System.out.println(">>>maxProfit:: "+maxProfit); 
+	}
+	
 
 	private static void getMaxProfit(int[] stockPricesYesterday) {
 		
