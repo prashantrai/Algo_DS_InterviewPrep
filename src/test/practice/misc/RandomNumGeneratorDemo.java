@@ -6,6 +6,13 @@ import java.util.StringJoiner;
 /** VmWare
 	Write a function to generate random numbers between given range (5 to 55 inclusive) 
 	using a given function "rand_0()" which returns whether '0' or '1'.
+	
+	Look at below link for better implementation: 
+	https://stackoverflow.com/questions/39064694/generate-a-sequence-of-random-1s-and-0s
+	https://stackoverflow.com/questions/8458392/generate-randoma-b-making-calls-to-random0-1
+	
+	https://www.geeksforgeeks.org/implement-random-0-6-generator-using-the-given-random-0-1-generator/
+	
 */
 
 public class RandomNumGeneratorDemo {
