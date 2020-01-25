@@ -47,7 +47,7 @@ public class LargestSquareInMatrix {
 				
 				if(r==0 || c==0) {
 					cache[r][c] = m[r][c];
-				} else {
+				} else if (m[r][c] > 0){
 					int minValue = min(cache[r-1][c], cache[r-1][c-1], cache[r][c-1]);
 					cache[r][c] = m[r][c] + minValue;
 					result = result > cache[r][c] ? result : cache[r][c];

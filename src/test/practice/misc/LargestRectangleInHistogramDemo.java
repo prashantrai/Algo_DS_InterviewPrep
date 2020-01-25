@@ -40,7 +40,7 @@ public class LargestRectangleInHistogramDemo {
             } else {
                 int item = stk.pop();
                 int right_index = i;
-                int width = stk.isEmpty() ? i : (right_index - stk.peek() - 1);
+                int width = stk.isEmpty() ? (i-1) : (right_index - stk.peek() - 1);
                 
                 int area = heights[item] * width;
                 max = max < area ? area : max;

@@ -3,6 +3,8 @@ package test.practice.misc;
 import java.util.Arrays;
 
 public class ConnectedIslandsDemo {
+	
+	//--Look at this for non-recursive solutions:: https://leetcode.com/articles/maximal-square/
 
 	public static void main(String[] args) {
 
