@@ -1,4 +1,4 @@
-package test.practice.misc;
+package test.practice.amazon;
 
 import java.util.ArrayList;
 import java.util.Arrays;

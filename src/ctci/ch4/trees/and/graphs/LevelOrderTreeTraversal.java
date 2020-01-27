@@ -1,4 +1,4 @@
-package test.practice.misc;
+package ctci.ch4.trees.and.graphs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
