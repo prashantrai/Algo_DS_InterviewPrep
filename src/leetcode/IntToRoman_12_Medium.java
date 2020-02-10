@@ -6,11 +6,28 @@ public class IntToRoman_12_Medium {
 
 		System.out.println(intToRoman(33));
 		System.out.println(intToRoman2(33));
+		System.out.println(intToRoman3(33));
 	}
 	
 	//--https://leetcode.com/problems/integer-to-roman/
 	//--https://leetcode.com/problems/integer-to-roman/submissions/
 	public static String intToRoman(int num) {
+		
+		String[] dict = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+	    int[] val = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+		StringBuilder result = new StringBuilder();
+	    
+		for(int i=0;i<val.length;i++) {
+			int v = val[i];
+            while(num >= v) {
+                num -= v;
+                result.append(dict[i]);
+            }
+        }
+	    return result.toString();
+	}
+	
+	public static String intToRoman2(int num) {
 		
 		String[] dict = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
 	    int[] val = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
@@ -28,11 +45,12 @@ public class IntToRoman_12_Medium {
 	    		}
 	    	}
 	    }
+		
 	    return result.toString();
 	}
 	
 	//--https://leetcode.com/problems/integer-to-roman/discuss/492037/JAVA-EASIEST-Solution-(MUST-READ)!
-	public static String intToRoman2(int num) {
+	public static String intToRoman3(int num) {
 
 		String[] thousands = {"","M","MM","MMM"};
 		String[] hundreds = {"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
