@@ -1,11 +1,11 @@
-package ctci.ch4.trees.and.graphs;
+package leetcode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-public class ZigZagOrderTreeTraversal {
+public class ZigZagOrderTreeTraversal_103_Medium {
 
 	public static void main(String[] args) {
 		TreeNode tree = new TreeNode(20);
@@ -120,5 +120,4 @@ public class ZigZagOrderTreeTraversal {
 			nodes.push(node);
 		}
 	}
-
 }
