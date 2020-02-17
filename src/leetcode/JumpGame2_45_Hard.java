@@ -8,15 +8,46 @@ public class JumpGame2_45_Hard {
 	public static void main(String[] args) {
 		
 		int[] nums = {2,3,1,1,4};
-		System.out.println("1. Expected: 2, Actual: " +jump(nums));
-		System.out.println("2. Expected: 2, Actual: " +jump1(nums));
-		System.out.println("3. Expected: 2, Actual: " +jump2(nums));
+		System.out.println("1. Expected: 2, Actual: " +jump_BFS(nums));
+		System.out.println("2. Expected: 2, Actual: " +jump_DP(nums));
+		System.out.println("3. Expected: 2, Actual: " +jump1(nums));
+		System.out.println("4. Expected: 2, Actual: " +jump2(nums));
 
 	}
 	
-	//-- BFS solution [My submission]: https://leetcode.com/problems/jump-game-ii/submissions/
+	/*
+	 * Below URL for DP and BFS solutions: 
+	 * https://leetcode.com/problems/jump-game-ii/discuss/507246/Java%3A-2-Methods-DP-and-BFS-both-with-Time-%3AO(n)-Space%3A-O(1)
+	 */
+	
+	public static int jump_BFS(int[] nums) {
+		if (nums.length == 1)
+			return 0;
+		
+		int maxStep = 0;
+		int minVal = 0;
+		int lastMax = 0;
+		int i=0;
+		
+		while(lastMax - i+1 > 0) {
+			
+			minVal++;
+			for(;i<=lastMax; i++) {
+				maxStep = Math.max(maxStep, i + nums[i]);
+				if(maxStep >= nums.length - 1) 
+					return minVal;
+			}
+			
+			lastMax = maxStep;
+			
+		}
+		return 0;		
+		
+	}
+	
+	//-- DP solution [My submission]: https://leetcode.com/problems/jump-game-ii/submissions/
 	//-- Runtime: O(n) Space: O(1)
-    public static int jump(int[] nums) {
+    public static int jump_DP(int[] nums) {
         if (nums.length == 1)
 			return 0;
         
