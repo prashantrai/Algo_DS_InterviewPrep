@@ -13,12 +13,10 @@ import java.util.*;
 /**
  * LRU 1.
  * 
- * 
- * get put capacity
- * 
- * 
- * 
  * c <-> a -> b -> d Map<data, data>
+ * 
+ * LeetCode Version: 
+ * https://leetcode.com/problems/lru-cache/discuss/494345/Java-Hash-Map-%2B-Doubly-Linked-List-Clearer-Version-of-Official-Solution
  */
 
 class LRUCache {
