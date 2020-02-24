@@ -20,6 +20,9 @@ public class AsteroidCollision_735_Medium {
 	//--https://leetcode.com/problems/asteroid-collision/submissions/
 	//--https://leetcode.com/problems/asteroid-collision/discuss/498932/Simple-JAVA-solution-with-detailed-explanation
 	//--https://leetcode.com/problems/asteroid-collision/solution/
+	
+	//--https://www.youtube.com/watch?v=6GGTBM7mwfs
+	
 	public static int[] asteroidCollision(int[] asteroids) {
         
         Stack<Integer> stk = new Stack<>();
