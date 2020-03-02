@@ -8,12 +8,19 @@ public class AsteroidCollision_735_Medium {
 	public static void main(String[] args) {
 		
 		int[] asteroids = {5,10,-5};
-		
 		int[] res = asteroidCollision(asteroids);
-		
-		
-		System.out.println("Expected: [5,10], Actual: "+Arrays.toString(res));
+		System.out.println("1. Expected: [5,10], Actual: "+Arrays.toString(res));
 
+		int[] asteroids2 = {-2, -1, 1, 2};
+		res = asteroidCollision2(asteroids2);
+		System.out.println("2. Expected: [-2, -1, 1, 2], Actual: "+Arrays.toString(res));
+		
+		int[] asteroids3 = {8, -8};
+		res = asteroidCollision2(asteroids3);
+		System.out.println("3. Expected: [], Actual: "+Arrays.toString(res));
+
+		
+		
 	}
 
 	//--https://leetcode.com/problems/asteroid-collision/
@@ -53,8 +60,8 @@ public class AsteroidCollision_735_Medium {
 	
 	
 	//--https://leetcode.com/problems/asteroid-collision/solution/
-	public int[] asteroidCollision2(int[] asteroids) {
-        Stack<Integer> stack = new Stack();
+	public static int[] asteroidCollision2(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
         for (int ast: asteroids) {
             collision: {
                 while (!stack.isEmpty() && ast < 0 && 0 < stack.peek()) {

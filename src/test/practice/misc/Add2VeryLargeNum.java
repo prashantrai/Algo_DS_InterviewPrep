@@ -16,7 +16,8 @@ import static java.util.stream.Collectors.toList;
 public class Add2VeryLargeNum {
     public static void main(String[] args) throws IOException {
         
-        String result = addStrings2("3.14", "0.9");
+        //String result = addStrings2("3.14", "0.9");
+        String result = addStrings3("3.14", "0.9");
         System.out.println("1. Actual: "+getExpectedFloat("3.14", "0.9") +", result="+result);
         
         result = addStrings2("9.14", "2.9");
@@ -50,7 +51,7 @@ public class Add2VeryLargeNum {
     }
     
     
-    
+    //-Working for all the cases
     public static String addStrings3(String str1, String str2) {
 		
     	StringBuilder res = new StringBuilder();
@@ -191,6 +192,7 @@ public class Add2VeryLargeNum {
 		return sb.toString();
 	}
 	
+	//--Working
 	public static List<String> getPaddedStrList(String str1, String str2) {
 		
 		List<String> list = new ArrayList<>();
@@ -301,7 +303,7 @@ public class Add2VeryLargeNum {
 		
 	}
 	
-	
+	//--for testing only
 	public static String getExpected(String s1, String s2) {
 		BigInteger b1 = new BigInteger(s1);
 		BigInteger b2 = new BigInteger(s2);
@@ -309,6 +311,7 @@ public class Add2VeryLargeNum {
 		return b1.add(b2).toString();
 	}
 	
+	//--for testing only
 	public static String getExpectedFloat(String s1, String s2) {
 		float n1 = Float.parseFloat(s1);
 		float n2 = Float.parseFloat(s2);

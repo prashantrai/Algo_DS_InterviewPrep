@@ -1,6 +1,6 @@
 package leetcode;
 
-public class BattleshipsInABoard {
+public class BattleshipsInABoard_419_Medium {
 
 	public static void main(String[] args) {
 		
@@ -14,6 +14,10 @@ public class BattleshipsInABoard {
 		System.out.println(">>res:: " + res);
 		
 	}
+	
+	/**
+	 *	One-pass, using only O(1) extra memory 
+	 */
 	
 	//--https://leetcode.com/problems/battleships-in-a-board/
 	//--https://www.youtube.com/watch?v=wBG6078g1gE
