@@ -9,6 +9,8 @@ public class JumpGame3_1306_Medium {
 
 		int[] arr = {4,2,3,0,3,1,2};
 		System.out.println(canReach(arr, 5));
+		
+		System.out.println(canReach(arr, 0));
 	}
 	//--Microsoft
 	//--https://leetcode.com/problems/jump-game-iii/

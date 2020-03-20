@@ -33,7 +33,48 @@ public class ZigZagOrderTreeTraversal {
 	 * complexity is T O(n). And since the Queue can contain all the leaf nodes in
 	 * the worst case, the Space complexity is also S O(n).
 	 */
+	
+	// --https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/submissions/
+	//Better solution - O(n)
 	public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        
+        List<List<Integer>> res = new ArrayList<>();
+        if(root == null) 
+            return res;
+            
+        LinkedList<TreeNode> q = new LinkedList<>();
+        q.addLast(root);
+        boolean leftToRight = false;
+        while (!q.isEmpty()) {
+            int size = q.size();
+            //List<Integer> list = new ArrayList<>();
+            LinkedList<Integer> list = new LinkedList<>();
+            for(int i=0; i<size; i++) {
+                TreeNode curr = q.removeFirst();
+                
+                if(leftToRight) {
+                    //list.add(0, curr.val); //--there is value/element shifting cost involve if use ArrayList and will make this a O(n^2). This can be solved with LinkedList as we don't need to shift element but to add the new one at head and the time complexity will be O(n) for this operation
+                    list.addFirst(curr.data);
+                } else {
+                    //list.add(curr.val);
+                    list.addLast(curr.data);
+                }
+                
+                if(curr.left != null)
+                    q.addLast(curr.left);
+                if(curr.right != null)
+                    q.addLast(curr.right);
+                
+            }
+            leftToRight = !leftToRight;
+            res.add(list);
+        }
+        return res;
+        
+    }
+	
+	
+	public static List<List<Integer>> zigzagLevelOrder_2(TreeNode root) {
 
 		List<List<Integer>> res = new ArrayList<>();
 		if (root == null)
@@ -44,7 +85,7 @@ public class ZigZagOrderTreeTraversal {
 		boolean leftToRight = false; // --Declare this to decide which side to traverse from
 		while (!q.isEmpty()) {
 			int size = q.size();
-			List<Integer> list = new ArrayList<>();
+			List<Integer> list = new LinkedList<>();
 			for (int i = 0; i < size; i++) {
 				TreeNode curr = q.removeFirst();
 

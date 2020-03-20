@@ -86,6 +86,12 @@ public class DesignTicTacToe_348_Medium {
 		System.out.println(result);
 	}
 	
+	/*
+	 * All we need to do is calculate (add to 1 or -1 based on the player) the value for each row, col, diag, and forward-diag
+	 * after each move and if the absolute value is 3 then return player else return 0;
+	 * 
+	 * */
+	
 	public static class TicTacToe {
 		
 		int[] rows;
@@ -119,7 +125,8 @@ public class DesignTicTacToe_348_Medium {
 				diag += val;
 			}
 			
-			if(c == n-1-r) { //--are we in 2nd/forward diagonal
+			//-- below condition could be row+col == n-1 e.g for diag cell in first row=0, col=3 and n-1=3 then 0+3 = 3
+			if(c == n-1-r) { //--are we in 2nd/forward diagonal. 
 				xdiag += val;
 			}
 			

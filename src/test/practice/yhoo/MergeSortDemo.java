@@ -10,9 +10,9 @@ public class MergeSortDemo {
 	
 	public static void main(String[] args) {
 
-//		doMergeSort(0, arr.length-1);
-//		doMergeSort_2(0, arr.length-1);
-		doMergeSort_3(arr, helper, 0, arr.length-1);
+		//doMergeSort(0, arr.length-1);
+		doMergeSort_2(0, arr.length-1);
+//		doMergeSort_3(arr, helper, 0, arr.length-1);
 		
 		System.out.println(Arrays.deepToString(arr));
 	}
@@ -94,15 +94,15 @@ public class MergeSortDemo {
 		
 		int remaining = mid - helperLeft;
 		
-		for(int i=0; i<=remaining; i++) {
+		/*for(int i=0; i<=remaining; i++) {
 			arr[current+i] = helper[helperLeft+i];
-		}
+		}*/
 		
-		/*while(helperLeft <= mid) {
+		while(helperLeft <= mid) {
 			arr[current] = helper[helperLeft];
 			current++;
 			helperLeft++;
-		}*/
+		}
 		
 	}
 	

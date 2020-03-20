@@ -18,6 +18,10 @@ public class AsteroidCollision_735_Medium {
 		int[] asteroids3 = {8, -8};
 		res = asteroidCollision2(asteroids3);
 		System.out.println("3. Expected: [], Actual: "+Arrays.toString(res));
+		
+		int[] asteroids4 = {1, -5, 7, -3};
+		res = asteroidCollision2(asteroids4);
+		System.out.println("3. Expected: [], Actual: "+Arrays.toString(res));
 
 		
 		
@@ -29,6 +33,9 @@ public class AsteroidCollision_735_Medium {
 	//--https://leetcode.com/problems/asteroid-collision/solution/
 	
 	//--https://www.youtube.com/watch?v=6GGTBM7mwfs
+	
+	//--https://www.1point3acres.com/bbs/interview/lyft-software-engineer-311115.html
+	//--https://translate.google.com/translate?sl=zh-CN&tl=en&u=https%3A%2F%2Fwww.1point3acres.com%2Fbbs%2Finterview%2Flyft-software-engineer-311115.html
 	
 	public static int[] asteroidCollision(int[] asteroids) {
         
