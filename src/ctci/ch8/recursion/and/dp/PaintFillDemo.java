@@ -33,6 +33,12 @@ public class PaintFillDemo {
 	}
 
 
+	/* Refer : https://www.hackerearth.com/practice/algorithms/graphs/flood-fill-algorithm/tutorial/
+	 * 
+	 * Time Complexity: O(n*m)
+	 */
+	
+	
 	private static boolean paintFill(Color[][] screen, int r, int c, Color ocolor, Color ncolor) {
 
 		if(r<0 || r >= screen.length || c < 0 || c >= screen[0].length) {

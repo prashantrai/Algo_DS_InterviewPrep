@@ -45,7 +45,7 @@ public class RabbitsInForest_781_Medium {
 				 * different group and we should start the count for diff group 
 				 * by reseting the value on map.
 				 * 
-				 * Example: for {2,2,2,2} total count will be 5
+				 * Example: for {2,2,2,2} total count will be 5 (think of this you asked 3 rabbits and they answer 2 which makes total count 3 for same color but if the 4th is answering 2 too it means it doesn't belong to same color)
 				 * map will look like {2=2} for the first 3 (note when ans is 2 that means total count of same color is 2+1)
 				 * and when the 4th '2' encounter it definitely a different color otherwise
 				 * previous answers doesn't make sense and that's where a new entry i.e. we'll update/reset the 
