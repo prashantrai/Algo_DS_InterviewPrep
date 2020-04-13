@@ -6,8 +6,100 @@ package leetcode;
  * 
  * With Solution : https://segmentfault.com/a/1190000016762566
  * 
+ * http://shibaili.blogspot.com/2018/08/convert-binary-search-tree-to-sorted.html
  * */
 
+/**
+ * Asked in Lyft interview
+ * 
+ * This is in-place conversion Complete Problem :
+ * https://www.lintcode.com/problem/convert-binary-search-tree-to-sorted-doubly-linked-list/description
+ * 
+ * Convert a BST to a sorted circular doubly-linked list in-place. Think of the
+ * left and right pointers as synonymous to the previous and next pointers in a
+ * doubly-linked list.
+ */
+
+// Solution reference : https://www.geeksforgeeks.org/convert-given-binary-tree-doubly-linked-list-set-3/
+
+/*
+ * Time Complexity: The above program does a simple inorder traversal, so time
+ * complexity is O(n) where n is the number of nodes in given binary tree.
+ */
+
 public class ConvertBinarySearchTreeToSortedDoublyLinkedList_426 {
+
+	public static void main(String[] args) {
+
+		TreeNode tree = new TreeNode(12);
+		tree.insertInOrder(7);
+		tree.insertInOrder(8);
+		tree.insertInOrder(6);
+		tree.insertInOrder(4);
+		tree.insertInOrder(16);
+		tree.insertInOrder(13);
+		tree.insertInOrder(15);
+
+		TreeNode head = convertBinarySearchTreeToSortedDoublyCicularLinkedList(tree);
+		printListForward(head);
+		printListReverse(tail);
+	}
+
+	private static TreeNode prev = null;
+	private static TreeNode head = null;
+	private static TreeNode tail = null;
+
+	private static TreeNode convertBinarySearchTreeToSortedDoublyCicularLinkedList(TreeNode root) {
+
+		if (root == null)
+			return null;
+
+		// --traverse left
+		convertBinarySearchTreeToSortedDoublyCicularLinkedList(root.left);
+
+		if (prev == null) {
+			head = root;
+		} else {
+
+			/*
+			 * point the left to prev (think of left pointer of tree as prev in doubly
+			 * linked list) and prev.right to curr node (think of right as a next pointer of
+			 * doubly linked list)
+			 */
+
+			root.left = prev;
+			prev.right = root;
+
+		}
+		prev = root;
+		tail = root; // --make it circular
+
+		// --traverse right
+		convertBinarySearchTreeToSortedDoublyCicularLinkedList(root.right);
+		tail.right = head;
+		return head;
+	}
+
+	// --print list forward from head
+	public static void printListForward(TreeNode node) {
+		while (node != tail) {
+			System.out.print(node.data + "->");
+			node = node.right;
+		}
+		if (node == tail) {
+			System.out.println(node.data);
+		}
+	}
+
+	// --print list backward form tail
+	public static void printListReverse(TreeNode node) {
+		while (node != head) {
+			System.out.print(node.data + "->");
+			node = node.left;
+		}
+		if (node == head) {
+			System.out.println(node.data);
+		}
+	}
 
 }

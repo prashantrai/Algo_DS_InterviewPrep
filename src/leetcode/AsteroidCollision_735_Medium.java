@@ -12,7 +12,7 @@ public class AsteroidCollision_735_Medium {
 		System.out.println("1. Expected: [5,10], Actual: "+Arrays.toString(res));
 
 		int[] asteroids2 = {-2, -1, 1, 2};
-		res = asteroidCollision2(asteroids2);
+		res = asteroidCollision(asteroids2);
 		System.out.println("2. Expected: [-2, -1, 1, 2], Actual: "+Arrays.toString(res));
 		
 		int[] asteroids3 = {8, -8};
@@ -22,8 +22,6 @@ public class AsteroidCollision_735_Medium {
 		int[] asteroids4 = {1, -5, 7, -3};
 		res = asteroidCollision2(asteroids4);
 		System.out.println("3. Expected: [], Actual: "+Arrays.toString(res));
-
-		
 		
 	}
 

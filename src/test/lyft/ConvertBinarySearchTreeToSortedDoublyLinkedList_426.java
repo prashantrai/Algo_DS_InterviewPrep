@@ -6,6 +6,7 @@ package test.lyft;
  * 
  * With Solution : https://segmentfault.com/a/1190000016762566
  * 
+ * http://shibaili.blogspot.com/2018/08/convert-binary-search-tree-to-sorted.html
  * */
 
 /**
@@ -24,6 +25,16 @@ package test.lyft;
 /*
  * Time Complexity: The above program does a simple inorder traversal, so time
  * complexity is O(n) where n is the number of nodes in given binary tree.
+ * 
+ * Complexity Analysis: [Leetcode premium]
+ * 
+ * Time complexity : O(N) since each node is processed exactly once.
+ * 
+ * Space complexity : O(N). We have to keep a recursion stack of
+ * the size of the tree height, which is O(logN) for the best
+ * case of completely balanced tree and O(N) for the worst case of
+ * completely unbalanced tree.
+ * 
  */
 
 public class ConvertBinarySearchTreeToSortedDoublyLinkedList_426 {
@@ -100,5 +111,57 @@ public class ConvertBinarySearchTreeToSortedDoublyLinkedList_426 {
 			System.out.println(node.data);
 		}
 	}
+
+	
+	/* Another approach */
+	
+	/*
+	 * Complexity Analysis: [Leetcode premium]
+	 * 
+	 * Time complexity : O(N) since each node is processed exactly once.
+	 * 
+	 * Space complexity : O(N). We have to keep a recursion stack of
+	 * the size of the tree height, which is O(logN) for the best
+	 * case of completely balanced tree and O(N) for the worst case of
+	 * completely unbalanced tree.
+	 * 
+	 */
+	
+	//https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/submissions/
+	
+	TreeNode _head;
+	TreeNode _tail;
+    public TreeNode treeToDoublyList(TreeNode root) {
+        if(root == null) return null;
+        
+        helper(root);
+        
+        //make it circular //---moved this code to helper
+        //head.left = tail; 
+        //tail.right = head;
+            
+        return _head;
+    }
+    
+    public void helper (TreeNode node) {
+        if(node == null) 
+            return;
+        
+        helper(node.left);
+        
+        if(head == null) {
+            head = node;
+        } else {
+            node.left = tail;
+            tail.right = node;            
+        }
+        tail = node;
+        
+        helper(node.right);
+
+        //make it circular
+        head.left = tail;
+        tail.right = head;
+    }
 
 }

@@ -46,7 +46,7 @@ public class RobotInAGrid {
 			return false;
 		}
 		
-		boolean isOrigin = r == 0 || c == 0;
+		boolean isOrigin = r == 0 && c == 0;
 		
 		if(isOrigin 
 				|| getPath(maze, path, r-1, c, failedPoint)
