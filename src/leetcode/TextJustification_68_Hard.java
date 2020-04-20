@@ -62,8 +62,6 @@ public class TextJustification_68_Hard {
 		return res;
 	}
 	
-	
-	
 	private static String createJustifiedLine(Queue<String> q, int len, boolean isLast, int maxWidth) {
 		StringBuilder buff = new StringBuilder();
 		
