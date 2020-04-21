@@ -27,6 +27,8 @@ public class WordAbbreviation_527_Hard_LeetCode_article_solution {
 
 	}
 
+	//https://www.youtube.com/watch?v=yAQMcGY4c90
+	
 	public static List<String> wordsAbbreviation(List<String> words) {
 		Map<String, List<IndexedWord>> groups = new HashMap();
 		String[] ans = new String[words.size()];

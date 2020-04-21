@@ -25,7 +25,9 @@ public class WordAbbreviation_527_Hard {
 		
 		
 	}
-
+	// Watch below for visulization [https://leetcode.com/problems/word-abbreviation/discuss/99785/Visualization]
+	// https://www.youtube.com/watch?v=yAQMcGY4c90
+	
 	/*
 	 * https://leetcode.com/problems/word-abbreviation/discuss/99792/HashMap-%2B-Trie-greater-O(nL)-solution
 	 * 
