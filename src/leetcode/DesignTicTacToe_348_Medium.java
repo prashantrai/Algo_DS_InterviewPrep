@@ -6,10 +6,12 @@ public class DesignTicTacToe_348_Medium {
 	 * http://buttercola.blogspot.com/2016/06/leetcode-348-design-tic-tac-toe.html
 	 * https://medium.com/@ojusmilindsave/tutorial-to-implement-tic-tac-toe-in-java-ad639661a9b
 	 * https://www.programcreek.com/2014/05/leetcode-tic-tac-toe-java/
+	 * https://leetcode.com/problems/design-tic-tac-toe/discuss/81898/Java-O%281%29-solution-easy-to-understand
 	 * 
 	 * https://github.com/chihungyu1116/leetcode-javascript/blob/master/348.%20Design%20Tic-Tac-Toe.java
 	 */
 	
+	//--https://leetcode.com/problems/design-tic-tac-toe/submissions/
 	
 	/**
 	 * Design a Tic-tac-toe game that is played between two players on a n x n grid.
@@ -89,6 +91,10 @@ public class DesignTicTacToe_348_Medium {
 	/*
 	 * All we need to do is calculate (add to 1 or -1 based on the player) the value for each row, col, diag, and forward-diag
 	 * after each move and if the absolute value is 3 then return player else return 0;
+	 *
+	 * Complexity Analysis: 
+	 * Runtime: O(1)
+	 * Space: O(n) - 2 arrays for rows and cols to create board
 	 * 
 	 * */
 	
@@ -130,10 +136,10 @@ public class DesignTicTacToe_348_Medium {
 				xdiag += val;
 			}
 			
-			if(Math.abs(rows[r]) == 3 
-					|| Math.abs(cols[c]) == 3 
-					|| Math.abs(diag) == 3
-					|| Math.abs(xdiag) == 3) {
+			if(Math.abs(rows[r]) == n 
+					|| Math.abs(cols[c]) == n 
+					|| Math.abs(diag) == n
+					|| Math.abs(xdiag) == n) {
 				
 				return player;
 			}
