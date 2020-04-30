@@ -1,8 +1,10 @@
 package leetcode;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
@@ -85,18 +87,28 @@ public class AlienDictionary_269_Hard {
 		//String res = alienOrder2(words2);
 		System.out.println(">>>Expected: <EMPTY>, Actual: "+res);
 		
+		String[] words4 = {"abc", "ab"};
+		res = alienOrder(words4); System.out.println("1. >>>Expected: <EMPTY>, Actual: "+res);
+		res = alienOrder2(words4); System.out.println("2. >>>Expected: <EMPTY>, Actual: "+res);
+		res = alienOrder_BFS(words4);
+		System.out.println("3. >>>Expected: <EMPTY>, Actual: "+res);
+		
 	}
 	
 	
 	
 	
 	public static String alienOrder(String[] words) {
-		HashMap<Character, Set<Character>> graph = new HashMap<>();
+		Map<Character, Set<Character>> graph = null;
 		
 		//--Here we can also use map to keep track of dependecy refer another implementation 'alienOrder()' below in this file
 		int[] inDegree = new int[26]; //--to keep track of number of parents or or node should be build first 
 		
-		buildGraph(words, graph, inDegree);
+		graph = buildGraph(words, inDegree);
+		
+		if(graph == null) 
+            return "";
+		
 		String orderStr = topologicalSort(graph, inDegree);
 		//System.out.println("orderStr:: "+orderStr);
 		orderStr = orderStr.length() == graph.size() ? orderStr : "";
@@ -105,7 +117,7 @@ public class AlienDictionary_269_Hard {
 	}
 	
 	//--BFS
-	public static String topologicalSort(HashMap<Character, Set<Character>> graph, int[] inDegree) {
+	public static String topologicalSort(Map<Character, Set<Character>> graph, int[] inDegree) {
 		Queue<Character> queue = new LinkedList<>();
 		for(char c : graph.keySet()) {
 			if(inDegree[c - 'a'] == 0) {
@@ -125,11 +137,15 @@ public class AlienDictionary_269_Hard {
 				}
 			}
 		}
+		
+		if(sb.length() < graph.size()) 
+			return "";
+		
 		return sb.toString();
 	}
 	
-	public static void buildGraph(String[] words, HashMap<Character, Set<Character>> graph, int[] inDegree) {
-		
+	public static Map<Character, Set<Character>> buildGraph(String[] words, int[] inDegree) {
+		Map<Character, Set<Character>> graph = new HashMap<>();
 		for(String word : words) {
 			for(char c : word.toCharArray()) {
 				graph.put(c, new HashSet<Character>());
@@ -139,6 +155,16 @@ public class AlienDictionary_269_Hard {
 		for(int i = 1; i<words.length; i++) {
 			String first  = words[i-1];
 			String second = words[i];
+			
+			// Check that second is not a prefix of first.
+			/* The input can contain words followed by their prefix, 
+			 * for example, abcd and then ab. These cases will never result in a valid alphabet 
+			 * (because in a valid alphabet, prefixes are always first). 
+			 */
+	        if (first.length() > second.length() && first.startsWith(second)) {
+	            return null;
+	        }
+			
 			int len = Math.min(first.length(), second.length());
 			
 			/*
@@ -165,6 +191,8 @@ public class AlienDictionary_269_Hard {
 		 * */
 		System.out.println("inDegree:: "+Arrays.toString(inDegree));
 		System.out.println("graph:: "+graph);
+		
+		return graph;
 	}
 	
 	
@@ -190,6 +218,11 @@ public class AlienDictionary_269_Hard {
         for(int i=0; i < words.length-1; i++){
             String cur = words[i];
             String next = words[i+1];
+            
+            if(cur.length() > next.length() && cur.startsWith(next)) {
+            	return "";
+            }
+            
             // using longer one
             int length = Math.min(cur.length(), next.length());
             for(int j=0; j<length; j++){
@@ -231,5 +264,129 @@ public class AlienDictionary_269_Hard {
 
         return sb.toString();
     }
+	
+	
+	//--Solutions from Leetcode Article ---------------------- 
+	
+	// Approach 1 : BFS  [Copied from Leetcode Article]
+	public static String alienOrder_BFS(String[] words) {
+	    
+	    // Step 0: Create data structures and find all unique letters.
+	    Map<Character, List<Character>> adjList = new HashMap<>();
+	    Map<Character, Integer> counts = new HashMap<>();
+	    for (String word : words) {
+	        for (char c : word.toCharArray()) {
+	            counts.put(c, 0);
+	            adjList.put(c, new ArrayList<>());
+	        }
+	    }
+	    
+	    // Step 1: Find all edges.
+	    for (int i = 0; i < words.length - 1; i++) {
+	        String word1 = words[i];
+	        String word2 = words[i + 1];
+	        // Check that word2 is not a prefix of word1.
+	        if (word1.length() > word2.length() && word1.startsWith(word2)) {
+	            return "";
+	        }
+	        // Find the first non match and insert the corresponding relation.
+	        for (int j = 0; j < Math.min(word1.length(), word2.length()); j++) {
+	            if (word1.charAt(j) != word2.charAt(j)) {
+	                adjList.get(word1.charAt(j)).add(word2.charAt(j));
+	                counts.put(word2.charAt(j), counts.get(word2.charAt(j)) + 1);
+	                break;
+	            }
+	        }
+	    }
+	    
+	    // Step 2: Breadth-first search.
+	    StringBuilder sb = new StringBuilder();
+	    Queue<Character> queue = new LinkedList<>();
+	    for (Character c : counts.keySet()) {
+	        if (counts.get(c).equals(0)) {
+	            queue.add(c);
+	        }
+	    }
+	    while (!queue.isEmpty()) {
+	        Character c = queue.remove();
+	        sb.append(c);
+	        for (Character next : adjList.get(c)) {
+	            counts.put(next, counts.get(next) - 1);
+	            if (counts.get(next).equals(0)) {
+	                queue.add(next);
+	            }
+	        }
+	    }
+	    
+	    if (sb.length() < counts.size()) {
+	        return "";
+	    }
+	    return sb.toString();
+	}
+	
+	
+	// Approach 2 : DFS [Copied from Leetcode Article]
+	class Solution {
+	    
+	    private Map<Character, List<Character>> reverseAdjList = new HashMap<>();
+	    private Map<Character, Boolean> seen = new HashMap<>();
+	    private StringBuilder output = new StringBuilder();
+	    
+	    public String alienOrder(String[] words) {
+	        
+	        // Step 0: Put all unique letters into reverseAdjList as keys.
+	        for (String word : words) {
+	            for (char c : word.toCharArray()) {
+	                reverseAdjList.putIfAbsent(c, new ArrayList<>());
+	            }
+	        }
+	        
+	        // Step 1: Find all edges and add reverse edges to reverseAdjList.
+	        for (int i = 0; i < words.length - 1; i++) {
+	            String word1 = words[i];
+	            String word2 = words[i + 1];
+	            // Check that word2 is not a prefix of word1.
+	            if (word1.length() > word2.length() && word1.startsWith(word2)) {
+	                return "";
+	            }
+	            // Find the first non match and insert the corresponding relation.
+	            for (int j = 0; j < Math.min(word1.length(), word2.length()); j++) {
+	                if (word1.charAt(j) != word2.charAt(j)) {
+	                    reverseAdjList.get(word2.charAt(j)).add(word1.charAt(j));
+	                    break;
+	                }
+	            }
+	        }
+	        
+	        // Step 2: DFS to build up the output list.
+	        for (Character c : reverseAdjList.keySet()) {
+	            boolean result = dfs(c);
+	            if (!result) return "";
+	        }
+	        
+	        
+	        if (output.length() < reverseAdjList.size()) {
+	            return "";
+	        }
+	        return output.toString();
+	    }
+	    
+	    // Return true iff no cycles detected.
+	    private boolean dfs(Character c) {
+	        if (seen.containsKey(c)) {
+	            return seen.get(c); // If this node was grey (false), a cycle was detected.
+	        }
+	        seen.put(c, false);
+	        for (Character next : reverseAdjList.get(c)) {
+	            boolean result = dfs(next);
+	            if (!result) return false;
+	        }
+	        seen.put(c, true);
+	        output.append(c);
+	        return true;
+	    }    
+	}
+	
+	
 
 }

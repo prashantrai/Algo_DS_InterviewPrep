@@ -18,6 +18,8 @@ public class ReadNCharactersGivenRead4IICallMultipleTimes_158_Hard {
 	//https://leetcode.com/problems/read-n-characters-given-read4-ii-call-multiple-times/discuss/49598/A-simple-Java-code
 
 	//https://leetcode.com/problems/read-n-characters-given-read4-ii-call-multiple-times/discuss/49615/Clean-solution-in-Java
+	
+	//https://leetcode.com/problems/read-n-characters-given-read4-ii-call-multiple-times/discuss/188293/Google-follow-up-question.-Speed-up-the-copy.
 
 	public class Solution extends Reader4 {
 	    /**

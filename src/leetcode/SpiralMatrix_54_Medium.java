@@ -14,8 +14,11 @@ public class SpiralMatrix_54_Medium {
 //	                        {2},
 //	                        {3}
 //	                    };
-		List<Integer> res = traverseMatAntiClock(mat);
-		System.out.println(">>" + res);
+		List<Integer> res = spiralOrder(mat);
+		System.out.println("1.>>" + res);
+		
+		res = spiralOrder_2(mat); //--simplified implementation
+		System.out.println("2.>>" + res);
 	}
 
 	
@@ -30,7 +33,7 @@ public class SpiralMatrix_54_Medium {
 
 	*/
 	
-	public static List<Integer> traverseMatAntiClock(int[][] mat) {
+	public static List<Integer> spiralOrder(int[][] mat) {
 		if (mat == null || mat.length == 0)
 			return null;
 
@@ -76,6 +79,55 @@ public class SpiralMatrix_54_Medium {
 
 		return res;
 	}
+	
+	
+	//--simplified version - working
+	public static List<Integer> spiralOrder_2(int[][] matrix) {
+        
+        List<Integer> res = new ArrayList<>();
+        
+        if(matrix == null || matrix.length == 0) {
+            return res;            
+        }
+        
+        int row_start = 0;
+        int row_end = matrix.length-1;
+        int col_start = 0;
+        int col_end = matrix[0].length-1;
+        
+        while(row_start <= row_end && col_start <= col_end) {
+            
+            // traverse right
+            for (int i=col_start; i<=col_end; i++) {
+                res.add(matrix[row_start][i]);
+            }
+            row_start++;
+            
+            // traverse down
+            for (int i=row_start; i<=row_end; i++) {
+                res.add(matrix[i][col_end]);
+            }
+            col_end--;
+            
+            // traverse left
+            if(row_start <= row_end) {
+                for (int i=col_end; i>=col_start; i--) {
+                    res.add(matrix[row_end][i]);
+                }
+            }
+            row_end--;
+            
+            // taverse up
+            if(col_start <= col_end) {
+                for (int i=row_end; i>=row_start; i--) {
+                    res.add(matrix[i][col_start]);
+                }
+            }
+            col_start++;
+        }
+
+        return res;
+    }
 }
 
 /*

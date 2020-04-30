@@ -6,6 +6,7 @@ import java.util.Queue;
 public class DesignHitCounter_362_Medium {
 
 	//https://leetcode.com/problems/design-hit-counter/
+	//https://leetcode.com/discuss/interview-question/178662/Design-a-Hit-Counter/
 	
 	public static void main(String[] args) {
 		HitCounter counter = new HitCounter();
