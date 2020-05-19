@@ -74,7 +74,7 @@ public class TravelBuddy {
 				i++;
 			} else { //--iterate the diff till k i.e. no of recommenation that need to return
 				for(String s : diff) {
-					if(k<0) {
+					if(k>0) {
 						res.add(s);
 						k--;
 					} else {

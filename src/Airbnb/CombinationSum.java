@@ -28,8 +28,8 @@ public class CombinationSum {
 		System.out.println(res);
 		
 		double[] prices = {10.02, 1.11, 2.22, 3.01, 4.02, 2.00, 5.03};
-        List<List<Double>> combos = getCombos(prices, 7.03);
-        System.out.println(combos);
+        //List<List<Double>> combos = getCombos(prices, 7.03);
+        //System.out.println(combos);
 
 	}
 
