@@ -4,10 +4,14 @@ import java.util.Scanner;
 
 public class SearchInRotatedArrayDemo {
 
+	
+	//--Look leetcode.SearchInRotatedSortedArr_33_Medium for interative simple implementation
+	
 	public static void main(String[] args) {
 
 //		int[] arr = {4,5,6,7,0,1,2};
-		int[] arr = { 2, 2, 2, 3, 4, 2};
+		//int[] arr = { 2, 2, 2, 3, 4, 2};
+		int[] arr = {3,1};
 		
 		Scanner in = new Scanner(System.in);
 		int v = in.nextInt();
