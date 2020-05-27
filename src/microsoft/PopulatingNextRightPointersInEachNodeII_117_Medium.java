@@ -26,7 +26,9 @@ public class PopulatingNextRightPointersInEachNodeII_117_Medium {
 	
 	// Refer below link for complete problem and description
 	//https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/
+	//https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/37828/o1-space-on-complexity-iterative-solution
 	
+	//O(n) time complexity : we are touching each node
 	//O(1) space complexity
     public static Node connect(Node root) {
         if(root == null) return null;
