@@ -1,4 +1,4 @@
-package leetcode;
+package Dropbox;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -40,7 +40,9 @@ public class DesignHitCounter_362_Medium {
 		counter.getHits(301); 
 		
 		Follow up:
-		What if the number of hits per second could be very large? Does your design scale? 
+		What if the number of hits per second could be very large? Does your design scale?
+		
+		 Note: For follow up 2 arrays can be used. One to store the timestamp and other to store the number of occur at same timestamp.
 	 * */
 	
 	public static void main(String[] args) {
@@ -124,6 +126,50 @@ public class DesignHitCounter_362_Medium {
 	 * int param_2 = obj.getHits(timestamp);
 	 */
 
+	
+	/**
+	 * Solution for follow-up:: 
+	 * 
+	 * For follow up 2 arrays can be used. One to store the timestamp and other 
+	 * to store the number of occur at same timestamp.
+	 */
+	public class HitCounter_FollowUp {
+
+	    int[] ts;
+	    int[] hits;
+	    /** Initialize your data structure here. */
+	    public HitCounter_FollowUp() {
+	        ts = new int[300];
+	        hits = new int[300];
+	    }
+
+	    /** Record a hit.
+	        @param timestamp - The current timestamp (in seconds granularity). */
+	    public void hit(int timestamp) {
+	        int i = timestamp % 300;
+	        if (ts[i] != timestamp) {
+	            ts[i] = timestamp;
+	            hits[i] = 1;
+	        }
+	        else {
+	            hits[i] ++;
+	        }
+	    }
+
+	    /** Return the number of hits in the past 5 minutes.
+	        @param timestamp - The current timestamp (in seconds granularity). */
+	    public int getHits(int timestamp) {
+	        int result = 0;
+	        for (int i = 0; i < hits.length; i ++) {
+	            if (timestamp - ts[i] < 300){
+	                result += hits[i];
+	            }
+	        }
+	        return result;
+	    }
+	}
+	
+	
 }
 
 /*
