@@ -1,0 +1,79 @@
+package leetcode;
+
+
+import java.util.Random;
+
+public class RandomPickWithWeight_528_Medium {
+
+	public static void main(String[] args) {
+		int idx = -99;
+		int[] w = {1, 3};
+		Solution solution = new Solution(w);
+		idx = solution.pickIndex(); // return 1. It's returning the second element (index = 1) that has probability of 3/4.
+		System.out.println("1. idx="+idx);
+		
+		idx = solution.pickIndex(); // return 1
+		System.out.println("2. idx="+idx);
+		
+		idx = solution.pickIndex(); // return 1
+		System.out.println("3. idx="+idx);
+		
+		idx = solution.pickIndex(); // return 1
+		System.out.println("4. idx="+idx);
+		
+		idx = solution.pickIndex(); // return 0. It's returning the first element (index = 0) that has probability of 1/4.
+		System.out.println("5. idx="+idx);
+	}
+
+	/*
+	 * https://leetcode.com/problems/random-pick-with-weight/submissions/
+	 * 
+	 * https://leetcode.com/problems/random-pick-with-weight/discuss/154044/Java-accumulated-freq-sum-and-binary-search
+	 * 
+	 * Time: O(n) to init, O(logn) for one pick 
+	 * Space: O(n)
+	 * 
+	 * Refer below for some more epxalination about the problem:
+	 * https://leetcode.com/problems/random-pick-with-weight/discuss/671445/Question-explained
+	 */
+
+	static class Solution {
+
+		Random random;
+		int[] wSums;
+
+		public Solution(int[] w) {
+			random = new Random();
+			for (int i = 1; i < w.length; i++) {
+				w[i] += w[i - 1];
+			}
+			wSums = w;
+		}
+
+		public int pickIndex() {
+			int len = wSums.length;
+			int idx = random.nextInt(wSums[len - 1]) + 1;
+
+			// search position - binary search
+			int left = 0, right = len - 1;
+			while (left < right) {
+				int mid = left + (right - left) / 2;
+				if (wSums[mid] == idx) {
+					return mid;
+				} else if (wSums[mid] < idx) {
+					left = mid + 1;
+				} else {
+					right = mid;
+				}
+			}
+			return left;
+		}
+	}
+
+	/**
+	 * Your Solution object will be instantiated and called as such: 
+	 * Solution obj = new Solution(w);
+	 * int param_1 = obj.pickIndex();
+	 */
+
+}
