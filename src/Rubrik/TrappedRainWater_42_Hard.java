@@ -1,6 +1,5 @@
-package test.practice.misc;
-
-public class TrappedRainWaterDemo {
+package Rubrik;
+public class TrappedRainWater_42_Hard {
 
 	public static void main(String[] args) {
 
@@ -9,8 +8,14 @@ public class TrappedRainWaterDemo {
 		System.out.println(trappedWater(height));
 	}
 
-	/** Refer Leet code article for this problem's solution (below is taken from there)
+	/** 
+	 * Refer Leet code article for this problem's solution (below is taken from there)
 	 * 
+	 * https://leetcode.com/problems/trapping-rain-water/
+	 * https://leetcode.com/problems/trapping-rain-water/submissions/
+	 * 
+	 * Time: O(n)
+	 * Space: O(1)
 	 * 
 	 */
 	public static int trappedWater (int[] height) {
