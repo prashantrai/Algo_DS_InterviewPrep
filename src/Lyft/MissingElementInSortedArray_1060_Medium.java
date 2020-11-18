@@ -1,4 +1,4 @@
-package test.lyft;
+package Lyft;
 
 public class MissingElementInSortedArray_1060_Medium {
 

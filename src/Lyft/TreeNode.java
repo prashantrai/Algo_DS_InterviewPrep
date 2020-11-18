@@ -1,4 +1,4 @@
-package test.lyft;
+package Lyft;
 
 class TreeNode {
 	

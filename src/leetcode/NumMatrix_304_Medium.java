@@ -1,4 +1,4 @@
-package test.lyft;
+package leetcode;
 
 public class NumMatrix_304_Medium {
 

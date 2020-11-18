@@ -1,4 +1,4 @@
-package test.lyft;
+package leetcode;
 
 /*
  * https://leetcode.com/discuss/interview-question/algorithms/125088/facebook-phone-screen-convert-a-bst-into-a-doubly-linked-list
@@ -37,7 +37,7 @@ package test.lyft;
  * 
  */
 
-public class ConvertBinarySearchTreeToSortedDoublyLinkedList_426 {
+public class ConvertBinarySearchTreeToSortedDoublyLinkedList_426_Medium {
 
 	public static void main(String[] args) {
 

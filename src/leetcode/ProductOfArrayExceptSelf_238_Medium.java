@@ -15,22 +15,32 @@ public class ProductOfArrayExceptSelf_238_Medium {
 	// --https://leetcode.com/problems/product-of-array-except-self/
 
 	/*
-	 * Left iteration: 1. Take a value prod and inititalise with 1. 2. update the
-	 * output array for the current index by prod * output[current]. remember output
-	 * is an output array initilised with 1 3. Now recalculate the prod value by
-	 * doint prod+arr[currIndex] for next iteration
+	 * Left iteration: 
+	 * 
+	 * 1. Take a variable 'prod' and initialize with 1. 
+	 * 2. update the output array for the current index by prod * output[current] and 
+	 *    remember output is an output array initialized with 1. 
+	 * 3. Now recalculate the 'prod' value by doing 
+	 *    prod+arr[currIndex] for next iteration.
 	 * 
 	 * Example: output: {1,1,1,1}
 	 * 
-	 * i=0 : {1,...} , prod = 1 i=1 : {1,1,..} , prod = 1*1 i=2 : {1,1,2,.} , prod =
-	 * 1*2 i=3 : {1,1,2,6} , prod = 2*3
+	 * i=0 : {1,...} , prod = 1 
+	 * i=1 : {1,1,..} , prod = 1*1 
+	 * i=2 : {1,1,2,.} , prod = 1*2 
+	 * i=3 : {1,1,2,6} , prod = 2*3
 	 * 
 	 * 
-	 * Right Iteration: 1. Reset the prod to 1. 2. Start from end of the array and
-	 * perform above steps from 2 to 3 in loop.
+	 * Right Iteration: 
 	 * 
-	 * Exampel: Updated output: {1,1,2,6} i=3 : {...,6} , prod = 1 i=2 : {..8,6} ,
-	 * prod = 1*4 i=1 : {.12,8,6} , prod = 4*3 i=0 : {24,12,8,6} , prod = 12*2
+	 * 1. Reset the prod to 1. 
+	 * 2. Start from end of the array and perform above steps from 2 to 3 in loop.
+	 * 
+	 * Example: Updated output: {1,1,2,6} 
+	 * i=3 : {...,6} , prod = 1 
+	 * i=2 : {..8,6} , prod = 1*4 
+	 * i=1 : {.12,8,6} , prod = 4*3 
+	 * i=0 : {24,12,8,6} , prod = 12*2
 	 * 
 	 * 
 	 */
