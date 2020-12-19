@@ -3,9 +3,10 @@ public class TrappedRainWater_42_Hard {
 
 	public static void main(String[] args) {
 
-		int[] height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+		//int[] height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+		int[] height = {2, 1, 0, 2, 0, 0, 1, 3, 2};
 		//int[] height = {1, 0, 2, 1, 3};
-		System.out.println(trappedWater(height));
+		//System.out.println(trappedWater(height));
 		System.out.println(trappedWater2(height)); // very simple and short solution, better than the first one
 	}
 

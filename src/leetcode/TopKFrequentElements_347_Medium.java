@@ -42,7 +42,7 @@ public class TopKFrequentElements_347_Medium {
 			map.put(num, map.getOrDefault(num, 0) + 1);
 		}
 
-		// comparator to oreder element by their frequency - increasing
+		// comparator to order element by their frequency - increasing
 		PriorityQueue<Integer> heap = new PriorityQueue<>((n1, n2) -> map.get(n1) - map.get(n2));
 
 		// keep k top elements
