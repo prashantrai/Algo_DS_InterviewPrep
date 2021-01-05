@@ -49,6 +49,7 @@ public class MergeIntervals {
 			
 		}
 		
+//		return output.toArray(new int[output.size()][2]);
 		return output.toArray(new int[output.size()][]);
 	}
 

@@ -21,6 +21,8 @@ public class AlienDictionary_269_Hard {
 	 * https://www.geeksforgeeks.org/given-sorted-dictionary-find-precedence-characters/
 	 * https://leetcode.com/discuss/interview-question/248131/microsoft-interview-round-1-alien-dictionary
 	 * 
+	 * READ: https://leetcode.com/problems/course-schedule-ii/discuss/190393/Topological-Sort-Template-General-Approach!!
+	 * 
 	 * 
 	 * For complete Question and Solution:
 	 * https://massivealgorithms.blogspot.com/2019/04/leetcode-269-alien-dictionary.html

@@ -1,4 +1,4 @@
-package leetcode;
+package Intuit;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,7 +53,7 @@ public class GroupAnagrams_49_Medium {
 			count[c - 'a']++;
 		}
 
-		//return Arrays.toString(count);  // another approach - Just return the the array in string format no need to use StringBuilder
+		//return Arrays.toString(count);  // another approach - Just return the the array in string format no need to use StringBuilder 
 		
 		StringBuilder sb = new StringBuilder();
 		for (int frequency : count) {

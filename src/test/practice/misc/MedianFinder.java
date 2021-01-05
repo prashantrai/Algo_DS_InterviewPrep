@@ -5,6 +5,8 @@ import java.util.PriorityQueue;
 
 //https://www.programcreek.com/2015/01/leetcode-find-median-from-data-stream-java/
 
+// https://jindongpu.wordpress.com/2015/10/20/implement-max-heap-and-min-heap-using-priorityqueue-in-java/
+
 public class MedianFinder {
 	PriorityQueue<Integer> maxHeap;// lower half
 	PriorityQueue<Integer> minHeap;// higher half

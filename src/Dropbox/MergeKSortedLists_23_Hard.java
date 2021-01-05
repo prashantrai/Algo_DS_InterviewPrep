@@ -33,6 +33,8 @@ public class MergeKSortedLists_23_Hard {
 		
 	}
 	
+	// Implement min and max heap with priority queue: https://jindongpu.wordpress.com/2015/10/20/implement-max-heap-and-min-heap-using-priorityqueue-in-java/
+	
 	// https://leetcode.com/problems/merge-k-sorted-lists/
 	// https://www.youtube.com/watch?v=zLcNwcR6yO4
 	

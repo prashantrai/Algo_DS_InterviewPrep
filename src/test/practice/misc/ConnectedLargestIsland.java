@@ -31,9 +31,21 @@ public class ConnectedLargestIsland {
             	System.out.println(Arrays.toString(M[r]));
     		}*/
 	
-            System.out.println("2nd:: "+countIslands(M));
+            //System.out.println("2nd:: "+countIslands(M));
+            System.out.println("2nd [countIslands2] :: "+countIslands2(M));
             
 	}
+	
+	/*
+	 * Complexity Analysis
+	 * 	Time Complexity: O(R*C), where R is the number of rows in the given grid, and C is the number of columns. We visit every square once.
+	 * 	Space complexity: O(R*C), the space used by seen to keep track of visited squares, and the space used by the call stack during our recursion.
+	 */
+
+	
+
+	
+	
 
 	//--Returns the largest connected nuber of islands : Working solution
 	private static int countIslands(int[][] m) {
@@ -42,7 +54,7 @@ public class ConnectedLargestIsland {
 		int max = 0;
 		
 		for(int r=0; r<m.length; r++) {
-			for(int c=0; c<m.length; c++) {
+			for(int c=0; c<m[0].length; c++) {
 				 
 				int count = helper(m, r, c, 0);
 				max = max < count ? count : max;
@@ -70,6 +82,43 @@ public class ConnectedLargestIsland {
 		
 		return count;
 		
+	}
+	
+	// 2nd approach
+	/*
+	 * Complexity Analysis
+	 * 	Time Complexity: O(R*C), where R is the number of rows in the given grid, and C is the number of columns. We visit every square once.
+	 * 	Space complexity: O(R*C), the space used by seen to keep track of visited squares, and the space used by the call stack during our recursion.
+	 */
+	private static int area;
+	private static int countIslands2(int[][] m) {
+
+		if(m.length == 0) return 0;
+		int max = 0;
+		
+		for(int r=0; r<m.length; r++) {
+			for(int c=0; c<m[0].length; c++) {
+				helper(m, r, c);
+				max = max < area ? area : max;
+				area = 0;
+			}
+		}
+		
+		return max;
+	}
+	
+	public static void helper(int[][] m, int r, int c) {
+		
+		if(r < 0 || r >= m.length || c < 0 || c >= m[0].length || m[r][c] != 1 ) {
+			return;
+		}
+		area++;
+		m[r][c] = 99;
+		
+		helper(m, r, c+1);
+		helper(m, r, c-1);
+		helper(m, r+1, c);
+		helper(m, r-1, c);
 	}
  
 }

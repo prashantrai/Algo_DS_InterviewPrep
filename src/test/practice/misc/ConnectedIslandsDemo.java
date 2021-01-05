@@ -38,6 +38,26 @@ public class ConnectedIslandsDemo {
             
 	}
 	
+	
+	/*
+	 * Complexity Analysis
+    	Time complexity : O(M×N) where M is the number of rows and N is the number of columns.
+    	Space complexity : worst case O(M×N) in case that the grid map is filled with lands where 
+    					DFS goes by M×N deep.
+	 * 
+	 * Runtime complexity Explanation: 
+	 * The time complexity is O(cells). Every cell is inspected at least once, due to the nested for loops. Any single cell is inspected at most 5 times. We know this because there are 5 ways a cell (i, j) can be inspected:
+
+		inspected in the nested for loop, before dfs is called
+		dfs from cell (i + 1, j)
+		dfs from cell (i - 1, j)
+		dfs from cell (i, j + 1)
+		dfs from cell (i, j - 1)
+		The nested for loops obviously inspect each cell exactly once.
+		
+		dfs(i, j) exits immediately if (i, j) has been inspected already, which implies (i, j) can only be visited from dfs(i + 1, j) once, visited from dfs(i - 1, j) once, visited from dfs(i, j + 1) once, and visited from (i, j - 1) once.
+	*/
+	
 	//--Runtime : O(row*col)
 	public static int countIslands(int[][] m) {
 		

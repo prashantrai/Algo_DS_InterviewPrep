@@ -1,6 +1,6 @@
-package test.practice.amazon;
+package Intuit;
 
-public class WordSearch {
+public class WordSearch_79_Medium {
 
 	public static void main(String[] args) {
 
@@ -20,6 +20,7 @@ public class WordSearch {
 		System.out.println("Expected: true, Actual: " + exist(board_2, "ABCCED"));
 		System.out.println("Expected: true, Actual: " + exist(board_2, "SEE"));
 		System.out.println("Expected: false, Actual: " + exist(board_2, "ABCB"));
+		
 	}
 
 	//-- https://www.youtube.com/watch?v=vYYNp0Jrdv0
@@ -65,39 +66,40 @@ public class WordSearch {
 	 *  time. Also in worst case the search is invoked for 𝑚∗𝑛 times. So an upper bound would be 𝑂(𝑚∗𝑛∗4^s).
 	 * 
 	 * */
-	
+
 	public static boolean exist(char[][] board, String word) {
-
-		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board[i].length; j++) {
-
-				if (board[i][j] == word.charAt(0) && dfs(board, word, i, j, 0)) {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	public static boolean dfs(char[][] board, String word, int i, int j, int count) {
-		if (word.length() == count) {
-			return true;
-		}
-
-		if (i < 0 || i >= board.length || j < 0 || j >= board[i].length || board[i][j] != word.charAt(count)) {
-			return false;
-		}
-
-		char temp = board[i][j];
-		board[i][j] = ' ';
-		boolean isFound = dfs(board, word, i + 1, j, count + 1) 
-							|| dfs(board, word, i - 1, j, count + 1)
-							|| dfs(board, word, i, j + 1, count + 1) 
-							|| dfs(board, word, i, j - 1, count + 1);
-
-		board[i][j] = temp;
-		return isFound;
-	}
-
+        if(board == null || board.length == 0) return false;
+        
+        for(int i=0; i<board.length; i++) {
+            for(int j=0; j<board[0].length; j++) {
+                if(board[i][j] == word.charAt(0) && dfs(board, word, i, j, 0)) 
+                    return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    private static boolean dfs(char[][] board, String word, int r, int c, int count) {
+        if(word.length() == count) 
+            return true;
+        
+        if(r < 0 || r >= board.length || c < 0 || c >= board[0].length 
+           || board[r][c] != word.charAt(count)) {
+            
+            return false;
+        }
+        
+        char temp = board[r][c];
+        board[r][c] = ' ';
+        
+        boolean exist = dfs(board, word, r-1, c, count+1)
+                        || dfs(board, word, r+1, c, count+1)
+                        || dfs(board, word, r, c-1, count+1)
+                        || dfs(board, word, r, c+1, count+1);
+        
+        board[r][c] = temp;
+        
+        return exist;
+    }
 }
