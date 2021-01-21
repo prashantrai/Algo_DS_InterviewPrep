@@ -20,6 +20,8 @@ public class RotateArray_189_Easy {
 	 * After reversing first k numbers : 5 6 7 4 3 2 1 
 	 * After revering last n-k numbers : 5 6 7 1 2 3 4 --> Result
 	 * 
+	 * Time: O(N) Space: O(1)
+	 * 
 	 */
 	public static void rotate(int[] a, int k) {
 		k = k % a.length; //--to handle the case when k > arr.length-1
