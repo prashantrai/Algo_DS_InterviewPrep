@@ -46,8 +46,8 @@ public class BinaryTreePaths_257_Easy {
         
         String currPath = Integer.toString(root.val);
         if(root.left == null && root.right == null)  result.add(currPath);
-        if(root.left != null) dfs(root.left, currPath, result);
-        if(root.right != null) dfs(root.right, currPath, result);
+        if(root.left != null) dfs2(root.left, currPath, result);
+        if(root.right != null) dfs2(root.right, currPath, result);
         
         return result;
     }
@@ -60,8 +60,8 @@ public class BinaryTreePaths_257_Easy {
             return;
         }
         
-        if(node.left != null) dfs(node.left, currPath, result);
-        if(node.right != null) dfs(node.right, currPath, result);
+        if(node.left != null) dfs2(node.left, currPath, result);
+        if(node.right != null) dfs2(node.right, currPath, result);
     }
     
     
