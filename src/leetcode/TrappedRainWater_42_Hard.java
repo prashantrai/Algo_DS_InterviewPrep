@@ -7,8 +7,10 @@ public class TrappedRainWater_42_Hard {
 		//int[] height = {1, 0, 2, 1, 3};
 		System.out.println(trappedWater(height));
 		System.out.println(trappedWater2(height)); // very simple and short solution, better than the first one
+		System.out.println(trappedWater3(height)); // very simple and short solution, better than the first one
+		System.out.println("Presum: res="+trappedWaterWithPreSum(height)); // very simple and short solution, better than the first one
 	}
-
+	
 	/** 
 	 * Refer Leet code article for this problem's solution (below is taken from there)
 	 * 
@@ -88,4 +90,67 @@ public class TrappedRainWater_42_Hard {
 	    return max;
 	}
 	
+	
+	// https://www.youtube.com/watch?v=ZanjlzDaFoI&ab_channel=AmellPeralta
+	public static int trappedWater3(int[] height) {
+		
+		if(height == null || height.length == 0) 
+			return 0;
+		
+		int res = 0;
+		int level = 0;
+		int l = 0; //left
+		int r = height.length - 1;
+		
+		while(l < r) {
+			
+			int lower = height[height[l] < height[r] ? l++ : r-- ];
+			level = Math.max(level, lower);
+			res += level - lower;
+		}
+		return res;
+	}
+	
+	
+	/** 
+	 * Refer Leet code article for this problem's solution (below is taken from there)
+	 * 
+	 * https://leetcode.com/problems/trapping-rain-water/
+	 * https://leetcode.com/problems/trapping-rain-water/submissions/
+	 * 
+	 * Good explanation : https://www.youtube.com/watch?v=m18Hntz4go8&ab_channel=takeUforward
+	 * 		for pre-sum: https://www.youtube.com/watch?v=fTD6Se3ZtEo&t=590s&ab_channel=TerribleWhiteboard
+	 * 
+	 * Time: O(n)
+	 * Space: O(N)
+	 * 
+	 */
+	
+	public static int trappedWaterWithPreSum (int[] height) {
+		
+		if(height == null || height.length == 0) return 0;
+		
+		// arrays to pre compute the max of left and right for each index in height array
+		int[] leftMax = new int[height.length];
+		int[] rightMax = new int[height.length];
+		
+		leftMax[0]  = height[0];
+		rightMax[height.length-1] = height[height.length-1];
+		
+		for(int i=1; i<height.length; i++) {
+			leftMax[i] = Math.max(leftMax[i-1], height[i]);
+		}
+		
+		for(int i=height.length-2; i>=0; i--) {
+			rightMax[i] = Math.max(rightMax[i+1], height[i]);
+		}
+		
+		int res = 0;
+		for(int i=1; i<height.length; i++) {
+			res += Math.min(leftMax[i], rightMax[i]) - height[i];
+		}
+		
+		
+		return res;
+	}
 }

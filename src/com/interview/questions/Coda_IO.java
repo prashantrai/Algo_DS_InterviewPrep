@@ -22,7 +22,8 @@ import java.util.*;
 //   value: string;
 // }
 
-// Write a function that takes a root node as input, and returns a string with the values of the tree in depth first pre-order (root, then left subtree, then right subtree), separated by spaces
+// Write a function that takes a root node as input, and returns a string with the values of the tree 
+// in depth first pre-order (root, then left subtree, then right subtree), separated by spaces
 
 
 // Input 1
@@ -55,16 +56,21 @@ import java.util.*;
 // Output 3 -> "1 401 349 90 88"
 
 // Part 2
-// Now that we have the node traversal in place, let's tweak the return value. When visiting a node in the tree, the string should receive a number of dashes equal to the depth, followed by the value of that node.
+// Now that we have the node traversal in place, let's tweak the return value. 
+// When visiting a node in the tree, the string should receive a number of dashes equal to the depth, 
+// followed by the value of that node.
 
 // Output 1 -> "1 -2 --3 --4 -5 --6 --7"
 // Output 2 -> "1 -2 --3 ---4 -5 --6 ---7"
 // Output 3 -> "1 -401 --349 ---90 -88"
 
 // Part 3
-// Now let's reverse the inputs. Make a function that takes as input a string, in the format given by your previous method, and returns the nodes that make up that tree. (i.e., the input format for part 2)
+// Now let's reverse the inputs. Make a function that takes as input a string,
+// in the format given by your previous method, and returns the nodes that make up that tree. 
+// (i.e., the input format for part 2)
 
-// Note: To remove ambiguity in the string format, when constructing a node at a particular depth, if the parent does not have a child yet, make it the left child, otherwise make it the right child.
+// Note: To remove ambiguity in the string format, when constructing a node at a particular depth, 
+// if the parent does not have a child yet, make it the left child, otherwise make it the right child.
 
 // You can assume a valid tree is represented by the input, and you can use space as the delimiter
 

@@ -1,10 +1,15 @@
 package leetcode;
 
+import java.util.Stack;
+
 public class RecoverATreeFromPreorderTraversal_1028_Hard {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		String S = "1-2--3--4-5--6--7";
+		TreeNode root = recoverFromPreorder(S);
+		
+		String S2 = "1-401--349---90--88-2";
+		TreeNode root2 = recoverFromPreorder(S);
 	}
 	
 	
@@ -21,7 +26,7 @@ public class RecoverATreeFromPreorderTraversal_1028_Hard {
 	 * */
 	
 	// iterative
-    public TreeNode recoverFromPreorder(String S) {
+    public static TreeNode recoverFromPreorder(String S) {
         
         int val;
         int level;
