@@ -3,7 +3,7 @@ package test.practice.amazon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WordSearch2 {
+public class WordSearch_ii_212_Hard {
 
 	//-- Hard: https://leetcode.com/problems/word-search-ii/submissions/
 	

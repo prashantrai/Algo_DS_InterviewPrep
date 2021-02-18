@@ -1,6 +1,6 @@
 package test.practice.amazon;
 
-public class WordSearch {
+public class WordSearch_79_Medium {
 
 	public static void main(String[] args) {
 
