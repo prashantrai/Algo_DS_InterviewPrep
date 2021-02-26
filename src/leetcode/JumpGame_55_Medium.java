@@ -20,6 +20,9 @@ public class JumpGame_55_Medium {
 	 * Medium: https://leetcode.com/problems/jump-game-iii/
 	 * Hard: https://leetcode.com/problems/jump-game-ii/
 	 * 
+	 * 
+	 * Time: O(N)
+	 * Space: O(1)
 	 * */
 	
 	public static boolean canJump(int[] nums) {

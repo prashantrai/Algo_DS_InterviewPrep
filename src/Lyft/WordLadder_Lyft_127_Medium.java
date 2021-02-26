@@ -59,14 +59,6 @@ public class WordLadder_Lyft_127_Medium {
 		res = findEndWord(dict4, "hit", "cog");
 		System.out.println("Expected: 0, Actual: " + res);
 		
-//		int res2 = findEndWord(dict, "cat", "dog");
-//		System.out.println("Expected: 2, Actual: " + res2);
-//
-//		int res3 = findEndWord(dict, "cat", "");
-//		System.out.println("Expected: 0, Actual: " + res3);
-//
-//		int res4 = findEndWord(dict, "cat", "xxx");
-//		System.out.println("Expected: 0, Actual: " + res4);
 	}
 	
 	

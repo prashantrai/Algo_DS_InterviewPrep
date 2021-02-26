@@ -26,6 +26,27 @@ public class LongestSubstringWithoutRepeatingCharacters_3_Medium {
         int i=0;
         int j=0;
         int max = 0;
+        Set<Character> set = new HashSet<>();
+        
+        while (j < s.length()) {
+            if(!set.contains(s.charAt(j))) {
+                set.add(s.charAt(j));
+                j++;
+                max = Math.max(max, set.size());
+            } else {
+                set.remove(s.charAt(i));
+                i++;
+            }
+        }
+        
+        return max;
+    }
+	
+	//print string
+	public static int lengthOfLongestSubstring_2(String s) {
+        int i=0;
+        int j=0;
+        int max = 0;
         String maxStr = "";
         Set<Character> set = new HashSet<>();
         
@@ -35,7 +56,7 @@ public class LongestSubstringWithoutRepeatingCharacters_3_Medium {
                 j++;
                 max = Math.max(max, set.size());
             } else {
-            	String currStr = s.substring(i,j);
+            	String currStr = s.substring(i,j); // in case we want to print/return the substring as well
             	maxStr = maxStr.length() < currStr.length() ? currStr : maxStr;
                 set.remove(s.charAt(i));
                 i++;

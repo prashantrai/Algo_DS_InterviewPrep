@@ -47,4 +47,24 @@ public class JumpGame3_1306_Medium {
         return false;
     }
 	
+	//DFS
+	/* https://leetcode.com/problems/jump-game-iii/discuss/465602/JavaC%2B%2BPython-1-Line-Recursion
+	 * 
+	 * Time and space: O(N)
+	 * 
+	 * 1. Check 0 <= i < A.length
+	 * 2. flip the checked number to negative A[i] = -A[i]
+	 * 3. If A[i] == 0, get it and return true
+	 * 4. Continue to check canReach(A, i + A[i]) and canReach(A, i - A[i])
+	 * 
+	 * */
+	public static boolean canReach_DFS(int[] A, int i) {
+        return 0 <= i && i < A.length && A[i] >= 0 
+        		&& (
+        				(A[i] = -A[i]) == 0 
+        					|| canReach(A, i + A[i]) 
+        					|| canReach(A, i - A[i])
+        			);
+    }
+	
 }
