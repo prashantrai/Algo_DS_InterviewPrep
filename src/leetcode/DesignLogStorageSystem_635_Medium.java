@@ -15,17 +15,17 @@ public class DesignLogStorageSystem_635_Medium {
 		// obj.put(id,timestamp);
 		// List<Integer> param_2 = obj.retrieve(s,e,gra);
 		/*
-		 * obj.put(1, "2017:01:01:23:59:59"); obj.put(2, "2017:01:01:22:59:59");
-		 * obj.put(3, "2016:01:01:00:00:00"); List<Integer> param_1 =
-		 * obj.retrieve("2016:01:01:01:01:01","2017:01:01:23:00:00","Year"); // return
-		 * [1,2,3], because you need to return all logs within 2016 and 2017.
-		 * List<Integer> param_2 =
-		 * obj.retrieve("2016:01:01:01:01:01","2017:01:01:23:00:00","Hour"); // return
-		 * [1,2], because you need to return all logs start from 2016:01:01:01 to
+		 * obj.put(1, "2017:01:01:23:59:59"); 
+		 * obj.put(2, "2017:01:01:22:59:59");
+		 * obj.put(3, "2016:01:01:00:00:00"); 
+		 * 
+		 * List<Integer> param_1 = obj.retrieve("2016:01:01:01:01:01","2017:01:01:23:00:00","Year"); 
+		 * above returns [1,2,3], because you need to return all logs within 2016 and 2017.
+		 * 
+		 * List<Integer> param_2 = obj.retrieve("2016:01:01:01:01:01","2017:01:01:23:00:00","Hour"); 
+		 * Above returns [1,2], because you need to return all logs start from 2016:01:01:01 to
 		 * 2017:01:01:23, where log 3 is left outside the range.
 		 * 
-		 * System.out.println("param_1:: "+param_1);
-		 * System.out.println("param_2:: "+param_2);
 		 */
 
 		// ["LogSystem","put","put","retrieve"]
@@ -37,7 +37,9 @@ public class DesignLogStorageSystem_635_Medium {
 		System.out.println("param_1:: " + param_1);
 
 	}
-
+ 
+	// Refer for question : http://buttercola.blogspot.com/2019/05/leetcode-635-design-log-storage-system.html
+	// And in Google Drive: Leetcode Premium Folder on this mac
 	// --https://leetcode.com/problems/design-log-storage-system/discuss/105006/Java-range-query-using-TreeMap.subMap()
 
 	/*
@@ -67,7 +69,7 @@ public class DesignLogStorageSystem_635_Medium {
 		public LogSystem() {
 			logs = new TreeMap<>();
 			graIndexMap = new HashMap<>();
-			graIndexMap.put("Year", 4); // index of : in timestamp
+			graIndexMap.put("Year", 4); // index of ':' (colon) in time stamp
 			graIndexMap.put("Month", 7);
 			graIndexMap.put("Day", 10);
 			graIndexMap.put("Hour", 13);
