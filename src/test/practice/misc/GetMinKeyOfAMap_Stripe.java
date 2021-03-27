@@ -1,9 +1,9 @@
 package test.practice.misc;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 public class GetMinKeyOfAMap_Stripe {
 
@@ -11,7 +11,7 @@ public class GetMinKeyOfAMap_Stripe {
 
 		
 		Map<String, Double> map = new HashMap<String, Double>();
-		map.put("1.1", 1.1);
+		map.put("1.1", 1.11);
 		map.put("0.1", 0.1);
 		map.put("2.1", 2.1);
 
@@ -26,7 +26,11 @@ public class GetMinKeyOfAMap_Stripe {
 		}
 		System.out.println(min);
 		System.out.println(min.getKey()); 
-		System.out.println(min.getValue()); 
+		System.out.println(min.getValue());
+		
+		TreeMap<String, Double> treeMap = new TreeMap<>();
+		treeMap.putAll(map);
+		System.out.println("MinKey: " + treeMap.firstKey());
 	}
 	
 	
