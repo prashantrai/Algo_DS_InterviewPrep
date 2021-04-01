@@ -8,10 +8,10 @@ public class SubarraySumEqualsK_560_Medium {
 	public static void main(String[] args) {
 
 		int[] nums = {1,1,1}; int k = 2;
-		System.out.println("Expected: 2, Actual: " + subarraySum(nums, k));
+		//System.out.println("Expected: 2, Actual: " + subarraySum(nums, k));
 		
 		int[] nums2 = {1,2,3}; k = 3;
-		System.out.println("Expected: 2, Actual: " + subarraySum(nums2, k));
+		//System.out.println("Expected: 2, Actual: " + subarraySum(nums2, k));
 		
 		int[] nums3 = {3, 4, 7, -2, 2, 1, 4, 2}; k=7;
 		System.out.println("Expected: 6, Actual: " + subarraySum(nums3, k));
