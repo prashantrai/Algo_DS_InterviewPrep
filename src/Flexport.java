@@ -36,11 +36,9 @@ PART 1
  - First, create a data model to represent the road, lights, and cars driving along it.
  - Next, enter one car into the road and write a function that simulates time in 1 minute intervals, 
   moving the car along the road and stopping it at red lights until they turn green. It should run until the car has exited the city.
- 
 
  For right now we can use a simple traffic light control: Start with both lights green on the first minute, 
-  and then toggle back and forth between red and green each minute after that.
- 
+ and then toggle back and forth between red and green each minute after that.
 
  Your function should return the total time it took the car to travel through the city.
 

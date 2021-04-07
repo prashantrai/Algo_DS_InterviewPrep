@@ -19,6 +19,12 @@ public class ValidateBSTDemo {
 		
 		System.out.println(">>> "+checkBST_3(tree));
 		
+		TreeNode tree2 =  new TreeNode(2);
+		tree2.insertInOrder(1);
+		tree2.insertInOrder(3);
+		
+		System.out.println("2>>> "+checkBST_2(tree2));
+		
 	}
 
 	//--Apporoach 1 : Traverse the tree in-order and store each node value in and array 

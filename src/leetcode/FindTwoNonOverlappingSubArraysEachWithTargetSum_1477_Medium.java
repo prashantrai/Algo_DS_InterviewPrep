@@ -14,6 +14,18 @@ public class FindTwoNonOverlappingSubArraysEachWithTargetSum_1477_Medium {
 		System.out.println("Expected: 3, Actual: " + res);
 	}
 	
+	
+	 static   int solution(int[] A) {
+	        int ans = 0;
+	        for (int i = 0; i < A.length; i++) {
+	            if (ans > A[i]) {
+	                ans = A[i];
+	            }
+	        }
+	        return ans;
+	    }
+	
+	
 	/* https://leetcode.com/problems/find-two-non-overlapping-sub-arrays-each-with-target-sum/discuss/686105/JAVA-or-Sliding-window-with-only-one-array-or-No-HasMap
 	 * for some expalination about how we have used the arr 'best' watch (not much but enough to get an idea)
 	 * 	https://www.youtube.com/watch?v=63K9MYDfEEc

@@ -2,7 +2,15 @@ package com.interview.questions;
 
 public class Zynga {
 
+	private static enum Element {
+	    H, HE, LI, BE, B, C, N, O, F, NE
+	}
 	public static void main(String[] args) {
+		
+		Element[] e = Element.values();
+		
+		Element ret = Element.C;
+		System.out.println("ordinal: "+ret.ordinal());
 
 		/*Integer[] arr = {4,5,6,7,0,1,2};
 		
