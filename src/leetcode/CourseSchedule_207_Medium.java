@@ -37,24 +37,17 @@ public class CourseSchedule_207_Medium {
 	 * 
 	 * READ: https://leetcode.com/problems/course-schedule-ii/discuss/190393/Topological-Sort-Template-General-Approach!!
 	 * 	
-	 * */
-	
-	/* DFS : 
+	 * DFS : 
 	 * https://zhuhan0.blogspot.com/2017/07/leetcode-207-course-schedule.html#:~:text=Time%20complexity%3A,O(V%20%2B%20E).
-	 * 
 	 * https://www.programmersought.com/article/61453920179/
-	 * 
 	 */
 	
-	// // this can be used for Leetcode 210 (i.e. CourseSchedule ii) as well just update the return nothing else
-	
-	
-	
-	// //This will work for Leecode 210 as well i.e. Course Schedule ii
-    // Time O(V+E)
+	// this can be used for Leetcode 210 (i.e. CourseSchedule ii) as well just update the return nothing else
 	/*
 	 * Time:  O(N+M), traversing a graph requires access to all nodes and all edges, N and M are the number of nodes and the number of edges, respectively;
-	 * Space: O(N), additional space needed to build the adjacency matrix.
+	 * Space: O(N+M)
+	 * 
+	 * Time complexity: O(V + E). Space complexity: O(V + E).
 	 * */
 	
     public static boolean canFinish(int numCourses, int[][] prerequisites) {
