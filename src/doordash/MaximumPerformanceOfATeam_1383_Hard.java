@@ -25,11 +25,17 @@ public class MaximumPerformanceOfATeam_1383_Hard {
 		res = maxPerformance(n, speed, efficiency, k);
 		System.out.println("Expected: 72, Actual: " + res);
 		
-		
 	}
 	
-	
 	/*
+	1. Sort efficiency with descending order. Because, afterwards, when we iterate whole engineers, 
+		every round, when calculating the current performance, minimum efficiency is the efficiency 
+		of the new incoming engineer.
+	2. Maintain a pq to track of the minimum speed in the group. If size of group is == K, 
+		kick the engineer with minimum speed out (since efficiency is fixed by new coming engineer, 
+		the only thing matters now is sum of speed).
+	3. Calculate/Update performance.
+	
     Time: O(NlogN) for sorting
     Time: O(NlogK) for priority queue
     Space: O(N)
