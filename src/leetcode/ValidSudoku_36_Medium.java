@@ -3,7 +3,7 @@ package leetcode;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ValidSudoku {
+public class ValidSudoku_36_Medium {
 
 	public static void main(String[] args) {
 		

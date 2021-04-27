@@ -20,7 +20,7 @@ public class MergeIntervals_56_Medium {
         if(intervals == null || intervals.length == 0) 
             return intervals;
         
-        // sort intervals by comapring first value of each array
+        // sort intervals by comparing first value of each array
         Arrays.sort(intervals,  (arr1, arr2) -> Integer.compare(arr1[0], arr2[0]));
         LinkedList<int[]> result = new LinkedList<>(); // merged
         

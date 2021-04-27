@@ -37,7 +37,12 @@ public class RateLimiter {
      *  API more than 3 times then after 3rd time user will receive FALSE
      *  that is no API call is made as user has reached the threshold (i.e. 3)
      *  and has to wait for sometime (i.e. TIME_LIMIT which is 1000ms in our case) 
-     *  and after that user should be able to call API successfully. 
+     *  and after that user should be able to call API successfully.
+     *  
+     *  
+     *  Code : https://leetcode.com/playground/wGHWEekd
+     *  Discussion Link: https://leetcode.com/discuss/interview-question/system-design/124558/uber-rate-limiter
+     *   
      * */
     
     private Map<String, HitCounter> map = new HashMap<>();
