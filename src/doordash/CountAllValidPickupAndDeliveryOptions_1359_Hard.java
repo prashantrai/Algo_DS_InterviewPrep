@@ -76,10 +76,13 @@ public class CountAllValidPickupAndDeliveryOptions_1359_Hard {
 	}
 	
 	
-	/*
-	 When solving the problem, we need to define the number of orders "n" that are not currently 
-	 received and the number of orders "p" that has not been sent yet. Initially, "n" is equal to 
-	 the number of orders given in the question, and "p" is equal to 0. 
+	/**
+	 We need to define,
+	 
+	  the number of orders "n" that are not currently received and 
+	  the number of orders "p" that has not been sent yet. 
+	  
+	  Initially, "n" is equal to the number of orders given in the question, and "p" is equal to 0. 
 	 
 	 For any point in time, if "n" is greater than 0, it means that we can receive an order. 
 	 Any one of the "n" orders is an object that we can receive. 
@@ -116,9 +119,11 @@ public class CountAllValidPickupAndDeliveryOptions_1359_Hard {
 	    // Recursive solution
 	    return helper ( 0 ,n ) ; 
 	}
-	// p is the number of orders in the hand
-	// n is the number of orders not yet received
-	// The return value is the number of permutations and combinations when there are p orders in the hand and n orders are not received 
+	/* 
+	 p is the number of orders in the hand
+	 n is the number of orders not yet received
+	 The return value is the number of permutations and combinations when there are p orders in the hand and n orders are not received 
+	*/
 	private static int helper ( int p, int n ){ 
 	    // If both p and n are 0, 1 is returned by default
 	    if ( n== 0 && p== 0 ) return 1 ;  
@@ -132,14 +137,12 @@ public class CountAllValidPickupAndDeliveryOptions_1359_Hard {
 	    // If there is still an unaccepted order, we can choose to accept an order
 	    if ( n > 0 ){
 	        // The number of combinations after arbitrarily picking up an order from n missed orders
-	        //res+= (( long ) n* helper ( p+1 ,n-1 ) % 1000000007 ) ;
 	        res+= (( long ) n* helper ( p+1 ,n-1 ) % MOD ) ;
 	    }
 	    
 	    // If there are unsent orders, we can choose to send one
 	    if ( p > 0 ){
 	        // The number of combinations after arbitrarily sending an order from n unsent orders
-//	        res+= (( long ) p* helper ( p-1 ,n ) % 1000000007 ) ;
 	        res+= (( long ) p* helper ( p-1 ,n ) % MOD ) ;
 	    }
 	    // Save the current result to the memory array
