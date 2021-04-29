@@ -1,4 +1,4 @@
-package Intuit;
+package leetcode;
 
 public class LongestIncreasingPathInAMatrix_329_Hard {
 

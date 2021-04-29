@@ -3,6 +3,7 @@ package leetcode;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
@@ -14,9 +15,7 @@ public class CourseScheduleII_210_Medium {
 		int[][] prerequisites = {{1,0}};
 		
 		int[] order = findOrder(numCourses, prerequisites);
-		
-		System.out.println("Expected: [0,1], Actual: "+ Arrays.toString(order));
-		
+		System.out.println("1. Expected: [0,1], Actual: "+ Arrays.toString(order));
 	}
 	
 	/* Topological sort
@@ -39,7 +38,7 @@ public class CourseScheduleII_210_Medium {
         we have all its adjacent nodes in the form of a list as the value. Hence, O(E). 
         So, the overall space complexity is O(V + E).
 	 * */
-
+	
 	public static int[] findOrder(int numCourses, int[][] prerequisites) {
         
         List<Integer>[] graph = new List[numCourses]; 

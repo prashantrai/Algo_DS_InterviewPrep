@@ -1,4 +1,4 @@
-package Intuit;
+package leetcode;
 
 import java.util.ArrayDeque;
 import java.util.HashMap;

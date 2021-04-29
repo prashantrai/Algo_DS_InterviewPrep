@@ -1,4 +1,4 @@
-package Intuit;
+package leetcode;
 
 public class CountAllValidPickupAndDeliveryOptions_1359_Hard {
 
