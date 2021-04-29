@@ -1,5 +1,5 @@
 package Intuit;
-
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,10 +39,58 @@ public class CourseSchedule_207_Medium {
 	 * */
 	
 	
+	/* https://leetcode.com/problems/course-schedule/
+	
+	 Refernce -refer comment evilcoder and subcomment rajatdada
+   https://leetcode.com/problems/course-schedule/discuss/58516/Easy-BFS-Topological-sort-Java
+  
+   Time O(V+E)
+   *
+   * BFS
+   */
+	public static boolean canFinish(int numCourses, int[][] prerequisites) {
+      
+      int[] indegree = new int[numCourses];
+      Queue<Integer> q = new LinkedList<>();
+      
+      // counting the numof dependecy/prereq for each course
+      // e.g. for [[1, 0]] indegree will be [1] i.e. for course '1' we have 1 prereq
+      for(int[] prerequisite : prerequisites) {
+          indegree[prerequisite[0]]++;
+      }
+      
+      // add course with zero prereq/dependency in q
+      for(int i=0; i<indegree.length; i++) {
+          if(indegree[i] == 0) {
+              q.offer(i); //no prerequisite  needed course
+          }
+      }
+      
+      while(!q.isEmpty()) {
+          numCourses--;
+          int course = q.poll();
+          
+          for(int[] pair : prerequisites) { // course pair
+              if(pair[1] == course) {
+                  indegree[pair[0]]--; // decrease prereq/dependency
+                  // check course with no prereq and add to queue if prereq is ZERO
+                  if(indegree[pair[0]] == 0) {
+                      q.offer(pair[0]);  // add course with no prereq left
+                  }
+              }
+          }
+      } 
+      
+      return numCourses == 0;
+	}
+	
+	
+	
+	
 	// Another approach - https://leetcode.com/problems/course-schedule/discuss/58532/5ms-DFS-beat-98-and-9ms-BFS-in-java 
     
     // Time O(V+E)
-    public static boolean canFinish(int numCourses, int[][] prerequisites) {
+    public static boolean canFinish2(int numCourses, int[][] prerequisites) {
         
         int[] indegree = new int[numCourses];
         Queue<Integer> q = new LinkedList<>();
@@ -82,52 +130,6 @@ public class CourseSchedule_207_Medium {
         }
         
         return count == prerequisites.length;
-    }
-	
-	
-	/* https://leetcode.com/problems/course-schedule/
-	
-	 Refernce -refer comment evilcoder and subcomment rajatdada
-     https://leetcode.com/problems/course-schedule/discuss/58516/Easy-BFS-Topological-sort-Java
-    
-     Time O(V+E)
-     *
-     * BFS
-     */
-    public static boolean canFinish2(int numCourses, int[][] prerequisites) {
-        
-        int[] indegree = new int[numCourses];
-        Queue<Integer> q = new LinkedList<>();
-        
-        // counting the numof dependecy/prereq for each course
-        // e.g. for [[1, 0]] indegree will be [1] i.e. for course '1' we have 1 prereq
-        for(int[] prerequisite : prerequisites) {
-            indegree[prerequisite[0]]++;
-        }
-        
-        // add course with zero prereq/dependency in q
-        for(int i=0; i<indegree.length; i++) {
-            if(indegree[i] == 0) {
-                q.offer(i); //no prerequisite  needed course
-            }
-        }
-        
-        while(!q.isEmpty()) {
-            numCourses--;
-            int course = q.poll();
-            
-            for(int[] pair : prerequisites) { // course pair
-                if(pair[1] == course) {
-                    indegree[pair[0]]--; // decrease prereq/dependency
-                    // check course with no prereq and add to queue if prereq is ZERO
-                    if(indegree[pair[0]] == 0) {
-                        q.offer(pair[0]);  // add course with no prereq left
-                    }
-                }
-            }
-        } 
-        
-        return numCourses == 0;
     }
 	
 }
