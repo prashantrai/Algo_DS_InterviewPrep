@@ -1,0 +1,23 @@
+1) Given an ipv4 address (string) and a cidr value (string) return if ip4v is a valid address in cidr range.
+2) https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+3) https://leetcode.com/problems/meeting-rooms-ii/ (are there any other solutions)
+4) https://leetcode.com/problems/rotate-list/ (can you also rotate it the other way)
+
+----
+
+Given two large int A and B . Find no of bit set is A*B. More than performance accuracy is important.
+
+Return final Directory given currentDirectory and cd command.given two arrays of integers A and B, 
+returns the number of fair indexes such that the sum on either side of the index in both arrays 
+are equalMaximum count of pairs which generate the same sumIt was one related to product of 
+two numbers and counting set bits in them and other was related to building a function which behaves 
+like cd command on linux. Check canonical paths on leetcode.https://leetcode.com/problems/simplify-path/
+
+Given string str, our task is to find the Largest Alphabetic Character, whose both uppercase 
+and lowercase are present in the String. The uppercase character should be returned. 
+If there is no such character then return -1 otherwise print the uppercase letter of the character. 
+[https://www.geeksforgeeks.org/find-the-largest-alphabetic-character-present-in-the-string/ ]
+https://leetcode.com/discuss/interview-question/415307/american-express-online-codility-fraction-additionhttps://leetcode.com/problems/minimum-deletion-cost-to-avoid-repeating-letters/
+
+-----
+

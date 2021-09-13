@@ -1,0 +1,70 @@
+Elevator System Design: 
+------------------------
+
+1. Can move up, down or stay idle (can use Enum for these)
+2. Open door when idle or at floor
+3. Specs of elevator car: 
+	a. Max load
+	b Max Speed
+4. Restricted floors: Not accessed by all the cars
+
+
+Extended Requirement Discuss Only when asked or if time left:
+-------------------------------------------------------------
+1. more than 1 elevator
+2. when multiple cars: Minimize wait time for passenger, Minimize wait time of system
+3. Throughput - minimize power usage for entire system
+4. Zoning (Multiple Operational Zone): When multiple floors, which car should serve which floor? One idea is to say some 
+	set of elevators will serve odd floors and some even.
+5. Emergency Alarms, Brakes
+
+
+Identifying Classes: 
+--------------------
+1. Elevator Car
+2. Floors
+3. Doors
+4. Button Panel
+5. Extended - Dispatcher (when more than one elevator) - which elevator to dispatch to minimize the wait time of passenger
+6. Elevator System/Controller - Singleton
+
+
+Classes and Interfaces: 
+-----------------------
+1. ButtonIntf(pressDown(), hasPressed()) //interface
+	a. ElevatorButton //class
+	b. HallButton 	// class; Hall/Lobby/Floor
+
+2. Door (open(), close(), isOpen()) // class; can be avoided initially
+3. ElevatorMotion(move(destinationFloor), stop() )
+4. Floor
+5. ElevatorCar
+6. ElevatorController
+
+---------Algorithm can be used to dispatch the car---------
+1. FCFS - not helpful, it will end serving one floor at a time, too many round trips
+2. Shortest Seek Time First: 
+	a. This optimizes the movement between floor
+	b. Use PriorityQueue/MinHeap to implement this
+	
+	Issue: 
+		a. This algo has problem of starvation. It will end up serving the passengers closer to elevator (i.e. min distance from elevator's current position)
+		b. Can't support multiple request in parallel   
+	
+3. Scan Algorithm (also knows as Elevator Algo) : 
+	It uses 2 boolean array (Up and Down) and while moving towards each floor it checks if that if the floor has been marked as TRUE (i.e. a passenger has requested) and it stops there  
+
+	ISSUES: 
+		A. Car will continuously moving
+		B. Car will move into one direction at a time and once it reaches top then it will stop coming down. It's a waste of time and energy.
+
+
+4. LOOK (Look Ahead Scan Algorithm) :  Discuss this in interview 
+	a. In case of multiple cars the algo will look for the shortest seek time first among both the arrays and send the which is idle and close to the passenger
+	
+5. Destination Dispatch Algo (k-nearing neighbors) : When a user enters the floor number in the panel. In this case elevator system
+							  combine the passenger (ofcourse considering load) and then dispatch the elevator
+							  
+							  
+-We use strategy pattern to implement these algorithm	 	 
+	

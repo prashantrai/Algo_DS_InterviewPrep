@@ -1,0 +1,100 @@
+1. You are given five integers and your task is to find the smallest of them. What is the minimum number of
+comparisons that you have to make?
+
+Ans: 4 [for n elements minimum num of comparisons is n-1]
+
+2. You are given an array with 10^8 elements and you must compute the sum A[J] + A[K] for every possible 
+pair of elements in the array. How long will this computation take on a single mainstream computer?
+
+	A: milliseconds
+	B: seconds
+	C: minutes
+	D: hours
+	E: more than a few hours
+	
+	Ans: E, more than a few hours  [https://leetcode.com/discuss/interview-question/1146115/Microsoft-OA-multiple-choices]
+
+
+3. How do you check whether a number is odd in most programming languages?
+	A: if (x) ...
+	B: if (x & 1) ...
+	C: if (x % 2 == 0) ...
+	D: if (x >> 1 == 0) ...
+	E: none of the above
+	
+	Ans: B  [in C it works in JAVA it has to be like "if((n & 1) != 0)" ]
+
+
+4. Given a sorted array, which of the following operations can be performed the fastest?
+	A: checking whether the number 42 is in the array
+	B: counting the number of different elements
+	C: computing the sum of all elements
+	D: all of the above operations require linear time, so they are approximately the same
+	
+	Ans: A: checking whether the number 42 is in the array  (in LogN time using binary search)
+
+
+5. A common data structure used to implement a relational database is a
+	A: queue
+	B: stack
+	C: priority queue
+	D: B-tree
+	
+	Ans: D: B-tree
+
+
+6. Given a list of 1000 elements, which of the following numbers is the largest?
+	A: The number of all possible subsets of a given list
+	B: The number of all possible pairs of elements from a given list
+	C: The number of all possible permutations of a given list
+	D: 10,000,000,000,000,000
+	
+	Ans: C : The number of all possible permutations of a given list [refer: https://leetcode.com/discuss/interview-question/1146115/Microsoft-OA-multiple-choices]
+
+
+7. Given a tree with four nodes, how many edges have to be added for it to cease being a tree?
+	A: 1
+	B: 2
+	C: 3
+	D: 4
+	
+	Ans: A:1 [Why? A tree with n nodes will always have n-1 edges (which is always true for a tree) and if we add just one more edge then numOfNode=n and noOfEdge=n then this is not a tree]
+
+8. Which of the following statements is correct (choosing one answer means that single answer is correct):
+	def f(A):
+		for i := 0; i < A.length - 1; i++ do:
+			if (A[i] > A[i + 1]):
+				swap A[i] with A[i+1]
+	return A
+	
+	A: There is an element that can be removed so that f(A_without_one_element) returns a sorted array.
+	B: For any array A of size N, f(A)[N - 1] = max(A).
+	C: For any array A of size N, f(A)[0] = min(A).
+	D: More than one answer is correct.
+	
+	Ans: D: More than one answer is correct.
+
+
+9. Which of the following algorithms finds the shortest path in any unweighted graph?
+	A: DFS
+	B: BFS
+	C: both
+	D: neither
+	
+	Ans: B: BFS
+	
+10. The time complexity of g(n, x, y) is O(n). What is the time complexity of f(n)?
+	def f(n):
+		if n == 1:
+			return 1
+		x = f(n/2) 	// log*n
+		y = f(n/2)  // log*n
+		return g(n, x, y) // n
+		
+	A: O(log n)
+	B: O(n)
+	C: O(n * log n)
+	D: O(n*n)
+	
+	Ans: C: O(n * log n) 
+	

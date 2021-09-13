@@ -1,0 +1,45 @@
+https://leetcode.com/problems/text-justification/
+
+289-https://leetcode.com/problems/game-of-life
+314-https://leetcode.com/problems/binary-tree-vertical-order-traversal
+706-https://leetcode.com/problems/design-hashmap
+227,Basic Calculator II - https://leetcode.com/problems/basic-calculator-ii
+987-https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree
+
+211- Design Add and Search Words Data Structure
+
+Tree - top frequent (practice question like this)
+
+Glassdoor: 
+
+1. lowest common ancestor and finding nodes with 0 parents and 1 parent.
+
+2. [asked in May 22, 2019]
+	# a list of strings. Each string is a management / report relationship.
+	#
+	# EXAMPLE INPUT:
+	#
+	# [
+	# 'B,E,F',
+	# 'A,B,C,D',
+	# 'D,G,I',
+	# 'G,H'
+	# ]
+	
+	
+	So, write some code (pseudo or language of your choice, including SQL) for the following:
+	
+	A is the manager of B, C, D. B is the manager of E and F, and so forth.
+	
+	# EXAMPLE OUTPUT:
+	#
+	# A
+	# ....B
+	# ........E
+	# ........F
+	# ....C
+	# ....D
+	# ........G
+	# ............H
+	# ........I
+
