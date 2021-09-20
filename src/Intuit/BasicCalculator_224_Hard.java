@@ -14,7 +14,7 @@ public class BasicCalculator_224_Hard {
 		System.out.println("Expected: 3, Actual: "+ calculate(s));
 		
 		s = "(1+(4+5+2)-3)+(6+8)";
-		System.out.println("Expected: 23, Actual: "+ calculate(s));
+		System.out.println("Expected: 23, Actual: "+ calculate(s));	
 	}
 	
 	/*
