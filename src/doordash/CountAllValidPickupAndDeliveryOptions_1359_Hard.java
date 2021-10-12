@@ -67,7 +67,7 @@ public class CountAllValidPickupAndDeliveryOptions_1359_Hard {
 	 * 
 	 * */
 	public static int countOrders(int n) {
-		int mod = (int) (1e9+7); //or mode = 1000_000_007
+		int mod = (int) (1e9+7); //or mod = 1000_000_007
 		int sum = 1;
 		for(int i=2; i<=n; i++) {
 			sum = (sum * i * (2*i - 1)) % mod;  // mod to avoid overflow

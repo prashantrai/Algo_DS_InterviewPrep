@@ -14,7 +14,11 @@ public class WebCrawler_Multithreaded_ConcurrentHashMap_1242_Medium {
 		
 	}
 	
-	/* Code and question: https://leetcode.jp/leetcode-1242-web-crawler-multithreaded-%e8%a7%a3%e9%a2%98%e6%80%9d%e8%b7%af%e5%88%86%e6%9e%90/
+	/* Very Good: Watch this for Java implementation: https://www.youtube.com/watch?v=dej0rq-9Xjc
+	 * 
+	 * For Question: https://leetcode.ca/all/1242.html
+	 * 
+	 * Code and question: https://leetcode.jp/leetcode-1242-web-crawler-multithreaded-%e8%a7%a3%e9%a2%98%e6%80%9d%e8%b7%af%e5%88%86%e6%9e%90/
 	 *
 	 * Another resource: http://scrumbucket.org/tutorials/neo4j-site-crawler/part-2-create-multi-threaded-crawl-manager/
 	 * 

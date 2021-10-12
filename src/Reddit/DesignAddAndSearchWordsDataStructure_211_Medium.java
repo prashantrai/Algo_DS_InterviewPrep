@@ -40,6 +40,14 @@ public class DesignAddAndSearchWordsDataStructure_211_Medium {
 	/* Time Complexity:
 		addWord() - O(n), n = length of the new word
 		search() - Worst case: O(m), m = the total number of characters in the Trie
+		        O(26^n): in the worst case, the word is comprised of '.', and all characters in a trie node is 
+		        mapped to a child. Then search will go through every possible path from root to leaf. 
+		        The overall time complexity is O(26^n).
+		        
+		Space Complexity:
+			addWord: O(N), creating N more nodes in the trie, N is the length of the word
+			search: No additional space needed
+
 	 * 
 	 * */
 	
