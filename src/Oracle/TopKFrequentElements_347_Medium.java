@@ -24,6 +24,15 @@ public class TopKFrequentElements_347_Medium {
 		int k2 = 1;
 		int[] res2 = topKFrequent(nums2, k2);
 		System.out.println("Expected: [1], Actual: " + Arrays.toString(res2));
+		
+		
+		int[] res3 = topKFrequent(nums1, k1);
+		System.out.println("Expected: [1, 2], Actual: " + Arrays.toString(res3));
+		
+		int[] res4 = topKFrequent(nums2, k2);
+		System.out.println("Expected: [1], Actual: " + Arrays.toString(res4));
+		
+		
 	}
 
 	/*
@@ -69,7 +78,7 @@ public class TopKFrequentElements_347_Medium {
 	 * 
 	 * https://leetcode.com/problems/top-k-frequent-elements/discuss/81602/Java-O(n)-Solution-Bucket-Sort
 	 * */
-	public static List<Integer> topKFrequent2(int[] nums, int k) {
+	public static int[] topKFrequent2(int[] nums, int k) {
         // freq map
         Map<Integer, Integer> freq = new HashMap<Integer, Integer>();
         for (int n : nums) {
@@ -87,7 +96,8 @@ public class TopKFrequentElements_347_Medium {
             res.addAll(bucket[i]);
             if (res.size() >= k) break;
         }
-        return res;
+        //return res;
+        return res.stream().mapToInt(i -> i).toArray();
     }
 	
 }
