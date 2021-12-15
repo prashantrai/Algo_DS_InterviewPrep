@@ -37,7 +37,7 @@ public class BusRoutes_815_Hard {
 		int n = routes.length;
 		
 		// bus stop number is the key and all the 
-	    // buses (bus routes) that go through it are added to an Set/ArrayList
+	    // buses (bus routes) that go through it are added to an Set
 		Map<Integer, Set<Integer>> to_route = new HashMap<>();
 		
 		if (S == T) return 0; 
