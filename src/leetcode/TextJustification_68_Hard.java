@@ -32,6 +32,11 @@ public class TextJustification_68_Hard {
 	 * 3. If it's the last word add space  	
 	 */
 	
+	/*
+	 * 	Time Complexity : O(N*maxWidth) : N is number of lines
+		Space Complexity : O(maxWidth) : Space for a single line
+	 */
+	
 	//--https://leetcode.com/problems/text-justification/submissions/
 	public static List<String> fullJustify3(String[] words, int maxWidth) {
 		
