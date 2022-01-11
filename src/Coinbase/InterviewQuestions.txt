@@ -1,0 +1,90 @@
+
+// https://leetcode.com/discuss/interview-question/1198505/coinbase-onsite-swe-reject
+Phone Screen
+
+	a way for users to buy and sell stocks
+	match buyers with the lowest seller (<= buyer's price)
+	match sellers with the highest buyer (>= seller's price)
+	
+	 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
+	 
+	 
+	 https://leetcode.com/discuss/interview-question/1385903/Coinbase-Text-books-buying-and-selling-offers-problem
+	 Q.	You operate a market place for buying & selling used textbooks For a giventext book eg“TheoryofCryptography”
+		there are people who want to buy this textbook and people who want to sell
+		
+		OfferstoBUY: $100$100$99$99$97$90
+		OfferstoSELL: $109$110$110$114$115$119
+		
+		A match occurs when two people agree on a price. Some new offers do not match 
+		these offers should be added to the active set of offers
+		
+		For Example: Tim offers to SELL at $150 This will not match but No one is willing to 
+		buy at that price so we save the offer
+		
+		OfferstoSELL:: $109$110$110$114$115$119$150
+		
+		When matching we want to give the customer the “best price”
+		
+		Example matches: If Jane offers to BUY at $120
+		
+		she will match and buy a book for $109 (the lowest offer)
+	 
+	 
+
+Onsite
+	Currency Exchange
+	
+	a list of currency relationships with exchange values. (BTC - USD)
+	find the best exchange rate from currency1 to currency2
+	
+	they give you a list of relationships like such <src currency, dest currency, ask price, bid price>
+	you will need to find a path that will give you the best conversion rate.
+	 
+	 Look here:  https://leetcode.com/discuss/interview-question/483660/google-phone-currency-conversion
+	 
+	 Similar/Related Leetcode: https://leetcode.com/problems/evaluate-division/
+	
+	
+	Game
+	connect 4
+	OOP design
+	System Design
+	
+	design slack and slack related features (show "some one is typing" etc)
+	Behavioral
+	
+	cross team collaboration
+	career aspiration etc.
+	
+	
+// https://leetcode.com/discuss/interview-question/1061521/coinbase-bay-area-2020-reject
+	Phone Screen:
+		https://leetcode.com/problems/design-in-memory-file-system/
+		Design this in an Object Oriented manner.
+		Include error checking for when creating a file in a non existent directory.
+		
+	On Site:
+	
+		Coding Round:
+			Design a board game like connect 4.
+			Build an Object Oriented manner.
+			Implement for winning the game in horizontal and vertical manner.
+			Follow up: implement to winning diagonals
+			Follow up: implement a rudimentary AI to play with (select random spot to place move)
+		
+		Coding Round:
+			You have exchange rates from one currency to another USD -> BTC [some value]
+			Use a list of exchange rates for currencies and determine the greatest value you could get.
+			Basically like a DFS graph problem, find all paths from Start currency -> End currency.
+			Maintain the max and then after explored all paths from start -> finish, return the max exchange
+		
+		System Design:
+			Design a ordering system for stocks.
+			Users will place orders and cancel orders.
+			Think about race conditions when trying to cancel an order before executed.
+			Users can also schedule orders in the future.
+		
+		Behavioral:
+			Basically prepare situations and answers from the Coinbase values list.
+			https://www.coinbase.com/mission

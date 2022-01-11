@@ -9,12 +9,15 @@ public class BasicCalculator_224_Hard {
 	public static void main(String[] args) {
 		String s = "1 + 1"; 
 		System.out.println("Expected: 2, Actual: "+ calculate(s));
+		System.out.println("REC: Expected: 2, Actual: "+ calculateREC(s));
 		
 		s = " 2-1 + 2 ";
-		System.out.println("Expected: 3, Actual: "+ calculate(s));
+		System.out.println("\nExpected: 3, Actual: "+ calculate(s));
+		System.out.println("REC: Expected: 3, Actual: "+ calculateREC(s));
 		
 		s = "(1+(4+5+2)-3)+(6+8)";
-		System.out.println("Expected: 23, Actual: "+ calculate(s));
+		System.out.println("\nExpected: 23, Actual: "+ calculate(s));
+		System.out.println("REC: Expected: 23, Actual: "+ calculateREC(s));
 	}
 	
 	/*
@@ -84,7 +87,7 @@ public class BasicCalculator_224_Hard {
 	
 	
 	
-	// Recursive
+	// Recursive - this works for BasicCalculatorIII_772_Hard too
 	public static int calculateREC(String s) {
 		Queue<Character> tokens = new ArrayDeque<Character>();
 
@@ -127,16 +130,16 @@ public class BasicCalculator_224_Hard {
                     case '/':
                         prev /= num;
                         break;
-                    }
-                    if (c == ')') {
-                        break;
-                    }
-                    preOp = c;
-                    num = 0;
                 }
+                if (c == ')') {
+                    break;
+                }
+                preOp = c;
+                num = 0;
             }
-            return (sum + prev);
-            
         }
+        return (sum + prev);
+
+	}
 	
 }

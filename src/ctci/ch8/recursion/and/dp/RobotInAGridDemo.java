@@ -18,6 +18,10 @@ public class RobotInAGridDemo {
 		
 	}
 
+	//--Runtime O(r * c)
+	// Look here: Leetcode 63 : https://leetcode.com/problems/unique-paths-ii/solution/
+	// 
+	
 	public static ArrayList<Point> getPath(boolean[][] maze) {
 		
 		if(maze == null || maze.length == 0) return null;
