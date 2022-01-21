@@ -48,6 +48,15 @@ public class CurrencyConversion {
 	Rates: ['USD', 'JPY', 110] ['US', 'AUD', 1.45] ['JPY', 'GBP', 0.0070]
 	To/From currency ['GBP', 'AUD']
 	Find the rate for the 'To/From' currency. In this case, the correct result is 1.89.
+	
+	* Similar problems: https://leetcode.com/problems/evaluate-division/
+	* 
+	* A variation of the this problem: 
+	* ask = how much curr2 you have to spend to buy 1 unit of curr1 
+	* bid = how much of curr2 will you get if you sell 1 unit of curr1.
+	* [curr1,  curr2, ask,  bid]
+	* ['USD', 'GBP',  0.77, 0.77]
+	* 
 	*/
 	
 	private static double getRatio(String start, String end, List<Node> data) {

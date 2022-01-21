@@ -95,7 +95,7 @@ public class BuyingAndSellingTextBooks {
 
 /* https://leetcode.com/discuss/interview-question/1385903/Coinbase-Text-books-buying-and-selling-offers-problem
  
-Q.	You operate a market place for buying & selling used textbooks For a giventext book eg“TheoryofCryptography”
+Q.	You operate a market place for buying & selling used textbooks For a given text book e.g. “TheoryofCryptography”
 there are people who want to buy this textbook and people who want to sell
 
 OfferstoBUY: $100$100$99$99$97$90

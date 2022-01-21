@@ -67,7 +67,7 @@ Onsite
 	On Site:
 	
 		Coding Round:
-			Design a board game like connect 4.
+			Design a board game like connect 4. [https://gist.github.com/jonathan-irvin/97537512eb65a8bbcb9a]
 			Build an Object Oriented manner.
 			Implement for winning the game in horizontal and vertical manner.
 			Follow up: implement to winning diagonals
@@ -88,3 +88,39 @@ Onsite
 		Behavioral:
 			Basically prepare situations and answers from the Coinbase values list.
 			https://www.coinbase.com/mission
+			
+			
+//https://leetcode.com/discuss/interview-experience/923447/coinbase-sde-bay-area-2020-reject
+
+	Round 1: Simulate a File system. Basically a trie question. You can add a file or directory. But you can't add an invalid path for /a/b/c/d.txt can not be added unless you have a, b, c as directories.
+
+	On-site
+		Round 1: System Design. Design Slack. Question regarding how will you mark the message read. 
+		API + storage layer (main focus), how will you push notifications. How will you 
+		show "someone is typing.." kinda feature.
+		
+		Round 2: Bar raiser - Values and stuff. Explain one thing of your choice in less than 2 min 
+		or so.
+		
+		Round 3: Pair programming - You are given a grid of size 6x7. Two player drop a coin from 
+		the top. They select the column (initially the selection is dumb or random) The coin will 
+		fall in the bottom most hole available in that column. The player wins if there are 4 coins 
+		of the same color in a row or column or diagonal (up or down)
+		
+		Follow up: Add some intelligence in the players to select the column optimally.
+			How will you make the game generic so that it can check for 16 points in a row/column/diagonal
+			How will you handle a huge grid
+		
+		Round 4: Pair Programming - 
+			You given data set in the form of list of <curr1 - curr2 - ask - bid> 
+			ask means how much curr2 you have to spend to buy 1 unit of curr1 
+			and bid is how much of curr2 will you get if you sell 1 unit of curr1.
+		
+			Now given any two currencies x and y. Find the best conversion rate. 
+			Basically a graph problem you will have to traverse all paths from x to y 
+			because you want the best conversion rate.
+		
+		follow up - Rather than hardcoding the data use two apis - 
+			1.) https://api.pro.coinbase.com/products to get the id like USD-EUR aka currency pair and 
+			2.) https://api.pro.coinbase.com/products/" + id + "/book to fetch the ask and bid price for each one of them. response = request.get(url) is enough to handle the GET calls + response.json() is enough to parse the response.
+				

@@ -1,0 +1,22 @@
+1. https://leetcode.com/problems/brace-expansion-ii/
+2. https://prit.substack.com/p/vanta-interview-match-pattern
+	Suppose you have an array of numbers: [1 2 1 2] and a string: “cat dog cat dog“
+
+	And you have to write a function that determines whether the string matches the “pattern“ of the array. To match the pattern, there can’t be two different words corresponding to the same number in that position. For example [1 2 1 2] matches the pattern “cat dog cat dog“ because 1 only maps to cat and 2 only maps to dog, where as
+
+	[1 2 3 2 1] doesn’t match with “dog ant cat dog dog“, because 2 matches with ant and with dog at positions 1 and 3.
+	
+	Follow-up:: 
+	write a match-meta-pattern function. The input to the match-meta-pattern is a 2d array and a string like before.
+	The 2d array could be [[1] [1 2]], and the function should return whether all the patterns that can be formed 
+	with the 2d array are true or not.
+
+	All the patterns formed by the 2d array means taking all permutations of the successive sub arrays in the 
+	metapattern. So [[1] [1 2]] will become [[1 1] [1 2]], 
+				and [[1 2] [2] [1 2]] will become [[1 2 1] [1 2 2] [2 2 1] [2 2 2]], 
+	and we will check whether each of these patterns match with the string, and if all of them match, 
+	then we will return true, and otherwise false.
+	
+	[Similar Leetcode (except follow-up): 290 and 291]
+
+3. https://www.hackerrank.com/challenges/two-strings/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=dictionaries-hashmaps
