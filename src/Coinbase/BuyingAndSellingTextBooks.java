@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
+import doordash.Interval;
+
 public class BuyingAndSellingTextBooks {
 
 	public static void main(String[] args) {
@@ -41,11 +43,45 @@ public class BuyingAndSellingTextBooks {
 	 * Space complexity: O(n) --> we're putting the entire input lists in the heaps
 	 * 
 	 * FOLLOW-UP:  question of <price, expiry time> to the buy/sell order. Acc. to me, I would maintain heaps, but continue to disregard first element until I get non-expired offer.
+	 * 
+	 * 
+	 * 
 	 * */
 	
 	public List<Integer> bestMatch(int[] buyOffers, int[] sellOffers, int buyPrice, int sellPrice) {
 		PriorityQueue<Integer> buyPQ = new PriorityQueue<>((a,b) -> (b - a)); //max heap
 		PriorityQueue<Integer> sellPQ = new PriorityQueue<>((a,b) -> (a - b)); //min heap
+		
+		/* for Follow-up question if we creating a custom class 
+		 * e.g. class Price {double price, int expiryTime} 
+		 * 
+		 * then PriorityQueue can be created like below
+		 * 
+		 * --Min Heap: Increasing order
+		 * 
+		 * PriorityQueue<Price> pq = new PriorityQueue<>((p1,p2) -> (p1.price - p2.price)); 
+		 * 
+		 * OR
+		 * PriorityQueue<Price> pq = new PriorityQueue(initialCapacity, new Comparator<Price>() {
+		 * 		@Override
+		 * 		public int compare(Price p1, Price p2) {
+		 * 			return p1.price - p2.price;
+		 * 		}
+		 * 
+		 * });
+		 * 
+		 * --Max Heap: Decreasing order
+		 * PriorityQueue<Price> pq = new PriorityQueue<>((p1,p2) -> (p2.price - p1.price));
+		 * 	
+		 * OR
+		 * PriorityQueue<Price> pq = new PriorityQueue(initialCapacity, new Comparator<Price>() {
+		 * 		@Override
+		 * 		public int compare(Price p1, Price p2) {
+		 * 			return p2.price - p1.price;
+		 * 		}
+		 * 
+		 * });
+		 * */
 		
 		/* you can use a simple for loop like below as well
 			
