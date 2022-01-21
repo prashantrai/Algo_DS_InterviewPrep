@@ -115,6 +115,6 @@ Example matches: If Jane offers to BUY at $120
 
 she will match and buy a book for $109 (the lowest offer)
 
-FOLLOW-UP:  question of <price, expiry time> to the buy/sell order. Acc. to me, 
+FFOLLOW-UP:  question of <price, expiry time> to the buy/sell order. Acc. to me, 
 I would maintain heaps, but continue to disregard first element until I get non-expired offer.
 */
