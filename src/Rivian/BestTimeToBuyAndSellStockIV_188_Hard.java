@@ -1,46 +1,50 @@
 package Rivian;
 
+import java.util.Arrays;
+
 public class BestTimeToBuyAndSellStockIV_188_Hard {
 
 	public static void main(String[] args) {
 
 		int k = 2;
 		int[] prices = {3,2,6,5,0,3};
-		System.out.println("Expected: 6, Actual: "+ maxProfit(prices));
+		System.out.println("Expected: 7, Actual: "+ maxProfit(k, prices));
 		
 		k = 2;
 		int[] prices2 = {2,4,1};
-		System.out.println("Expected: 4, Actual: "+ maxProfit(prices2));
+		System.out.println("Expected: 2, Actual: "+ maxProfit(k, prices2));
 	}
 	
 	/*
-	 * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
-	 * 
-	 * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv//submissions/
-	 * 
-	 * Leetcode 309- Best Time to Buy and Sell Stock with Cooldown:: https://discuss.leetcode.com/topic/30680/share-my-dp-solution-by-state-machine-thinking
-	 * 
+    Reference: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/discuss/54125/Very-understandable-solution-by-reusing-Problem-III-idea
     
-    Complexity: 
-       Time : O(n)
-       Space : O(1)
+    Time: O(n), when 2k<=n, where n is the length of the prices, since we have two for-loop.
+    Space: O(k): O(k+k), 2 arrays buy and sell used to hold the value 
     
     */
     
-    public static int maxProfit(int[] prices) {
-        int buy_1 = Integer.MAX_VALUE;
-        int buy_2 = Integer.MAX_VALUE;
-        int sell_1 = 0, sell_2 = 0;
+    public static int maxProfit(int k, int[] prices) {
         
-        for(int price : prices) {
-            buy_1 = Math.min(buy_1, price);
-            sell_1 = Math.max(sell_1, price - buy_1);
-            
-            buy_2 = Math.min(buy_2, price - sell_1);
-            sell_2 = Math.max(sell_2, price - buy_2);
+        // if k >= n/2, then you can make maximum number of transactions
+        if (k >= prices.length / 2) { // or k*2 >= prices.length
+            int profit = 0;
+            for (int i = 1; i < prices.length; i++) {
+                if (prices[i] > prices[i - 1]) 
+                    profit += prices[i] - prices[i - 1];
+            }
+            return profit;
         }
         
-        return sell_2;
+        int[] buy = new int[k + 1];
+        int[] sell = new int[k + 1];
+        Arrays.fill(buy, Integer.MIN_VALUE);
+        for (int price : prices) {
+            for (int i = 1; i <= k; i++) {
+                buy[i] = Math.max(buy[i], sell[i - 1] - price);
+                sell[i] = Math.max(sell[i], buy[i] + price);
+            }
+        }
+        return sell[k];
     }
 
 }
