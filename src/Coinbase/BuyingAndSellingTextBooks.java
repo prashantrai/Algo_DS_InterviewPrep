@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
-import doordash.Interval;
-
 public class BuyingAndSellingTextBooks {
 
 	public static void main(String[] args) {
