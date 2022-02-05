@@ -28,6 +28,9 @@ public class FindDuplicateFileInSystem_609_Medium {
 	 * Complexity Analysis
 	 *		Time complexity : O(n*x). n strings of average length x is parsed.
 	 *		Space complexity : O(n*x). map and res size grows upto n∗x.
+	 *
+	 *
+	 * Follow-up: https://leetcode.com/problems/find-duplicate-file-in-system/discuss/1217800/Python3-Memory-Efficient(beats-97).-Thoughts-on-Follow-Up-questions
 	 * */
 	
 	public static List<List<String>> findDuplicate(String[] paths) {
