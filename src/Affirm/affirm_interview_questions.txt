@@ -1,4 +1,27 @@
+[Sources: Leetcode and Glassdoor]
+
 LC 49, 362, 380, 381
+
+1. [Leetcode 380, 381] Create a dictionary with the methods add(), get() and delete() 
+and deleteRandom(). The delete method needs to remove a random value from the dictionary 
+every time the method is invoked. The deleteRandom() method should also adhere to constant
+time as opposed to O(n). i.e. it should not iterate over the entire list to get values 
+in order to remove the random value.
+
+
+2.  a.Find the smallest common substring of 2 strings. 
+      b. Given an input list of names, for each name, find the shortest substring that only appears in that name.
+ 
+[  https://leetcode.com/discuss/interview-question/447215/affirm-phone-shortest-unique-substring ] 
+
+[Question is not in leetcode yet but there is a discussion with solution of O(n^3)]. This problem can be solved efficiently using Suffix Tree/Array]
+
+
+3. Subarray products. Given an array, find the number of subarrays whose product is less than a given value ‘k’
+4. Word Ladder : Given two words and a dictionary, return the shortest path between two words
+5. https://leetcode.com/discuss/interview-question/381353/affirm-phone-screen-letters-appearing-most-number-of-words
+	
+
 
 > https://leetcode.com/discuss/interview-question/381353/affirm-phone-screen-letters-appearing-most-number-of-words
 	https://leetcode.com/discuss/interview-question/358776/letters-that-occur-most-with-other-letters-in-a-list-of-multiple-words
@@ -71,4 +94,4 @@ LC 49, 362, 380, 381
 	        }
 	    }
 
-	  
+  
