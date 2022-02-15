@@ -40,12 +40,12 @@ public class LongestSubstringWithNoMoreThanTwoContiguousOccurrencesOfChar_OA_Cod
 	 * */
 	
 	
-	public static String longestValidSubStringWith2ContiguousOccurrences(String s) {
+	/*public static String longestValidSubStringWith2ContiguousOccurrences(String s) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(s.charAt(0));
 		sb.append(s.charAt(1));
 		
-	}
+	}*/
 	
 	public static String longestValidSubString(String s) {
 		if(s == null || s.length() == 0)
