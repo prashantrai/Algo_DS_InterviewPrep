@@ -8,20 +8,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Test2 {
+
+public class Twilio_OA_HackerRank_DeepakSethy {
 
 	public static void main(String[] args) {
-		
-//		System.out.println("1>>> Expected: aabbaa: Actual: " + solution("?ab??a"));
-//		System.out.println("2>>> Expected: NO: Actual: " + solution("bab??a"));
-//		System.out.println("2>>> Expected: aaa: Actual: " + solution("?a?")); // "zaz" is also correct
-		
-		List<LocalDate> dates = getAllDatesBetweenRangeInclusive("5-January-2000", "10-January-2000");
-		System.out.println("dates:: "+dates);
-		
-		System.out.println(">>>"+ formatLocalDate(LocalDate.now()));
-		        
+		// TODO Auto-generated method stub
+
 	}
+	
+	/* This solution was giving TLE.
+	 * 
+	 * Better approach should be to 
+	 * 	1. make call with any range or date and then (include a page number starting 1)
+	 *  2. iterate the result and print each result where date is in input date range
+	 *  3. repeat step 1 with the next page till you land on a page where first data's date OR last data's date is out of range  
+	 * 
+	 * */
 	
 	static void openAndClosePrices(String firstDate, String lastDate) {
         if(firstDate == null || firstDate.isEmpty() || lastDate == null || lastDate.isEmpty()) {
@@ -101,41 +103,5 @@ public class Test2 {
         float low;
         //TODO: Avoiding setters getters in interest of time
     }
-	
-	/* Deepak's Codeity Test: 
-	 * Make and return palindrome by replacing '?' in the input string 
-	 * with characters from a-z, return "NO" if not possible.
-	 * */
-	public static String solution(String S) {
-        
-        int i=0, j=S.length()-1;
-        char[] arr = S.toCharArray();
-        while (i < j) {
-            char i_char = arr[i];
-            char j_char = arr[j];
-            
-            // when char are not same
-            if(i_char != '?' && j_char != '?' && i_char != j_char) {
-                return "NO";
-            }
-            
-            if(i_char != '?' || j_char != '?') {
-                if(i_char == '?') {
-                    arr[i] = arr[j];
-                } else {
-                    arr[j] = arr[i];
-                }
-            }
-            else if (i_char == '?' && j_char == '?') {
-                arr[i] = 'a';
-                arr[j] = 'a';
-            }
-            
-            i++;
-            j--;
-        }
 
-     return new String (arr);
-    }
-	
 }

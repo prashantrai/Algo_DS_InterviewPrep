@@ -10,6 +10,20 @@ public class MinimumDeletionsToMakeStringBalanced_1653_Medium {
 		
 	}
 
+	
+	// See Comment:  https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/discuss/943968/JAVA-or-DP-or-ACCEPTED-or-EXPLANATION
+	public static int minimumDeletions_2(String s) {
+		int bCount = 0, minMoves = 0;
+		for (char c : s.toCharArray()) {
+			if (c == 'a') {
+				minMoves = Math.min(minMoves + 1, bCount);
+			} else {
+				bCount++;
+			}
+		}
+		return minMoves;
+	}
+	
 	//https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/discuss/943968/JAVA-or-DP-or-ACCEPTED-or-EXPLANATION
 	public static int minimumDeletions_1(String s) {
 		// ideal case : bbbbbbbbb
@@ -30,20 +44,6 @@ public class MinimumDeletionsToMakeStringBalanced_1653_Medium {
 		return dp[s.length()];
 
 	}
-
-	// See Comment:  https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/discuss/943968/JAVA-or-DP-or-ACCEPTED-or-EXPLANATION
-	public static int minimumDeletions_2(String s) {
-		int bCount = 0, minMoves = 0;
-		for (char c : s.toCharArray()) {
-			if (c == 'a') {
-				minMoves = Math.min(minMoves + 1, bCount);
-			} else {
-				bCount++;
-			}
-		}
-		return minMoves;
-	}
-
 }
 
 

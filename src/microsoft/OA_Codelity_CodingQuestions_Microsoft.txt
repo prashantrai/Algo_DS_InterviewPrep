@@ -3,6 +3,10 @@
 3) https://leetcode.com/problems/meeting-rooms-ii/ (are there any other solutions)
 4) https://leetcode.com/problems/rotate-list/ (can you also rotate it the other way)
 
+
+Algo Master :: https://algo.monster/problems/microsoft_online_assessment_questions
+	https://algo.monster/problems/max_network_rank
+
 ----
 
 Given two large int A and B . Find no of bit set is A*B. More than performance accuracy is important.
@@ -19,5 +23,643 @@ If there is no such character then return -1 otherwise print the uppercase lette
 [https://www.geeksforgeeks.org/find-the-largest-alphabetic-character-present-in-the-string/ ]
 https://leetcode.com/discuss/interview-question/415307/american-express-online-codility-fraction-additionhttps://leetcode.com/problems/minimum-deletion-cost-to-avoid-repeating-letters/
 
------
+-----////----2/8/2022-------////----------------
+Source:  https://leetcode.com/discuss/interview-question/398023/microsoft-online-assessment-questions
 
+1. [LC1822]Given an array of integers(+ve,-ve and 0) find the sign of the product of all the given values.
+	
+2. The following code runs fine for smaller inputs but not for the larger inputs. Optimize the code without changing the functionality
+	public int sol(int[] A){
+		int N = A.length(); 
+		int result = 0;
+		for(int i=0;i<N;i++){
+			for(int j=0;j<N;j++){
+				if(A[i] == A[j]) 
+					result = Math.max(result,Math.abs(i-j));
+			}
+		}
+		return result;
+	}
+	
+	Solution OPTIMIZED: 
+		public int maxDiff(int[] nums) {
+			HashMap<Integer,Integer> hm = new HashMap();
+			int result = 0;
+			for(int i = 0; i< nums.length; i++){
+				if(hm.containsKey(nums[i])){
+					result = Math.max(result,i - hm.get(nums[i]));
+				} else {
+					hm.put(nums[i], i);
+				}
+			}
+			return result;
+		}
+	
+3. 	Given an integer(+ve or -ve) consisting of at least one 5 in its digits(can have more than one 5). 
+	Return the maximum value by deleting exactly one 5 from its digit.
+	Ex: N = 1598 => result = 198(remove the only 5 from the sequence)
+	N = 150,958 => result = 15,098(we wanna return the maximum value 15,098 > 10,958)
+	N = -5859 => result = -589 ( -589>- 859)
+	
+	Ans: 
+	public static int findLargeNum2(int num) {
+		if(num >= -10 && num <= 10)	
+	        return num;
+		
+		int res = Integer.MIN_VALUE;
+		StringBuilder sb = new StringBuilder(Integer.toString(num));
+		
+		for(int i=0; i<sb.length(); i++) {
+			if(sb.charAt(i) == '5') {
+				sb.deleteCharAt(i);
+				res = Math.max(res, Integer.valueOf(sb.toString()));
+				sb.insert(i, '5');
+			}
+		}
+		
+		return res > Integer.MIN_VALUE ? res : num;
+	}
+	
+	
+
+4. 	https://www.geeksforgeeks.org/split-the-given-array-into-k-sub-arrays-such-that-maximum-sum-of-all-sub-arrays-is-minimum/
+
+	Given an array (treat it as a circular array) and a value k partition it into k sequential parts 
+	such that difference between sum of this min part and max part is minimum.
+	We just have to return that minimum difference.
+
+	Example1: [6,13,10,2] , k=2
+	Ans:5 ---> Parts are [13] [6,10,2] Note array is cicular :P and difference of sum is 18-13=5
+	
+	Example2: [6,13,2,10] , k=2
+	Ans: 1
+	
+	Example3: [6,13,10,2] k=4
+	Ans : 11
+	
+	
+	Look at below links for similar questions: 
+	
+	https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/
+		https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/discuss/1513435/Python-or-Easy-Explanation-or-Meet-in-the-Middle
+			https://leetcode.com/problems/closest-subsequence-sum/
+	
+	https://www.geeksforgeeks.org/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum/
+	https://www.geeksforgeeks.org/split-the-given-array-into-k-sub-arrays-such-that-maximum-sum-of-all-sub-arrays-is-minimum/
+
+
+5. https://leetcode.com/discuss/interview-question/1736595/Microsoft-Online-Assessment-2022
+
+	a. Given an array of integers and K, find the maximum even using K elements from array.
+	
+	Solution: [O(n^2)]
+		class Solutions {   
+			public static void main(String[] args) {
+		        int k=3;
+		        int a[]=new int[]{4, 2, 6, 7, 8};
+		        System.out.println( maxEvenSumOfK(a,k,0,0,0));
+		        
+		        a=new int[]{5, 5, 1, 1, 3};
+		        System.out.println( maxEvenSumOfK(a,k,0,0,0));
+		    }
+		
+		    private static int maxEvenSumOfK(int[] a,int k,int i,int c,int sum) {
+		        if(c==k){
+		            return (sum%2==0?sum:-1);
+		        }
+		        if (i==a.length){
+		            return -1;
+		        }
+		
+		        return Math.max(maxEvenSumOfK(a,k,i+1,c,sum),
+		        					maxEvenSumOfK(a,k,i+1,c+1,a[i]+sum));
+		
+		    }
+		}
+	
+	b. Given a string consisting of only a and b, what is the minimum number of swaps
+		(replace a with b or b with a) needed such that string doesn't contain 3 consecutive character 
+		which are same. 
+		
+		e.g aaaba -> 1 (aabba)
+		
+		Solution: Refer MinSwapToMakeStringWithNo3ConsecutiveChar_OA_Codelity.java		
+		
+
+6. [Solution in comment] https://leetcode.com/discuss/interview-question/1726332/microsoft-online-assessment-questions/1240129
+		
+	a. Given an integer N, return the smallest non-negative number whose individual digits sum upto N.
+	Solution: 
+		class Solution{
+		    public int getSmellestNumber(int num){
+		        int noOfNines= num/9;
+		        int res= num%9;
+		        while(noOfNines > 0){
+		            res= res*10 + 9;
+		            noOfNines--;
+		        }
+		        
+		        return res;
+		    }
+		}
+
+	b. 	There are N block from 0 to N-1. A couple of frogs were sitting together on one block, 
+		They had a quarrel and need to jump away from one another. The frogs can only jump to another 
+		block if the height of the other block is greater than equal to the current one. 
+		You need to find the longest possible distance that they can possible create between each other, 
+		if they also choose to sit on an optimal starting block initially.
+		
+		Solution: 
+			class Solution {
+				public static int solve(int[] blocks) {
+					int maxRange = 0;
+					if (blocks == null || blocks.length <= 1) {
+						return maxRange;
+					}
+					int n = blocks.length;
+					int[] left = new int[n];
+					int[] right = new int[n];
+			
+					left[0] = 0;
+					for (int i = 1; i < n; i++) {
+						if (blocks[i] <= blocks[i - 1]) {
+							left[i] = left[i - 1] + 1;
+						} else {
+							left[i] = 0;
+						}
+					}
+					right[n - 1] = 0;
+					for (int i = n - 2; i >= 0; i--) {
+						if (blocks[i] <= blocks[i + 1]) {
+							right[i] = right[i + 1] + 1;
+						} else {
+							right[i] = 0;
+						}
+					}
+					for (int i = 0; i < n; i++) {
+						maxRange = Math.max(maxRange, left[i] + right[i] + 1);
+					}
+					return maxRange;
+				}
+			
+				public static void main(String[] args) {
+					int[] A = { 1, 5, 5, 2, 6, 5, 7 };
+					System.out.println(solve(A));
+				}
+			}
+
+
+
+
+
+7. 	https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1253293
+	
+	You are given a binary string and an integer k. You can swap any 2 consecutive value in string at most k times. For ex 01 will become 10 in 1 swap. Find largest number of 1 that can be consecutive.
+	Sample input 10101010 and k=2
+	sample output=3 
+
+
+8. https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1252628
+	NOTE: FOR question 1 and 3 refer point 6 in this document
+	
+	1.Given an array of integers and K, find the maximum even using K elements from array.
+		[NOTE: refer point 5 in this document]
+	
+	2.Given a string consisting of only a and b, what is the minimum number of 
+	swaps(replace a with b or b with a) needed such that string doesn't contain 3 consecutive character
+	which are same. e.g aaaba -> 1 (aabba)
+	
+	3. [NOTE: refer point 6.b in this document]
+		There are N block from 0 to N-1. A couple of frogs were sitting together on one block, 
+		They had a quarrel and need to jump away from one another. The frogs can only jump to another 
+		block if the height of the other block is greater than equal to the current one. 
+		You need to find the longest possible distance that they can possible create between each other, 
+		if they also choose to sit on an optimal starting block initially.
+
+
+9. https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1248442
+
+	Question one:
+		If Given integer K and an array sorted in ascending order. return True or False is there 
+		is subset (1......K) meaning if K was 4, is there 1,2,3,4 in the array. 
+		Note you can have duplicates so it can be 1,1,2,2,3,4 and it would be True.
+		
+		TASK: The code given works for some examples but not all, fix it so it outputs the correct 
+		result everytime. You can change maximum of two lines ONLY.
+	
+	Question Two: 
+		[*Solved*: Look for file: CheckIfTwoConvertedStringAreSame_OA_Codelity.java ]
+		
+		You are reading strings from OCR, the machine transcription tool, that reads images of documents 
+		and returns strings. If OCR can not recognize some characters, it will replace with '?' 
+		
+		example: word "AppLe" if OCR could not recognize the first two characters, it will return "??pLe"
+		
+		Once OCR returns its strings, the strings are minimized further, for every consecutive '?' of length K, 
+		the '?''s are replaced by the Integer value of K.
+		
+		example: "??pLe" becomes "2pLe" because there were 2 consecutive '?' at the start so they are replaced by the number 2
+		
+		You are given two strings, S and T of lengths m and n, outputted from OCR, determine if the two 
+		strings could potentially be the same word. 
+		
+		example "2pLe" and "Ap2e" could be the same word, return True
+		
+		"b1d" and 1aD" cannot be the same word because the last characters 'd' and 'D' are not the same, return False
+		
+		Constraints: the original strings in the images are only english letters
+		
+		*My solution*: I just created two empty string, S2 and T2. I looped through S and concatenated the 
+		characters onto S2 until I hit a number. Once I hit a number I do another loop from 0 to that number 
+		and concatenated "?" each time. I did the same for T and T2.
+		
+		This converts the given OCR strings to the correct representation with the "?" - "2pLe" 
+		becomes "??pLe" and "Ap2e" becomes "Ap??e"
+		
+		next I check if the lengths of S2 and T2 are the same, if they are not then return false 
+		since there's no way they are the same. Finally I looped through each char of S2 and T2 and 
+		compared them. If the chars were not equal and neither of them were "?" then return False
+		return True as base return of the whole function.
+
+		
+		
+		
+10. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1046220] 
+
+	1. Given an array N, return true if it is possible we can pair all the numbers in the array with equal 
+		values. 
+		E.g N = [1, 2, 2, 1] -> true as we can pair (N[0], N[3]) and (N[1], N[2]). 
+		N = [7, 7, 7] would return false.
+		[1,2,2,1] - > True since [1,1] and [2,2] are pairs. 
+		But [1,1,2,2,2] can't because there in an extra 2 that can't be paired with anything.
+		
+		
+		Solution: Refer ArrayPairs_OA_Codelity.java
+		
+		
+	2. find_min function is implemented wrongly (the function was implemented to always return 0), 
+	write a function to return a counter example array of size n that when passed to find_min will 
+	always return a wrong answer. E.g n = 4, [100, 500, 200, 300].
+	
+	Solution: [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1056192] 
+	
+		For Question Screenshot: https://leetcode.com/discuss/interview-question/555702/Microsoft-or-Online-Codility-Assessment-or-Counterexample-(Task-1)/486118
+	
+		public static int[] counterExample(int n) {
+			// https://leetcode.com/discuss/interview-question/555702/Microsoft-or-Online-Codility-Assessment-or-Counterexample-(Task-1)/486118
+		  int[] result = new int[n];
+		  for (int i = 0; i < n; i++) 
+			  result[i] = i+1;
+		  return result;
+	
+		}
+		
+		//wrong imlementation of findMin() for counterExample-- Microsoft OA
+		public static int findMin(int[] A) {
+			int ans = 0;
+			for(int i=1; i<A.length; i++) {
+				if(ans > A[i]) {
+					ans = A[i];
+				}
+			}
+			return ans;
+		}
+	
+	
+	3. Given a string s, find the minimum number of substrings you can create without having the same 
+	letters repeating in each substring.
+		E.g world -> 1, as the string has no letters that occur more than once. (look at screen shot in GoogleDrive)
+		dddd -> 4, as you can only create substring of each character.
+		abba -> 2, as you can make substrings of ab, ba.	
+		cycle-> 2, you can create substrings of (cy, cle) or (c, ycle)
+
+	Solution: Look at MinimumNumOfSubstringsWithoutRepeatingChars_OA_Codelity.java
+
+
+11. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1150069]
+
+	1. Return if you can create array pairs from the given array. 
+		Eg: [1,2,2,1] - > True since [1,1] and [2,2] are pairs. 
+		But [1,1,2,2,2] can't because there in an extra 2 that can't be paired with anything.
+		
+		Solution: Refer ArrayPairs_OA_Codelity.java
+	
+	2. For Question Screenshot: https://leetcode.com/discuss/interview-question/555702/Microsoft-or-Online-Codility-Assessment-or-Counterexample-(Task-1)/486118
+	 
+	
+	Given a wrong implementation of 'Find min in array', and int N, 
+	return an array of N values such that the program fails for sure. Counterexample.
+	
+	Solution [Refer point 10.2 in this doc]:
+		
+		public static int[] counterExample(int n) {
+			// https://leetcode.com/discuss/interview-question/555702/Microsoft-or-Online-Codility-Assessment-or-Counterexample-(Task-1)/486118
+		  int[] result = new int[n];
+		  for (int i = 0; i < n; i++) 
+			  result[i] = i+1;
+		  return result;
+	
+		}
+		
+		//wrong imlementation of findMin() for counterExample-- Microsoft OA
+		public static int findMin(int[] A) {
+			int ans = 0;
+			for(int i=1; i<A.length; i++) {
+				if(ans > A[i]) {
+					ans = A[i];
+				}
+			}
+			return ans;
+		}
+		
+	
+	3. Given a string of lower case characters, return the number of substrings that can be 
+	formed such that every string only has unique characters. "dddd" is 4. "dddde" is also 4.
+	
+	Solution:[point 10.3]: Look at MinimumNumOfSubstringsWithoutRepeatingChars_OA_Codelity.java
+		
+
+
+12. LC 1647. Minimum Deletions to Make Character Frequencies Unique
+	https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1216573
+	
+	
+13. [Question] https://github.com/jolly-fellow/microsoft/tree/master/longest_substring_without_2_contiguous_occurrences_of_letter
+
+	Given string str containing only a and b, find the longest substring of str such that 
+	str does not contain more than two contiguous occurrences of a and b.
+	Example 1:
+		Input: "aabbaaaaabb"
+		Output: "aabbaa"
+
+		Example 2:
+		Input:  "aabbaabbaabbaa"
+		Output: "aabbaabbaabbaa"
+	
+	Solution: Refer LongestSubstringWithNoMoreThanTwoContiguousOccurrencesOfChar_OA_Codelity.java
+
+
+14. https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1209563
+
+	Given string str containing only a and b, find the longest substring of str such that str does not contain more than two contiguous occurrences of a and b.
+	
+	Also look at: String Without 3 Identical Consecutive Letters, in the same class i.e. LongestSubstringWithNoMoreThanTwoContiguousOccurrencesOfChar_OA_Codelity.java
+	
+	Solution: Refer LongestSubstringWithNoMoreThanTwoContiguousOccurrencesOfChar_OA_Codelity.java
+
+
+15.
+	https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+	https://leetcode.com/problems/rotate-array/		
+	
+	
+16. https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1202381
+
+	1- Largest K such that both K and -K exist in array
+	Solution:  LargestK_OA_Codelity.java
+	
+	
+	2- Index K is named fair if the four sums (A[0] + ... + A[K-1]), (A[k] + ... + A[N-1]), (B[0] + ... + B[k-1]) and (B[K] + ... + B[N-1]) are all equal. In other words, K is the index where the two arrays, A and B, can be split (into two non-empty arrays each) in such a way that the sums of the resulting arrays' elements are equal.
+	
+	Solution: FairIndexes_OA_Question.java
+	
+	3- given an array arr of n positive integers returns 1 if arr contains at least two items which differ by 1 otherwise 0.
+		Given, arr=[9], the method should return 0.
+		Given, arr=[5,4], the method should return 1.
+		Given, arr=[12, 2, 9, 13, 15], the method should return 1. Pair of items which differ by 1 is (12, 13)
+		
+		Solution: ArrayWith2NumDifferBy1_OA_Codelity.java	
+
+
+
+17. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1173914]
+	
+	Write a function solution that, given a three-digit integer N and an integer K, 
+	returns the maximum possible three-digit value that can be obtained by performing at most K increases 
+	by 1 of any digit in N.
+	
+	Examples:
+	
+	Given N = 512 and K =10, the function should return 972. The result can be obtained by increasing the first digit of N four times and the second digit six times.
+	Given N = 191 and K = 4, the function should return 591. The result can be obtained by increasing the first digit of N four times.
+	Given N = 285 and K = 20, the function should return 999. The result can be obtained by increasing the first digit of N seven times, the second digit once and the third digit four times.
+	Assume that:
+	• N is an integer within the range [100..999]
+	• K is an integer within the range [0..30].
+
+	Solution: [in comment section] Refer ObtainMaxPossibleThreeDigitValue_OA_Codelity.java
+
+
+18. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1165412]
+
+	1. https://leetcode.com/problems/count-good-nodes-in-binary-tree/
+	
+		Solution: refer CountGoodNodesInBinaryTree_1448_Medium.java
+	
+	2. https://algo.monster/problems/fair_indexes
+		Solution: refer FairIndexes_OA_Question.java
+	
+	3. Given two sticks of different lengths, return the longest possible length of 
+		each sticks (should be equal, since a square will be made with them).
+	
+		input = [10, 21] => return 7 (make 1x of length 7 from first, make 3x of length 7 from the second)
+		
+		Look here: https://leetcode.com/problems/matchsticks-to-square/ 
+			https://www.geeksforgeeks.org/dividing-sticks-problem/ 
+
+																																																												
+19. https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1131691
+
+	https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/
+
+	
+	
+20. https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1089660
+
+	1. 	There are two wooden sticks of lengths A and B respectively. Each of them can be cut into shorter 
+		sticks of integer lengths. Our goal is to construct the largest possible square. In order to do this, 
+		we want to cut the sticks in such a way as to achieve four sticks of the same length 
+		(note that there can be some leftover pieces). 
+		
+		What is the longest side of square that we can achieve?
+		
+		Write a function that given two integers A, B, returns the side length of the largest square that 
+		we can obtain. If it is not possible to create any square, the function should return 0.
+		
+		Examples :
+		a. Given A = 10, B =21, the function should return 7. We can split the second stick into three sticks of length 7 and shorten the first stick by 3.
+		b. Given A = 13, B=11, the function should return 5. We can cut two sticks of length 5 from each of the given sticks.
+		c. Given A = 2, B = 1, the function should return 0. it is not possible to make any square from the give sticks.
+		d. Give A = 1, B = 8, the function should return 2. We can cut stick B into four parts.
+	
+		*SOLUTION*: see DivideSticksToFindSideLengthOfLargestSquare_OA_Codelity.java
+	
+	2. You are given an array A of N integers and integer K. you want to remove K consecutive elements from 
+		A in such a way that the amplitude of the remaining elements will be minimal. The amplitude is the 
+		difference between the maximal and minimal elements.
+	
+		Write a function that given an array A of N integers and an integer K, returns an integer denoting 
+		the minimal amplitude that can be obtained after the removal of K consecutive elements from A.
+	
+		Examples :
+		a. Given A = [5,3,6,1,3 ] and K = 2, the function should return 2. 
+			You can remove the third and fourth elements to obtain the following array: [5,3,3]. 
+			Its maximal elements is 5 and its minimal element is 3, so the amplitude is 2.
+			
+		b. Given A = [8,8,4,3] and K=2, the function should return 0. 
+			You can remove the third and fourth elements to obtain the array [8,8], 
+			whose amplitude is equal to 0.
+			
+		c. Given A=[3,5,1,3,9,8] and K = 4 , the function should return 1. 
+			You can remove the first, second, third and fourth elements to obtain the array [9,8], 
+			whose amplitude equals 1.
+	
+	
+		*Solution*: see MinAmplitude_OA_Codelity.java
+	
+	3. Find the number of nodes on the longest distinct path that starts at the root in a binary tree.
+		Question: https://leetcode.com/discuss/interview-question/1065005/Max-Number-of-Distinct-Notes-along-a-Root-Node-Path/850343
+
+		*Solutions*: MaxDistinctPathNodesFromRoot_OA_Codelity.java
+
+
+21. https://leetcode.com/discuss/interview-question/1037927/microsoft-online-assessment-codility
+	
+	1. Given an integer array A[], find the number of elements in the array where A[i] = number of 
+		times A[i] occurs in the array. 
+		
+		For example, if A[] = [2,2,4,5,3,3,3] we need to return 2. 
+		The number 2 occurs 2 times and 3 occurs 3 times and hence the answer is 2.
+
+	2. We are given a string S of length N consisting only of letters A and/or B. Our goal is to obtain a 
+		string in the format A...AB...B. (all letters A occur before all letters B) by deleting some letters 
+		from S. In particular, strings consisting only of letters A or only of letters B fit this format. 
+		
+		Write a function that, given a string S, return the minimum number of letters that need to be deleted 
+		from S in order to obtain a string in the above format.
+		
+		Constraints: 
+		N is an integer within the range [1,100,000][1,100000];
+		string S consists only of the characters A and/or B.
+		
+		Solution: https://algo.monster/problems/min_deletions_to_obtain_string_in_right_format
+					https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/
+					
+					MinimumDeletionsToMakeStringBalanced_1653_Medium.java
+	
+
+22. https://leetcode.com/discuss/interview-question/430981/
+
+	Partition array into N subsets with balanced sum
+	Give you one sorted array, please put them into n buckets, we need to ensure we get n sub array with approximately equal weights.
+	Example;
+	input {1, 2, 3, 4, 5} n = 3
+	output [[[5],[1,4],[2,3]];
+	
+	SOLUTION: PartitionArrayIntoNSubsetsWithBalancedSum_OA_Codelity.java
+
+
+23. https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/
+	https://leetcode.com/discuss/interview-question/1504929/MICROSOFT-OA-oror-SDE-oror-Fresher
+	
+	QUESTION
+		A University has invited N alumni to a dinner. The dinner table is circular in shape. The university has assigned each alumnus an invitation ID from 1 to N. Each alumnus likes exactly one fellow alumnus and will attend the dinner only if he/she can be seated next to that person.
+		
+		You are asked to plan the seating arrangement. Write an algorithm to find the maximum number of alumns who will attend the dinner.
+		
+		Input:
+		The first line of the input consists of an integer person ld size, representing the number of alumni (N). The second line consists of N space-separated integers representing the ID of the person whom the alumnus likes.
+		
+		Output:
+		Print an integer representing the maximum number of alumni who can attend the dinner.
+		
+		Note : One alumnus can be liked by more than one alumni.
+		
+		N <= 1e5
+
+	Solution: LC-2127: https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/
+
+
+24. [https://leetcode.com/discuss/interview-question/963586/Microsoft-or-OA-or-Codility/784670]
+	Asked in 2020
+	1. Maximum possible value by inserting '5'
+		examples:
+		input: 1234 -> output: 51234
+		input: 7643 -> output 76543
+		input: 0 -> output 50
+		input: -661 -> output -5661
+	
+	2. A string is considered balanced when every letter in the string appears both in uppercase and lowercase
+		For example, CATattac is balanced (a, c, t occur in both cases). Madam is not (a, d only appear in lowercase).
+		Write a function that given a string returns the shortest balanced substring of that string.
+		Can this be solved with a sliding window approach?
+		Update:
+		More examples
+		“azABaabza” returns “ABaab”
+		“TacoCat” returns -1 (not balanced)
+		“AcZCbaBz” returns the entire string
+		
+		Solution: Check comment, it could be a balance substring problem 
+		https://leetcode.com/problems/longest-nice-substring/
+		Also check AlgoMaster if they have this question
+		
+
+
+25. [Test given by me] https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1266522
+
+	1. Given an array A consisting of N integers, returns the maximum sum of two numbers whose digits add up to an equal sum. if there are not two numbers whose digits have an equal sum, the function should return -1.
+		Constraints: N is integer within the range [1, 200000]
+		each element of array A is an integer within the range [1, 1000000000]
+		
+		Example1:
+		Input:
+		A = [51, 71, 17, 42]
+		Output: 93
+		Explanation: There are two pairs of numbers whose digits add up to an equal sum: (51, 42) and (17, 71), The first pair sums up  to 93
+		
+		Example2:
+		Input:
+		A = [42, 33, 60]
+		Output: 102
+		Explanation: The digits of all numbers in A add up the same sum, and choosing to add 42 and 60 gives the result 102
+		
+		Example3:
+		Input:
+		A = [51, 32, 43]
+		Output: -1
+		Explanation: All numbers in A have digits that add up to different, unique sums
+
+
+		Solution: see MaximumSumOfTwoNumAddUpToEqualSum_OA_Codelity.java 
+
+
+	2. You are given a string S, which consists entirely of decimal digits (0−9). 
+		Using digits from S, create a palindromic number with the largest possible decimal value. 
+		You should use at least one digit and you can reorder the digits. A palindromic number remains 
+		the same when its digits are reversed; for instance, "7", "44" or "83238". Any palindromic 
+		number you create should not, however, have any leading zeros, such as in "0990" or "010".
+		
+		For example, decimal palindromic numbers that can be created from "8199" are: 
+		"1", "8", "9", "99", "919" and "989". Among them, “989” has the largest value.
+		
+		Write a function:
+		class Solution { public String solution(String S); }
+		
+		that, given a string S of N digits, returns the string representing the palindromic number with the largest value.
+		
+		Examples:
+		1. Given "39878", your function should return "898".
+		2. Given "00900", your function should return "9".
+		3. Given "0000", your function should return "0".
+		4. Given "54321", your function should return "5".
+		
+		Write an efficient algorithm for the following assumptions:
+		N is an integer within the range [1..100,000];
+		string S consists only of digits (0−9).
+
+
+**System Design**
+https://leetcode.com/discuss/interview-question/1620599/TeleDocorDesign-Interviewor-Design-Payment-system
+
+https://leetcode.com/tag/design/
+	
