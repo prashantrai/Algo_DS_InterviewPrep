@@ -54,21 +54,7 @@ public class FindPOPUP {
 		J.children.add(Z); // leaf node, no children
 		J.children.add(Y); // leaf node, no children
 		
-		TreeNode popupNode = findPOPUP(root);
-		System.out.println("popupNode:: " + popupNode);
-		
-		// a. Find POPUP, make all the sibling of POPUP to hidden
-		List<String> result = seekAndHide(popupNode);
-		System.out.println("Expected: I, J, K  Actual: "+ result);
-		
-		// b. Find out POPUP's parent, make all the sibling of parent to hidden
-		result = seekAndHide(popupNode.parent);
-		System.out.println("Expected: B, C  Actual: "+ result);
-		
-		/* In the output diagram (see bottom of this file) after case 'a' and 'b' POPUP 
-		 * is not hidden, that's why this method.
-		 * */
-		makePOPUPVisible(popupNode);
+		findPOPUP(root);
 
 	}
 
@@ -95,6 +81,22 @@ public class FindPOPUP {
 	 *            N     O    (P)
 	 * 
 	 * 
+	 * After openPopup called:
+	 *
+	 *              ROOT
+	 *          /     |    \
+	 *         /      |     \
+	 *      (B)      (C)      D
+	 *    /   |            /  | \   \
+	 *   /    |           /   |  \   \
+	 * F      G       POPUP  (I)  (J) (K)
+	 *              /   |   \
+	 *             /    |    \
+	 *            N     O     (P)
+	 * 
+	 * 
+	 * 
+	 * 
 	 * Algorithm: 
 	 * 1. Create a data structure for Node and keep parent link as well in that
 	 * 2. implement findPopup() and return POPUP node 
@@ -108,6 +110,26 @@ public class FindPOPUP {
 	 * 
 	 * 
 	 * */
+	
+	private static void findPOPUP(TreeNode root) {
+		
+		TreeNode popupNode = findPOPUP_Helper(root);
+		System.out.println("popupNode:: " + popupNode);
+		
+		// a. Find POPUP, make all the sibling of POPUP to hidden
+		List<String> result = seekAndHide(popupNode);
+		System.out.println("Expected: I, J, K  Actual: "+ result);
+		
+		// b. Find out POPUP's parent, make all the sibling of parent to hidden
+		result = seekAndHide(popupNode.parent);
+		System.out.println("Expected: B, C  Actual: "+ result);
+		
+		/* In the output diagram (see bottom of this file) after case 'a' and 'b' POPUP 
+		 * is not hidden, that's why this method.
+		 * */
+		makePOPUPVisible(popupNode);
+		
+	}
 
 	// Time: O(N) 
 	// Space: O(1), not count result list as that's just for debuggin purpose and won't be in actual code
@@ -122,14 +144,15 @@ public class FindPOPUP {
 			if(!childName.equals(node.name)) {
 				child.hidden = true;
 				result.add(childName);
-			}
+			} 
+			//can call makePOPUPVisible() here in ELSE block
 		}
 		return result;
 	}
 	
 	// Time: O(V + E) 
 	// Space : O(N)
-	private static TreeNode findPOPUP(TreeNode root) { // BFS
+	private static TreeNode findPOPUP_Helper(TreeNode root) { // BFS
 		
 		Set<String> visited = new HashSet<>();
 		Queue<TreeNode> q = new ArrayDeque<>();

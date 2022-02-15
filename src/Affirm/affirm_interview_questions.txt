@@ -18,38 +18,56 @@ in order to remove the random value.
 
 
 3. Subarray products. Given an array, find the number of subarrays whose product is less than a given value ‘k’
+
 4. Word Ladder : Given two words and a dictionary, return the shortest path between two words
+
 5. https://leetcode.com/discuss/interview-question/381353/affirm-phone-screen-letters-appearing-most-number-of-words
 	
+	> https://leetcode.com/discuss/interview-question/381353/affirm-phone-screen-letters-appearing-most-number-of-words
+		https://leetcode.com/discuss/interview-question/358776/letters-that-occur-most-with-other-letters-in-a-list-of-multiple-words
+		https://leetcode.com/discuss/interview-question/331117/
+		
+		Given an input list of strings, for each letter appearing anywhere 
+		in the list, find the other letter(s) that appear in the most 
+		number of words with that letter.
+		
+		Example: 
+		['abc', 'bcd', 'cde'] =>
+		  {
+			a: [b, c],	# b appears in 1 word with a, c appears in 1 word with a
+			b: [c], 	# c appears in 2 words with b, a and d each appear in only 1 word with b
+			c: [b, d], 	# b appears in 2 words with c, d appears in 2 words with c. But a and e each 
+							  appear in only 1 word with c.
+			d: [c],		# c appears in 2 words with d. But b and e each appear in only 1 word with d
+			e: [c, d], 	# c appears in 1 word with e, d appears in 1 word with e
+				
+		  }
+	  
+	  SOLUTION: see LettersAppearingInMostNumberOfWords.java
+	  
+	  
+6. [Look here:Onsite Experience]
+	https://leetcode.com/discuss/interview-experience/761171/affirm-senior-swe-july-2020-reject
 
-
-> https://leetcode.com/discuss/interview-question/381353/affirm-phone-screen-letters-appearing-most-number-of-words
-	https://leetcode.com/discuss/interview-question/358776/letters-that-occur-most-with-other-letters-in-a-list-of-multiple-words
-	https://leetcode.com/discuss/interview-question/331117/
+7. https://leetcode.com/discuss/interview-question/447215/interview-question-affirm
+	https://leetcode.com/discuss/interview-question/428711/palantir-shortest-substring-that-only-appears-in-that-string
 	
-	Given an input list of strings, for each letter appearing anywhere 
-	in the list, find the other letter(s) that appear in the most 
-	number of words with that letter.
+	Given an input list of names, for each name, find the shortest substring that only appears in that name.
+
+	Example:
 	
-	Example: 
-	['abc', 'bcd', 'cde'] =>
-	  {
-		a: [b, c],	# b appears in 1 word with a, c appears in 1 word with a
-		b: [c], 	# c appears in 2 words with b, a and d each appear in only 1 word with b
-		c: [b, d], 	# b appears in 2 words with c, d appears in 2 words with c. But a and e each 
-						  appear in only 1 word with c.
-		d: [c],		# c appears in 2 words with d. But b and e each appear in only 1 word with d
-		e: [c, d], 	# c appears in 1 word with e, d appears in 1 word with e
-			
-	  }
-	  
-	  
-	  
-> [Look here]https://leetcode.com/discuss/interview-experience/761171/affirm-senior-swe-july-2020-reject
+	Input: ["cheapair", "cheapoair", "peloton", "pelican"]
+	Output:
+	"cheapair": "pa"  // every other 1-2 length substring overlaps with cheapoair
+	"cheapoair": "po" // "oa" would also be acceptable
+	"pelican": "ca"   // "li", "ic", or "an" would also be acceptable
+	"peloton": "t"    // this single letter doesn't occur in any other string
+	
+	SOLUTION: see ShortestUniqueSubstring.java
+		see more () using Tries: https://leetcode.com/discuss/interview-question/428711/palantir-shortest-substring-that-only-appears-in-that-string 
 
-> https://leetcode.com/discuss/interview-question/447215/interview-question-affirm
 
-> https://leetcode.com/discuss/interview-question/1530392/affirm-phone-find-popup
+8. https://leetcode.com/discuss/interview-question/1530392/affirm-phone-find-popup
 
 	a. Find POPUP, make all the sibling of POPUP to hidden
 	b. Find out POPUP's parent, make all the sibling of parent to hidden
@@ -94,4 +112,5 @@ in order to remove the random value.
 	        }
 	    }
 
+	SOLUTION: see FindPOPUP.java
   

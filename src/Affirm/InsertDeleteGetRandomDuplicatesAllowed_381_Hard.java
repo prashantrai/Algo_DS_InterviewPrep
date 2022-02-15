@@ -66,7 +66,22 @@ public class InsertDeleteGetRandomDuplicatesAllowed_381_Hard {
 	    /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
 	    public boolean insert(int val) {
 	        if(!map.containsKey(val)) {
-	            // LinkedHashSet because the set.iterator() might be costly when a number has too many duplicates. Using LinkedHashSet can be considered as O(1) if we only get the first element to remove.
+	            /* LinkedHashSet because the set.iterator() might be costly when a number 
+	             * has too many duplicates. Using LinkedHashSet can be considered as O(1) 
+	             * if we only get the first element to remove.
+	             * 
+	             * In other words, think in case of remove: 
+	             * The first time, we can update the last object of a List, to reflect the 
+	             * move of last element in the list. But consider the second time, since last 
+	             * time we moved the last one to somewhere upper, it's not last one any more. 
+	             * 
+	             * Then second time you cannot assume the last object of the List is the one you 
+	             * want to update. You have to loop to find the correct one to update which is not O(1)
+	             * 
+	             * Why not List? see below link for explaination,
+	             * http://buttercola.blogspot.com/2018/07/leetcode-381-insert-delete-getrandom-o1.html
+	             * 
+	             */
 	            map.put(val, new LinkedHashSet<Integer>());    
 	        }
 	        
