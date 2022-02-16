@@ -1,18 +1,20 @@
 package Vmware;
 
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.Scanner;
+
 public class VmWare_PhoneScreen {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
-
 }
 
+// For Question see screen shot at location: 
+// /Users/prashantrai/Google Drive/LeetCode_Premium/Online Assessments/vmware_phone screen.png	
 
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.Scanner;
 /*
  * Create the StringsCollection class here.
  */
