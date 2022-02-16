@@ -1,6 +1,6 @@
-package com.interview.questions;
+package Vmware;
 
-public class VmWare_2 {
+public class VmWare_PhoneScreen {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
