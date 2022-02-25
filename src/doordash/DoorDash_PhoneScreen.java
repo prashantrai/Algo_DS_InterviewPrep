@@ -111,9 +111,13 @@ public class DoorDash_PhoneScreen {
 
 /*
  Question: 
- // Google Calendar, Outlook, iCal has been banned from your company! So an intrepid engineer has decided to roll their own implementation. Unfortunately one major missing feature is the ability to find out what time slots are free for a particular individual.
+ // Google Calendar, Outlook, iCal has been banned from your company! So an intrepid engineer has 
+  * decided to roll their own implementation. Unfortunately one major missing feature is the ability 
+  * to find out what time slots are free for a particular individual.
 
-// Given a list of time blocks where a particular person is already booked/busy, a start and end time to search between, a minimum duration to search for, find all the blocks of time that a person is free for a potential meeting that will last the aforementioned duration.
+// Given a list of time blocks where a particular person is already booked/busy, a start and end time 
+ * to search between, a minimum duration to search for, find all the blocks of time that a person 
+ * is free for a potential meeting that will last the aforementioned duration.
 
 // Given: start_time, end_time, duration, meetings_list -> suggested_meeting_times
 

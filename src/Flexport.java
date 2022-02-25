@@ -6,10 +6,16 @@ public class Flexport {
 	}
 
 }
+/* 1. Another phone screen question (shared on leetcode): letter combinations of a phone number then a follow up of what if the digits are double or triple digits
+   2. https://leetcode.com/discuss/interview-question/1234140/flexport-amsterdam-coding-interview
+   3. Implement a card game with card and player
+   4. design a function in gaming app which is to buy entities using tokens. entities have different prices which are combinations with different tokens.
+   5. Leetcode Medium -> Combinations provided variants of a dictionary and input
+   6. 
 
-
+*/
 /*
-   Below is a section of a city with roads and stoplights. The letters indicate entry points where we measure traffic flow. 
+   Below is a section of a city with roads and stop lights. The letters indicate entry points where we measure traffic flow. 
    Each intersection has a traffic light - We want to build a program to simulate traffic flowing through the city so we can 
    test traffic light control algorithms with sample data.
 

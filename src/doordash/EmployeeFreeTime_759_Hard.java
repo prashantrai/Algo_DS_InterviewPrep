@@ -70,7 +70,7 @@ public class EmployeeFreeTime_759_Hard {
 	 * https://protegejj.gitbook.io/algorithm-practice/leetcode/heap/759-employee-free-time
 	 * */
 	
-	//With Priority Queue
+	//With Priority Queue - use this approach in interview
 	public static List<Interval> employeeFreeTime(List<List<Interval>> schedule) {
 
 		List<Interval> res = new ArrayList<>();
@@ -80,11 +80,13 @@ public class EmployeeFreeTime_759_Hard {
         }
 		
 		PriorityQueue<Interval> pq = new PriorityQueue<>((a,b) -> (a.start - b.start));
-		for(List<Interval> interval : schedule) {
-			for(Interval task : interval) {
-				pq.add(task); // or offer
-			}
-		}
+		schedule.forEach(e -> pq.addAll(e));
+        //or we can use a for loop like below
+        /*for(List<Inteval> intervals : schedule) {
+            for(Interval task : intervals) {
+                pq.add(task);
+            }
+        }*/
 		
 		Interval prev = pq.poll();
 		

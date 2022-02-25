@@ -12,7 +12,7 @@ public class MaxStack_716_Easy {
 		MaxStack stack = new MaxStack();
 		stack.push(5); 
 		stack.push(1);
-		stack.push(5);
+		stack.push(6);
 		System.out.println(stack.top()); //-> 5
 		System.out.println(stack.popMax()); //-> 5
 		System.out.println(stack.top()); //-> 1

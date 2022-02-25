@@ -1,4 +1,4 @@
-package leetcode;
+package Intuit;
 
 import java.util.Stack;
 
@@ -7,16 +7,14 @@ public class DecodeString_394_Medium {
 	public static void main(String[] args) {
 
 		String s = "3[a]2[bc]";
-		String res = decodeString(s);
-		System.out.println("Expected: aaabcbc, Actual: "+ res);
+//		System.out.println("Expected: aaabcbc, Actual: "+ decodeString(s));
 		
 		s = "3[a2[c]]";
-		res = decodeString(s);
-		System.out.println("Expected: accaccacc, Actual: "+ res);
+		System.out.println("Expected: accaccacc, Actual: "+ decodeString(s));
 		
 		s = "2[abc]3[cd]ef";
-		res = decodeString(s);
-		System.out.println("Expected: abcabccdcdcdef, Actual: "+ res);
+//		res = decodeString(s);
+//		System.out.println("Expected: abcabccdcdcdef, Actual: "+ decodeString(s));
 		
 	}
 	

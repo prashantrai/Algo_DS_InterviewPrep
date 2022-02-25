@@ -18,6 +18,52 @@ public class CourseScheduleII_210_Medium {
 		System.out.println("1. Expected: [0,1], Actual: "+ Arrays.toString(order));
 	}
 	
+	//This will work for Leecode 207 as well i.e. Course Schedule
+    // Time O(V+E)
+    public static int[] findOrder(int numCourses, int[][] prerequisites) {
+			
+			Queue<Integer> q = new ArrayDeque<>();
+			
+			List<Integer>[] graph = new List[numCourses];
+			//Arrays.fill(graph, new ArrayList<Integer>());
+			for(int i=0; i<numCourses; i++) {
+	            graph[i] = new ArrayList<Integer>();
+	        }
+			
+			int[] indegree = new int[numCourses];
+			
+			for(int[] prereq : prerequisites) {
+				int from = prereq[1];
+				int to = prereq[0];
+				graph[from].add(to);
+				indegree[to]++;
+			}
+			
+			for(int i=0; i<indegree.length; i++) {
+				if(indegree[i] == 0) {
+					q.offer(i);
+				}
+			}
+		
+			int count = 0;
+			int[] order = new int[numCourses]; // this can be used for Leetcode 210 as well
+			
+			while(!q.isEmpty()) {
+				int course = q.poll();
+				order[count++] = course;
+				
+				for(int neighbour : graph[course]) {
+					indegree[neighbour]--;
+					if(indegree[neighbour] == 0) {
+						q.offer(neighbour);
+					}
+				}
+			}
+			
+			return count == numCourses? order : new int[0];
+		}
+	
+	
 	/* Topological sort
 	 * 
 	 * Reference: https://leetcode.com/problems/course-schedule-ii/discuss/59330/Concise-JAVA-solution-based-on-BFS-with-comments
@@ -39,7 +85,7 @@ public class CourseScheduleII_210_Medium {
         So, the overall space complexity is O(V + E).
 	 * */
 	
-	public static int[] findOrder(int numCourses, int[][] prerequisites) {
+	public static int[] findOrder2(int numCourses, int[][] prerequisites) {
         
         List<Integer>[] graph = new List[numCourses]; 
         int[] inDegree = new int[numCourses];

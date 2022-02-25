@@ -7,7 +7,7 @@ public class CloudKitchen {
 	}
 }
 
-//Line 0: The ID of the item
+	// Line 0: The ID of the item
 	// Line 1: The item type, either CATEGORY, ENTREE or OPTION
 	// Line 2: The name of the item
 	// Line 3: The price of the item for ENTREE and OPTION. Not present for CATEGORY items.

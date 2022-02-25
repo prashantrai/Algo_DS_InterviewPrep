@@ -46,7 +46,8 @@ public class MyCalendarI_729_Medium {
 		 * After add the first entry in TreeMap entry will be like {start=end} (e.g. {10=20})
 		 * If we have multiple entry in TreeMap and we want to add a new (i.e. start and end)
 		 * 
-		 * Now, to find out if the new slot is valid we will check that existing endTime/prevEnd (value against the floor key (e.g. in {10=20} floorKey is 10 and value is 20) 
+		 * Now, to find out if the new slot is valid we will check that existing endTime/prevEnd 
+		 * (value against the floor key (e.g. in {10=20} floorKey is 10 and value is 20) 
 		 * closest to start) is less than and equal to input "start" 
 		 * 
 		 * AND  input "end" is less than or equal to the ceiling key 

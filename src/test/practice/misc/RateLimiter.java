@@ -42,7 +42,22 @@ public class RateLimiter {
      *  
      *  Code : https://leetcode.com/playground/wGHWEekd
      *  Discussion Link: https://leetcode.com/discuss/interview-question/system-design/124558/uber-rate-limiter
+     *  
+     *  Some more (in detail):
+     *  Sys Design::
+     *  	https://leetcode.com/discuss/interview-question/object-oriented-design/1583096/API-Rate-limiter-or-LLD-(Common-Atlassian-question)/1153685
+     *  	https://leetcode.com/discuss/interview-question/system-design/1616482/System-Design%3A-Rate-Limiter
+     *  	https://serhatgiydiren.github.io/system-design-interview-rate-limiting
      *   
+     *  https://www.youtube.com/watch?v=FU4WlwfS3G0
+     *  
+     *  https://leetcode.com/discuss/interview-question/system-design/124558/Uber-or-Rate-Limiter/927480
+     *  	https://leetcode.com/playground/YvcZs2Un
+     *  	https://leetcode.com/playground/PT5PGWQw
+     *  
+     *  https://www.programinjava.com/2020/06/multi-threading-interview-question-rate.html
+     *  
+     *  
      * */
     
     private Map<String, HitCounter> map = new HashMap<>();

@@ -1,4 +1,4 @@
-package leetcode;
+package Intuit;
 
 import java.util.ArrayList;
 import java.util.List;

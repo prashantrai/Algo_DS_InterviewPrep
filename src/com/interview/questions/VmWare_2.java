@@ -1,5 +1,9 @@
 package com.interview.questions;
 
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.Scanner;
+
 public class VmWare_2 {
 
 	public static void main(String[] args) {
@@ -9,10 +13,6 @@ public class VmWare_2 {
 
 }
 
-
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.Scanner;
 /*
  * Create the StringsCollection class here.
  */
