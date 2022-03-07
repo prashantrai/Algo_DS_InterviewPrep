@@ -8,16 +8,16 @@ public class BasicCalculator_224_Hard {
 
 	public static void main(String[] args) {
 		String s = "1 + 1"; 
-		System.out.println("Expected: 2, Actual: "+ calculate(s));
-		System.out.println("REC: Expected: 2, Actual: "+ calculateREC(s));
+//		System.out.println("Expected: 2, Actual: "+ calculate(s));
+//		System.out.println("REC: Expected: 2, Actual: "+ calculateREC(s));
 		
 		s = " 2-1 + 2 ";
-		System.out.println("\nExpected: 3, Actual: "+ calculate(s));
-		System.out.println("REC: Expected: 3, Actual: "+ calculateREC(s));
-		
+//		System.out.println("\nExpected: 3, Actual: "+ calculate(s));
+//		System.out.println("REC: Expected: 3, Actual: "+ calculateREC(s));
+//		
 		s = "(1+(4+5+2)-3)+(6+8)";
 		System.out.println("\nExpected: 23, Actual: "+ calculate(s));
-		System.out.println("REC: Expected: 23, Actual: "+ calculateREC(s));
+//		System.out.println("REC: Expected: 23, Actual: "+ calculateREC(s));
 	}
 	
 	/*

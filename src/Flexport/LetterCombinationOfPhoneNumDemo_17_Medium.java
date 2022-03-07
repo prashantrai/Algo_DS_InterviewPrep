@@ -1,4 +1,4 @@
-package Lyft;
+package Flexport;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +16,8 @@ public class LetterCombinationOfPhoneNumDemo_17_Medium {
 		
 		letterCombinations("8733");
 		System.out.println(res);
+		System.out.println("Total permutations: " + res.size());
+		System.out.println("countPermutations: " + countPermutations);
 	}
 
 	// https://leetcode.com/problems/letter-combinations-of-a-phone-number/
@@ -65,6 +67,8 @@ public class LetterCombinationOfPhoneNumDemo_17_Medium {
           }};
     
     private static List<String> res = new ArrayList<String>();
+    
+    private static int countPermutations;
 
 	/*
 	 * 2=ab 3=cd
@@ -94,6 +98,7 @@ public class LetterCombinationOfPhoneNumDemo_17_Medium {
         
         if(idx >= digits.length()) {
             res.add(combination);
+            countPermutations++;
             return;
         }
         

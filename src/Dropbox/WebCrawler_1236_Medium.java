@@ -60,7 +60,7 @@ public class WebCrawler_1236_Medium {
 	//Runtime :: O(|V| + |E|)	Space:: O(|V|)
 	// Complexity: Time O(n), Space O(n)
 	
-	//bfs
+	//another bfs
 	private static List<String> crawl_BFS(String startUrl, HtmlParser htmlParser) {
 		String host = getUrl ( startUrl ) ; // get domain name
 	    
@@ -106,5 +106,32 @@ public class WebCrawler_1236_Medium {
 			return Arrays.asList(urls);
 		}
 	}
+	
+	
+	// https://leetcode.com/problems/web-crawler/discuss/604044/Simple-Java-BFS-and-DFS-solutions
+	// bfs
+	// Time and space: O(N)
+	public List<String> crawl(String startUrl, HtmlParser htmlParser) {
+        List<String> result = new ArrayList<>();
+        Queue<String> queue = new LinkedList<>();
+        Set<String> visitedSet = new HashSet<>();
+
+        String split[] = startUrl.split("/");
+        String domain = split[0] + "//" + split[2];
+        queue.offer(startUrl);
+        visitedSet.add(startUrl);
+
+        while (!queue.isEmpty()) {
+            String u = queue.poll();
+            result.add(u);
+            for (String v : htmlParser.getUrls(u)) {
+                if (v.startsWith(domain) && !visitedSet.contains(v)) {
+                    queue.offer(v);
+                    visitedSet.add(v);
+                }
+            }
+        }
+        return result;
+    }
 
 }

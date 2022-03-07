@@ -1,6 +1,9 @@
 package ctci.ch16.moderate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import CtCILibrary.AssortedMethods;
@@ -40,6 +43,9 @@ public class T9PhoneKeypadDemo {
 		ArrayList<String> result = new ArrayList<>();
 		getValidWords(num, wordSet, result);
 		
+		// another approach
+		System.out.println(">> " + letterCombinations("8733"));
+		
 	}
 
 	private static void getValidWords(String num, Set<String> wordSet, ArrayList<String> result) {
@@ -77,5 +83,64 @@ public class T9PhoneKeypadDemo {
 		
 		return t9Letters[idx];
 	}
+	
+	
+	/* Look into leetcode solution in below file for solution and time/space complexity
+	 * 
+	 * LetterCombinationOfPhoneNumDemo_17_Medium.java
+	 * 
+	 * */
+	
+	// -- Another approach 
+	
+	// From : https://www.interviewbit.com/blog/letter-combinations-of-a-phone-number/
 
+	  private static List <String> combinations = new ArrayList<>();
+	  
+	  // works with Java 9
+	  /*private Map <Character, String> letters = Map.of(
+	    '2', "abc", '3', "def", '4', "ghi", '5', "jkl",
+	    '6', "mno", '7', "pqrs", '8', "tuv", '9', "wxyz");
+	  */
+	  private static Map <Character, String> letters = createLetterMap();
+	  private static String phoneDigits;
+	 
+	  public static List < String > letterCombinations(String digits) {
+	    if (digits.length() == 0) {
+	      return combinations;
+	    }
+	    phoneDigits = digits;
+	    backtrack(0, new StringBuilder());
+	    return combinations;
+	  }
+	 
+	  private static void backtrack(int index, StringBuilder path) {
+	    if (path.length() == phoneDigits.length()) {
+	      combinations.add(path.toString());
+	      return;
+	    }
+	    String possibleLetters = letters.get(phoneDigits.charAt(index));
+	    for (char letter: possibleLetters.toCharArray()) {
+	      path.append(letter);
+	      backtrack(index + 1, path);
+	      path.deleteCharAt(path.length() - 1);
+	    }
+	  }
+	
+	  private static Map <Character, String> createLetterMap() {
+		  Map <Character, String> letters = new HashMap<>();
+		  letters.put('2', "abc"); 
+		  letters.put('3', "def");
+		  letters.put('4', "ghi"); 
+		  letters.put('5', "jkl");
+		  letters.put('6', "mno"); 
+		  letters.put('7', "pqrs");
+		  letters.put('8', "tuv");
+		  letters.put('9', "wxyz");
+		  
+		  return letters;
+	  }
 }
+
+
+	

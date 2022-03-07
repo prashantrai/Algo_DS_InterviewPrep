@@ -120,7 +120,7 @@ public class TopKFrequentWords_692_Medium {
     public static List<String> topKFrequent2(String[] words, int k) {
         Map<String, Integer> freq = buildFreqMap(words);
         
-        //Max heap
+        //Min heap
         PriorityQueue<String> pq 
             = new PriorityQueue<>(
             (a,b) -> ( freq.get(a) == freq.get(b)

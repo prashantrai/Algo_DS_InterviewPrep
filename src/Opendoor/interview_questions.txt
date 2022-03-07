@@ -1,0 +1,36 @@
+Phone Screen: 
+
+https://leetcode.com/discuss/interview-experience/1811305/opendoor-oa
+	>	you are given these json  need to find ouput  like below  for the input java ,
+		number denotes index postion 
+	
+	
+		output expected -
+		 
+		x: java->rank 1
+		u:java->rank 3
+		
+		input jsons ,search word -java
+		   
+		"x":[java,c ,c#]	
+		"y":[c ,python]
+		"z":[ruby,scala ,c#]
+		"u":[c ,sql,java]
+
+https://leetcode.com/discuss/interview-question/1627704/open-door-software-engineer-phone
+	> Q:  Implement a web crawler which parses HTML
+	
+
+> [Glassdoor:2/2021] Implement cell sum operation as seen in Excel. 
+	Should support transitive additions if cell has a formula.
+
+> [Glassdoor:1/2021] Design and implement a spread sheet (similar to Excel).
+	It should support the ADD only operation.
+	The interviewer just mentioned after i was done it should support relative equations as well.
+	For example, if you have an equation like C1= B1 +100 and later the B1 is updated C1 should be updated as well.
+	This would be trickier if we want to support any later of dependencies.
+
+> [Glassdoor:10/2019] reverse polish notation and a question about excel spreadsheets
+
+> [Glassdoor:10/2018]Find the Kth largest number in an array
+	
