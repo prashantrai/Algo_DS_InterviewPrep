@@ -7,7 +7,8 @@ public class BasicHtmlParser {
 
 	public static void main(String[] args) {
 
-		Set<String> res = parseAndGetUrls();
+		Set<String> res = parseAndGetUrls();  // working
+		Set<String> res2 = parseAndGetUrls_UsingSplit(); //working
 	}
 	
 	static String html = "<!DOCTYPE html>\n"+
@@ -27,6 +28,7 @@ public class BasicHtmlParser {
             " </body>\n"+
             "</html>";
 	
+	//working
 	//parse and return HREF URLs
 	public static Set<String> parseAndGetUrls() {
 		
@@ -55,6 +57,26 @@ public class BasicHtmlParser {
 		}
 		
 		System.out.println(urls);
+		return urls;
+	}
+	
+	//working
+	public static Set<String> parseAndGetUrls_UsingSplit() {
+		
+		Set<String> urls = new HashSet<>();
+		String token = "<a href=";
+		
+		String[] arr = html.split(token);
+		
+		for(int i=1; i<arr.length; i++) {
+			String s = arr[i];
+			int stIdx = 1; // after quote
+			int endIdx = s.indexOf(">");
+			
+			String url = s.substring(stIdx, endIdx-1);
+			System.out.println("url:: "+url);
+			urls.add(url);
+		}
 		return urls;
 	}
 
