@@ -23,6 +23,7 @@ https://leetcode.com/discuss/interview-question/1627704/open-door-software-engin
 
 > [Glassdoor:2/2021] Implement cell sum operation as seen in Excel. 
 	Should support transitive additions if cell has a formula.
+	https://leetcode.com/problems/design-excel-sum-formula/
 
 > [Glassdoor:1/2021] Design and implement a spread sheet (similar to Excel).
 	It should support the ADD only operation.

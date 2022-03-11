@@ -658,6 +658,19 @@ Source:  https://leetcode.com/discuss/interview-question/398023/microsoft-online
 		string S consists only of digits (0−9).
 
 
+
+26. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1300473]
+	1. sum up to zero
+	2. largest alphabetical upper and lowercase letter in the string
+	3.https://leetcode.com/problems/longest-happy-string/
+	
+27. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1300874]
+	longest increasing subsequence with a difference K
+	longest-chunked-palindrome-decomposition
+	
+
+
+
 **System Design**
 https://leetcode.com/discuss/interview-question/1620599/TeleDocorDesign-Interviewor-Design-Payment-system
 

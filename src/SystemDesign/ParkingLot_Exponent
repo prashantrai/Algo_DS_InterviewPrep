@@ -1,0 +1,52 @@
+Reference:  https://www.youtube.com/watch?v=NtMvNh0WFVM
+
+Product Requirement: 
+	- Need to be able to reserve a spot and receive a receipt
+	- Need to be able to pay
+	- System should have high/consistency consistency and should not do double booking of same spot
+	- 3 type of vehicle (Large, Regular, Compact)
+	- Flat rate based on time (i.e. no peek hour rate) but different for different parking spot
+	
+	
+Public Endpoints: 
+	/reservations (garage_id, vehilcle_type, start_time, end_time)
+	Returns: (spot_id, reservation_id)
+	
+	/payment (reservation_id, spot_id, spot_type) :: Likely using any 3rd party payment gateway i.e Stripe, Braintree, Square
+	
+	/cancel (reservation_id)
+	/logint (email, password)
+	
+Internal Endpoints: 
+	/calculate_pmt (reservation_id) :to calculate individual payments, this can also be don as a part /payment but I just separated them out here	
+	
+	/freespots (garage_id, vehilcle_type, start_time, end_time)	
+		Note: smaller vehicle can fit into larger spot if necessary therefore should be included in the overall number of spots
+	
+	/allocate_spot (garage_id, vehilcle_type, start_time, end_time)
+	
+	/create_account (user_id, first_name, last_nam, phone, email, password(encrypted))
+	/payments_details(user_id, card_num, cvv, card_type, expiry_date)
+	
+	
+
+DB Schema: 
+	Reservations (garage_id (FK), spit_id(FK), start_time, end_time, paid(Y/N))
+	Garage (garage_id(PK), Name, Address, City, Zip, rate_large, rate_compact, rate_regular)
+	Spot (spot_id (PK), garage_id(FK), vehicle_type (enum/static))
+	
+	user (user_id (PK), first_name, last_nam, phone, email, password(maybe SHA_256 encrypted))
+	
+	Vehicle (id(PK), user_id, license, vehicle_type(enum))
+	
+	
+
+**** Architecture:: 
+System should follow strong consistency (not eventual)
+
+
+User -> Application Server -> LB -> DB (we can separate write and multiple Read replica DB, in case of read heavy system))	
+						  <-> 3rd Party Payment
+						  
+	
+	
