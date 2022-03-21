@@ -668,7 +668,42 @@ Source:  https://leetcode.com/discuss/interview-question/398023/microsoft-online
 	longest increasing subsequence with a difference K
 	longest-chunked-palindrome-decomposition
 	
+28. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1311345]
+	Given a binary string count a number of operations are performed to make it 0.
+	Operations --
+	If the number is even, divide it by 2
+	If number is odd, subtract by 1
+	Example -- input string s = "111"
+	number = 7
+	operation 1 - 7 is odd so subtract by 1 , number = 6
+	operation 2 - 6 is even so divide by 2 , number =3
+	operation 3 - 3 is odd so subtract by 1 , number = 2
+	operation 4 - 2 is even so divide by 2, number = 1
+	operation 5 - 1 is odd so subtract by 1, number = 0 (end of operations)
+	Thus total number of operations = 5
+	How do we solve this for very large binary strings? say 40000 1's in an input string?
+	
+	2. For given two integers A and B, Count the number of bits set in the A*B
+	
+29. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1301372]
+	https://forums.phpfreaks.com/topic/313584-assign-values-from-the-range-n-to-the-vertices-of-the-graph/
 
+30. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1300874]
+	1. 1st question was find the longest increasing subsequence with a difference K [LC-1218]
+	2. 2nd question was a really hard palindrome question longest-chunked-palindrome-decomposition [LC-1147]
+		it was basically the same question but we need to find the shortest instead of
+		longest chunks and the chunks to be a prime number.
+
+
+31. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1311583]
+
+	1. https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/
+	2. https://leetcode.com/problems/longest-happy-string/ (though they now call it "longest diverse string")
+	3. given a string, return the largest character that appears in the string both as uppercase and lowercase. (I solved it with a set, similar to "two sum")
+
+32. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1312517]
+	1. return True if graph is cycle (not has cycle, but is a cycle of all nodes)
+	2. return largest lexographical substring of T which is anagram of other string S.
 
 
 **System Design**

@@ -1,3 +1,4 @@
+package leetcode;
 
 public class PalindromicSubstrings_647_Medium_Niantic {
 
