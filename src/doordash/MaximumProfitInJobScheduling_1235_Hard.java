@@ -15,9 +15,22 @@ public class MaximumProfitInJobScheduling_1235_Hard {
 		int[] profit = {50,10,40,70};
 		
 		System.out.println("Expected: 120, Actual: " + jobScheduling(startTime, endTime, profit));
+		
+		int[] startTime2 = {1,2,3,4,6};
+		int[] endTime2 = {3,5,10,6,9};
+		int[] profit2 = {20,20,100,70,60};
+		
+		System.out.println("Expected: 150, Actual: " + jobScheduling(startTime2, endTime2, profit2));
 	}
 
-	/* Taked from Leetcode premium - Using priority queue
+	/* 	Follow-up 1: Print the all jobs that led to max profit
+        Follow-up 2: SCALE FOR N ORDERS. If the dasher is allowed to handle up to 
+        			 N orders at the same time, what will be the max profit?
+        Refer: https://leetcode.com/discuss/interview-question/1320711/doordash-phone-screen
+         
+	 * 
+	 * 
+	Taken from Leetcode premium - Using priority queue
     Time: O(nlogn)
     Space: O(N), Each of the N jobs will be pushed into the heap. In the 
         worst-case scenario, when all N jobs end later than the last job starts, 
@@ -29,11 +42,15 @@ public class MaximumProfitInJobScheduling_1235_Hard {
 
 		3. Iterate over jobs from left to right, where i is the index of the current job. 
 			For each job,
-			i. While the job chain at the top of the priority queue does not conflict with the current job, pop from the priority queue.
-			ii. For each popped job chain compare its total profit with the maxProfit and update maxProfit accordingly.
+			i. While the job chain at the top of the priority queue does not conflict 
+			   with the current job, pop from the priority queue.
+			   
+			ii. For each popped job chain compare its total profit with the maxProfit 
+			    and update maxProfit accordingly.
 		
 		4. 	Push the pair of ending time and the combined profit (maxProfit + profit of this job) 
-			into the heap. This item represents the chain created by adding the current job to the most profitable job chain.
+			into the heap. This item represents the chain created by adding the current job to the 
+			most profitable job chain.
 		
 		5. 	After iterating over all the jobs, compare the profit of the remaining chains in the 
 			priority queue with the maxProfit. Return the value of maxProfit.
@@ -52,6 +69,11 @@ public class MaximumProfitInJobScheduling_1235_Hard {
         PriorityQueue<ArrayList<Integer>> pq 
             = new PriorityQueue<>((list1, list2) -> list1.get(0) - list2.get(0));
         
+        //added for Follow-up 1: Print the all jobs that led to max profit
+        //List<List<Integer>> jobsLedToMaxProfits = new ArrayList<>();
+        List<Integer> jobsIdxLedToMaxProfits = new ArrayList<>(); //store index of jobs
+        int idx = 0;
+        
         for(List<Integer> job : jobs) {
             int start = job.get(0);
             int end = job.get(1);
@@ -61,6 +83,11 @@ public class MaximumProfitInJobScheduling_1235_Hard {
             // jobs are not conflicting
             // update the value of maxProfit
             while(!pq.isEmpty() && start >= pq.peek().get(0)) {
+            	
+            	// added for Follow-up 1: Print all jobs that led to max profit
+                if(pq.peek().get(1) > maxProfit) 
+                	jobsIdxLedToMaxProfits.add(pq.peek().get(2)); 
+            	
                 maxProfit = Math.max(maxProfit, pq.peek().get(1));
                 
                 // as we only need to keep track of maxProfit so once that's calculated 
@@ -75,18 +102,31 @@ public class MaximumProfitInJobScheduling_1235_Hard {
             ArrayList<Integer> combinedJob = new ArrayList<>();
             combinedJob.add(end);
             combinedJob.add(profit + maxProfit);
+            combinedJob.add(idx++); //idx of each job : added for Follow-up 1: Print all jobs that led to max profit
             
             // push the job with combined profit
             // if no non-conflicting job is present maxProfit will be 0
             pq.offer(combinedJob);
         }
         
+        int maxProfitIdx = -1; // added for Follow-up 1: Print all jobs that led to max profit
+        
         // update the value of maxProfit by comparing with
         // profit of jobs that exits in the heap
         while(!pq.isEmpty()) {
+        	// added for Follow-up 1: Print all jobs that led to max profit
+            if(pq.peek().get(1) > maxProfit) 
+            	maxProfitIdx = pq.peek().get(2);
+        	
             maxProfit = Math.max(maxProfit, pq.peek().get(1));
+            
             pq.poll();
         }
+        
+        // added for Follow-up 1: Print all jobs that led to max profit
+        if(maxProfitIdx >= 0)
+        	jobsIdxLedToMaxProfits.add(maxProfitIdx);
+        System.out.println("jobsIdxLedToMaxProfits:: "+jobsIdxLedToMaxProfits);
         
         return maxProfit;
     }

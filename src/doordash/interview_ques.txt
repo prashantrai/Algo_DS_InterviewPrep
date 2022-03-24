@@ -11,6 +11,7 @@ https://leetcode.com/discuss/interview-question/1583430/doordash-questions-conso
 
 https://leetcode.com/discuss/interview-question/1320711/doordash-phone-screen
 
+https://leetcode.com/discuss/interview-question/1475942/Doordash-Curated-from-discussion-(answers)
 
 
 
@@ -28,7 +29,7 @@ https://leetcode.com/discuss/interview-question/1320711/doordash-phone-screen
 
 4. Count number of substrings with exactly k distinct characters, follow up
 	Menu Tree
-	1. hhttps://leetcode.com/discuss/interview-experience/1482159/DoorDash-or-SDE-or-Tech-Phone-Interview-or-2021
+	1. https://leetcode.com/discuss/interview-experience/1482159/DoorDash-or-SDE-or-Tech-Phone-Interview-or-2021
 	2. https://leetcode.com/discuss/interview-question/1528907/doordash-phone-creen
 	3. https://leetcode.com/discuss/interview-question/1367130/Doordash-Phone-Interview
 	4. https://leetcode.com/discuss/interview-question/1471654/Doordash-Phone-Screen

@@ -49,12 +49,12 @@ public class BinaryTreeMaximumPathSum_124_Hard {
         if(root == null) return 0;
         
         // max sum on the left and right sub-trees of node
-        int leftSum  = Math.max(maxGain(root.left), 0);
-        int rightSum = Math.max(maxGain(root.right), 0);
+        int leftSum  = Math.max(maxGain(root.left), 0); //when return value is negative sum should be 0
+        int rightSum = Math.max(maxGain(root.right), 0); //when return value is negative sum should be 0
         
         int currSum = root.val + leftSum + rightSum;
         
-        //This is just to print the max path and wasn't a part of requirement but could 
+        // To print the max path and wasn't a part of requirement but could 
         // be a follow-up question in interview
         if(maxSum < currSum && root != null) {
         	maxPath[0] = root.left != null ? root.left.val : Integer.MIN_VALUE;
