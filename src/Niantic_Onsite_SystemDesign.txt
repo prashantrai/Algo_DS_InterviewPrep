@@ -1,0 +1,58 @@
+Design a JIRA-like workflow page (kanban board), where there are task cards to track who’s working on what, 
+the current status of each task, the owner, as well as the metadata for the task.
+
+Lay out the APIs that you’d consider if you were focused on providing the service(s) that power this page.
+
+Requirements
+Intake of data become Cards that are movable
+Cards move around to different lanes
+Cards have ordering within their lane
+Cards can be re-ordered
+
+https://www.business2community.com/wp-content/uploads/2020/04/LWbQEPhqHAAWfsmY_OdUt687xf95tUpxg-mIDKphdOAcTgg6jNBVUvg_8NAHP-8YQSik2Y97PpcCoMfPBhNbitXqRdrluzyui1n0wHx60gamYwaNYh5iE0uZaqIFC3F5R0NNtOH.png
+
+--
+Funcional: 
+1. User should be able to add Requirements
+2. Cards move around to different lanes
+3. Cards have ordering within their lane
+4. re-ordering the tasks in same lane or move to different
+
+Non-Funtional: 
+1. Our service has to be hightly available
+2. Read heavy
+3. Consitency is important
+4. 100% reliable - every thing add shuld not lost
+
+Capacity Estimation: 
+1. 500M user but 1M DAU
+2. Avg size od data diffrent req : 200KB
+3. Total space : 100 * 200 => 20MB
+4. 10 * 20MB
+
+
+High Lvl Design: 
+
+User <-> Kanban Server/Sys <-> DB
+
+Database: 
+Team (teap_id, team_name)
+User (user_id, name, enail, team_id)
+tasks(task_id, user_id, creator, task_desc, task_status)
+watch_list(task_id, user_id)
+
+
+---- Detail Design: 
+1. client 
+
+2. LB -> WebServers
+
+3. API Gateway
+
+4. Severs 
+        a. uploads/create (6K)
+        b. Read server (12k)
+
+
+5. DB    
+6. Cache

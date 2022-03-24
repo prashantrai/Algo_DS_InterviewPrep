@@ -5,3 +5,104 @@ https://leetcode.com/discuss/interview-question/793604/disheartening-experience-
 >03/2021 [same as above]
 https://leetcode.com/discuss/interview-question/392780/Doordash-or-Phone-Screen-or-Longest-path-duplicate-numbers-within-a-Matrix
 
+https://leetcode.com/discuss/interview-question/1146195/DoorDash-or-Software-Engineer-or-Full-Interview
+
+https://leetcode.com/discuss/interview-question/1583430/doordash-questions-consolidated
+
+https://leetcode.com/discuss/interview-question/1320711/doordash-phone-screen
+
+
+
+
+************* Consolidate [https://leetcode.com/discuss/interview-question/1583430/doordash-questions-consolidated]
+
+1. Curated Questions:
+	1. https://leetcode.com/discuss/interview-question/1475942/Doordash-Curated-from-discussion-(answers)
+
+2. Design Browser History
+	1. - https://leetcode.com/problems/design-browser-history/
+
+3. Nearest Neighbor City
+	1. https://leetcode.com/discuss/interview-question/1379696/DoorDASH-Onsite
+	2. https://leetcode.com/discuss/interview-question/1374783/Doordash-onsite-(reject)
+
+4. Count number of substrings with exactly k distinct characters, follow up
+	Menu Tree
+	1. hhttps://leetcode.com/discuss/interview-experience/1482159/DoorDash-or-SDE-or-Tech-Phone-Interview-or-2021
+	2. https://leetcode.com/discuss/interview-question/1528907/doordash-phone-creen
+	3. https://leetcode.com/discuss/interview-question/1367130/Doordash-Phone-Interview
+	4. https://leetcode.com/discuss/interview-question/1471654/Doordash-Phone-Screen
+	5. https://leetcode.com/discuss/interview-question/1265810/Doordash-PhoneScreen
+
+5. Menu Path
+	1. https://leetcode.com/discuss/interview-question/1553862/doordash-phone-screen
+
+6. Five Min Intervals
+	1. https://leetcode.com/discuss/interview-question/1553504/DoorDash-or-Phone-Interview-or-SFO-or-Senior-software-engineer
+	2. https://leetcode.com/discuss/interview-question/1387937/Doordash-new-Q
+
+7. Reward High Tiered Dasher
+	1. https://leetcode.com/discuss/interview-question/1544410/Doordash-TPS-Senior-Software-Engineer
+
+8. Nearest Dashmart
+	1. https://leetcode.com/discuss/interview-question/1522955/Doordash-Onsite
+	
+9. Dice Permutation
+	1. https://leetcode.com/discuss/interview-question/1515046/DoorDash-Data-Eng-Tech-phone-screen
+
+10. Sudoku Validate
+	1. https://leetcode.com/discuss/interview-question/1374783/Doordash-onsite-(reject)
+	2. https://leetcode.com/discuss/interview-question/1280051/DoorDash-Onsite
+	3. https://leetcode.com/discuss/interview-question/1245761/DoorDash-Onsite
+	
+11. Road Part of the shortest path
+	1. https://leetcode.com/discuss/interview-question/1353434/Doordash-Phone-Screen-or-Senior-Software-Engineer-or-July-2021
+
+12. Max Profit
+	1. https://leetcode.com/discuss/interview-question/1320711/Doordash-or-Phone-Screen
+
+13. Maximum from the stream for last X seconds
+	1. https://leetcode.com/discuss/interview-question/1302614/DoorDash-Onsite-Interview-(new-question-again!)
+
+14. Total Active Time
+	1. https://leetcode.com/discuss/interview-question/1302606/DoorDash-onsite-interview-(new-question!)
+
+15. Free Time
+	1. https://leetcode.com/discuss/interview-question/1280051/DoorDash-Onsite
+	2. https://leetcode.com/discuss/interview-question/1146195/DoorDash-or-Software-Engineer-or-Full-Interview
+	3. https://leetcode.com/discuss/interview-question/912009/DOORDASH%3A-Available-Time-Problem
+
+16. Closest Driver
+	1. https://leetcode.com/discuss/interview-question/1293040/Doordash-or-Phone-Screen-or-Software-Engineer-E4-or-Closest-Drivers-to-Restaurant
+	2. https://leetcode.com/discuss/interview-question/1142755/DoorDash-or-E4-or-Phone-Screen-or-Virtual-Onsite-Offer
+
+17. Website Visit. Pattern
+	1. https://leetcode.com/discuss/interview-question/1280051/DoorDash-Onsite
+
+18. Pick & Delivery Permutations
+	1. https://leetcode.com/discuss/interview-question/1149234/DoorDash-Phone-Interview
+	2. https://leetcode.com/discuss/interview-question/1245761/DoorDash-Onsite
+	3. https://leetcode.com/discuss/interview-question/1142755/DoorDash-or-E4-or-Phone-Screen-or-Virtual-Onsite-Offer
+	4. https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/
+
+19. Valid Order Path
+	https://leetcode.com/discuss/interview-question/1146195/DoorDash-or-Software-Engineer-or-Full-Interview
+	https://leetcode.com/discuss/interview-question/914113/Longest-valid-orders-path-(Doordash)
+	https://leetcode.com/discuss/interview-question/1142755/DoorDash-or-E4-or-Phone-Screen-or-Virtual-Onsite-Offer
+
+20. Max Area of Islands
+	1. https://leetcode.com/discuss/interview-question/1142755/DoorDash-or-E4-or-Phone-Screen-or-Virtual-Onsite-Offer
+	2. https://leetcode.com/discuss/interview-question/792191/DoorDash-phone-screen-question
+	3. https://leetcode.com/discuss/interview-question/392780/Doordash-or-Phone-Screen-or-Longest-path-duplicate-numbers-within-a-Matrix
+
+21. No of Islands
+	1. https://leetcode.com/discuss/interview-question/1061203/Doordash-Software-Engineer
+
+22. Longest Matrix Path
+	1. https://leetcode.com/discuss/interview-question/793604/Disheartening-experience-with-Doordash-interview
+	2. https://leetcode.com/discuss/interview-question/392780/Doordash-or-Phone-Screen-or-Longest-path-duplicate-numbers-within-a-Matrix
+	3. https://leetcode.com/discuss/interview-question/1142755/DoorDash-or-E4-or-Phone-Screen-or-Virtual-Onsite-Offer
+	4. https://leetcode.com/discuss/interview-question/914113/Longest-valid-orders-path-(Doordash)
+	5. https://leetcode.com/discuss/interview-question/846916/Validate-Orders-Path-(Doordash)
+
+***********************

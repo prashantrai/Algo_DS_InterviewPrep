@@ -710,4 +710,14 @@ Source:  https://leetcode.com/discuss/interview-question/398023/microsoft-online
 https://leetcode.com/discuss/interview-question/1620599/TeleDocorDesign-Interviewor-Design-Payment-system
 
 https://leetcode.com/tag/design/
+
+
+--Onsite (from leetcode)
+
+[3/8/2022 ]microsoft onsite [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1319290].
+
+1) collect rainwater
+2) spiral matrix
+3) roman to interger
+4) find the nth last node from linked list.
 	
