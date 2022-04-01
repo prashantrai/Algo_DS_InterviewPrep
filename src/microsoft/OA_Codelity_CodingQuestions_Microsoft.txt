@@ -706,6 +706,20 @@ Source:  https://leetcode.com/discuss/interview-question/398023/microsoft-online
 	2. return largest lexographical substring of T which is anagram of other string S.
 
 
+33. [https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1322719]
+	1. https://leetcode.com/discuss/interview-question/555702/Microsoft-or-Online-Codility-Assessment-or-Counterexample-(Task-1)/486118
+	2. Given an array of integers, return True if it can be split into pairs of the same value. Ex: input: [1,1,2,2] --> True, bc [1,1] & [2,2]
+	3. Given a string s, find the minimum number of substrings you can create without having the same letters repeating in each substring.
+		E.g world -> 1, as the string has no letters that occur more than once.
+		dddd -> 4, as you can only create substring of each character.
+		abba -> 2, as you can make substrings of ab, ba.
+		cycle-> 2, you can create substrings of (cy, cle) or (c, ycle)
+
+
+
+
+[Mine]: https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1266522
+
 **System Design**
 https://leetcode.com/discuss/interview-question/1620599/TeleDocorDesign-Interviewor-Design-Payment-system
 
