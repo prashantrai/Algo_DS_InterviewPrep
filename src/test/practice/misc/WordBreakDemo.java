@@ -31,7 +31,6 @@ public class WordBreakDemo {
 		
 	}
 	
-	
 	public static void wordBreak(String s, Set<String> dict) {
 		
 		StringBuilder result = new StringBuilder();
@@ -45,9 +44,9 @@ public class WordBreakDemo {
 		List<String> res = helper(s, map, dict);
 		System.out.println("res:: "+res);
 		
-		//-3rd sol
+		//-3rd sol - Working
 		Map<String, List<String>> map2 = new HashMap<>();
-		List<String> res2 = helper(s, map, dict);
+		List<String> res2 = helper2(s, map2, dict);
 		System.out.println("res2:: "+res2);
 		
 	}
@@ -87,6 +86,7 @@ public class WordBreakDemo {
 	}
 	
 	
+	// working
 	public static List<String> helper2 (String s, Map<String, List<String>> map, Set<String> dict) {
 		
 		if(map.containsKey(s)) return map.get(s);
@@ -98,7 +98,7 @@ public class WordBreakDemo {
 			return res;
 		}
 
-		for(int i=1; i<s.length(); i++) {
+		for(int i=1; i<=s.length(); i++) {
 			String temp = s.substring(0, i);
 			
 			if(dict.contains(temp)) {
@@ -118,6 +118,5 @@ public class WordBreakDemo {
 		return res;
 		
 	}
- 	
-
+	
 }
