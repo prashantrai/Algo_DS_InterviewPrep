@@ -26,6 +26,35 @@ public class WordBreak_II_140_Hard {
 	}
 	
 	
+	/* For time complexity refer below links: 
+	 * https://leetcode.com/problems/word-break-ii/discuss/44167/My-concise-JAVA-solution-based-on-memorized-DFS/215095
+	 * https://leetcode.com/problems/word-break-ii/discuss/44167/My-concise-JAVA-solution-based-on-memorized-DFS/43414
+	 * 
+	 * 
+	 * 
+	 * Time: O(n*2^n) where n is the number of characters. In a worst case scenario
+	 * Space: O(n*2^n)
+	 * Refer https://salonikaurone.medium.com/leetcode-word-break-ii-explained-d41ecfbe8fc5 for details 
+	 * 
+	 * For Space: Say
+	 * 	s = aaaaaa
+		wordDict = [a, aa, aaa, aaaa, aaaaa, aaaaaa]
+		
+		Our memo would look something like: 
+		{
+		    "a": ["a"] ----------------------------------------- 2^0 items,
+		    "aa": ["a a","aa"] --------------------------------- 2^1 items,
+		    "aaa": ["a a a", "aa a", "a aa", "aaa"] ------------ 2^2 items,
+		    ...
+		}
+		That explains the space.
+		
+		The time could be explained by the number of executions of the subproblems. 
+		Namely, in the worst case we'd have to make n calls of the helper function, 
+		and each one of those calls would have 2^n append calls made, leaving us with O(n * 2^n)
+	 * 
+	 */
+	
 	public static List<String> wordBreak(String s, List<String> wordDict) {
         Map<String, List<String>> cache = new HashMap<>();
         return helper(s, new HashSet<>(wordDict), cache);
