@@ -156,9 +156,25 @@ public class StoreHours {
 		bestHoursMap.clear();
 		
 		System.out.println("\n-- Invalid input scenario --");
-		nestedServerLogs = " ";
-		bestHoursMap = getBestHourForNestedStoreLogs(nestedServerLogs);
-		System.out.println("bestHoursMap: " + bestHoursMap);
+		//nestedServerLogs = " ";
+		//bestHoursMap = getBestHourForNestedStoreLogs(nestedServerLogs);
+		//System.out.println("bestHoursMap: " + bestHoursMap);
+		
+		//assert calls
+		testComputePenalty();
+	}
+	
+	public static void testComputePenalty() {
+		System.out.println("calculatePenalty");
+
+		assertEquals(1, calculatePenalty("Y N Y Y N", 5));
+		assertEquals(2, calculatePenalty("Y N Y Y N", 4));
+		assertEquals(2, calculatePenalty("Y N Y Y N", 2));
+		assertEquals(1, calculatePenalty("N N N N Y", 1));
+		assertEquals(4, calculatePenalty("N Y Y Y Y", 1));
+		
+		assertEquals(0, calculatePenalty("", 0));
+		
 	}
 	
 	// part 1
