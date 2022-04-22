@@ -20,7 +20,7 @@ public class AnalyzeServerProcessUptimeLog {
 	    } else {
 	      throw new AssertionError("Expected:\n  " + expected + "\nActual:\n  " + actual + "\n");
 	    }
-	  }  
+	  }
 	  
 	public static void testComputePenalty() {
 		//
@@ -134,6 +134,23 @@ In addition to writing this function, you should use tests to demonstrate that i
  
 compute_penalty("0 0 1 0", 0) should return 3
 compute_penalty("0 0 1 0", 4) should return 1
+
+
+ABOVE QUESTION HAS BELOW FOLLOWUPS: 
+
+1a) "Given a string of server-statuses ("1 0 0 1") and a time that the server was taken offline, determine how many statuses the server was off by. 0 indicates the server is running, 1 indicates the server is offline"
+
+1b) "Given the previous, determine when the best time would have been to take the server offline. "
+
+2a) "Ok given a string with multiple server statuses nested together, determine the best time to take the server offline" example strings were like "BEGIN BEGIN 0 0 1 END BEGIN 0 1 END", but only for the inner-most BEGIN/END combinations."
+
+
+TO SOLVE: 
+1a) Iterated through the string and counted whether the server status was correct at each index, adding up a score and returning it.
+
+1b) just iterate through the string and call the previous function for each index and use the one that has the lowest score
+
+2a) its basically the balanced-parenthesis problem, so using a stack I pushed the index onto the stack for each BEGIN and when a END was found, I popped the begin index off the stack.
   
  * */
  

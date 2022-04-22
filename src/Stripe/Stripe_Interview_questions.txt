@@ -1,0 +1,59 @@
+
+* Whats important is code refactoring and being quick in implementation
+
+Questoios: 
+
+1: Store Logs
+Given a String like "Y N Y Y N" where Y denotes if there were any customers at a given hour 
+and N denotes no customers at a given hour. There is a penalty for a hour where it is open 
+and you have a N (i.e. no customer), and if you close at a certain hour and it turns out 
+the hour had customers i.e. Y. 
+
+ hour   :  1  2  3  4  5
+ log    :  Y  N  Y  Y  N
+close_at:  1  2  3  4  5   // close at 5th hour, no penalty
+					   ^
+
+ hour   :  1  2  3  4  5
+ log    :  Y  N  Y  Y  N
+close_at:  1  2  3  4  5   // close at 4th hour, there was a Y and you closed, so you would have a penalty
+					^
+
+					   
+So, for the above string if you had closed at the 5th hour you would have no penalty. 
+However, if you closed at the 4th hour there was a Y and you closed, so you would have a penalty. 
+
+FIRST PART: Given a String and an hour, calculate the penalty.
+
+SECOND PART: Given a string, return the best hour to close for that string i.e., with minimum penalty. 
+It does not matter which hour you return. You can return any of the hours with minimum penalty.
+
+THIRD PART: Given an incomplete log with possibly invalid data , find the best closing time for all logs.
+
+
+https://leetcode.com/discuss/interview-experience/1574697/stripe-phone-screen-nov-2021-reject
+
+https://leetcode.com/discuss/interview-experience/1602122/stripe-infrastructure-engineer-seattle-nov-12-reject
+
+------[Apr 1, 2021]>build an "accept-language" parser with region/language/wildcard filtering
+
+>Given a string of accepted languages from a request header and an array of strings of languages supported 
+by server. 
+
+Return list of languages that will work for request. 
+	3 parts: 
+		1. basic. 
+		2. language only string w/o country code.
+
+>PART 1: Create a function that requests languages in string format and return an array 
+		  of the supported languages stage 
+	   
+>PART 2: Support non-region specific requests. 
+	   		i.e "en" returns ["en-US", "en-CA", "en-GB"]
+	   	
+>PART 3: Support wildcard matching to return the rest of the supported languages
+
+
+
+-----
+ON-SITE: http://www.glassdoor.com/Interview/Stripe-Interview-RVW45619694.htm
