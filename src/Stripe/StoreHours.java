@@ -204,7 +204,7 @@ public class StoreHours {
 		return penalty;
 	}
 	
-	
+	// part 2
 	public static int getBestHour(String storeLogs) {
 		
 		if(!isValidInput(storeLogs, 0)) { // ask if ZERO is a valid hour
