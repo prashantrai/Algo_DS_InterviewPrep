@@ -227,7 +227,7 @@ public class StoreHours {
 			return 0; 
 		}
 		
-		Integer min = Integer.MAX_VALUE;
+		int min = Integer.MAX_VALUE;
 		storeLogs = storeLogs.trim();
 		String[] logsArr = storeLogs.split(" ");
 		int len = logsArr.length;

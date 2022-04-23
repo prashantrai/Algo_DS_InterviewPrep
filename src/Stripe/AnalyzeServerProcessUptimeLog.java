@@ -142,7 +142,9 @@ ABOVE QUESTION HAS BELOW FOLLOWUPS:
 
 1b) "Given the previous, determine when the best time would have been to take the server offline. "
 
-2a) "Ok given a string with multiple server statuses nested together, determine the best time to take the server offline" example strings were like "BEGIN BEGIN 0 0 1 END BEGIN 0 1 END", but only for the inner-most BEGIN/END combinations."
+2a) "Ok given a string with multiple server statuses nested together, 
+determine the best time to take the server offline" example strings were like 
+"BEGIN BEGIN 0 0 1 END BEGIN 0 1 END", but only for the inner-most BEGIN/END combinations."
 
 
 TO SOLVE: 
