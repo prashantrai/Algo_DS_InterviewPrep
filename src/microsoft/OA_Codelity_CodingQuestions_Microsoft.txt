@@ -716,9 +716,48 @@ Source:  https://leetcode.com/discuss/interview-question/398023/microsoft-online
 		cycle-> 2, you can create substrings of (cy, cle) or (c, ycle)
 
 
+34. https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1392136
+
+	1. Remove n consecutive elements in an array for minimizing amplitude - 
+		https://stackoverflow.com/questions/69236733/remove-n-consecutive-elements-from-array-so-that-amplitude-of-remaining-element
+		
+	2. Aesthetically pleasant trees - 
+		https://stackoverflow.com/questions/62392510/find-and-format-visually-aesthetically-pleasant-pattern-of-trees-in-a-forest-usi
+
+35. https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1394575
+	1. There are N Hospitals, numbered from 0 to N-1. You are given a schedule of work in each 
+		of the hospitals for the following M days. The schedule is provided in the form of a 
+		2 dimensional array A Containing N rows, each row representing the schedule of one 
+		hospital, and M columns, each column representing one day. 
+		
+		Integer A[K][L] (for K within the range [0..N-1] and L within the range [0..M-1] 
+		represents the ID of the doctor working at hospital K on Day L. Note that sometimes 
+		an individual doctor may work at more than one hospital even on the same day.
+
+		write a function to to find the number of doctors working at more than one hospital.
+		
+		example :
+		0 1 2
+		0. 1 2 2
+		1 3 1 4
+		
+		Given A[[1,2,2],[3,1,4]] , the function should return 1.
+		
+36. https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1395699
+	Q1 - There are N transfers between two banks. Lets Asume Bank A and Bank. You are given a 
+	string with only A and B. A shows transfer made from B to A and B shows transfer made A to B.
+	
+	You are given one array of integers for transfers. You have to tell minimum initial balance required to complete all transactions.
+	
+	Q2 - There are two strings of size N. We can create fragments from these strings. 
+	Rule of fragments are as below -
+		1. Fragments should start from same position from both the string
+		2. both string fragments should have same character but character can be ra-arranged.
+	
+	We return the count of such fragments.
 
 
-[Mine]: https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1266522
+>>> [Mine]: https://leetcode.com/discuss/interview-question/398023/Microsoft-Online-Assessment-Questions/1266522
 
 **System Design**
 https://leetcode.com/discuss/interview-question/1620599/TeleDocorDesign-Interviewor-Design-Payment-system
