@@ -8,10 +8,12 @@ public class NumberOf_1_Bits_191_Easy {
 		int n = 00000000000000000000000000001011;
 		System.out.println("Expected: 3, Actual: " + hammingWeight(n));
 		System.out.println("with Java inbuild fun: Expected: 3, Actual: " + hammingWeight2(n)); // with Java inbuild fun
+		System.out.println("3: Expected: 3, Actual: " + hammingWeight3(n));
 		
 		n = 00000000000000000000000010000000;
 		System.out.println("Expected: 1, Actual: " + hammingWeight(n));
 		System.out.println("with Java inbuild fun: Expected: 1, Actual: " + hammingWeight2(n)); // with Java inbuild fun
+		System.out.println("3: Expected: 1, Actual: " + hammingWeight3(n));
 		
 //		long n2 = 11111111111111111111111111111101L;
 		//System.out.println("Expected: 1, Actual: " + hammingWeight(n));
@@ -62,5 +64,32 @@ public class NumberOf_1_Bits_191_Easy {
 		return Integer.bitCount(n);
 	}
 	
+	
+	/**
+	 * Loop and flip
+	 * We check each of the 32 bits of the number. If the bit is 1, we add one to the number of 1-bits.
+	 * 
+	 * How? 
+	 * 1. We'll use a bit mask and start with 1 whose binary is 00000000000000000000000000000001
+	 * 2. Clearly, a logical AND between any number and the mask 1 gives us the least significant bit 
+	 *    of this number. If the result is '1' (e.g. 1&1 = 1) then add the count.
+	 * 3. To check the next bit, we shift the mask to the left by one. That's now after left shift mask
+	 *    will be 00000000000000000000000000000010 and this will add with 2nd element in the number.
+	 * 4. Repeat 
+	 * 
+	 * 
+	 */
+	
+	public static int hammingWeight3(int n) {
+	    int bits = 0;
+	    int mask = 1;
+	    for (int i = 0; i < 32; i++) {
+	        if ((n & mask) != 0) {
+	            bits++;
+	        }
+	        mask <<= 1;
+	    }
+	    return bits;
+	}
 	
 }
