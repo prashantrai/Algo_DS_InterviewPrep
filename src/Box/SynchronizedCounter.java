@@ -9,11 +9,11 @@ import java.util.concurrent.locks.ReentrantLock;
 public class SynchronizedCounter {
 
 	public static void main(String[] args) {
-//		usingSynchronizedBlock();  // working
+		usingSynchronizedBlock();  // working
 //		usingConcurrentLock();     // working
-		usingSemaphore();		// working
+//		usingSemaphore();		// working
 		
-		//usingAtomicInteger(); // not printing/working
+//		usingAtomicInteger(); // working
 	}
 	
 	/**
@@ -136,7 +136,7 @@ public class SynchronizedCounter {
 	
 	
 	
-	// Using atomic integer -- Not printing working
+	// Using atomic integer -- working
 	public static void usingAtomicInteger() {
 		final int threadPoolSize = 5;
         ExecutorService executorService = Executors.newFixedThreadPool(threadPoolSize);
@@ -147,8 +147,8 @@ public class SynchronizedCounter {
     }
 	
 	static class Counter_Atomic_Integer implements Runnable {
-	    private static AtomicInteger counter;
-	    private static final int limit = 1000;
+	    private static AtomicInteger counter = new AtomicInteger(1);
+	    private static final int limit = 100;
 
 	    @Override
 	    public void run() {
