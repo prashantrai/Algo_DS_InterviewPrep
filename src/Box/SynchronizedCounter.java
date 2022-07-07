@@ -9,8 +9,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class SynchronizedCounter {
 
 	public static void main(String[] args) {
-		usingSynchronizedBlock();  // working
-//		usingConcurrentLock();     // working
+//		usingSynchronizedBlock();  // working
+		usingConcurrentLock();     // working
 //		usingSemaphore();		// working
 		
 //		usingAtomicInteger(); // working
@@ -55,9 +55,11 @@ public class SynchronizedCounter {
 	
 	
 	// Using Concurrent Lock
+	// https://stackoverflow.com/questions/29883719/java-multithreading-threadsafe-counter
 	public static void usingConcurrentLock() {
 		final int threadPoolSize = 5;
-        ReentrantLock sharedLock = new ReentrantLock();
+        ReentrantLock sharedLock = new ReentrantLock(true); // enable fairness policy
+
         ExecutorService executorService = Executors.newFixedThreadPool(threadPoolSize);
         for (int i = 0; i < threadPoolSize; i++) {
             executorService.submit(new Counter_Concurrent_Lock(sharedLock));
