@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.TreeMap;
 
 public class MapWithExpirationValue {
@@ -39,6 +41,10 @@ public class MapWithExpirationValue {
 		System.out.println(timeMap_DLL.getAvg()); // working
 		
 		
+		//**** NOTE ****
+		// Only when asked otherwise don't bring this up
+		repeatedTimerTask(timeMap_DLL); 
+		
 		/*
 		 * For an easy test update the code to hard code the millis with long values
 		 * and then pass diffrent value while invoking each method to varify
@@ -48,6 +54,26 @@ public class MapWithExpirationValue {
 		 * key we should be getting the result else -1
 		 * 
 		 */
+		
+	}
+	
+	//**** NOTE ****
+	// Only when asked otherwise don't bring this up
+	// below method will call clean repeatedly method after a fix period till we stop
+	public static void repeatedTimerTask(TimeMapWithExpiry_With_DLL map) {
+		
+		TimerTask repeatedTask = new TimerTask() {
+	        public void run() {
+	        	map.clean();
+	            System.out.println("Task performed on " 
+	            + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond());
+	        }
+	    };
+	    
+	    Timer timer = new Timer("Timer");
+	    long delay = 500L;
+	    long period = 1000L; // period of successive task of execution
+	    timer.scheduleAtFixedRate(repeatedTask, delay, period);
 		
 	}
 
@@ -205,8 +231,8 @@ class TimeMapWithExpiry_With_DLL {
 		}
 
 	}
+	
 }
-
 
 
 ////////////////////
