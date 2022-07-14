@@ -1,0 +1,113 @@
+https://leetcode.com/discuss/interview-question/algorithms/132310/ide-autocomplete-feature
+
+https://leetcode.com/discuss/interview-question/algorithms/132310/IDE-Autocomplete-Feature/1286087
+
+
+LC10 - https://leetcode.com/problems/regular-expression-matching/
+
+[was asked in 1st phone screen]LC44 - https://leetcode.com/problems/wildcard-matching/
+find pattern in string" - not exactly but somewhat similar to LC833    - with one wild card *   
+
+- Follow-up : with multiple stars Given a string and a pattern with wildcard, 
+
+return true if the pattern matches the string
+
+MRU Cache: https://leetcode.com/discuss/interview-question/1055998/mru-cache-java-implementation
+https://spatnaik77.wordpress.com/2014/06/13/simple-lrumru-based-cache-in-java/
+
+
+Design time based LRU cache
+
+
+[2020] https://leetcode.com/discuss/interview-question/759611/confluent-senior-software-engineer-phone-interview
+
+
+With onsite details-
+> [https://leetcode.com/discuss/interview-question/849950/confluent-onsite-telephonic]
+  Phone: LC44 with Follow up: Assume multiple *
+  Onsite:
+  	1.) Windowed Average. You are given a set of key, value pairs. Each key, value expires after k millisec. 
+  		I can ask you to get me a specific key. Also, I can ask you to return me the average. 
+  		
+  		The catch was to make sure to pruce the DLL before each call. 
+  		For ex: if <"foo", 100> is saved at t = 1 and time expiry is 3ms then after 3 ms 
+  		get("foo") should return key not found.
+  		
+	
+	2.) Task scheduler. You are given a list of runnables + delay that after t ms run this runnable. 
+		How do you store it? 
+		
+		The idea was NOT to design the PQ. but the idea was to handle multithreading part. 
+		Because you need a producer to put jobs on PQ as well as a consumer which will actually 
+		schedule the jobs
+		
+	3.) Design bit.ly system.	
+	4.) Linux deep dive
+		Very basic CS questions.
+		
+		DNS. Why hierarchy
+		How does routing table get populated.
+		Ping vs tracerout vs telnet.
+		File system
+		Process table/context switch
+		What is /bin /usr
+		What is NAT
+		VPN and VPC
+		TCP vs UDP
+		HTTP + methods + cookie
+
+
+> [https://leetcode.com/discuss/interview-experience/2009368/Confluent-or-Senior-Engineer-or-Bangalore-or-December-2021-or-Reject]
+	Phone: LC44 with Follow up: Assume multiple *
+	Onsite: 
+	 1. given a list of function names and the arguments they accept, implement a fast search for a function 
+	 	with certain args used trie and provided full implementation
+	 
+	 2. Design time based LRU cache
+	 3. Design Kafka as a Service (System Design)
+
+
+
+> [https://leetcode.com/discuss/interview-experience/1349287/confluent-senior-software-engineer]
+	Onsite: 
+	1. Implement search by function signature for the purpose of IDE autocompletion. It had to take care of 
+	   variadic functions. The best answer was using a trie
+	   
+	
+	2. You are asked to build the autocomplete feature for a programming IDE
+		Lets say the classes available are :
+		
+		Container
+		Panel
+		AutoPanel
+		RidePrinter
+		ResumePanel
+		RegularContainer
+		
+		The class names are camel case
+		
+		The upper case letters in the pattern match the different segments of the class names
+		
+		AutoComplete("R") - > ["ResumePanel", "RegularContainer", "RidePrinter"]
+		AutoComplete("Re") - > ["ResumePanel", "RegularContainer"]
+		AutoComplete("RP") - > ["ResumePanel", "RidePrinter"]
+		AutoComplete("RPr") - > ["RidePrinter"]
+	   
+	   	Few implementations (along with question): 
+	   		- https://leetcode.com/discuss/interview-question/algorithms/132310/ide-autocomplete-feature
+	   		-[Python] https://leetcode.com/playground/MHs8BSFc
+	   		- https://leetcode.com/discuss/interview-question/algorithms/132310/IDE-Autocomplete-Feature/1286087
+
+	2. Design a url shortener. They focused especially on unique id generation and database modeling.
+	
+	3. Design system like Feedly
+	
+	4. Implement a scheduler in your language of choice. They will dive deep into concurrency. I choose java and 
+		they basically had me reinvent timer task using primitives like locks, wait, notify etc.
+	
+	
+	
+> From Glassdoor
+1. implementing a Trie to solve a prefix matching related question.	
+
+
