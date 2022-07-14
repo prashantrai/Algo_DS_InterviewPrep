@@ -28,16 +28,12 @@ public class FunctionLibrary_PhoneScreen_Leetcode_Discussion {
 		
 		System.out.println("Expected: [FuncF], Actual: " + fl.findMatches(Arrays.asList("String")));
 		System.out.println("Expected: [FuncC, FuncG], Actual: " + fl.findMatches(Arrays.asList("Integer")));
-//				findMatches({Integer, Integer, Integer, Integer}) -> [FuncC, FuncD]
 		System.out.println("Expected: [FuncC, FuncD], Actual: " + fl.findMatches(Arrays.asList("Integer", "Integer", "Integer", "Integer")));
 		
-//				findMatches({Integer, Integer, Integer}) -> [FuncC, FuncD, FuncE]
 		System.out.println("Expected: [FuncC, FuncD, FuncE], Actual: " + fl.findMatches(Arrays.asList("Integer", "Integer", "Integer")));
 
-		//				findMatches({String, Integer, Integer, Integer}) -> [FuncB]
 		System.out.println("Expected: [FuncB], Actual: " + fl.findMatches(Arrays.asList("String", "Integer", "Integer", "Integer")));
 
-		//				findMatches({String, Integer, Integer}) -> [FuncA, FuncB]
 		System.out.println("Expected: [FuncA, FuncB], Actual: " + fl.findMatches(Arrays.asList("String", "Integer", "Integer")));
 		
 	}
