@@ -1,5 +1,8 @@
 package Stripe;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AnalyzeServerProcessUptimeLog {
 
 	public static void main(String[] args) {
@@ -11,6 +14,18 @@ public class AnalyzeServerProcessUptimeLog {
 //		System.out.println("res1: "+res1);
 //		System.out.println("res2: "+res2);
 		testComputePenalty();
+		testFindBestClosingTime();
+		
+		// 3rd part
+		List<Integer> res1 = get_best_closing_times("BEGIN 0 0 END \nBEGIN 1 1 END");
+		System.out.println("Expected: [2, 0], Actual: " + res1);
+
+		List<Integer> res2 = get_best_closing_times("BEGIN BEGIN \\nBEGIN 1 1 BEGIN 0 0\\n END 1 1 END");
+		System.out.println("Expected: [2], Actual: " + res2);
+		
+		
+		//4th part 
+		//- Logs are coming in stream one by one in a batch with each stream of data i.e. not passed at once
 		
 	}
 	
@@ -35,32 +50,116 @@ public class AnalyzeServerProcessUptimeLog {
 		
 		assertEquals(0, compute_penalty("", 0));
 	}
+	public static void testFindBestClosingTime() {
+		System.out.println("find_best_closing_time");
+		assertEquals(3, find_best_closing_time("0 0 0 1 1 1 1"));
+		assertEquals(0, find_best_closing_time(""));
+		assertEquals(1, find_best_closing_time("0"));
+		assertEquals(0, find_best_closing_time("1 1 1 1"));
+		assertEquals(4, find_best_closing_time("0 0 0 0"));
+		assertEquals(5, find_best_closing_time("1 0 0 0 0 1 1 1 0 1 1 0 0 1 1 1 1 0 0 1 1 0 1 1 1"));
+		assertEquals(0, find_best_closing_time("1 1 1 1 1 0 0 0 1 1 1 1 0 0 0 1 1 1 0 1 0 0 1 0 1"));
+		assertEquals(25, find_best_closing_time("0 0 1 1 1 0 0 1 0 0 1 1 1 0 0 1 1 0 0 0 1 0 1 0 0"));
+	}
 
+	// 1st Part
 	public static int compute_penalty(String logs, int time) {
-		
-		//sanity check
-		if(logs == null || logs.isEmpty() || time < 0) {
-			return 0; 
+		if (logs == null || logs.length() == 0 || time < 0) {
+			return 0;
 		}
 		
+		logs = " " + logs + " ";
 		int penalty = 0;
-		String[] logsArr = logs.split(" ");
-		for(int i=0; i<logsArr.length; i++) {
-			if("1".equals(logsArr[i]) && i < time) {
+		int removingHour = time * 2;
+		char[] arr = logs.toCharArray();
+
+		for (int i = 0; i < arr.length; i++) {
+			if (i <= removingHour && arr[i] == '1')
 				penalty++;
-			}
-			else if(i > time && "0".equals(logsArr[i])) {
+			if (i >= removingHour && arr[i] == '0')
 				penalty++;
-			}
-			else if(time == 0 && "0".equals(logsArr[i])) {
-				penalty++;
-			}
-			else if(time >= logsArr.length && "1".equals(logsArr[i]) ) {
-				penalty++;
+		}
+		return penalty;
+	}
+	
+	// 2nd Part - Working
+	static int find_best_closing_time(String logs) {
+		if (logs == null || logs.length() == 0) {
+			return 0;
+		}
+
+		int min = Integer.MAX_VALUE;
+		int bestHour = 0;
+		int totalLogHours = logs.length() + 2;
+
+		for (int i = 0; i < totalLogHours; i++) {
+			int penalty = compute_penalty(logs, i);
+			if (penalty < min) {
+				min = penalty;
+				bestHour = i;
 			}
 		}
-		
-		return penalty;
+
+		return bestHour;
+	}
+	
+	// 3rd Part - Working
+	/* Given invalid log list with nested logs
+	 *  
+	 ## Examples get_best_closing_times("BEGIN 0 0 END \nBEGIN 1 1 END") should
+	 * return an array: [2, 0]
+	 * get_best_closing_times("BEGIN BEGIN \nBEGIN 1 1 BEGIN 0 0\n END 1 1 END")
+	 * should return an array: [2]
+	 */
+	static List<Integer> get_best_closing_times(String logs) {
+		List<Integer> res = new ArrayList<>();
+		logs = logs.replace("\n", "");	// remove \n
+
+		List<String> list = getValidLogList(logs); // find the valid log i.e. between a valid BEGIN and END
+
+		for (String log : list) {
+			int time = find_best_closing_time(log);
+			res.add(time);
+		}
+		return res;
+	}
+	
+	static List<String> getValidLogList(String logs) {
+
+		List<String> list = new ArrayList<>();
+		StringBuilder sb = new StringBuilder();
+
+		String[] arr = logs.split(" ");
+		boolean seenBegin = false;
+
+		for (String s : arr) {
+			
+			if (sb.length() == 0 && "BEGIN".equals(s)) {
+				seenBegin = true;
+				continue;
+			}
+			
+			if (sb.length() > 0 && "BEGIN".equals(s)) {
+				seenBegin = true;
+				sb.setLength(0);
+				continue;
+			}
+
+			if(seenBegin) {
+				if (!"END".equals(s)) {
+					sb.append(" ");
+					sb.append(s);
+				} else if ("END".equals(s)) {
+					sb.deleteCharAt(0);
+					list.add(sb.toString());
+					seenBegin = false;
+					sb.setLength(0);
+				}
+			}
+		}
+
+		return list;
+
 	}
 	
 }
@@ -138,7 +237,9 @@ compute_penalty("0 0 1 0", 4) should return 1
 
 ABOVE QUESTION HAS BELOW FOLLOWUPS: 
 
-1a) "Given a string of server-statuses ("1 0 0 1") and a time that the server was taken offline, determine how many statuses the server was off by. 0 indicates the server is running, 1 indicates the server is offline"
+1a) "Given a string of server-statuses ("1 0 0 1") and a time that the server was taken offline, 
+determine how many statuses the server was off by. 0 indicates the server is running, 1 indicates 
+the server is offline"
 
 1b) "Given the previous, determine when the best time would have been to take the server offline. "
 
@@ -147,12 +248,5 @@ determine the best time to take the server offline" example strings were like
 "BEGIN BEGIN 0 0 1 END BEGIN 0 1 END", but only for the inner-most BEGIN/END combinations."
 
 
-TO SOLVE: 
-1a) Iterated through the string and counted whether the server status was correct at each index, adding up a score and returning it.
-
-1b) just iterate through the string and call the previous function for each index and use the one that has the lowest score
-
-2a) its basically the balanced-parenthesis problem, so using a stack I pushed the index onto the stack for each BEGIN and when a END was found, I popped the begin index off the stack.
-  
  * */
  
