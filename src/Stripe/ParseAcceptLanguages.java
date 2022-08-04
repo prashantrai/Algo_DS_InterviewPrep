@@ -10,6 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class ParseAcceptLanguages {
@@ -80,6 +81,66 @@ public class ParseAcceptLanguages {
 		
 		// part 4
 		System.out.println("\n--------Part 4--------\n");
+		
+		/////
+		/*Comparator<Lang> compareByProviderThenCreditLimitInJDK8 
+		 = Comparator.comparing((Lang c)->c.)
+		            .thenComparing(c->c.creditLimit)
+		            .thenComparingInt(c->c.fee); */
+		/*
+		//first name comparator
+		Comparator<Employee> compareByFirstName = Comparator.comparing( Employee::getFirstName );
+		 
+		//last name comparator
+		Comparator<Employee> compareByLastName = Comparator.comparing( Employee::getLastName );
+		 
+		//Compare by first name and then last name (multiple fields)
+		Comparator<Employee> compareByFullName = compareByFirstName.thenComparing(compareByLastName);
+		 */
+
+		/*
+		Comparator<Lang> cp = (a, b) ->  Double.compare(b.q_factor, a.q_factor);
+		cp = cp.thenComparing((a, b) -> b.lang.compareTo(a.lang));
+		
+		Comparator<Lang> comparebyMultiField 
+		 = Comparator.comparing(Lang::getQ_factor)
+		            .thenComparing(Lang::getLang);
+		
+		
+			//TreeSet<Lang> test = new TreeSet<>((a,b) -> (Double.compare(b.q_factor, a.q_factor)));
+			TreeSet<Lang> test = new TreeSet<>(cp);
+			test.add(new Lang("A", 1));
+			test.add(new Lang("B", 2));
+			test.add(new Lang("C", 1));
+			test.add(new Lang("D", 3));
+			
+			System.out.println("test TreeSet: "+ test);
+			////
+			 * 
+			 */
+		
+		/*
+		System.out.println("Expected: [fr-FR, fr-BG, fr-CA], Actual: " 
+					+ parse_accept_language_4("fr-FR;q=1, fr-CA;q=0, fr;q=0.5", 
+												new String[] {"fr-FR", "fr-CA", "fr-BG"}));
+		
+		assertEquals(Arrays.asList("fr-FR", "fr-BG", "fr-CA"), 
+				parse_accept_language_4("fr-FR;q=1, fr-CA;q=0, fr;q=0.5", new String[] {"fr-FR", "fr-CA", "fr-BG"}));
+		*/
+		
+		//parse_accept_language("fr-FR;q=1, fr-CA;q=0, *;q=0.5", ["fr-FR", "fr-CA", "fr-BG", "en-US"])
+		//returns: ["fr-FR", "fr-BG", "en-US", "fr-CA"]
+		System.out.println("\n\n");
+		System.out.println("Expected: [fr-FR, fr-BG, en-US, fr-CA], Actual: " 
+				+ parse_accept_language_4("fr-FR;q=1, fr-CA;q=0, *;q=0.5", 
+											new String[] {"fr-FR", "fr-CA", "fr-BG", "en-US"}));		
+				
+//		assertEquals(Arrays.asList("fr-FR;q=1, fr-CA;q=0, *;q=0.5"), 
+//				parse_accept_language_4("fr-FR;q=1, fr-CA;q=0, *;q=0.5", new String[] {"fr-FR", "fr-CA", "fr-BG", "en-US"}));
+
+		
+		//parse_accept_language("fr-FR;q=1, fr-CA;q=0.8, *;q=0.5", ["fr-FR", "fr-CA", "fr-BG", "en-US"])
+		
 		
 		
 	}
@@ -256,20 +317,170 @@ public class ParseAcceptLanguages {
 	
 	parse_accept_language("fr-FR;q=1, fr-CA;q=0.8, *;q=0.5", ["fr-FR", "fr-CA", "fr-BG", "en-US"])
 	
+	
+	Algo: 
+	Now, in this part sorting of result is based on q-factor (In other parts it was based on sequence of accept lang).
+	
+	To solve this, create Map of {lang, q-fact} and while adding the result in TreeSet
+	fecth the q-fact of the lanf from this map and add to TreeSet
+	
+	
 	*/
+	
+	public static List<String> parse_accept_language_4(String acceptLangHeader, String[] supportedLangs) {
+		Set<String> res = new LinkedHashSet<>(); // to avoid duplicate entry
+		
+		Map<String, Set<String>> map = groupSupportedLangByLangTag_withAllEntry(supportedLangs); 
+		Map<String, Double> q_FactMap = getLang_QFactMap(acceptLangHeader);
+		
+		String[] langsArr = acceptLangHeader.split(", ");
+		
+		for(String lang : langsArr) {
+			
+			lang = getLang(lang); // from fr-FR;q=1 extract fr-FR
+			
+			if("*".equals(lang)) {
+				res.addAll(map.get("ALL"));
+				continue;
+			}
+			
+			if(lang.length() == 2) {
+				res.addAll(map.get(lang));
+				continue;
+			}
+			
+			String tag = lang.substring(0, 2); // en, fr etc.
+			if(map.get(tag).contains(lang)) {
+				res.add(lang);
+			}
+			
+		}
+		
+		Set<Lang> treeSet = getTreeSetFromRes(res, q_FactMap);
+		System.out.println(">>res: " + res);
+		//System.out.println("2. treeSet: " + treeSet);
+		
+		List<String> result = new ArrayList<>();
+		for(Lang l : treeSet) {
+			result.add(l.lang);
+		}
+		
+		return result;
+	}
+	
+	public static Set<Lang> getTreeSetFromRes(Set<String> res, Map<String, Double> q_FactMap) {
+		
+		Comparator<Lang> cp = (a, b) ->  Double.compare(b.q_factor, a.q_factor);
+		cp = cp.thenComparing((a, b) -> b.lang.compareTo(a.lang));
+		
+		Set<Lang> treeSet = new TreeSet<>(cp);
+		
+		for(String lang : res) {
+			
+			if(q_FactMap.containsKey(lang)) {
+				Lang l = new Lang(lang, q_FactMap.get(lang));
+				treeSet.add(l);
+				continue;
+			}
+			
+			// fr-BG
+			String tag = lang.substring(0, 2);
+			//if(!q_FactMap.containsKey(lang) && 
+			if(!q_FactMap.containsKey(tag)
+					&& !q_FactMap.containsKey("*")) 
+				continue;
+			
+			if(q_FactMap.containsKey(tag)) {
+				treeSet.add(new Lang(lang, q_FactMap.get(tag))); // fetch tag value from map
+				continue;
+			}
+			
+			if(q_FactMap.containsKey("*")) {
+				treeSet.add(new Lang(lang, q_FactMap.get("*"))); 
+			}
+			
+		}
+		
+		return treeSet;
+	}
 	
 	/*
-	 
-	 parse_accept_language("fr-FR;q=1, fr-CA;q=0, fr;q=0.5", ["fr-FR", "fr-CA", "fr-BG"])
+	 "fr-FR;q=1, fr-CA;q=0, fr;q=0.5"
 	
-	"fr-FR;q=1, fr-CA;q=0, fr;q=0.5"
 	"fr-FR;q=1, fr-CA;q=0, *;q=0.5"
 	"fr-FR;q=1, fr-CA;q=0.8, *;q=0.5"
+	 */
+	public static Map<String, Double> getLang_QFactMap(String acceptLangHeader) {
+		Map<String, Double> map = new HashMap<>();
+		for(String acptLang : acceptLangHeader.split(", ")) {
+			String key = getLang(acptLang);
+			double value = getQ_factor(acptLang);
+			map.put(key, value);
+		}
+		
+		System.out.println("QFactMap:: " + map);
+		
+		return map;
+	}
 	
+	public static void addAllToTreeSet(Set<Lang> treeSet, 
+			Set<String> langSet, Map<String, Double> q_FactMap) {
+		
+		for(String supLang : langSet) {
+			if(!q_FactMap.containsKey(supLang)) 
+				continue;
+			
+			double q_fact = q_FactMap.get(supLang);
+			treeSet.add(new Lang(supLang, q_fact));
+		}
+	}
 	
-		returns: ["fr-FR", "fr-BG", "fr-CA"]
+	public static String getLang(String lang) {
+		// for input "fr-FR;q=1" return fr-FR
+		return lang.substring(0, lang.indexOf(";"));
+	}
+	public static double getQ_factor(String lang) {
+		// for input "fr-FR;q=0.5" return 0.5
+		String q_fact = lang.substring(lang.indexOf("=")+1);
+		return Double.parseDouble(q_fact);
+	}
 	
-	*/
+	static class Lang { //implements Comparable {
+		public String lang;
+		public double q_factor;
+		public Lang(String lang, double q_factor) {
+			this.lang = lang;
+			this.q_factor = q_factor;
+		}
+		public String getLang() {
+			return lang;
+		}
+		public void setLang(String lang) {
+			this.lang = lang;
+		}
+		public double getQ_factor() {
+			return q_factor;
+		}
+		public void setQ_factor(double q_factor) {
+			this.q_factor = q_factor;
+		}
+		@Override
+		public String toString() {
+			return "[lang=" + lang + ", q_factor=" + q_factor + "]";
+		}
+		
+		/*
+		@Override
+		public int compareTo(Object obj){
+			Lang o = (Lang) obj;
+		    return Comparator.comparing(Lang::getQ_factor)
+		              .thenComparing(Lang::getLang)
+		              .compare(this, o);
+		} */
+		
+	}
+	
+	// Part 4 ends
 	
 	//---- Working [Taken from leetcode post]-----
 	// Reference: https://leetcode.com/discuss/interview-question/1126296/Amazon-Latest-Hack-OA-experienced-SDE/1508390
