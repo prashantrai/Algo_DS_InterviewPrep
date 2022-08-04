@@ -94,7 +94,7 @@ public class ParseAcceptLanguages {
 	
 	// part 1
 	public static List<String> parse_accept_language(String acceptLangHeader, String[] supportedLangs) {
-		List<String> res = new ArrayList<>();
+		Set<String> res = new LinkedHashSet<>(); // to avoid duplicate entry and maintain order
 		Set<String> set = new HashSet<>(Arrays.asList(supportedLangs));
 		String[] langsArr = acceptLangHeader.split(", ");
 		
@@ -103,7 +103,7 @@ public class ParseAcceptLanguages {
 				res.add(lang);
 			}
 		}
-		return res;
+		return new ArrayList<String>(res);
 	}
 	
 	
@@ -233,6 +233,43 @@ public class ParseAcceptLanguages {
 	}
 	
 	
+	/**
+	Part 4
+	
+	Accept-Language headers will sometimes include explicit numeric weights (known as
+	q-factors) for their entries, which are used to designate certain language tags
+	as specifically undesired. For example:
+	
+	Accept-Language: fr-FR;q=1, fr;q=0.5, fr-CA;q=0
+	
+	This means that the reader most prefers French as spoken in France, will take
+	any variant of French after that, but specifically wants French as spoken in
+	Canada only as a last resort. Extend your function to parse and respect q-factors.
+	
+	Examples:
+	
+	parse_accept_language("fr-FR;q=1, fr-CA;q=0, fr;q=0.5", ["fr-FR", "fr-CA", "fr-BG"])
+	returns: ["fr-FR", "fr-BG", "fr-CA"]
+	
+	parse_accept_language("fr-FR;q=1, fr-CA;q=0, *;q=0.5", ["fr-FR", "fr-CA", "fr-BG", "en-US"])
+	returns: ["fr-FR", "fr-BG", "en-US", "fr-CA"]
+	
+	parse_accept_language("fr-FR;q=1, fr-CA;q=0.8, *;q=0.5", ["fr-FR", "fr-CA", "fr-BG", "en-US"])
+	
+	*/
+	
+	/*
+	 
+	 parse_accept_language("fr-FR;q=1, fr-CA;q=0, fr;q=0.5", ["fr-FR", "fr-CA", "fr-BG"])
+	
+	"fr-FR;q=1, fr-CA;q=0, fr;q=0.5"
+	"fr-FR;q=1, fr-CA;q=0, *;q=0.5"
+	"fr-FR;q=1, fr-CA;q=0.8, *;q=0.5"
+	
+	
+		returns: ["fr-FR", "fr-BG", "fr-CA"]
+	
+	*/
 	
 	//---- Working [Taken from leetcode post]-----
 	// Reference: https://leetcode.com/discuss/interview-question/1126296/Amazon-Latest-Hack-OA-experienced-SDE/1508390
