@@ -110,6 +110,11 @@ public class AnalyzeServerProcessUptimeLog {
 	 * return an array: [2, 0]
 	 * get_best_closing_times("BEGIN BEGIN \nBEGIN 1 1 BEGIN 0 0\n END 1 1 END")
 	 * should return an array: [2]
+	 * 
+	 * Another follow up could (wasn't asked but some old problem like server down penalty problem) be: calculate the best time to remove server
+	 * for inner most logs only. In this case first get the list of all valid logs (i.e. getValidLogList()) 
+	 * then list_size/2 to get the middle log (if inner most is middle) OR
+	 * take the log at list_size - 1 location (if inner most is last log) - confirm about the innermost position with the interviewer
 	 */
 	static List<Integer> get_best_closing_times(String logs) {
 		List<Integer> res = new ArrayList<>();
