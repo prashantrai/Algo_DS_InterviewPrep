@@ -41,8 +41,8 @@ public class MaximumAverageSubtree_1120_Medium {
         if (root == null) {
             return new int[] {0, 0};
         }
-        int[] l = dfs(root.left);
-        int[] r = dfs(root.right);
+        int[] l = dfs2(root.left);
+        int[] r = dfs2(root.right);
         int sum = l[0] + r[0] + root.val;
         int count = l[1] + r[1] + 1;
         res = Math.max(1.0 * sum / count, res);
