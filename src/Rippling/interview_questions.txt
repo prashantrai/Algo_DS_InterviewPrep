@@ -1,0 +1,65 @@
+1. game of life
+
+
+2. N.B.: This problem could be ask in 2 ways,
+          a. When organization hierarchy is represented via n-ary tree and in that case 
+             we have to traverse tree to calculate the score.
+             refer: https://leetcode.com/discuss/interview-question/349617
+          		 https://www.careercup.com/question?id=5680793844187136 (for similar question)
+          		 	-- https://leetcode.com/problems/maximum-average-subtree/
+          
+          b. Given a list of employee object records i.e. in JSON object	 
+          		 
+			 
+   
+   Employee data aggregation - Given a list of employee object records with performance review scores 
+   and associated organization hierarchy, find the employee/manager with the highest average score.
+	[another way to ask]given a json, which contains list of employee objects, 
+	do some aggregation ( like average salary of employee), do it in object oriented way
+	- Given an array of JSON, find various stats like minimum, maximum, avaerage etc on different fields.
+		Object oriented approach was tested during this round.
+
+3. [May-2021] How would you design a chess algorithm? Skip the initialization bits but 
+              how would you design legal moves?
+
+4. [SE - Oct2021]Find the largest diamond(rhombus) in a binary matrix. Return the length of its diagonal.
+
+5. [SDE-Jul2022]Find number of sentences with distinct meanings given synonyms and sentences.
+
+6. May201 - [https://leetcode.com/discuss/interview-question/1214470/rippling-on-campus-maximum-product-array-2-part]
+	Divide the array into 2 parts such that the sum of elements of both the parts, gives the maximum possible product?
+
+	eg:
+	[1,2,3,4,5]
+	we can divide it into 2 parts as
+	[3,4] sum=7 and [1,2,5] sum=8
+	and it gives maximum product as 56
+
+7. Jun2022 - [https://leetcode.com/discuss/interview-experience/2118542/Rippling-or-L6-or-May'22]
+
+
+
+VO: 
+
+-Glassdoor
+1. [Oct 2021] a connected graph problem
+2. [Oct 2021]implement API counter
+3. [Sep 2021] Based on a given order of words, find the alphabetical order of the language
+4. [Jun 2022] [https://leetcode.com/discuss/interview-experience/2118542/Rippling-or-L6-or-May'22]
+
+
+
+--- System Design ---
+1. [Glassdoor - Jul2021]system design - u r receiving events from mobile and other devices ( like user click event), 
+design a system which will retrieve and process these events and support queries like get history 
+of number of clicks per hour over last 24 hours. Design fault tolerant, scalable, HA , low latency etc, 
+etc very theoretical :). 
+
+Follow up - how do you design client sdk which would take care of server not 
+reachable or spike in system
+
+2. [Bangalore-2021]Design a time series database to store metrics. Apps will emit certain 
+	metrics frequently, these metrics have to be stored and queries efficiently.
+
+
+

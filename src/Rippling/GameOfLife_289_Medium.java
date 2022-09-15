@@ -1,4 +1,4 @@
-package Dropbox;
+package Rippling;
 
 import java.util.Arrays;
 
@@ -55,21 +55,18 @@ public class GameOfLife_289_Medium {
     public static void gameOfLife(int[][] board) {
         if(board == null || board.length == 0) return;
         
-        int rows = board.length; int cols = board[0].length;
-        
-        
         for(int i=0; i<board.length; i++) {
             for(int j=0; j<board[0].length; j++) {
                 
-                if(board[i][j] == 1) {
-                    //count live neighbors
+                if(board[i][j] == 1) { // if live
+                    //count live neighbors - to check under or over population
                     int lives = count(board, i, j);
                     if(lives < 2 || lives > 3) {
                         board[i][j] = 2;
                     }
                 }
                 
-                if(board[i][j] == 0) {
+                if(board[i][j] == 0) { // if dead
                     //count live neighbors
                     int lives = count(board, i, j);
                     if(lives == 3) {
@@ -114,6 +111,7 @@ public class GameOfLife_289_Medium {
     }
 
 }
+
 
 /**
 Follow up 2 : Infinite Board
