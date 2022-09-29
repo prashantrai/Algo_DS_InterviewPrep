@@ -1,0 +1,38 @@
+1. [Aug-2022] - https://www.glassdoor.com/Interview/Square-Interview-RVW67978952.htm
+Problem
+You’re writing part of the code for an online card game. In the game, players pass cards right and left around a table. In your online version, you want to allow users to set up a game with some number of human players and some number of “bot” (automated) players. In order to be fair, you want to spread out the bots as evenly as possible around the table; for example, if there are 9 total players and 3 are bots, every third seat should be a bot, and the rest should be humans.
+
+Example
+Players: 6 humans, 3 bots
+Seating: human, human, bot, human, human, bot, human, human, bot
+
+Goal
+Write a function which takes the number of human players and the number of bot players, and returns a seating arrangement which satisfies our requirements. To start with, assume that the number of humans is evenly divisible by the number of bots, like in the example (6 is divisible by 3).
+
+Part 2
+Now either edit your function or write a new one to handle the rest of the possible inputs. Remember that we want to spread out the bots as evenly as possible! So in the below example, the longer sequences of humans should be spaced out rather than adjacent to each other.
+
+Example for 6 humans (h), 4 bots (B)
+Invalid: h h B h h B h B h B
+Valid: h h B h B h h B h B
+
+
+2. Nov2021: [https://leetcode.com/discuss/interview-question/1555905/square-phone-sock-pairs]
+Question:
+You are given information on a Sock object such as color and foot (left or right). For example, consider the below as input:
+
+	1. black and left
+	2. pink and right
+	3. pink and left
+	4. black and right
+	5. black and right
+You have to write a method which takes the following input and return the list of Sock object pairs (same color, different foot) which are:
+
+(1, 4) *OR *(1, 5)
+(2, 3)
+
+Note if a sock is repeated in a pair then only return 1 pair where that sock is used.
+
+
+
+3. https://leetcode.com/discuss/interview-question/1420402/square-new-grad-code-signal-august-2021
