@@ -1,0 +1,32 @@
+1. [Feb-2021] Given an API that returns an integer when called and -1 when nothing to return, write code to sort the value returned by API (was given less than 5 mins to code).
+2. [] Two very very large files F1, F2 containing key, value pairs. Write these key, values to a third file without any duplicates.
+
+3. [Aug 2021] Burn the binary tree starting from the target node
+
+Given a binary tree and target node. By giving the fire to the target node and fire starts to spread in a complete tree. The task is to print the sequence of the burning nodes of a binary tree.
+Rules for burning the nodes :
+
+Fire will spread constantly to the connected nodes only.
+Every node takes the same time to burn.
+A node burns only once.
+
+4. [Sept 2020] Dutch national Flag
+
+5. [Oct 2019] Reverse The Linked List in O(n)
+6. [Oct 2019] What is difference between semaphore and mutex?
+7. [Oct 2019] Questions related to critical Section, Deadlock etc
+
+8. [Jun 2019]- https://www.glassdoor.com/Interview/Cohesity-Interview-RVW27448024.htm
+	https://leetcode.com/problems/single-element-in-a-sorted-array/
+		Sol: https://leetcode.com/problems/single-element-in-a-sorted-array/discuss/627921/Java-or-C%2B%2B-or-Python3-or-Easy-explanation-or-O(logn)-or-O(1)
+
+9. [Nov 2021 - Bangaluru] https://leetcode.com/discuss/interview-experience/1593343/cohesity-mts-iii-bengaluru-oct-2021-offer
+
+	i. Implement Doubly Linked List
+	ii. https://leetcode.com/problems/count-complete-tree-nodes/
+	iii. https://leetcode.com/problems/find-peak-element/
+
+
+System Design: 
+1. [Aug 2022] Rate Limiter
+2. 
