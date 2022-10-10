@@ -34,5 +34,26 @@ You have to write a method which takes the following input and return the list o
 Note if a sock is repeated in a pair then only return 1 pair where that sock is used.
 
 
+3. [Nov2021] https://leetcode.com/discuss/interview-experience/1605678/Cash-or-Phone-or-Weather-App/1167024
+	Write a function to return weather data for any given input year. (e.g. getWeather(2018) )
+	
+	Raw input weather data is given as a serialized String as below:
+	
+	"Year,Month,Day,High,Low\n2019,1,1,8.5,-8.3\n2019,1,2,-1.8,-11.6\n2019,1,3,-0.8,-2.5\n2018,1,1,-9.8,-26.9\n2018,1,2,-9.7,-16.0\n2018,1,3,-8.7,-16.2\n2017,1,1,0.2,-11.5\n2017,1,2,3.8,-9.4\n2017,1,3,3.0,1.0"
+	
+	Input : 2019
+	Result:
+	
+	| Year / Month / Day / Low Temp / High Temp |
+	
+	| 2018 / 1 / 1 / -26.9 / -9.8 |
+	| 2018 / 1 / 2 / -16.0 / -9.7 |
+	| 2018 / 1 / 3 / -16.2 / -8.7 |
+	
+	Follow-up:
+	
+	Instead of complete data, just return selected fields (e.g. year and lowTemp)
 
-3. https://leetcode.com/discuss/interview-question/1420402/square-new-grad-code-signal-august-2021
+
+4. https://leetcode.com/discuss/interview-question/1420402/square-new-grad-code-signal-august-2021
+
