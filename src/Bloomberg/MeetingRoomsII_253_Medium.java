@@ -1,4 +1,4 @@
-package leetcode;
+package Bloomberg;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -223,4 +223,3 @@ public class MeetingRoomsII_253_Medium {
     // The size of the heap tells us the minimum rooms required for all the meetings.
     return allocator.size();
   } */
-

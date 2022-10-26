@@ -1,0 +1,4 @@
+1. Collections of questions: 
+	https://leetcode.com/discuss/interview-question/439548/Bloomberg-Phone-Interview-Questions
+	https://leetcode.com/discuss/interview-question/964672/bloomberg-software-engineering-prepration-list
+	

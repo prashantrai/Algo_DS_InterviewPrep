@@ -1,7 +1,9 @@
 package Rivian;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.TreeMap;
 
 public class MeetingRoomsII_253_Medium {
 
@@ -11,16 +13,21 @@ public class MeetingRoomsII_253_Medium {
 		int res = minMeetingRooms(intervals);
 		System.out.println("Expacted: 2, Actual: "+res);
 		
-		res = minMeetingRooms2(intervals);  // with priority queue
+		res = minMeetingRooms_UsingPriorityQueue_1(intervals);  // with priority queue
 		System.out.println("Expacted: 2, Actual: "+res);
 		
+		res = minMeetingRooms_UsingTreeMap(intervals);  // with TreeMap
+		System.out.println("Expacted: 2, Actual: "+res);
 		
 		int[][] intervals2 = {{7,10},{2,4}};
 		
 		res = minMeetingRooms(intervals2);
 		System.out.println("Expacted: 1, Actual: "+res);
 		
-		res = minMeetingRooms2(intervals2);	// with priority queue
+		res = minMeetingRooms_UsingPriorityQueue_1(intervals2);	// with priority queue
+		System.out.println("Expacted: 1, Actual: "+res);
+		
+		res = minMeetingRooms_UsingTreeMap(intervals2);  // with TreeMap
 		System.out.println("Expacted: 1, Actual: "+res);
 	}
 
@@ -90,7 +97,34 @@ public class MeetingRoomsII_253_Medium {
 	//https://www.programcreek.com/2014/05/leetcode-meeting-rooms-ii-java/
 	// How to create max heap using priority queue: https://jindongpu.wordpress.com/2015/10/20/implement-max-heap-and-min-heap-using-priorityqueue-in-java/
 	
-	public static int minMeetingRooms2(int[][] intervals) {
+	
+	public static int minMeetingRooms_UsingPriorityQueue_1(int[][] intervals) {
+		
+		if(intervals == null || intervals.length ==0) {
+			return 0;
+		}
+		
+		Arrays.sort(intervals, ((arr1, arr2) -> Integer.compare(arr1[0], arr2[0])));
+		
+		PriorityQueue<Integer> minHeap = new PriorityQueue<>(); // min heap
+
+		for(int[] interval : intervals) {
+			if(minHeap.isEmpty()) {
+				minHeap.offer(interval[1]);
+			} else {
+				if(interval[0] >= minHeap.peek()) {
+					minHeap.poll();
+				} 
+				minHeap.offer(interval[1]);
+			}
+			
+		}
+		return minHeap.size();
+	}
+	
+	
+	// another version with PriortiyQueue and count variable to count rooms
+	public static int minMeetingRooms_UsingPriorityQueue_2(int[][] intervals) {
 		
 		if(intervals == null || intervals.length ==0) {
 			return 0;
@@ -116,6 +150,23 @@ public class MeetingRoomsII_253_Medium {
 		}
 		return count;
 	}
+	
+	/* Reference: https://leetcode.com/problems/meeting-rooms-ii/discuss/278270/JavaC%2B%2BPython-Sort-All-Time-Point
+	 * Time O(NlogN)
+	 * Space O(N)	
+	 */
+	public static int minMeetingRooms_UsingTreeMap(int[][] intervals) {
+        Map<Integer, Integer> m = new TreeMap<>();
+        for (int[] t : intervals) {
+            m.put(t[0], m.getOrDefault(t[0], 0) + 1);
+            m.put(t[1], m.getOrDefault(t[1], 0) - 1);
+        }
+        int res = 0, cur = 0;
+        for (int v : m.values()) {
+            res = Math.max(res, cur += v);
+        }
+        return res;
+    }
 
 }
 

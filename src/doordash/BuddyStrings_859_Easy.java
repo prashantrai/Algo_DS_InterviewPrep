@@ -26,7 +26,9 @@ public class BuddyStrings_859_Easy {
     public static boolean buddyStrings(String s, String goal) {
         if(s.length() != goal.length()) return false;
         
-        // when contains dullicated like s=aa and goal=aa
+        // when contains duplicate like s=aa and goal=aa
+        // s has a duplicate character && s.equals(goal) -> return true 
+        // because we can just swap the duplicate character which doesn't modify A.
         if(s.equals(goal)) {
             Set<Character> set = new HashSet<>();
             for(char c : s.toCharArray()) 
