@@ -7,6 +7,26 @@ import java.util.PriorityQueue;
 
 // https://jindongpu.wordpress.com/2015/10/20/implement-max-heap-and-min-heap-using-priorityqueue-in-java/
 
+/*
+ * Below are more/other approaches to create MaxHeap and 
+ * slightly better to prevent possible Integer overflows.
+ * 
+ 	Queue<Integer> pq = new PriorityQueue<>((a, b) -> Integer.compare(b, a);
+	or
+	Queue<Integer> pq = new PriorityQueue<>((a, b) -> b.compareTo(a));
+	or
+	Queue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+	
+  other than above another simpler approach is,
+  	Queue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a));
+
+ * */
+
+/*
+ * Time: O(log N)
+ * Space: O(N)
+ */
+
 public class MedianFinder_295_Hard {
 	PriorityQueue<Integer> maxHeap;// lower half
 	PriorityQueue<Integer> minHeap;// higher half
