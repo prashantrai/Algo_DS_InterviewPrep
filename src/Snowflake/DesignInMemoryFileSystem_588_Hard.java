@@ -1,4 +1,4 @@
-package Coinbase;
+package Snowflake;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,10 +76,7 @@ class FileSystem {
         public FileNode(String name) {
             this.name = name;
             this.content = new StringBuilder();
-            
-            // to maintain lexicographic order of files and to 
-            // avoid sorting the list as insertion takes O(logN).
-            children = new TreeMap<>();
+            children = new TreeMap<>(); // to maintain lexicographic order of files
         }
     }
 }
