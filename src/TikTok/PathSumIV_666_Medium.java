@@ -16,6 +16,17 @@ public class PathSumIV_666_Medium {
 		https://leetcode.com/problems/path-sum-iv/discuss/106892/Java-solution-Represent-tree-using-HashMap
     
     
+    Now each tree node is represented by a number. 1st digits is the level, 
+    2nd is the position in that level (note that it starts from 1 instead of 0). 
+    3rd digit is the value. We need to find a way to traverse this tree and get the sum.
+
+	The idea is, we can form a tree using a HashMap. 
+		>The KEY is first two digits which marks the position of a node in the tree. 
+		>The VALUE is value of that node. Thus, we can easily find a node's left and right 
+		children using math.
+		
+	Formula: For node xy? its left child is (x+1)(y*2-1)? and right child is (x+1)(y*2)?
+    
     Time: O(N)
     Space: O(N)
     */
@@ -37,7 +48,7 @@ public class PathSumIV_666_Medium {
     }
     
     private static void traverse(int root, int preSum) {
-        int parentLevel = root/10; // gives the node level
+        int parentLevel = root/10; // gives the node level (depth)
         int pos = root % 10; // node position at a level
         
         /*
