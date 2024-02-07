@@ -26,8 +26,20 @@ public class PathSumIV_666_Medium {
 		>The KEY is first two digits which marks the position of a node in the tree. 
 		>The VALUE is value of that node. Thus, we can easily find a node's left and right 
 		children using math.
-		
-	Formula: For node xy? its left child is (x+1)(y*2-1)? and right child is (x+1)(y*2)?
+
+	
+	Node Representation and Child Calculation: 
+	Each node is represented as a two-digit number where the first digit correlates to the depth 
+	and the second digit corresponds to the position. To find children of a node 
+	at depth d and position p, 
+	
+	   we calculate the LEFT child as (d + 1) * 10 + (p * 2) - 1 
+	   and the RIGHT child as l + 1 (l means left). 
+	
+	The multiplication and addition here are based on the properties of a binary tree, 
+	where each level has twice as many nodes as the previous, and positions start on the 
+	leftmost side at 1 and increase to the right.
+
     
     Time: O(N)
     Space: O(N)
@@ -54,6 +66,15 @@ public class PathSumIV_666_Medium {
         int pos = root % 10; // node position at a level
         
         /*
+        To find children of a node at depth d and position p, 
+	
+	   	we calculate the LEFT child as (d + 1) * 10 + (p * 2) - 1 and 
+	   	the RIGHT child as l + 1 (l means left). 
+	
+		The multiplication and addition here are based on the properties of a binary tree, 
+		where each level has twice as many nodes as the previous, and positions start on the 
+		leftmost side at 1 and increase to the right.
+          
         Example Calculation: 
         for 215: 
             leftNode = (1+1) * 10 + 1 * 2 - 1 =>  20 + 2 - 1 => 21
