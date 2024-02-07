@@ -12,8 +12,10 @@ public class PathSumIV_666_Medium {
 	}
 
 	/* 
-	reference: 
+	Below solution reference: 
 		https://leetcode.com/problems/path-sum-iv/discuss/106892/Java-solution-Represent-tree-using-HashMap
+		
+	Other: https://algo.monster/liteproblems/666	
     
     
     Now each tree node is represented by a number. 1st digits is the level, 
