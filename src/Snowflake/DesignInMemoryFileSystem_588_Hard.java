@@ -26,6 +26,7 @@ class FileSystem {
         root = new FileNode("/");    
     }
     
+    // ls time complexity: O(m + n + log(k)) because of traverse()
     public List<String> ls(String path) {
         List<String> res = new ArrayList<>();
         FileNode node = traverse(path);
@@ -47,7 +48,7 @@ class FileSystem {
     public void addContentToFile(String filePath, String content) {
         FileNode node = traverse(filePath);
         node.isFile = true;
-        node.content.append(content);
+        node.content.append(content); // O(n)
     }
     
     public String readContentFromFile(String filePath) {
@@ -55,14 +56,15 @@ class FileSystem {
     }
     
     // traverse to end file/dir in the given path
+    // Time complexity: O(m + n + log(k))
     private FileNode traverse(String path) {
-        String[] arr = path.split("/");
+        String[] arr = path.split("/"); // O(n)
         FileNode curr = root;
         
         //start from index 1 as 0th element is ""
-        for(int i=1; i<arr.length; i++) {
-            curr.children.putIfAbsent(arr[i], new FileNode(arr[i]));
-            curr = curr.children.get(arr[i]);
+        for(int i=1; i<arr.length; i++) {	// O(m)
+            curr.children.putIfAbsent(arr[i], new FileNode(arr[i])); // O(log k)
+            curr = curr.children.get(arr[i]);	// O(log k)
         }
         return curr;
     }
@@ -76,7 +78,10 @@ class FileSystem {
         public FileNode(String name) {
             this.name = name;
             this.content = new StringBuilder();
-            children = new TreeMap<>(); // to maintain lexicographic order of files
+            
+            // to maintain lexicographic order of files and to 
+            // avoid sorting the list as insertion takes O(logN).
+            children = new TreeMap<>();
         }
     }
 }
