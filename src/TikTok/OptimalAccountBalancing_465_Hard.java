@@ -59,6 +59,11 @@ public class OptimalAccountBalancing_465_Hard {
         for(int i=k+1; i<list.size(); i++) {
             int next = list.get(i);
             
+            // If next is a valid recipient, do the following: 
+            // 1. add cur's balance to next.
+            // 2. recursively call dfs(k + 1, list).
+            // 3. remove cur's balance from list.
+            
             if(curr * next < 0) {
                 list.set(i, curr + next);
                 
