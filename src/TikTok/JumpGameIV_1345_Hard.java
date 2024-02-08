@@ -26,29 +26,29 @@ public class JumpGameIV_1345_Hard {
 	 * EVER-possible-for-this-question
 	 * 
 	 *
-	 * Algo: Use BFS. 1. Create Map of value (as key) and list of indexes as value.
-	 * 2. Now use BFS and initialize a Q with 0 index (starting point) 3. Initialize
-	 * a variable 'step=0' 4. Iterate Q (based on current Q size) 5. Poll from the Q
-	 * and for each polled index from Q a. jump to j-1 (should not be out of array
-	 * and exists in map) b. jump to j+1 and exists in map if this is the last
-	 * index, then return step as result
+	 * Algo: Use BFS. 
+	 * 1. Create Map of value (as key) and list of indexes as value.
+	 * 2. Now use BFS and initialize a Q with 0 index (starting point) 
+	 * 3. Initialize a variable 'step=0' 
+	 * 4. Iterate Q (based on current Q size) 
+	 * 5. Poll from the Q, and for each polled index from Q 
+	 * 		a. jump to j-1 (should not be out of array and exists in map) 
+	 * 		b. jump to j+1 and exists in map 
+	 * 			if this is the last index, then return step as result
 	 * 
-	 * c. Read the value from Input array and check if it exists in the map i.e. if
-	 * this elements hasn't been processed (because we'll be removing elements from
-	 * map after it has been processed) d. Use the value to get the value from Map,
-	 * this will return list of indexes where that value exists in the input array).
-	 * e. Iterate the list (returned in above step) i. if it's not current index and
-	 * it's the last index then return the step value as result. ii. i. if it's not
-	 * current index and it's NOT the last index then add in Q and continue. f.
-	 * Remove this value (as it's been processed) from the MAP. g. Finally return
-	 * the step.
+	 * 		c. Read the value from Input array and check if it exists in the map i.e. if
+	 * 		   this elements hasn't been processed 
+	 *         (because we'll be removing elements from map after it has been processed) 
+	 *      d. Use the value to get the value from Map, this will return list of indexes 
+	 *         where that value exists in the input array).
+	 * 		e. Iterate the list (returned in above step) 
+	 * 			i. if it's not current index and it's the last index then return the step value as result. 
+	 * 			ii. if it's not current index and it's NOT the last index then add in Q and continue. 
+	 * 		f. Remove this value (as it's been processed) from the MAP. 
+	 * 		g. Finally return the step.
 	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * Time complexity: O(N) since we will visit every node at most once. Space:
-	 * O(N)
+	 * Time complexity: O(N) since we will visit every node at most once. 
+	 * Space: O(N)
 	 */
 
 	public static int minJumps(int[] arr) {
