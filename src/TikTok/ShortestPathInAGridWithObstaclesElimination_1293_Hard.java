@@ -23,7 +23,19 @@ public class ShortestPathInAGridWithObstaclesElimination_1293_Hard {
     YouTube: https://www.youtube.com/watch?v=ywljsnzUS1w&ab_channel=CodingDecoded
     
     
-    Time and Space: O(MNK)
+    Time: O(N*K), We conduct a BFS traversal in the grid. In the worst case, 
+        we will visit each cell in the grid. And for each cell, at most, it will be 
+        visited K times, with different quotas of obstacle elimination.
+    
+    Space: O(N*K), 
+        -   We used a queue to maintain the order of visited states. 
+            In the worst case, the queue will contain the majority of the possible 
+            states that we need to visit, which in total is N*K as we discussed in 
+            the time complexity analysis.
+        
+        -   Other than the queue, we also used a set variable (named seen) to 
+             keep track of all the visited states along the way. Same as the 
+             queue, the space complexity of this set is also O(N⋅K).
     */
     // BFS
     public int shortestPath(int[][] grid, int k) {
