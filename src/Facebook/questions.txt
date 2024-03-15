@@ -1,0 +1,26 @@
+
+[for E5 : Source: https://leetcode.com/company/facebook/discuss/4788931/Meta-E5-coding-loop]
+
+	Phone Screen :
+	
+	https://leetcode.com/problems/find-peak-element/ (Instead of peak, find min)
+		Related:  https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
+		
+	https://leetcode.com/problems/merge-k-sorted-lists/description/ (Merge k sorted arrays)
+	
+	
+	1st Coding Round :
+	
+	https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/description/
+	https://leetcode.com/problems/nested-list-weight-sum/
+	
+	
+	2nd Coding Round :
+	
+	https://leetcode.com/problems/buildings-with-an-ocean-view/
+	https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/
+
+
+Look this (for E6): https://leetcode.com/company/facebook/discuss/4791262/Meta-E6-Phone-Screen
+	
+	https://leetcode.com/problems/range-sum-query-2d-immutable/description/
