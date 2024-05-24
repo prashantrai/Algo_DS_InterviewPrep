@@ -15,6 +15,13 @@ public class MergeIntervals_56_Medium {
 
 	}
 	
+	/* 
+    Time: O(nlogn), Other than the sort invocation, we do a simple linear scan of the list, so 
+    the runtime is dominated by the O(nlogn) complexity of sorting.
+    
+    space: O(nlogn), sorting takes O(nlogn) space
+    */
+	
 	public static int[][] merge(int[][] intervals) {
         
         if(intervals == null || intervals.length == 0) 
