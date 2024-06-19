@@ -20,6 +20,7 @@ public class MinimumRemoveToMakeValidParentheses_1249_Medium {
     
     public static String minRemoveToMakeValid(String s) {
         Set<Integer> indexToRemove = new HashSet<>();
+        
         // Stack<Integer> stack = new Stack<>(); // stack can be used too
         Deque<Integer> stack = new ArrayDeque<>();
         

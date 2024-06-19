@@ -50,8 +50,8 @@ public class ConvertBinarySearchTreeToSortedDoublyLinkedList_426_Medium {
 
 //		TreeNode head = convertBinarySearchTreeToSortedDoublyCicularLinkedList(tree);
 		TreeNode head = treeToDoublyList(tree);
-		printListForward(head);  
-		printListReverse(tail);
+		// printListForward(head);  
+		// printListReverse(tail);
 	}
 
 	/**

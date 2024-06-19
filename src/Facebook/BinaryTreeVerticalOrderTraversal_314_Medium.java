@@ -84,6 +84,11 @@ public class BinaryTreeVerticalOrderTraversal_314_Medium {
 	
 	/* Better solution for interview. This is BFS
 	 * 
+	 * Traverse the Tree (in BFS) and add to a HashMap where 
+	 * key will be level and value will be list of nodes at that level.
+	 * 
+	 * Keep track of max and min level to search the map and print the result. 
+	 * 
 	    Time: O(N), N is no of nodes, as we are using HashMap (not TreeMap) 
 	                which gives us O(1) insertion but we iterating 
 	                the to prepare result
