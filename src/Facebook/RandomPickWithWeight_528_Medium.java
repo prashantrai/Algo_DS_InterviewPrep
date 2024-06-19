@@ -30,7 +30,7 @@ public class RandomPickWithWeight_528_Medium {
 	 * 
 	 * https://leetcode.com/problems/random-pick-with-weight/discuss/154044/Java-accumulated-freq-sum-and-binary-search
 	 * 
-	 * Time: O(n) to init, O(logn) for one pick 
+	 * Time: O(n) to init/constructor, O(logn) for one pick 
 	 * Space: O(n)
 	 * 
 	 * Refer below for some more epxalination about the problem:
@@ -40,17 +40,24 @@ public class RandomPickWithWeight_528_Medium {
 	static class Solution {
 
 		Random random;
-		int[] wSums;
-
-		public Solution(int[] w) {
-			random = new Random();
-			
-			// prefix sum
-			for (int i = 1; i < w.length; i++) {
-				w[i] += w[i - 1];
-			}
-			wSums = w;
-		}
+	    int[] wSums; //prefixSum
+	    int totalSum;
+	    public Solution(int[] w) {
+	        wSums = new int[w.length];
+	        random = new Random();
+	        
+	        // prefix sum
+	        int prefixSum = 0;
+	        for(int i=0; i<w.length; i++) { 
+	            prefixSum += w[i]; 
+	            wSums[i] = prefixSum;
+	        }
+	        //for(int i=1; i<w.length; i++) { 
+	          //  w[i] += w[i-1];
+	        //}
+	        //wSums = w;
+	        totalSum = prefixSum;
+	    }
 
 		public int pickIndex() {
 			int len = wSums.length;
