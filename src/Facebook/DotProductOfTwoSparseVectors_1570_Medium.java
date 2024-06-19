@@ -101,7 +101,10 @@ public class DotProductOfTwoSparseVectors_1570_Medium {
 	    }
 	}
 
-/*  Follow - Up: If one vector is large/small and not sparse. 
+/*  
+ * Ref: https://leetcode.com/problems/dot-product-of-two-sparse-vectors/discuss/4147952/Java-two-pointer-and-Meta-follow-up
+ * 
+ * Follow - Up: If one vector is large/small and not sparse. 
     For the follow-up question, if the length of one sparse vector’s 
     non-zero element is much greater than the other one’s, we could use 
     binary search on the long sparse vector.
