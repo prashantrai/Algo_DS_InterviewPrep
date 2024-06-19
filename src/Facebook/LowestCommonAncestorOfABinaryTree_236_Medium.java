@@ -7,7 +7,14 @@ public class LowestCommonAncestorOfABinaryTree_236_Medium {
 
 	}
 
-	/*
+	/* How this problem is different from 
+	 * 1650 (https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/)?
+    
+     * Here TreeNode doesn't have parent pointer and that's why we starting from root
+     * and moving left and right.
+	 * 
+	 * 
+	 * 
 	 * https://www.youtube.com/watch?v=uKhLoNaG9LI 
 	 * 
 	 * Taken from one of the comment posted in article : https://leetcode.com/articles/lowest-common-ancestor-of-a-binary-tree/

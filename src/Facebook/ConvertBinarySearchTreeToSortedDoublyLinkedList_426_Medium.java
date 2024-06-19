@@ -48,29 +48,37 @@ public class ConvertBinarySearchTreeToSortedDoublyLinkedList_426_Medium {
 		tree.insertInOrder(13);
 		tree.insertInOrder(15);
 
-		TreeNode head = convertBinarySearchTreeToSortedDoublyCicularLinkedList(tree);
-		printListForward(head);
+//		TreeNode head = convertBinarySearchTreeToSortedDoublyCicularLinkedList(tree);
+		TreeNode head = treeToDoublyList(tree);
+		printListForward(head);  
 		printListReverse(tail);
 	}
 
+	/**
+	 * NOTE: Print methods printListForward and printListReverse has a bug they are going in infinite loop.
+	 * This happening because result is doubly linked list wher where head and tail are also connected.
+	 * They need to be fixed in order to print the list. Find the right break/exit point to break the print loop.
+	 * */
 	
-	/*
+	
+	/* Working - In Place Solution: 
+	 * 
 	 * Complexity Analysis: [Leetcode premium]
 	 * 
 	 * Time complexity : O(N) since each node is processed exactly once.
 	 * 
 	 * Space complexity : O(N). We have to keep a recursion stack of
-	 * the size of the tree height, which is O(logN) for the best
-	 * case of completely balanced tree and O(N) for the worst case of
-	 * completely unbalanced tree.
+	 * the size of the tree height, which is 
+     *       O(logN) for the BEST case of completely balanced tree and 
+     *       O(N) for the WORST case of completely unbalanced tree.
 	 * 
 	 */
 	
 	//https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/submissions/
 	
-	TreeNode _head;
-	TreeNode _tail;
-    public TreeNode treeToDoublyList(TreeNode root) {
+	static TreeNode _head;
+	static TreeNode _tail;
+    public static TreeNode treeToDoublyList(TreeNode root) {
         if(root == null) return null;
         
         helper(root);
@@ -82,25 +90,25 @@ public class ConvertBinarySearchTreeToSortedDoublyLinkedList_426_Medium {
         return _head;
     }
     
-    public void helper (TreeNode node) {
+    private static void helper (TreeNode node) {
         if(node == null) 
             return;
         
         helper(node.left);
         
-        if(head == null) {
-            head = node;
+        if(_head == null) {
+        	_head = node;
         } else {
-            node.left = tail;
-            tail.right = node;            
+            node.left = _tail;
+            _tail.right = node;            
         }
-        tail = node;
+        _tail = node;
         
         helper(node.right);
 
         //make it circular
-        head.left = tail;
-        tail.right = head;
+        _head.left = _tail;
+        _tail.right = _head;
     }
 	
 
