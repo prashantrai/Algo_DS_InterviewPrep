@@ -101,20 +101,21 @@ public class DotProductOfTwoSparseVectors_1570_Medium {
 	    }
 	}
 
-	// Follow - Up: If one vector is large/small and not sparse. 
+/*  Follow - Up: If one vector is large/small and not sparse. 
+    For the follow-up question, if the length of one sparse vector’s 
+    non-zero element is much greater than the other one’s, we could use 
+    binary search on the long sparse vector.
 	
-	/* Constructor:
-			Time Complexity: O(n)
-			Space Complexity: O(n) (worst case when all elements in the input array are non-zero. 
-									as it stores non-zero elements of the input array)
+	Constructor:
+			Time Complexity: O(n), length of input array, as we are iterating entire array
+			Space Complexity: O(n), in worst case when all elements in the input array are non-
+                                     zero as it stores non-zero elements of the input array.
 
 		dotProduct Method:
-
 			Time Complexity: O(L1⋅logL2), where L1 is the size of lst that we iterate 
 											and logL2 is binary search
 
 			Space Complexity: O(1) (constant space for variables and no additional data structures)
-
 
 	   This analysis assumes that L1 and L2 represent the number of non-zero elements 
 	   in the two sparse vectors being compared.
