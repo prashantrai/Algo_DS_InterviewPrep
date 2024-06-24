@@ -1,0 +1,14 @@
+Source: Glassdoor : Most efficient way to find product of array element except self?
+
+
+Throttling Gateway: (look in ChatGPT)
+
+ Question: https://leetcode.com/discuss/interview-question/1414185/throttling-gateway-in-rust
+ Solution: https://github.com/breezedu/HackerRank/blob/main/RealTests/ThrottlingGateway.java
+ 
+https://github.com/aqib1/HackCodeLeet/blob/master/NewBegining/src/src/ThrottlingGatewayProblem.java
+
+https://hackmd.io/@mizugakun/H1mA50BZY
+
+
+

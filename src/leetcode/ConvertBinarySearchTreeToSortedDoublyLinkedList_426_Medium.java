@@ -10,8 +10,6 @@ package leetcode;
  * */
 
 /**
- * Asked in Lyft interview
- * 
  * This is in-place conversion Complete Problem :
  * https://www.lintcode.com/problem/convert-binary-search-tree-to-sorted-doubly-linked-list/description
  * 
@@ -55,6 +53,59 @@ public class ConvertBinarySearchTreeToSortedDoublyLinkedList_426_Medium {
 		printListReverse(tail);
 	}
 
+	
+	/*
+	 * Complexity Analysis: [Leetcode premium]
+	 * 
+	 * Time complexity : O(N) since each node is processed exactly once.
+	 * 
+	 * Space complexity : O(N). We have to keep a recursion stack of
+	 * the size of the tree height, which is O(logN) for the best
+	 * case of completely balanced tree and O(N) for the worst case of
+	 * completely unbalanced tree.
+	 * 
+	 */
+	
+	//https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/submissions/
+	
+	TreeNode _head;
+	TreeNode _tail;
+    public TreeNode treeToDoublyList(TreeNode root) {
+        if(root == null) return null;
+        
+        helper(root);
+        
+        //make it circular //---moved this code to helper
+        //head.left = tail; 
+        //tail.right = head;
+            
+        return _head;
+    }
+    
+    public void helper (TreeNode node) {
+        if(node == null) 
+            return;
+        
+        helper(node.left);
+        
+        if(head == null) {
+            head = node;
+        } else {
+            node.left = tail;
+            tail.right = node;            
+        }
+        tail = node;
+        
+        helper(node.right);
+
+        //make it circular
+        head.left = tail;
+        tail.right = head;
+    }
+	
+
+    
+    /* Another approach */
 	private static TreeNode prev = null;
 	private static TreeNode head = null;
 	private static TreeNode tail = null;
@@ -113,55 +164,6 @@ public class ConvertBinarySearchTreeToSortedDoublyLinkedList_426_Medium {
 	}
 
 	
-	/* Another approach */
 	
-	/*
-	 * Complexity Analysis: [Leetcode premium]
-	 * 
-	 * Time complexity : O(N) since each node is processed exactly once.
-	 * 
-	 * Space complexity : O(N). We have to keep a recursion stack of
-	 * the size of the tree height, which is O(logN) for the best
-	 * case of completely balanced tree and O(N) for the worst case of
-	 * completely unbalanced tree.
-	 * 
-	 */
-	
-	//https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/submissions/
-	
-	TreeNode _head;
-	TreeNode _tail;
-    public TreeNode treeToDoublyList(TreeNode root) {
-        if(root == null) return null;
-        
-        helper(root);
-        
-        //make it circular //---moved this code to helper
-        //head.left = tail; 
-        //tail.right = head;
-            
-        return _head;
-    }
-    
-    public void helper (TreeNode node) {
-        if(node == null) 
-            return;
-        
-        helper(node.left);
-        
-        if(head == null) {
-            head = node;
-        } else {
-            node.left = tail;
-            tail.right = node;            
-        }
-        tail = node;
-        
-        helper(node.right);
-
-        //make it circular
-        head.left = tail;
-        tail.right = head;
-    }
 
 }

@@ -164,14 +164,129 @@ Look this (for E6): https://leetcode.com/company/facebook/discuss/4791262/Meta-E
 	https://leetcode.com/problems/range-sum-query-2d-immutable/description/
 
 
+
+March 2024 - E5 [https://leetcode.com/discuss/interview-question/4812666/Meta-Phone-and-Onsite]
+
+	Phone:
+	https://leetcode.com/problems/spiral-matrix/description/
+	https://leetcode.com/problems/robot-room-cleaner/description/
 	
+	Onsite:
+	Coding1:
+	https://leetcode.com/problems/valid-word-abbreviation/description/
+	https://leetcode.com/problems/basic-calculator-ii/description/
+	
+	Coding2:
+	https://leetcode.com/problems/binary-tree-vertical-order-traversal/description/
+	https://leetcode.com/problems/buildings-with-an-ocean-view/description/
+	
+	Behavioral: difficult work relationship, most proud project and challenges work on the project, constructive feedback received
+	
+	System design: job scheduler
+
+
+
+
 
 E4 Onsite: 
 https://leetcode.com/company/facebook/discuss/5286223/Meta-E4-Full-Loop-(Rejected) 	
 	
+
+*************** On-site Coding Questions ****************************
+
+	https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/description/
+	https://leetcode.com/problems/nested-list-weight-sum/
 	
-System Design::
-https://leetcode.com/discuss/interview-experience/4428743/Meta-Onsite-System-Design-Questions
+	https://leetcode.com/problems/buildings-with-an-ocean-view/
+	https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/
+	
+	>Similar to [Leetcode 398] https://leetcode.com/problems/random-pick-index/
+	>problem 2 not LC tagged, somewhat similar to valid palindrome 3
+		
+	
+	https://leetcode.com/problems/closest-binary-search-tree-value/
+	>similar to Random pick weight
+
+	https://leetcode.com/problems/range-sum-of-bst/description/
+	https://leetcode.com/problems/max-consecutive-ones-iii/description/
+	
+	https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+	https://leetcode.com/problems/find-median-from-data-stream/description/
+	
+	https://leetcode.com/problems/k-closest-points-to-origin
+	
+	https://leetcode.com/problems/powx-n/
+	https://leetcode.com/problems/word-break
+	
+	
+	https://leetcode.com/problems/kth-largest-element-in-an-array/description/
+		
+	> Given 2 array with costs between 2 cities(a -> b and b-> a), return the min round trip cost between 2 cities.
+			similar to https://leetcode.com/problems/two-city-scheduling/description/
+			
+	> Given a 2D metrix with 0 and 1, where 0 is open path and 1 is obstacle, find shortest path between top left point to bottom right point.
+			https://leetcode.com/problems/shortest-path-in-binary-matrix/description/
+			
+	
+	https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+		How this problem is diffrent from 1650 (https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/)?
+    	Here TreeNode doesn't have parent pointer
+	
+	https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/description/
+		
+
+
+	> coding 1:
+		q1: (sol: https://leetcode.com/company/facebook/discuss/5203188/MetaorOnsiteorE5/2422886)
+		given an array of positive numbers and N, return true if you can cut the array into N contiguous subarrays such that the sum of each subarray is equal.
+		example_1 = v = [1,2,3,6], N = 2 should return True since v1 = [1,2,3] v2 = [6]
+		example_2 = v = [1,2,3,6] N = 4 False
+		
+	https://leetcode.com/problems/random-pick-with-weight/description/
+
+	
+	> https://leetcode.com/problems/range-sum-of-bst/description/ 
+		(follow up: calculate average instead sum)
+	
+	> https://leetcode.com/problems/find-peak-element/description/
+		
+	
+	
+	https://leetcode.com/problems/valid-word-abbreviation/description/
+	https://leetcode.com/problems/basic-calculator-ii/description/
+
+	https://leetcode.com/problems/binary-tree-vertical-order-traversal/description/
+	https://leetcode.com/problems/buildings-with-an-ocean-view/description/
+	
+	https://leetcode.com/problems/spiral-matrix/description/  [Phone, but take a look]
+	https://leetcode.com/problems/robot-room-cleaner/description/  [Phone, but take a look]
+
+
+
+*************** System Design ****************************
+
+	Ticketmaster 
+	Whatsapp/Messenger
+	Dropbox/Google Drive
+	Facebook News Feed
+	Facebook Privacy Feature
+	Leetcode [Design a Code Judge Like LeetCode]
+	
+	Ad click Aggregator  [proritize]
+	Web crawler			 [proritize]
+	Top-K Youtube Videos [proritize]
+	
+	job scheduler
+
+For product there’s also
+	Instagram Auction
+	Design Internationalaization for FB
+	Uber
+
+
+For entire collection refer below link: 
+	https://leetcode.com/discuss/interview-experience/4428743/Meta-Onsite-System-Design-Questions 
+	
 
 - video streaming service. + extra requirement
 
@@ -180,6 +295,7 @@ https://leetcode.com/discuss/interview-experience/4428743/Meta-Onsite-System-Des
 - Design a File/Folder Sync app (like Drive and dropbox)
 
 - ad-click-aggregator: https://www.hellointerview.com/learn/system-design/answer-keys/ad-click-aggregator
+
 - Top-k Youtube Videos: https://www.hellointerview.com/learn/system-design/answer-keys/top-k
 
 -  Design a system which removes "bad" ad posts from instagram before they are visible to users
@@ -190,10 +306,25 @@ https://leetcode.com/discuss/interview-experience/4428743/Meta-Onsite-System-Des
 
 -  Design Privacy Settings at Facebook [2021]
 
+- Design backend system for latest trending hashtags from fb status.
+
+- https://systemdesign.one/leaderboard-system-design/#traffic
+
+- https://www.hellointerview.com/learn/system-design/answer-keys/ticketmaster
+
+- Design Instagram upload and feed service
+
+- Design Whatsapp
+		Requirements:
+			No need for group messaging
+			Design for multiple clients/devices
+			Handle connection drop and reconnect scenario
+			How the front-end data will look like to be consumed by the client 
 
 
 
 ***************  Behavioral Questions *************************** 
+
  - Talk about an accomplishment you're really proud of, how you drove it, and what was the impact
  - Talk about the time you had conflict in a project and how it was resolved
  

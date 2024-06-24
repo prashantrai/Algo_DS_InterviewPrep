@@ -39,6 +39,12 @@ public class IntervalListIntersections_986_Medium {
             }
             
             // Remove the interval with the smallest endpoint
+            // as it has been covered and move to the next index
+            // e.g. in ranges {0,2} and {1,5}, range {0,2} is shorter and covered 
+            // and the intersection has been added to the answer 
+            // now we'll increase the i value to find the next range 
+            // and check if that intersect with the current bigger range {1,5} 
+            // and if it does, add to the ans
             if(A[i][1] < B[j][1])
                 i++;
             else
