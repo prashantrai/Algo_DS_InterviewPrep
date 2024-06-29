@@ -1,4 +1,4 @@
-package leetcode;
+package Facebook;
 
 import java.util.Collections;
 import java.util.PriorityQueue;
@@ -23,17 +23,20 @@ import java.util.PriorityQueue;
  * */
 
 /*
- * Time: O(log N)
+ * Time: O(log N), 
+        - insertion and deletion from the heap takes O(log n).
+        - max there 3 offer() + 2 poll() = 5, 
+            that gives us O(5*logn) + O(1) for finding median
+        
+                 
  * Space: O(N)
  */
 
-public class MedianFinder_295_Hard {
-	PriorityQueue<Integer> maxHeap;// lower half
-	PriorityQueue<Integer> minHeap;// higher half
+public class FindMedianFromDataStream_295_Hard {
 	
 	public static void main(String[] args) {
 		
-		MedianFinder_295_Hard mf = new MedianFinder_295_Hard();
+		FindMedianFromDataStream_295_Hard mf = new FindMedianFromDataStream_295_Hard();
 		
 		int[] arr = {8,9,7,6,14,12,15,13,10,11};
 		
@@ -44,7 +47,11 @@ public class MedianFinder_295_Hard {
 		System.out.println(mf.findMedian());
 	}
 
-	public MedianFinder_295_Hard() {
+	
+	PriorityQueue<Integer> maxHeap;// lower half
+	PriorityQueue<Integer> minHeap;// higher half
+	
+	public FindMedianFromDataStream_295_Hard() {
 		maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
 		minHeap = new PriorityQueue<Integer>();
 	}

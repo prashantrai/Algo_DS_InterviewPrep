@@ -21,11 +21,11 @@ public class ValidPalindrome_II_680_Easy {
             i++;
             j--;
         } else {
-        	// now check call helper method after deleting/ignoring current left 
-            // char (i.e. start=1+1) OR current right (end = j-1) to check if the 
+        	// now check, by call helper method after deleting/ignoring current left 
+            // char (i.e. start=i+1) OR current right (end = j-1), if the 
             // rest of the string is palindrom or not (in either case), 
             // if yes, then return true 
-            // i.e. by delting one char input string will be a valid palindrom 
+            // i.e. by deleting one char input string will be a valid palindrom 
             return isPalindrome(s, i+1, j) || isPalindrome(s, i, j-1);
         }
        } return true;
