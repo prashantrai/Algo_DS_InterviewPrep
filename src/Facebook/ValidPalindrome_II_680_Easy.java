@@ -8,7 +8,13 @@ public class ValidPalindrome_II_680_Easy {
 
 	}
 	
-	/*
+	/* Question: Given a string s, return true if the s can be 
+	 * palindrome after deleting at most one character from it.
+
+		Example 1:
+			Input: s = "aba"
+			Output: true
+	 * 
     Time: O(N), because we are scanning all chars
     Space: O(1)
     */
@@ -21,7 +27,7 @@ public class ValidPalindrome_II_680_Easy {
             i++;
             j--;
         } else {
-        	// now check, by call helper method after deleting/ignoring current left 
+        	// now check, by calling helper method after deleting/ignoring current left 
             // char (i.e. start=i+1) OR current right (end = j-1), if the 
             // rest of the string is palindrom or not (in either case), 
             // if yes, then return true 

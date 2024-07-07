@@ -6,6 +6,22 @@ public class DiameterOfBinaryTree_543_Easy {
 		// TODO Auto-generated method stub
 
 	}
+	
+	/*
+	Time Complexity: O(N). 
+	This is because in our recursion 
+	function longestPath, we only enter and exit from each 
+	node once. We know this because each node is entered from 
+	its parent, and in a tree, nodes only have one parent.
+	
+	Space Complexity: O(N). 
+	The space complexity depends on 
+	the size of our implicit call stack during our DFS, 
+	which relates to the height of the tree. In the worst case, 
+	the tree is skewed so the height of the tree is O(N). 
+	If the tree is balanced, it'd be O(log N).
+	 */
+	
 
 	static int diameter;
     public static int diameterOfBinaryTree(TreeNode root) {
@@ -29,5 +45,22 @@ public class DiameterOfBinaryTree_543_Easy {
         
         return Math.max(leftPath, rightPath) + 1;
     }
+    
+    private static class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+		TreeNode() {}
+		TreeNode(int val) { this.val = val; }
+		TreeNode(int val, TreeNode left, TreeNode right) {
+			this.val = val;
+			this.left = left;
+			this.right = right;
+		}
+		@Override
+		public String toString() {
+			return "[" + val + ", " + left + ", " + right + "]";
+		}
+	}
 	
 }

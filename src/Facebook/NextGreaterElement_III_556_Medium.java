@@ -7,6 +7,21 @@ public class NextGreaterElement_III_556_Medium {
 	}
 	
 	/*
+	 
+	Question: Given a positive integer n, find the smallest 
+	integer which has exactly the same digits existing in 
+	the integer n and is greater in value than n. 
+	If no such positive integer exists, return -1.  
+	
+	Example 1:
+		Input: n = 12
+		Output: 21
+	
+	Example 2:
+		Input: n = 21
+		Output: -1
+	  
+	  
     Algo: 
     1. Convert the n to char array
     2. Iterate the array backward starting from end to 

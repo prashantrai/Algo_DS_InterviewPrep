@@ -114,7 +114,8 @@ Other Phone Screen Questions:
 
 		Round 2:
 		
-		Given a 2D metrix with 0 and 1, where 0 is open path and 1 is obstacle, find shortest path between top left point to bottom right point.
+		Given a 2D metrix with 0 and 1, where 0 is open path and 1 is obstacle, 
+		find shortest path between top left point to bottom right point.
 			https://leetcode.com/problems/shortest-path-in-binary-matrix/description/
 			
 			Binary tree with parent, given 2 nodes, find LCA.
@@ -207,7 +208,11 @@ E4 Onsite: [June 26, 2024] - London
 
 	Round 2 :
 	https://leetcode.com/problems/insert-into-a-sorted-circular-linked-list/description/
-	https://leetcode.com/problems/binary-tree-right-side-view/description/ - the variation of this problem , asked to return values from both sides with different ordering for each side.
+	
+	https://leetcode.com/problems/binary-tree-right-side-view/description/ 
+		- the variation of this problem, asked to return values from both sides 
+			with different ordering for each side.
+			solved this for both left and right side view (a possible variation). 
 
 	Round 4: System Design
 	Online Contest judge platform like leetcode, hackerrank, codeforces
@@ -231,7 +236,18 @@ E5 Onsite: [June 25, 2024]
 	Online judge like leetcode, hackerrank
 	
 	
+E5 Onsite: [https://leetcode.com/company/facebook/discuss/5405853/E5-Onsite-USA]
 
+	merge m sorted arrays
+	min add paranthesis
+	
+	meeting rooms
+	right side view of a tree
+	
+	sd: coding contest platform with thousands of contestants
+	
+	behavioral:
+	impactful projects, issue with cowerker, and other basic
 	
 
 *************** On-site Coding Questions ****************************
@@ -242,11 +258,42 @@ E5 Onsite: [June 25, 2024]
 	https://leetcode.com/problems/buildings-with-an-ocean-view/
 	https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/
 	
-	>Similar to [Leetcode 398] https://leetcode.com/problems/random-pick-index/
+*[do it again for variation]**>Similar to [Leetcode 398] https://leetcode.com/problems/random-pick-index/
+				-  It has a variation instead of finding target, 
+				   have to find random index of the maximum value of the array.
 	
-	>[** Revisit **] problem 2 not LC tagged, somewhat similar to valid palindrome 3
+>[** Revisit **] problem 2 not LC tagged, somewhat similar to valid palindrome 3
 			check Valid Palindrome III again  [https://leetcode.com/problems/valid-palindrome-iii/]
+				
+				
+	Valid palindrome II
 		
+	
+	[Onsite:7/5/2024:E5:https://leetcode.com/company/facebook/discuss/5424289/Meta-onsite-interview-E5 ]
+	
+		Round 1: 
+			LCA of Binary Tree 
+			Remove duplicates from sorted array
+		Round 2: 
+			Q1: https://leetcode.com/problems/valid-word-abbreviation/description/
+			Q2: https://leetcode.com/problems/shortest-distance-from-all-buildings/description/
+		
+	
+	> https://leetcode.com/problems/binary-tree-right-side-view/description/ 
+		- the variation of this problem , asked to return values 
+		from both sides with different ordering for each side.
+		  >Solved this for both left and right side view (a possible variation). 
+	
+	
+	> [Leetcode 1091] Given a 2D matrix with 0 and 1, where 0 is open path and 1 is obstacle, 
+	  find shortest path between top left point to bottom right point.
+			https://leetcode.com/problems/shortest-path-in-binary-matrix/description/
+			
+			https://leetcode.com/problems/shortest-path-in-binary-matrix/description/ 
+				=> Variation => asked the Path instead of distance.	
+	
+	
+	
 	
 	https://leetcode.com/problems/closest-binary-search-tree-value/
 	>similar to Random pick weight
@@ -259,17 +306,24 @@ E5 Onsite: [June 25, 2024]
 	
 	
 	https://leetcode.com/problems/find-median-from-data-stream/description/
-	https://leetcode.com/problems/k-closest-points-to-origin
+	
+	>[** Revisit **] https://leetcode.com/problems/k-closest-points-to-origin
+			- PQ solution is fine
+			- Quick Select solution - revisit
 	
 	https://leetcode.com/problems/powx-n/
+	
 	
 	
 	> Given 2 array with costs between 2 cities(a -> b and b-> a), return the min round trip cost between 2 cities.
 			similar to https://leetcode.com/problems/two-city-scheduling/description/
 			
-	> Given a 2D metrix with 0 and 1, where 0 is open path and 1 is obstacle, find shortest path between top left point to bottom right point.
+	> Given a 2D metrix with 0 and 1, where 0 is open path and 1 is obstacle, 
+	  find shortest path between top left point to bottom right point.
 			https://leetcode.com/problems/shortest-path-in-binary-matrix/description/
-	
+			
+			https://leetcode.com/problems/shortest-path-in-binary-matrix/description/ 
+				=> Variation => asked the Path instead of distance.	
 	
 	
 	
@@ -295,6 +349,7 @@ E5 Onsite: [June 25, 2024]
 		example_2 = v = [1,2,3,6] N = 4 False
 		
 	https://leetcode.com/problems/random-pick-with-weight/description/
+		=> variation, city & population combo was given.
 
 	
 	> https://leetcode.com/problems/range-sum-of-bst/description/ 
@@ -321,8 +376,17 @@ E5 Onsite: [June 25, 2024]
 	https://leetcode.com/problems/insert-into-a-sorted-circular-linked-list/description/
 	https://leetcode.com/problems/binary-tree-right-side-view/description/ - the variation of this problem , asked to return values from both sides with different ordering for each side.
 	
+	Round 1: 
+		merge K sorted arrays
+		min add paranthesis
 	
+	Round 2:
+		meeting rooms
+		right side view of a tree
 
+
+	*If you get time solve follow-ups for below (this wasn't asked recently based on leetcode discussion, didn't find in any post)
+	https://leetcode.com/problems/toeplitz-matrix/submissions/
 
 *************** System Design ****************************
 
@@ -393,6 +457,11 @@ For entire collection refer below link:
  - Design proximity server.
  - Design YouTube.
  	
+ - System Design of Facebook Watch party Feature. Functionalities Required are
+
+	1. People could join watch party at any time and leave any time
+	2. They could comment with other users
+	3. They could share videos from other platforms and others could watch
 
 
 ***************  Behavioral Questions *************************** 
@@ -411,4 +480,26 @@ For entire collection refer below link:
  - A time when you were misunderstood at work
  - A time you had a misunderstanding with your colleague
  - A time when you had to work on a project where the requirements were missing
+ 
+ -- recent
+Describe a time when you had to manage conflicting priorities.
+How do you handle receiving critical feedback?
+Give an example of a challenging project you led and how you managed it.
+Tell me about a time you had to work with a difficult team member.
+How do you ensure effective communication within your team?
+ 
+impactful projects, issue with co-worker 
+
+
+ Behavioral Interview Question Collection: 
+ 	https://leetcode.com/discuss/interview-question/462901/BehavioralLeadership-questions-for-interviews#:~:text=Give%20an%20example%20of%20how,you%20want%20to%20change%20jobs%3F
+ 	
+ 	https://leetcode.com/discuss/interview-question/1729926/a-guide-for-behavioral-round
+ 	
+ 	[With Questions and Sample Answers]
+ 	https://www.pathrise.com/guides/meta-interview-questions/
+ 	
+ 	
+ 	
+ 	
 

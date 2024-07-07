@@ -19,7 +19,16 @@ public class BinaryTreeRightSideView_199_Medium {
 		System.out.println("Expected: [1,3,4], Actual: " + rightSideView(root));
 	}
 
-	
+
+	/*
+    Time: O(N), since we need to visit each node
+   
+    Space: O(D), to keep the queues, where D is a tree diameter. 
+    Let's use the last level to estimate the queue size. This level 
+    could contain up to N/2 tree nodes in the case of complete binary tree.
+    */
+    
+    // BFS
 	public static List<Integer> rightSideView(TreeNode root) {
         List<Integer> rightSide = new ArrayList<>();
         
