@@ -25,12 +25,66 @@ public class WordBreak_139_Medium {
 		// BFS
 		s = "leetcode";
 		wordDict = Arrays.asList("leet","code");
-		System.out.println("BFS: Expected: true, Actual: " + wordBreak(s, wordDict));
+		System.out.println("BFS: Expected: true, Actual: " + wordBreakBFS(s, wordDict));
 		
 		// Using Dynamic Programming
 		System.out.println("DP: Expected: true, Actual: " + wordBreak_DP(s, wordDict));
 		
 	}
+	
+	/** Question: 
+		Given a string s and a dictionary of strings wordDict, 
+		return true if s can be segmented into a space-separated sequence 
+		of one or more dictionary words.
+		
+		Note that the same word in the dictionary may be reused 
+		multiple times in the segmentation.
+		
+		Example 1:
+		Input: s = "leetcode", wordDict = ["leet","code"]
+		Output: true
+		Explanation: Return true because "leetcode" can be segmented as "leet code".
+	 */
+	
+	/* Working - BFS
+	Time Complexity:O(m^3), where m is the length of the string s.
+		- while loop: O(m)
+		- Creating the substring s.substring(start, end) in Java takes 
+			O(end−start) time, and since the for loop iterates m times, 
+			this leads to a total of O(m^2) operations for each iteration 
+			of the while loop.
+			
+		Therefore, the overall time complexity is dominated by the nested 
+		loops, resulting in O(m^3) in the worst case.
+	
+	Space Complexity: O(n+m), where n is the number of words in 
+		wordDict and m is the length of the string s.
+     * */
+    // BFS
+    public static boolean wordBreakBFS(String s, List<String> wordDict) {
+        Set<String> wordDictSet = new HashSet<>(wordDict);
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[s.length()];
+        queue.add(0);
+        while (!queue.isEmpty()) {
+            int start = queue.remove();
+            if (visited[start]) {
+                continue;
+            }
+            for (int end = start + 1; end <= s.length(); end++) {
+                if (wordDictSet.contains(s.substring(start, end))) {
+                    queue.add(end);
+                    if (end == s.length()) {
+                        return true;
+                    }
+                }
+            }
+            visited[start] = true;
+        }
+        return false;
+    }
+	
+	
 	
 	/*  Time and space complexity is same for all the solutions/approaches	
 	 * 
@@ -68,31 +122,6 @@ public class WordBreak_139_Medium {
         return false;
     }
     
-    
-    // BFS
-    public static boolean wordBreakBFS(String s, List<String> wordDict) {
-        Set<String> wordDictSet = new HashSet<>(wordDict);
-        Queue<Integer> queue = new LinkedList<>();
-        boolean[] visited = new boolean[s.length()];
-        queue.add(0);
-        while (!queue.isEmpty()) {
-            int start = queue.remove();
-            if (visited[start]) {
-                continue;
-            }
-            for (int end = start + 1; end <= s.length(); end++) {
-                if (wordDictSet.contains(s.substring(start, end))) {
-                    queue.add(end);
-                    if (end == s.length()) {
-                        return true;
-                    }
-                }
-            }
-            visited[start] = true;
-        }
-        return false;
-    }
-
     
     // Using Dynamic Programming
     public static boolean wordBreak_DP(String s, List<String> wordDict) {
