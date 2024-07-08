@@ -385,6 +385,20 @@ E5 Onsite: [https://leetcode.com/company/facebook/discuss/5405853/E5-Onsite-USA]
 		right side view of a tree
 
 
+	Meta E4 MLE | Ju,27,2024 [https://leetcode.com/company/facebook/discuss/5381079/Meta-E4-MLE-or-2024]
+	Q1: valid number (easier version, no exponential values) https://leetcode.com/problems/valid-number/description/
+	Q2: clean robot variation (find cheese and instead of manual rotation, the robot can move in any direction) https://leetcode.com/problems/robot-room-cleaner/description/
+	
+	Coding R1:
+	Q1: Given a list of numbers (0-9) arrange the numbers in the second greatest number
+	Q2: Weighted pickup https://leetcode.com/problems/random-pick-with-weight/description/?envType=problem-list-v2&envId=maudz8d6
+	
+	Coding R2:
+	Q1: Arithmetic expressions Calculator (only + and *) https://leetcode.com/problems/basic-calculator-ii/description/
+	Q2: LCA https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/submissions/
+
+
+
 	*If you get time solve follow-ups for below (this wasn't asked recently based on leetcode discussion, didn't find in any post)
 	https://leetcode.com/problems/toeplitz-matrix/submissions/
 
@@ -466,17 +480,22 @@ For entire collection refer below link:
 
 ***************  Behavioral Questions *************************** 
 
+Refer Google Doc for answers: https://docs.google.com/document/d/1qekP_FYi-7cCgCpSzvaeV8p6H28ecCTXsga-tobVwBQ/edit
+
  - Talk about an accomplishment you're really proud of, how you drove it, and what was the impact
  - Talk about the time you had conflict in a project and how it was resolved
  
- -  A project that you’re proud of   [https://leetcode.com/company/facebook/discuss/5195125/Meta-or-Behavioral-Interview-or-May-2024]
-		What was the project trying to achieve?
-		How much resources you saved by implementing this?
-		What was the learning?
-		What were the challenges?
-		What was the result?
-		When you disagreed with your senior and ended up listening to him, i.e. going with his suggestion
-
+ - [https://leetcode.com/company/facebook/discuss/5195125/Meta-or-Behavioral-Interview-or-May-2024]
+	Tell me about a project that you’re proud of,
+		a. What was the project trying to achieve?
+		b. How much resources you saved by implementing this?
+		c. What was the learning?
+		d. What were the challenges?
+		e. What was the result?
+		
+	When you disagreed with your senior and ended up listening to him, 
+	i.e. going with his suggestion.
+	
  - A time when you were misunderstood at work
  - A time you had a misunderstanding with your colleague
  - A time when you had to work on a project where the requirements were missing
@@ -488,7 +507,9 @@ Give an example of a challenging project you led and how you managed it.
 Tell me about a time you had to work with a difficult team member.
 How do you ensure effective communication within your team?
  
-impactful projects, issue with co-worker 
+impactful projects 
+issue with co-worker
+Behavrioral feedback? 
 
 
  Behavioral Interview Question Collection: 
