@@ -27,11 +27,16 @@ public class MaxConsecutiveOnes_III_1004_Medium {
 		int i = 0;
 		int j;
 		for(j=0; j<nums.length; j++) {
+            // If we included a zero in the window we reduce the value of k.
+            // Since k is the maximum zeros allowed in a window.
 			if(nums[j] == 0) {
 				k--;
 			}
+            // A negative k denotes we have consumed all allowed 
+            // flips and window has more than allowed zeros, 
+            // thus increment left pointer by 1 to keep the window size same.
 			if(k<0) {
-				
+				// If the left element to be thrown out is zero we increase k.
 				if(nums[i] == 0) {
 					k++;
 				}

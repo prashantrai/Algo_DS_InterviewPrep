@@ -27,14 +27,34 @@ public class SubarraySumEqualsK_560_Medium {
 	 * A: Our target is: current sum - previous sum = k
 	 *      so sum - k = previous sum (which is stored in the map)
 	 * 
+	 * Q:Why map.put(0, 1)?
+	 * 
+	 * The algorithm uses a prefix sum approach where sum represents 
+	 * the cumulative sum of elements up to the current index.
+	 * 
+	 * The map (map) keeps track of how many times each prefix sum 
+	 * has been seen so far. For each element, the algorithm checks 
+	 * if (sum - k) exists in the map. If it does, it means there 
+	 * is a subarray ending at the current index which sums to k.
+	 * 
+	 * By adding map.put(0, 1) at the beginning, the algorithm accounts 
+	 * for cases where the subarray that sums to k starts from index 0.
+	 * 
+	 * Thus, map.put(0, 1) is essential for correctly initializing the 
+	 * map to handle cases where subarrays start from the beginning of the array.
+	 * 
 	 * Time and space: O(N)
 	 */
 
+	
 	public static int subarraySum(int[] nums, int k) {
         // here key=sum and value=freqOfSumWeSeen
         Map<Integer, Integer> map = new HashMap<>();
         int sum = 0;
         int count = 0;
+        
+        // By adding map.put(0, 1) at the beginning, the algorithm accounts 
+   	 	// for cases where the subarray that sums to k starts from index 0.
         map.put(0, 1);
         for(int num : nums) {
             sum += num;

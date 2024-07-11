@@ -3,7 +3,7 @@ package Lyft;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class RobotInAGrid {
+public class RobotInAGrid_63_Medium {
 
 	public static void main(String[] args) {
 
