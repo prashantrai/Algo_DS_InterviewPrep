@@ -85,7 +85,11 @@ public class GroupShiftedStrings_249_Medium {
         StringBuilder hashKey = new StringBuilder();
         
         for (int i = 1; i < chars.length; i++) {
+        	
             hashKey.append((char) ((chars[i] - chars[i - 1] + 26) % 26 + 'a'));
+
+            // works
+//          hashKey.append((char) ((chars[i] - chars[i - 1] + 26) % 26));
         }
         
         return hashKey.toString();
