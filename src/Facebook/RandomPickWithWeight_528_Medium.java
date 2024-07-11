@@ -61,7 +61,11 @@ public class RandomPickWithWeight_528_Medium {
 
 		public int pickIndex() {
 			int len = wSums.length;
-			int idx = random.nextInt(wSums[len - 1]) + 1;
+//			int idx = random.nextInt(wSums[len - 1]) + 1; // works
+
+			// ensures that the generated random number 
+	        // falls within the desired range [0, totalSum)
+	        double idx = this.totalSum * Math.random();
 
 			// search position - binary search
 			int left = 0, right = len - 1;

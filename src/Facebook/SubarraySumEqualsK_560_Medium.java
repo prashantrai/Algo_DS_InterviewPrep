@@ -21,6 +21,8 @@ public class SubarraySumEqualsK_560_Medium {
 	 * 	
 	 * Desc:  https://leetcode.com/problems/subarray-sum-equals-k/discuss/535507/Explanation-to-why-map.get(sum-k)-is-done-than-count%2B%2B
 	 * 
+	 * Video: to understand: https://www.youtube.com/watch?v=HbbYPQc-Oo4
+	 * 
 	 * Q: Why sum-k?
 	 * A: Our target is: current sum - previous sum = k
 	 *      so sum - k = previous sum (which is stored in the map)

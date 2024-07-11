@@ -397,10 +397,15 @@ E5 Onsite: [https://leetcode.com/company/facebook/discuss/5405853/E5-Onsite-USA]
 	Q1: Arithmetic expressions Calculator (only + and *) https://leetcode.com/problems/basic-calculator-ii/description/
 	Q2: LCA https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/submissions/
 
+	
+	Asked me during onsite: 
+	Add String: leetcode 415
 
 
 	*If you get time solve follow-ups for below (this wasn't asked recently based on leetcode discussion, didn't find in any post)
 	https://leetcode.com/problems/toeplitz-matrix/submissions/
+	
+	
 
 *************** System Design ****************************
 
