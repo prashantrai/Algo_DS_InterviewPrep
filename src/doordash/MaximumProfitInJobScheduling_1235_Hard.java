@@ -21,8 +21,65 @@ public class MaximumProfitInJobScheduling_1235_Hard {
 		int[] profit2 = {20,20,100,70,60};
 		
 		System.out.println("Expected: 150, Actual: " + jobScheduling(startTime2, endTime2, profit2));
+		
+		int[] startTime3 = {2, 3, 5, 7}; 
+		int[] endTime3 = {6, 5, 10, 11}; 
+		int[] profit3 = {5, 2, 4, 1};
+		
+		System.out.println("Expected: 6, Actual: " + jobScheduling(startTime3, endTime3, profit3));
 	}
 
+	// Simpler solution with PQ for Leetcode problem only, i.e. No follow-up.
+	/*
+    Time Complexity: O(nlogn), we itrate N jobs and push to Heap which takes O(logn) time
+    Space Complexity: O(n)
+    */
+    
+    private static class Job {
+        int start, end, profit;
+        Job(int start, int end, int profit) {
+            this.start = start;
+            this.end = end;
+            this.profit = profit;
+        }
+    }
+    
+    public static int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+        int n = startTime.length;
+        Job[] jobs = new Job[n];
+
+        // Create Job objects and sort by start time
+        for (int i = 0; i < n; i++) {
+            jobs[i] = new Job(startTime[i], endTime[i], profit[i]);
+        }
+        Arrays.sort(jobs, (a, b) -> a.start - b.start);
+        //Arrays.sort(jobs, (a, b) -> a.end - b.end); // works too
+
+        // Priority queue (min heap) to keep track of the maximum profit up to each job
+        PriorityQueue<int[]> minPQ = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+        int maxProfit = 0;
+        
+        for (Job job : jobs) {
+            // Remove jobs that end before the current job's start time
+            while (!minPQ.isEmpty() && (int) minPQ.peek()[0] <= job.start) {
+                maxProfit = Math.max(maxProfit, minPQ.poll()[1]);
+            }
+            minPQ.offer(new int[] {job.end, maxProfit + job.profit});
+        }
+
+        // Process remaining jobs in the priority queue
+        while (!minPQ.isEmpty()) {
+            maxProfit = Math.max(maxProfit, minPQ.poll()[1]);
+        }
+
+        return maxProfit;
+    }
+	
+    
+    
+    
+	
+	
 	/* 	Follow-up 1: Print the all jobs that led to max profit
         Follow-up 2: SCALE FOR N ORDERS. If the dasher is allowed to handle up to 
         			 N orders at the same time, what will be the max profit?
@@ -55,7 +112,7 @@ public class MaximumProfitInJobScheduling_1235_Hard {
 		5. 	After iterating over all the jobs, compare the profit of the remaining chains in the 
 			priority queue with the maxProfit. Return the value of maxProfit.
     */
-    public static int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+    public static int jobScheduling4(int[] startTime, int[] endTime, int[] profit) {
         List<List<Integer>> jobs = jobListByStartTime(startTime, endTime, profit);
         System.out.println("jobs: "+jobs);        
         return findMaxProfit(jobs);
@@ -85,10 +142,19 @@ public class MaximumProfitInJobScheduling_1235_Hard {
             while(!pq.isEmpty() && start >= pq.peek().get(0)) {
             	
             	// added for Follow-up 1: Print all jobs that led to max profit
-                if(pq.peek().get(1) > maxProfit) 
-                	jobsIdxLedToMaxProfits.add(pq.peek().get(2)); 
+//                if(pq.peek().get(1) > maxProfit) 
+//                	jobsIdxLedToMaxProfits.add(pq.peek().get(2)); 
+//            	
+//                maxProfit = Math.max(maxProfit, pq.peek().get(1));
             	
-                maxProfit = Math.max(maxProfit, pq.peek().get(1));
+            	// simplified version of above code
+                int currProfit = pq.peek().get(1);
+                
+                if(currProfit > maxProfit) {
+                	jobsIdxLedToMaxProfits.add(pq.peek().get(2));
+                	maxProfit = currProfit;
+                }
+            	
                 
                 // as we only need to keep track of maxProfit so once that's calculated 
                 // remove the entry from PQ

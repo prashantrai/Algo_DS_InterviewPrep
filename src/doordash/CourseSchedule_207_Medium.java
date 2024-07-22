@@ -39,6 +39,54 @@ public class CourseSchedule_207_Medium {
 	 * */
 	
 	
+	
+	// //This will work for Leecode 210 as well i.e. Course Schedule ii
+	// Time O(m+n)  
+	// Space: O(m+n)
+    public static boolean canFinish(int numCourses, int[][] prerequisites) {
+			
+		Queue<Integer> q = new ArrayDeque<>();
+		
+		List<Integer>[] graph = new List[numCourses];
+		//Arrays.fill(graph, new ArrayList<Integer>());
+		for(int i=0; i<numCourses; i++) {
+            graph[i] = new ArrayList<Integer>();
+        }
+		
+		int[] indegree = new int[numCourses];
+		
+		for(int[] prereq : prerequisites) {
+			int from = prereq[1];
+			int to = prereq[0];
+			graph[from].add(to);
+			indegree[to]++;
+		}
+		
+		for(int i=0; i<indegree.length; i++) {
+			if(indegree[i] == 0) {
+				q.offer(i);
+			}
+		}
+	
+		int count = 0;
+		//int[] order = new int[numCourses]; // this can be used for Leetcode 210 as well
+		
+		while(!q.isEmpty()) {
+			int course = q.poll();
+			//order[count++] = course; // only when you need course order propblem 210
+		    count++;	
+			for(int neighbour : graph[course]) {
+				indegree[neighbour]--;
+				if(indegree[neighbour] == 0) {
+					q.offer(neighbour);
+				}
+			}
+		}
+		
+		return count == numCourses;
+	}
+	
+	
 	/* https://leetcode.com/problems/course-schedule/
 	
 	 Refernce -refer comment evilcoder and subcomment rajatdada
@@ -48,7 +96,7 @@ public class CourseSchedule_207_Medium {
    *
    * BFS
    */
-	public static boolean canFinish(int numCourses, int[][] prerequisites) {
+	public static boolean canFinish2(int numCourses, int[][] prerequisites) {
       
       int[] indegree = new int[numCourses];
       Queue<Integer> q = new LinkedList<>();
@@ -90,13 +138,13 @@ public class CourseSchedule_207_Medium {
 	// Another approach - https://leetcode.com/problems/course-schedule/discuss/58532/5ms-DFS-beat-98-and-9ms-BFS-in-java 
     
     // Time O(V+E)
-    public static boolean canFinish2(int numCourses, int[][] prerequisites) {
+    public static boolean canFinish3(int numCourses, int[][] prerequisites) {
         
         int[] indegree = new int[numCourses];
         Queue<Integer> q = new LinkedList<>();
         List<List<Integer>> graph = new ArrayList<>();
         
-        // creating ajacecny list
+        // creating adjacency list
         for(int i=0; i<numCourses; i++) {
             graph.add(new ArrayList<Integer>());
         }
