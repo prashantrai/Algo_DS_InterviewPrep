@@ -14,6 +14,8 @@ public class ValidPalindrome_II_680_Easy {
 		Example 1:
 			Input: s = "aba"
 			Output: true
+			
+	Follow-Up: Given a string S consisting of lowercase English characters, determine if you can make it a palindrome by removing at most N characters.
 	 * 
     Time: O(N), because we are scanning all chars
     Space: O(1)
@@ -48,3 +50,51 @@ public class ValidPalindrome_II_680_Easy {
     }
 
 }
+
+
+
+
+
+/*Asked during onsite*/ 
+
+// Question 1: Given a string S consisting of lowercase English characters, determine if you can make it a palindrome by removing at most 1 character.
+
+// Question 1 Follow-Up: Given a string S consisting of lowercase English characters, determine if you can make it a palindrome by removing at most N characters.
+
+
+// tacocats --> True  # tacocats --> tacocat
+// racercar --> True  # racercar --> racecar, racrcar
+// kbayak --> True  # kbayak --> kayak 
+// acbccba --> True # acbccba --> abccba
+// abccbca --> True # abccbca --> abccba
+
+// abcd --> False
+// btnnure --> False
+/* 
+
+tacocats
+i=0;
+j= 7
+
+Time: O(N)
+Space: O(1)
+
+*/
+
+
+
+
+// Question 2: Before recess, the children of a classroom line up. Each child knows two pieces of information: 
+// 1. his or her own height and 
+// 2. the number of children in front of him/her who are taller. 
+// During recess, they scramble and loss this order and after recess, they must reconstruct the original order of the line. Design an algorithm to do so.
+
+// Original Line & Goal Line
+// Height:  [front]  155  160  145  150  170  165  140    [back]
+// No. Taller:         0    0    2    2    0    1    6
+
+// Example input:   [(145, 2), (170, 0), (140, 6), (165, 1), (150, 2), (155, 0), (160, 0)]
+
+// Expected output: [(155, 0), (160, 0), (145, 2), (150, 2), (170, 0), (165, 1), (140, 6)]
+
+// [(140, 6), (145, 2), (150, 2), (155, 0), (160, 0), (165, 1), (170, 0)]

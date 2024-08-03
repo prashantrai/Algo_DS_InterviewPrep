@@ -43,19 +43,30 @@ public class MergeKSortedLists_23_Hard {
 
 	Time complexity : O(Nlogk) where k is the number of linked lists.
 
-	The comparison cost will be reduced to O(logk) for every pop and insertion to priority queue. But finding the node with the smallest value just costs O(1) time.
+	The comparison cost will be reduced to O(logk) for every pop 
+	and insertion to priority queue. But finding the node with 
+	the smallest value just costs O(1) time.
+	
 	There are N nodes in the final linked list.
 
-	Space complexity :
+	Space complexity :  O(n)
 
 	O(n) Creating a new linked list costs O(n) space.
-	O(k) The code above present applies in-place method which cost O(1) space. And the priority queue (often implemented with heaps) costs O(k) space (it's far less than N in most situations).
+	
+	O(k) The code above present applies in-place method 
+	which cost O(1) space. And the priority queue 
+	(often implemented with heaps) costs O(k) 
+	space (it's far less than N in most situations).
 	*/
 	
 	 
 	public static ListNode mergeKLists(ListNode[] lists) {
 	    
 	    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+	    //or  PriorityQueue<ListNode> minHeap 
+	    //   = new PriorityQueue<ListNode>(lists.length, (a,b)-> a.val-b.val);
+	    
+	    
 	    for(ListNode list : lists) {
 	        while(list != null) {
 	            minHeap.add(list.val);

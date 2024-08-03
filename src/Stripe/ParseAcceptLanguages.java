@@ -119,14 +119,14 @@ public class ParseAcceptLanguages {
 			 * 
 			 */
 		
-		/*
+		
 		System.out.println("Expected: [fr-FR, fr-BG, fr-CA], Actual: " 
 					+ parse_accept_language_4("fr-FR;q=1, fr-CA;q=0, fr;q=0.5", 
 												new String[] {"fr-FR", "fr-CA", "fr-BG"}));
 		
 		assertEquals(Arrays.asList("fr-FR", "fr-BG", "fr-CA"), 
 				parse_accept_language_4("fr-FR;q=1, fr-CA;q=0, fr;q=0.5", new String[] {"fr-FR", "fr-CA", "fr-BG"}));
-		*/
+		
 		
 		//parse_accept_language("fr-FR;q=1, fr-CA;q=0, *;q=0.5", ["fr-FR", "fr-CA", "fr-BG", "en-US"])
 		//returns: ["fr-FR", "fr-BG", "en-US", "fr-CA"]
@@ -135,8 +135,8 @@ public class ParseAcceptLanguages {
 				+ parse_accept_language_4("fr-FR;q=1, fr-CA;q=0, *;q=0.5", 
 											new String[] {"fr-FR", "fr-CA", "fr-BG", "en-US"}));		
 				
-//		assertEquals(Arrays.asList("fr-FR;q=1, fr-CA;q=0, *;q=0.5"), 
-//				parse_accept_language_4("fr-FR;q=1, fr-CA;q=0, *;q=0.5", new String[] {"fr-FR", "fr-CA", "fr-BG", "en-US"}));
+		assertEquals(Arrays.asList("fr-FR;q=1, fr-CA;q=0, *;q=0.5"), 
+				parse_accept_language_4("fr-FR;q=1, fr-CA;q=0, *;q=0.5", new String[] {"fr-FR", "fr-CA", "fr-BG", "en-US"}));
 
 		
 		//parse_accept_language("fr-FR;q=1, fr-CA;q=0.8, *;q=0.5", ["fr-FR", "fr-CA", "fr-BG", "en-US"])

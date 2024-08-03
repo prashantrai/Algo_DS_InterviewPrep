@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import Confluent.FunctionLibrary_PhoneScreen_Leetcode_Discussion.Function;
+
 
 public class FunctionLibrary_With_Trie {
 
@@ -21,20 +23,32 @@ public class FunctionLibrary_With_Trie {
 		Function funF = new Function("FuncF", Arrays.asList("String"), false);
 		Function funG = new Function("FuncG", Arrays.asList("Integer"), false);
 		
-		Set<Function> functionSet = new HashSet<>(Arrays.asList(funA, funB, funC, funD, funE, funF, funG));
+		// For these output is not correct
+		Function funH = new Function("FuncH", Arrays.asList("String", "Integer", "Integer", "Integer"), true);
+		Function funI = new Function("FuncI", Arrays.asList("String", "Integer", "Integer"), false);
+		Function funJ = new Function("FuncJ", Arrays.asList("String", "Integer"), false);
+		
+		//Set<Function> functionSet = new HashSet<>(Arrays.asList(funA, funB, funC, funD, funE, funF, funG, funH, funI, funJ));
+		Set<Function> functionSet = new HashSet<>(Arrays.asList(funH, funI));
 		
 		FunctionLibrary fl = new FunctionLibrary();
 		fl.register(functionSet);
 		
+		/*
 		System.out.println("Expected: [FuncF], Actual: " + fl.findMatches(Arrays.asList("String")));
 		System.out.println("Expected: [FuncC, FuncG], Actual: " + fl.findMatches(Arrays.asList("Integer")));
 		System.out.println("Expected: [FuncC, FuncD], Actual: " + fl.findMatches(Arrays.asList("Integer", "Integer", "Integer", "Integer")));
-		
 		System.out.println("Expected: [FuncC, FuncD, FuncE], Actual: " + fl.findMatches(Arrays.asList("Integer", "Integer", "Integer")));
-
 		System.out.println("Expected: [FuncB], Actual: " + fl.findMatches(Arrays.asList("String", "Integer", "Integer", "Integer")));
-
 		System.out.println("Expected: [FuncA, FuncB], Actual: " + fl.findMatches(Arrays.asList("String", "Integer", "Integer")));
+		*/
+		// Test which are not working
+		System.out.println("Expected: [], Actual: " + fl.findMatches(Arrays.asList("String", "Integer")));
+		System.out.println("Expected: [FunH, FunI], Actual: " + fl.findMatches(Arrays.asList("String", "Integer", "Integer")));
+
+		System.out.println("Expected: [FunH], Actual: " 
+				+ fl.findMatches(Arrays.asList("String", "Integer", "Integer", "Integer", "Integer")));
+				
 		
 	}
 

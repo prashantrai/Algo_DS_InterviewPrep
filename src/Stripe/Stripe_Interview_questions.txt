@@ -1,5 +1,8 @@
 
-* Whats important is code refactoring and being quick in implementation
+Look at these links as well:
+	Behavior Ques: https://4dayweek.io/blog/stripe-interview-questions-with-sample-answers-2022
+	Quest: https://www.nodeflair.com/blog/stripe-software-engineer-interview-questions-and-process
+	
 
 Questoios: 
 
@@ -38,7 +41,7 @@ https://leetcode.com/discuss/interview-experience/1602122/stripe-infrastructure-
 ------[Apr 1, 2021]>build an "accept-language" parser with region/language/wildcard filtering
 
 >Given a string of accepted languages from a request header and an array of strings of languages supported 
-by server. 
+by server. Return list of languages that will work for request.
 
 Return list of languages that will work for request. 
 	3 parts: 
@@ -53,7 +56,327 @@ Return list of languages that will work for request.
 	   	
 >PART 3: Support wildcard matching to return the rest of the supported languages
 
+[Same as above - HTTP Header Parser]
+	build an "accept-language" parser with region/language/wildcard filtering
+	
+
+	Stage 1: Create a function that requests languages in string format and return an array of the 
+			 supported languages.
+	Stage 2: Support non-region specific requests. ie "en" returns ["en-US", "en-CA", "en-GB"]
+	Stage 3: Support wildcard matching to return the rest of the supported languages
+	
+	
+	// https://leetcode.com/discuss/interview-question/1126296/amazon-latest-hack-oa-experienced-sde
+	U will have enough time to solve these algorithms, but need to take edge cases.
+
+	Part 1
+	
+	In an HTTP request, the Accept-Language header describes the list of
+	languages that the requester would like content to be returned in. The header
+	takes the form of a comma-separated list of language tags. For example:
+	
+	Accept-Language: en-US, fr-CA, fr-FR
+	
+	means that the reader would accept:
+	
+	1. English as spoken in the United States (most preferred)
+	  2. French as spoken in Canada
+	  3. French as spoken in France (least preferred)
+	
+	We're writing a server that needs to return content in an acceptable language
+	for the requester, and we want to make use of this header. Our server doesn't
+	support every possible language that might be requested (yet!), but there is a
+	set of languages that we do support. Write a function that receives two arguments:
+	an Accept-Language header value as a string and a set of supported languages,
+	and returns the list of language tags that will work for the request. The
+	language tags should be returned in descending order of preference (the
+	same order as they appeared in the header).
+	
+	In addition to writing this function, you should use tests to demonstrate that it's
+	correct, either via an existing testing system or one you create.
+	
+	Examples:
+	
+	parse_accept_language(
+	  "en-US, fr-CA, fr-FR",  # the client's Accept-Language header, a string
+	  ["fr-FR", "en-US"]      # the server's supported languages, a set of strings
+	)
+	returns: ["en-US", "fr-FR"]
+	
+	parse_accept_language("fr-CA, fr-FR", ["en-US", "fr-FR"])
+	returns: ["fr-FR"]
+	
+	parse_accept_language("en-US", ["en-US", "fr-CA"])
+	returns: ["en-US"]
+	
+	Part 2
+	
+	Accept-Language headers will often also include a language tag that is not
+	region-specific - for example, a tag of "en" means "any variant of English". Extend
+	your function to support these language tags by letting them match all specific
+	variants of the language.
+	
+	Examples:
+	
+	parse_accept_language("en", ["en-US", "fr-CA", "fr-FR"])
+	returns: ["en-US"]
+	
+	parse_accept_language("fr", ["en-US", "fr-CA", "fr-FR"])
+	returns: ["fr-CA", "fr-FR"]
+	
+	parse_accept_language("fr-FR, fr", ["en-US", "fr-CA", "fr-FR"])
+	returns: ["fr-FR", "fr-CA"]
+	
+	Part 3
+	
+	Accept-Language headers will sometimes include a "wildcard" entry, represented
+	by an asterisk, which means "all other languages". Extend your function to
+	support the wildcard entry.
+	
+	Examples:
+	
+	parse_accept_language("en-US, *", ["en-US", "fr-CA", "fr-FR"])
+	returns: ["en-US", "fr-CA", "fr-FR"]
+	
+	parse_accept_language("fr-FR, fr, *", ["en-US", "fr-CA", "fr-FR"])
+	returns: ["fr-FR", "fr-CA", "en-US"]
+	
+	Part 4
+	
+	Accept-Language headers will sometimes include explicit numeric weights (known as
+	q-factors) for their entries, which are used to designate certain language tags
+	as specifically undesired. For example:
+	
+	Accept-Language: fr-FR;q=1, fr;q=0.5, fr-CA;q=0
+	
+	This means that the reader most prefers French as spoken in France, will take
+	any variant of French after that, but specifically wants French as spoken in
+	Canada only as a last resort. Extend your function to parse and respect q-factors.
+	
+	Examples:
+	
+	parse_accept_language("fr-FR;q=1, fr-CA;q=0, fr;q=0.5", ["fr-FR", "fr-CA", "fr-BG"])
+	returns: ["fr-FR", "fr-BG", "fr-CA"]
+	
+	parse_accept_language("fr-FR;q=1, fr-CA;q=0, *;q=0.5", ["fr-FR", "fr-CA", "fr-BG", "en-US"])
+	returns: ["fr-FR", "fr-BG", "en-US", "fr-CA"]
+	
+	parse_accept_language("fr-FR;q=1, fr-CA;q=0.8, *;q=0.5", ["fr-FR", "fr-CA", "fr-BG", "en-US"])
+	
+	
+	
+
+
+[http://www.glassdoor.com/Interview/Stripe-Interview-RVW25687347.htm] APR2019 - Dublin
+
+/**
+* # Step 1
+* Throughout this interview, we'll pretend we're building a new analytical
+* database. Don't worry about actually building a database though -- these will
+* all be toy problems.
+*
+* Here's how the database works: all records are represented as maps, with string
+* keys and integer values. The records are contained in an array, in no
+* particular order.
+*
+* To begin with, the database will support just one function: min_by_key. This
+* function scans the array of records and returns the record that has the minimum
+* value for a specified key. Records that do not contain the specified key are
+* considered to have value 0 for the key. Note that keys may map to negative values!
+*
+* Here's an example use case: each of your records contains data about a school
+* student. You can use min_by_key to answer questions such as "who is the youngest
+* student?" and "who is the student with the lowest grade-point average?"
+*
+* Implementation notes:
+* * You should handle an empty array of records in an idiomatic way in your
+* language of choice.
+* * If several records share the same minimum value for the chosen key, you
+* may return any of them.
+*
+
+
+/**
+* # Step 2
+* Our next step in database development is to add a new function. We'll call this
+* function first_by_key. It has much in common with min_by_key. first_by_key
+* takes three arguments:
+*
+* 1. a string key
+* 2. a string sort direction (which must be either "asc" or "desc")
+* 3. an array of records, just as in min_by_key.
+*
+* If the sort direction is "asc", then we should return the minimum record,
+* otherwise we should return the maximum record. As before, records without a
+* value for the key should be treated as having value 0.
+*
+* Once you have a working solution, you should re-implement min_by_key in terms
+* of first_by_key .
+*
+
+
+/**
+* # Step 3
+* As we build increasingly rich orderings for our records, we'll find it useful
+* to extract the comparison of records into a comparator. This is a function or
+* object (depending on your language) which determines if a record is
+* "less than", equal, or "greater than" another.
+*
+* In object-oriented languages, you should write a class whose constructor
+* accepts two parameters: a string key and a string direction. The class should
+* implement a method compare that takes as its parameters two records. This
+* method should return -1 if the first record comes before the second record
+* (according to key and direction), zero if neither record comes before the
+* other, or 1 if the first record comes after the second.
+*
+* In functional languages, you should write a function which accepts two
+* parameters: a string key and a string direction. The function should return
+* a function that takes as its parameters two records. This function should return
+* -1 if the first record comes before the second record (according to key and
+* direction), zero if neither record comes before the other, or 1 if the first
+* record comes after the second.
+*
+* You should then use your comparator in your implementation of first_by_key.
+
+
+[https://gist.github.com/stealthbomber10/d85d44776ad58ba66d84ff76fd5be736] 4 year ago
+
+
+
+
+
 
 
 -----
-ON-SITE: http://www.glassdoor.com/Interview/Stripe-Interview-RVW45619694.htm
+ON-SITE: 
+
+	[Look here but not necessary]
+	https://www.nodeflair.com/blog/stripe-software-engineer-interview-questions-and-process
+
+	System Design: 
+	It appears that the system design questions rarely repeat as they can vary vastly. Overall, 
+	there are a number of them that are based on financial systems and existing Stripe products.
+
+	Infrastructure for your own NPM package versioning system
+	*Simple ledger service that record all transactions in a reliable and durable fashion
+			- https://ata-husain.medium.com/distributed-ledger-platform-powering-modern-payment-applications-47647c33f141
+	*System to keep a running balance of payments for each vendor
+	*System to send out invoice notifications.
+			- Alex Xu [Vol 1]
+	*System to handle role-based access control - This question doesn't seems to be for back-end role but still look at DB design for this
+	*Distributed counter based service
+	System for delivering webhooks to customers
+	
+	*System to log metrics from a login system 
+			- [Alex Xu, vol 2]
+			- https://gongybable.medium.com/system-design-design-a-monitoring-system-f0f0cbafc895
+			- https://www.twosigma.com/articles/building-a-high-throughput-metrics-system-using-open-source-software/
+				- Good: Read comparison between Prometheus (with Grafana), Elastic Search (ELK  Stack) and SigNoz (for telemetry data i.e. (Logs, metrics, and traces))
+					https://signoz.io/blog/prometheus-vs-elasticsearch/#:~:text=Prometheus%20and%20the%20Elasticsearch%20stack,analyze%2C%20and%20visualize%20application%20logs.
+					
+			- 		 
+	
+	Toy NoSQL database
+	*API for tracking events in different clients
+	System that developers can use to run validity and correctness checks in production
+	
+	
+
+
+[May 2022]http://www.glassdoor.com/Interview/Stripe-Interview-RVW45619694.htm
+5 hour virtual onsite:
+- Easy coding round similar to technical screen
+- Bug squash: this was hard & I did the worst on it. Given a github repo with 4 issues, 
+  debug them so tests pass
+- Integration: given api endpoint that takes a JSON map of data and returns an image file. 
+  Parse a JSON file, transform & send data to API, save response as image file
+- System design: standard problem like other companies
+- Hiring manager: behavioral
+	
+
+[For BehaviorRound read this it has ques with sample answers]
+	https://4dayweek.io/blog/stripe-interview-questions-with-sample-answers-2022
+	https://www.projectpractical.com/stripe-interview-questions-and-answers/
+	
+
+[Glassdoor Nov2021]
+Given a String, split it into major parts separated by special char '/'. 
+For each major part that’s split by '/', we can further split it into minor parts separated by '.'.
+
+# ### Example 1
+# str = stripe.com/payments/checkout/customer.john.doe
+# minor_parts = 2
+
+# after Part 1 compression
+# =>
+# s4e.c1m/p6s/c6t/c6r.j2n.d1e
+
+# after Part 2 compression
+# =>
+# s4e.c1m/p6s/c6t/c6r.j5e
+
+
+# ### Example 2
+# Given:
+# str = www.api.stripe.com/checkout
+# minor_parts = 3
+
+# (after Part 1 compression)
+# =>
+# w1w.a1i.s4e.c1m/c6t
+
+# (then after Part 2 compression)
+# =>
+# w1w.a1i.s7m/c6t
+
+
+Integration Round
+They supply two JSON files containing request log of charges made on Stripe API. 
+You write a function to test them by replaying the request to a live API.
+
+Part 1 you compare the HTTP status code
+
+Part 2 you need to record and compare certain ID’s between requests. At first this seemed simple enough, 
+wrote the code to do this, it wasn’t working so start debugging. Interviewer doesn’t appear to know 
+what’s going on either. With 2 min left says something about the type of ID being different, as in 
+you get say a Customer ID vs Charge ID. This wasn’t mentioned in the problem description or in the 
+part 2 description.
+
+
+------
+
+[http://www.glassdoor.com/Interview/Stripe-Interview-RVW48764935.htm] - Jun2021 - Boston - Staff Eng
+	1. Design a system to handle role-based access control.
+	2. Build a system to send out invoice notifications.
+	3. Design a system to keep a running balance of payments for each vendor.
+
+
+----------
+	[Nov2019 -SF- SSE]
+	How would you design a system for logging metrics from a login system?
+	
+----------
+	[Sept2019] - in integratio round
+		Integration - Make REST API call and compare the response with a json file
+
+----------
+	[http://www.glassdoor.com/Interview/Stripe-Interview-RVW45619694.htm] - APR2021 - SE
+	1. Coding challenge, basically had to even out a series of account balances. Some balances were 
+	negative and some positive and had to generate a list of transfers that would make the balances equal to 100.
+		Approach: Looped over the balances and for each negative balance looped over the balances again and taking money from the first positive account and generating a transfer. Continued until all balances are even.
+	
+	2. design a system for delivering webhooks to customers.
+	3. Debugging, basically fix a series of broken tests in a templating library.
+
+----------
+	Just info: 
+	Integration round need you to understand HTTP Rest calls, parsing some Json and sending requests to some 
+	API server, I managed to get the code completed with some googling of new libs/apis.
+	
+	Bug Squash round need you to understand their code base and fix multiple bugs based on some test case failures.
+	I was able to fix partial of those, what I could tell was that some bugs tend to be easy but some could be 
+	difficult, especially when code was compact, lack of comments, or it touched some advanced componments of 
+	a coding language which you probably never/rarely used.
+
+	
+	

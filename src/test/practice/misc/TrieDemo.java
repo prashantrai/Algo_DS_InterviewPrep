@@ -146,7 +146,7 @@ class Trie {
 
 	private class TrieNode {
 		Map<Character, TrieNode> children;
-		boolean endOfWord;
+		boolean endOfWord;	
 		public TrieNode() {
 			children = new HashMap<Character, TrieNode>();
 			endOfWord = false;

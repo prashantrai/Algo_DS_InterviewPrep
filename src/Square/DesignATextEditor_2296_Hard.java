@@ -97,6 +97,7 @@ public class DesignATextEditor_2296_Hard {
 	        return getLeftString();
 	    }
 	    
+	    // Limiting to 10 char as per Leetcode problem
 	    private String getLeftString() {
 	        int count = 10;
 	        StringBuilder sb = new StringBuilder();
@@ -110,6 +111,40 @@ public class DesignATextEditor_2296_Hard {
 	        return sb.reverse().toString();
 	        // return sb.toString(); // use this with insert
 	    }
+	    
+	    
+	    /** Solution ends here but below are 2 different 
+	     * variations only for getLeftString()*/ 
+	    
+	    // Limiting to 10 char as per Leetcode problem
+	    // Can be used on interview
+	    // Working but causing TLE in leetcode
+	    private String getLeftString2() {
+            StringBuilder sb = new StringBuilder();
+            int count = 0;
+            for (char ch : left) {
+                if (count >= left.size() - 10) {
+                    sb.append(ch);
+                }
+                count++;
+            }
+            return sb.toString();
+        }
+	    
+	    /** without limiting to 10 characters  */
+        // Time: O(L) time, where L is the size of the leftStack. 
+	    // Space: O(L) space for the StringBuilder.
+	    
+	    // Note: One test is not passing but rest are
+	    // Failing for: Expected: etpractice, Actual: leetpractice
+	    private String getLeftString3() {
+	        StringBuilder sb = new StringBuilder();
+	        for (char ch : left) {
+	            sb.append(ch);
+	        }
+	        return sb.toString();
+	    }
+	    
 	}
-
+	
 }
