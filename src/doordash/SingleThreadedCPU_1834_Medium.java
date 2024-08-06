@@ -36,7 +36,8 @@ public class SingleThreadedCPU_1834_Medium {
             - Each heap operation lakes O(logN) and we are performing for 
                 N elements, i.e. O(N logN)
                 
-    Space: O(N), sortedTask array and min-heap
+    Space: O(N), sortedTask array will store all N tasks, 
+       and min-heap will also contain at most N tasks.
     */
     
     public static int[] getOrder(int[][] tasks) {

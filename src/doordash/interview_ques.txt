@@ -1,3 +1,32 @@
+List of questions: https://leetcode.com/company/doordash/discuss/1583430/Doordash-Questions-Consolidated
+
+
+[Source: https://leetcode.com/company/doordash/discuss/1583430/Doordash-Questions-Consolidated/2455372]
+ June 13, 2024 
+Thank you very much for consolidating this list. 
+I had my onsite with DoorDash today and got the 
+ Five Minute Intervals question [https://leetcode.com/discuss/interview-question/1553504/DoorDash-or-Phone-Interview-or-SFO-or-Senior-software-engineer]. 
+ 
+ After I implemented it, the interviewer asked for several additions:
+
+The end day is always greater than or equal to the start day. This means that we won't have a situation where we start on, say, Thursday and we finish on Monday. The interviewer asked me to check for this and throw an exception if this happened
+Write unit tests to test out the code fully
+The interviewer did not have unit tests prepared, so he wanted me to write some
+The interviewer wanted test cases on both properly formed inputs, badly formed inputs and edge cases
+The interviewer stressed the behaviour of providing improper day and time input into the function. He wanted me to walk through all possible ways the input strings can be malformed and to throw exceptions explaining what went wrong
+Pay special attention to pre-processing the input string to give you the correct information. My interviewer really stressed this and wanted me to include test coverage for this preprocessing.
+Changes required to make the interval variable - so instead of 5 minutes, specify 15 minutes
+Write unit tests for the interval variable changes
+One last point. The interviewer stressed that the output times should be multiples of the interval no matter what time you put in and ensure that the times provided make sense given the start and end times. For example, if the start time is 11:47 a.m., the first output should be 11:45 a.m. If the end time is 12:12 p.m., you must specify 12:10 p.m. as the last time, as 12:15 is an invalid time due to this exceeding the end time. Similarly, if the start time is 11:48 a.m., the interviewer asked me to round up to 11:50 a.m. - same for the end time.
+
+
+Five Min Intervals
+1. https://leetcode.com/discuss/interview-question/1553504/DoorDash-or-Phone-Interview-or-SFO-or-Senior-software-engineer
+2. https://leetcode.com/discuss/interview-question/1387937/Doordash-new-Q
+
+
+------------------------------------------------------------------------------------------------
+
 >08/2020
 https://leetcode.com/discuss/interview-question/793604/disheartening-experience-with-doordash-interview
 	https://leetcode.com/discuss/interview-question/392780/Doordash-or-Phone-Screen-or-Longest-path-duplicate-numbers-within-a-Matrix

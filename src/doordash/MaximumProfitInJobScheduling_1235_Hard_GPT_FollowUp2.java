@@ -5,26 +5,25 @@ import java.util.*;
 public class MaximumProfitInJobScheduling_1235_Hard_GPT_FollowUp2 {
 	
 	public static void main(String[] args) {
-        MaximumProfitInJobScheduling_1235_Hard_GPT_FollowUp2 solution = new MaximumProfitInJobScheduling_1235_Hard_GPT_FollowUp2();
-        
-        int N = 3;  // Number of simultaneous orders
-        
-        int[] startTime = {1, 2, 3, 3};
-        int[] endTime = {3, 4, 5, 6};
-        int[] profit = {50, 10, 40, 70};
+        int[] startTime1 = {1, 2, 3, 3};
+        int[] endTime1 = {3, 4, 5, 6};
+        int[] profit1 = {50, 10, 40, 70};
+        int N1 = 3; // Example concurrent orders limit
         System.out.println("Expected: 120, Actual: " 
-        		+ solution.jobScheduling(startTime, endTime, profit, N)); // Output: 120
-        
-        int[] startTime2 = {1,2,3, 4,6};
-		int[] endTime2 =   {3,5,10,6,9};
-		int[] profit2 = {20,20,100,70,60};
-		System.out.println("Expected: 150, Actual: " 
-				+ solution.jobScheduling(startTime2, endTime2, profit2, N)); // Output: 150
+        		+ jobScheduling(startTime1, endTime1, profit1, N1)); // Expected Output: 120
+
+        int[] startTime2 = {1, 2, 3, 4, 6};
+        int[] endTime2 = {3, 5, 10, 6, 9};
+        int[] profit2 = {20, 20, 100, 70, 60};
+        int N2 = 3; // Example concurrent orders limit
+        System.out.println("Expected: 150, Actual: " 
+        		+ jobScheduling(startTime2, endTime2, profit2, N2)); // Expected Output: 150
     }
+	
 	
 	//Follow-up 2  handle up to N orders concurrently and return the max profit
 	
-	public int jobScheduling(int[] startTime, int[] endTime, int[] profit, int N) {
+	public static int jobScheduling(int[] startTime, int[] endTime, int[] profit, int N) {
         int n = startTime.length;
         Job[] jobs = new Job[n];
         
@@ -36,33 +35,36 @@ public class MaximumProfitInJobScheduling_1235_Hard_GPT_FollowUp2 {
         // Sort jobs by their start time
         Arrays.sort(jobs, (a, b) -> a.start - b.start);
         
-        // Priority queue (min-heap) to keep track of ongoing jobs
+        // Priority queue (min-heap) to keep track of ongoing jobs and store max profit upto current job
         // job with the smallest end time is always at the head of the queue
-        PriorityQueue<Job> minPQ = new PriorityQueue<>((a, b) -> a.end - b.end);
+        PriorityQueue<int[]> minPQ = new PriorityQueue<>((a, b) -> a[0] - b[0]);
         int maxProfit = 0;
 
         for (Job job : jobs) {
             // Remove all jobs from the queue that have ended before the current job starts
-            while (!minPQ.isEmpty() && minPQ.peek().end <= job.start) {
-                minPQ.poll();
+        	while (!minPQ.isEmpty() && minPQ.peek()[0] <= job.start) { // minPQ.peek()[0] is end time
+                maxProfit = Math.max(maxProfit, minPQ.poll()[1]);
+//                maxProfit += Math.max(maxProfit, minPQ.poll()[1]);
             }
 
             // Add current job to the priority queue
-            minPQ.add(job);
+            minPQ.offer(new int[]{job.end, maxProfit + job.profit});
+//            minPQ.offer(new int[]{job.end, job.profit});
 
-            // If we have more than N jobs in the queue, remove the job with the smallest end time
+            // Maintain up to N concurrent jobs in the priority queue
+            // If we have more than N jobs in the queue, remove the 
+            // job with the smallest end time
             if (minPQ.size() > N) {
                 minPQ.poll();
             }
-
-            // Calculate the current total profit
-            int currentProfit = 0;
-            for (Job j : minPQ) {
-                currentProfit += j.profit;
-            }
-            maxProfit = Math.max(maxProfit, currentProfit);
         }
 
+        // Process remaining jobs in the priority queue
+        while (!minPQ.isEmpty()) {
+        	maxProfit = Math.max(maxProfit, minPQ.poll()[1]);
+//        	maxProfit += minPQ.poll()[1];
+        }
+        
         return maxProfit;
     }
 

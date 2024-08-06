@@ -33,8 +33,12 @@ public class BinaryTreeMaximumPathSum_124_Hard {
 				add to the current path : node.val + max(left_gain, right_gain).
 	 
 	 
-    Time: O(N)
-    Space: O(H), where H is tree height
+    Time: O(N), Each node in the tree is visited only once. During a visit, 
+    	we perform constant time operations, including two recursive calls and 
+    	calculating the max path sum for the current node. So the time complexity is O(n).	
+    
+    Space: O(H), where H is tree height, recursive call stack can go 
+    	as deep as the tree's height.
     */
 	public static int maxPathSum(TreeNode root) {
         maxGain(root);
@@ -54,6 +58,7 @@ public class BinaryTreeMaximumPathSum_124_Hard {
         
         int currSum = root.val + leftSum + rightSum;
         
+        // FOLLOW-UP:: print the max path
         // To print the max path and wasn't a part of requirement but could 
         // be a follow-up question in interview
         if(maxSum < currSum && root != null) {

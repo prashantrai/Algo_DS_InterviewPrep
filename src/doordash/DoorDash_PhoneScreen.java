@@ -121,7 +121,8 @@ public class DoorDash_PhoneScreen {
 
 // Given: start_time, end_time, duration, meetings_list -> suggested_meeting_times
 
-// Let's assume we abstract the representation of times as simple integers, so a valid time is any valid integer supported by your environment. Here is an example input:
+// Let's assume we abstract the representation of times as simple integers, so a valid time 
+ * is any valid integer supported by your environment. Here is an example input:
 
 // meetings_list: [3,20], [-2, 0], [0,2], [16,17], [19,23], [30,40], [27, 33]
 // start_time: -5
@@ -130,5 +131,7 @@ public class DoorDash_PhoneScreen {
 
 // expected answer:
 // free_time: [-5, -2], [23,27]
-// Feel free to represent the meetings however you would like, i.e. List of Lists, Lists of Objects etc. 
+
+// Feel free to represent the meetings however you would like, i.e. List of Lists, 
+ * Lists of Objects etc. 
  * */

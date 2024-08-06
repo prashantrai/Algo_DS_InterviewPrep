@@ -40,86 +40,81 @@ public class BasicCalculatorIII_772_Hard {
 		//s = "2*(5-5*2)/3"; // = 10
 		//s = "(1+(4+5+2)-3)+(6+8)"; // = 23
 		s = "1+(4+5+2)-3"; // = 23
-		//res = calculate_3(s);  //--wroking
-		res = calculate_4(s);  //--wroking
-		System.out.println(">>"+res);
+//		res = calculate_3(s);  //--wroking
+//		System.out.println(">>"+res);
 
 
 	}
 	
-	//--https://leetcode.com/problems/basic-calculator-iii/discuss/202979/A-generic-solution-for-Basic-Calculator-I-II-III
 	
-	//from article - Working for lmited case only i.e. this problem as it doesn't take carre of '*' and '/'
-	//--https://leetcode.com/articles/basic-calculator/
-	public static int calculate_4(String s) {
+	//--See this: 
+	//https://leetcode.com/problems/basic-calculator-iii/discuss/202979/A-generic-solution-for-Basic-Calculator-I-II-III
 
-        Stack<Integer> stack = new Stack<Integer>();
-        int operand = 0;
-        int result = 0; // For the on-going result
-        int sign = 1;  // 1 means positive, -1 means negative
+	//--Working
+	// --https://leetcode.com/problems/basic-calculator-iii/discuss/152092/O(n)-Java-Recursive-Simple-Solution
+	
+	/* recursive
 
-        for (int i = 0; i < s.length(); i++) {
+    Time: O(n)
+    Space: O(n)
+	*/
+	public static int calculate(String s) {
+		Queue<Character> tokens = new ArrayDeque<Character>();
 
-            char ch = s.charAt(i);
-            if (Character.isDigit(ch)) {
+		for (char c : s.toCharArray()) {
+			if (c != ' ')
+				tokens.offer(c);
+		}
 
-                // Forming operand, since it could be more than one digit
-                operand = 10 * operand + (int) (ch - '0');
+		tokens.offer('+');
+		return calculate(tokens);
+	}
 
-            } else if (ch == '+') {
+	private static int calculate(Queue<Character> tokens) {
 
-                // Evaluate the expression to the left,
-                // with result, sign, operand
-                result += sign * operand;
+		char preOp = '+';
+		int num = 0, sum = 0, prev = 0;
 
-                // Save the recently encountered '+' sign
-                sign = 1;
+		while (!tokens.isEmpty()) {
+			char c = tokens.poll();
 
-                // Reset operand
-                operand = 0;
+			if ('0' <= c && c <= '9') {
+				num = num * 10 + c - '0';
+			} else if (c == '(') {
+				num = calculate(tokens);
+			} else {
+				switch (preOp) {
+					case '+':
+						sum += prev;
+						prev = num;
+						break;
+					case '-':
+						sum += prev;
+						prev = -num;
+						break;
+					case '*':
+						prev *= num;
+						break;
+					case '/':
+						prev /= num;
+						break;
+				}
 
-            } else if (ch == '-') {
+				if (c == ')')
+					break;
 
-                result += sign * operand;
-                sign = -1;
-                operand = 0;
+				preOp = c;
+				num = 0;
+			}
+		}
 
-            } else if (ch == '(') {
-
-                // Push the result and sign on to the stack, for later
-                // We push the result first, then sign
-                stack.push(result);
-                stack.push(sign);
-
-                // Reset operand and result, as if new evaluation begins for the new sub-expression
-                sign = 1;
-                result = 0;
-
-            } else if (ch == ')') {
-
-                // Evaluate the expression to the left
-                // with result, sign and operand
-                result += sign * operand;
-
-                // ')' marks end of expression within a set of parenthesis
-                // Its result is multiplied with sign on top of stack
-                // as stack.pop() is the sign before the parenthesis
-                result *= stack.pop();
-
-                // Then add to the next operand on the top.
-                // as stack.pop() is the result calculated before this parenthesis
-                // (operand on stack) + (sign on stack * (result from parenthesis))
-                result += stack.pop();
-
-                // Reset the operand
-                operand = 0;
-            }
-        }
-        return result + (sign * operand);
-    }
+		return sum + prev;
+	}
 	
 	
 	
+	
+	// Another Approach:: Working solution
 	static Map<Character, Integer> precedence;
     
     public static int calculate_3(String s) {
@@ -204,65 +199,6 @@ public class BasicCalculatorIII_772_Hard {
         return Integer.MIN_VALUE;
     }	
 	
-	
-	//--See this: 
-	//https://leetcode.com/problems/basic-calculator-iii/discuss/202979/A-generic-solution-for-Basic-Calculator-I-II-III
-
-	//--Working
-	// --https://leetcode.com/problems/basic-calculator-iii/discuss/152092/O(n)-Java-Recursive-Simple-Solution
-	// recursive
-	public static int calculate(String s) {
-		Queue<Character> tokens = new ArrayDeque<Character>();
-
-		for (char c : s.toCharArray()) {
-			if (c != ' ')
-				tokens.offer(c);
-		}
-
-		tokens.offer('+');
-		return calculate(tokens);
-	}
-
-	private static int calculate(Queue<Character> tokens) {
-
-		char preOp = '+';
-		int num = 0, sum = 0, prev = 0;
-
-		while (!tokens.isEmpty()) {
-			char c = tokens.poll();
-
-			if ('0' <= c && c <= '9') {
-				num = num * 10 + c - '0';
-			} else if (c == '(') {
-				num = calculate(tokens);
-			} else {
-				switch (preOp) {
-				case '+':
-					sum += prev;
-					prev = num;
-					break;
-				case '-':
-					sum += prev;
-					prev = -num;
-					break;
-				case '*':
-					prev *= num;
-					break;
-				case '/':
-					prev /= num;
-					break;
-				}
-
-				if (c == ')')
-					break;
-
-				preOp = c;
-				num = 0;
-			}
-		}
-
-		return sum + prev;
-	}
 
 	//--Working
 	// --https://leetcode.com/problems/basic-calculator-iii/discuss/113592/Development-of-a-generic-solution-for-the-series-of-the-calculator-problems

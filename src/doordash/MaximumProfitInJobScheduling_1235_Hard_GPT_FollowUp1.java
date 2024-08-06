@@ -33,7 +33,7 @@ public class MaximumProfitInJobScheduling_1235_Hard_GPT_FollowUp1 {
 	
 	
 	// Another approach: Using JobState class instead of Object[]
-    // JobState is used for Follow-up: 1 wheren we need to print the list of all jobs led to max profit
+    // JobState is used for Follow-up: 1 where we need to print the list of all jobs led to max profit
     public int jobScheduling2(int[] startTime, int[] endTime, int[] profit) { // Follow-up 3: Added N parameter
     	int n = startTime.length;
         Job[] jobs = new Job[n];
@@ -53,9 +53,10 @@ public class MaximumProfitInJobScheduling_1235_Hard_GPT_FollowUp1 {
         List<Job> maxProfitJobs = new ArrayList<>();  // Follow-up 1: Track jobs leading to max profit
 
         for (Job job : jobs) {
-            // Remove jobs that end before the current job's start time
+        	// Remove jobs that end before the current job's start time
             while (!pq.isEmpty() && (int) pq.peek().end <= job.start) {
             	JobState state = pq.poll();
+            	
                 if (state.profit > maxProfit) {  // Follow-up 1: Update max profit and job list
                     maxProfit = (int) state.profit;
                     maxProfitJobs = new ArrayList<>((List<Job>) state.jobList);
