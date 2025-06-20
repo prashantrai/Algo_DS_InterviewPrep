@@ -1,0 +1,16 @@
+We have data on how our servicing team members reach out to homeowners for resolving escalations, 
+but we’ve found that how we schedule calls is not optimal. 
+
+We can schedule homeowner calls between the hours of 7am and 6pm, and we want to space out the time 
+between the calls within a single day as much as possible for a single servicing team member to give 
+them breaks between calls. We want the time between calls to be as equally spaced out as possible. 
+If there are multiple options of equally spaced out calls, we want to schedule the longer calls 
+and longer breaks towards the beginning of the day. 
+
+Given a list of tuples (day of week, call duration in hours) of calls, implement a method to print 
+out the most optimal call schedule. To simplify things, you can assume that calls must start at the 
+beginning of an hour, and they last in increments of an hour.
+
+
+
+

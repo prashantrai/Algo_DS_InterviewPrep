@@ -1,0 +1,201 @@
+
+Currency conversion/excahge [Related problem: https://leetcode.com/problems/evaluate-division/]
+	- https://leetcode.com/discuss/interview-question/483660/google-phone-currency-conversion
+	
+
+[https://leetcode.com/company/uber/discuss/5048667/Uber-L5a-interview-question] - onsite
+	[looks like hungarian algorithm. Similar problem : https://leetcode.com/problems/maximum-number-of-accepted-invitations/description/]
+
+	As a theater booking system with N seats (1...N), You made a mistake while assigning tickets. And it ended up assigning 2 tickets to everyone instead of 1.
+	
+	M (where M < N) people who tried to book the ticket in your theater got 2 tickets instead of 1.
+	so basically all the people who wants to watch the show ends up with two tickets.
+	
+	- To solve this mistake you decided to be smart and figure out if it's possible to cancel just 1 tickets instead of re assigning tickets to everyone?
+	- If it's possible to just cancel one ticket which ticket you will cancel? (return list which represent cancelled ticket for ith person at ith index )
+	
+	Example:
+	
+	N: 5
+	bookings : (6,2) (1,2) (1,6) (2,3) (3,4) (5,2)
+	(1,2) (1,2) (2,1) (3,4) (5,7) -> no
+	
+	answer:
+	 Yes,
+	 cancel (1,2,2,3,2)
+
+
+[ https://leetcode.com/company/uber/discuss/5026730/UBER-or-Senior-Software-Engineer-or-Phone-Screen ]
+	Build a reservation system for a predefined set of conference rooms given as a list of 
+	room Ids [‘roomA’, roomB’...].
+	It should have a method like scheduleMeeting(startTime, endTime) should return a reservation 
+	identifier (including roomId) and reserve it or an error if no rooms are available.
+
+	- Assume there are 100 rooms, later can talk about scaling to N
+	- Assume any number of meetings can be scheduled on any conference room
+
+
+[ https://leetcode.com/company/uber/discuss/5002679/Uber-or-Onsite-DSA-or-Ad-hoc-meeting-scheduler ]
+	similar problems: 
+		https://leetcode.com/problems/meeting-rooms-iii/description/
+		https://leetcode.com/discuss/interview-question/490962/Design-Meeting-Scheduler
+		
+	
+	
+	Implement a system that can schedule meetings in a predefined set of k conference rooms (numbered 1 to k).
+
+	We have a method int scheduleMeeting(startTime, endTime) which returns any available room (out of k rooms) during the time range and reserves it. If none is available, return 0.
+	
+	Example:
+	3 rooms
+	scheduleMeeting called with the below params (with expected output):
+	
+	(5,7) -> 1
+	(7,9) -> 1
+	(8,12) -> 2
+	(10,11) -> 1
+	(10,11) -> 3
+	(13,14) ->1
+	(11,12) -> 1
+	(10,15) -> 0 (No room available)
+	(14,16) -> 1
+	A few points to keep in mind. These are obvious, but still mentioning just in case:
+	
+	The scheduling calls won't come in increasing order of time (as can already be seen in the example above)
+	You won't have access to future scheduling calls at the time of scheduling the present call. You need to schedule things on a first-come-first-served basis.
+	Intervals are open at the end. So, (5,7), (7,9) can be scheduled in the same room, for instance.
+	As mentioned already in the requirement above, we can return any available room (not necessarily the least numbered one).
+
+
+
+[ https://leetcode.com/company/uber/discuss/5156756/Uber-Onsite ]
+	Given two cells, source(x1,y1) and destination(x2, y2) in an infinite grid.
+	Find the total no of paths with minimum no of steps between source and destination. 
+	(You can go only 4 directions at each cell).
+
+
+
+[https://leetcode.com/company/uber/discuss/5817816/Frog-DSA-round-question]
+	Given a frog with limited energy capacity standing on a source node. 
+	Initially, it has full energy. Moving from one node to another result in 
+	a reduction in energy by 1 and an increase in time by 1. There are energy 
+	drinks present at some nodes that it can make use of to increase energy. 
+	If its energy reduces to 0, it dies. Find the minimum time taken by the 
+	frog to reach the destination node. If it is impossible return -1.
+
+
+
+
+
+
+
+###### On-Site ###### 
+
+[https://leetcode.com/company/uber/discuss/5815294/Uber-SDE2-Onsite] - Bangaluru
+	You need to find the distances of the blockers ("X") from each robot ("O") in the grid, 
+	and then match the distances with the given list [2, 2, 4, 1][up,down,left,right]. 
+	The robot whose distances match the given list should be the output.
+	
+	Board(for example):
+	["O","E","E","X"
+	"X", "X","O","E"
+	"E", "X","O", "X"]
+
+
+[ https://leetcode.com/company/uber/discuss/5795502/Uber-or-L5a-or-NY-or-Accepted ]
+	Round 1 - Phone Screen round
+		variation of https://leetcode.com/problems/walls-and-gates/description/
+		(a number of comuters on a nxm grid are infected with a virus that is spreading at every direction (u,d,l,r) every hour, return how long until all are infected)
+	
+	Round 2 - onsite
+	
+		Collaboration & Leadership, Design & Architecture -
+		First 20 minutes was to give detail about a project I led focusing on design and architecture.
+		The second half was "Tell me a time when... " style questions
+		
+		Algorithms & Data Structures (Coding 1) -
+		Given a list of meeting room IDs, implement an efficient way to schedule 
+		a meeting given a start and finish time. return the room ID if there is 
+		an available room, or INVALID if there are no rooms available.
+		Example:
+		
+		init([RoomA, RoomB, RoomC])
+		book([2,4]) // returns a room (e.g. RoomA)
+		book([2,4]) // returns a room different than previous room (e.g. RoomB)
+		book([5,6]) // returns any room
+		book([1,5]) // // returns a room different than 2 previously booked (e.g. RoomC)
+		book([2,4]) // // returns INVALID because all are booked in the given slot
+		
+		follow up questions:
+			How would you change the solution to support booking cancellation
+			How would I change the solution in a multithreaded environment
+
+		Depth in Specialization (Coding 2) -
+			https://leetcode.com/problems/trapping-rain-water/
+		
+		Design & Architecture -
+			Design Uber Eats
+
+
+
+[https://leetcode.com/company/uber/discuss/5482967/Uber-Onsite-or-July-2024] - SDE-II -Maps Routing
+	Bay Area:: 2 Coding rounds, 1 System Design, 1 Hiring Manager.
+
+	Hiring manager round: Petty standard behavioral questions, tell me about a time when... Then a resume deep dive where he prodded regarding architectural design choices.
+	
+	Coding rounds:
+	
+	 - https://leetcode.com/problems/task-scheduler-ii/description/
+	 - Players a and b are playing the famous ball score game. there are some balls 
+	 	placed on a table with each with a value on it. game start with a coin toss. 
+	 	heads means a starts, else b starts. Winner takes first turn. During each turn 
+	 	a player is allowed to pick at most k balls from table. score is sum of values of all 
+	 	balls taken by player. b will only pick ball whose sum of digits of ball is maximum, 
+	 	if there is a tie he chooses either one. a doesn't care about that he'll pick any ball. 
+	 	both want to maximize their score so both will play optimally. print the score both 
+	 	a and b will achieve.
+	 	
+	 - System design: how to track current locations for active uber drivers?
+	
+	
+
+
+
+###### System Design ######
+
+
+Food delivery: 
+	https://leetcode.com/discuss/interview-question/object-oriented-design/259629/Design-OO-food-delivery-system
+	https://www.swiftanytime.com/blog/design-food-delivery-app-mobile-system-design
+	
+
+
+[ https://leetcode.com/company/uber/discuss/5795502/Uber-or-L5a-or-NY-or-Accepted ]
+	Design Uber Eats
+	
+[ https://leetcode.com/company/uber/discuss/5745602/Uber-SDE-2 ] - India
+	Design Webhook
+		- https://pyemma.github.io/How-to-Design-Webhook/
+	
+[ https://leetcode.com/company/uber/discuss/5482967/Uber-Onsite-or-July-2024 ]
+	how to track current locations for active uber drivers?
+
+[https://leetcode.com/company/uber/discuss/5800007/HLD-System-Design-Stock-alert-notification-system-or-Trigger-alerts-based-on-stock]
+	Design a system where a user can have X favorite stocks and has subscribed to their changes. 
+	User will set some rules for price drop/ price rise above a threshold or % value and if the rule 
+	is satisfied then we have to sent notification to user.
+	
+	Example: let say user have subscribed to ABC stock and set rule that if stock price goes 
+	above 100$ send me notification.
+	
+	Types of rules can be - opening price, current price, moving average, etc.
+	User should get the notification within a minute.
+	System should be able to scan and check more than 1 million rules set by users and send 
+	notification if any rule is satisfied.
+	
+	Can someone please answer - How would you design this system - DB schema, notification system, 
+	high level components to achieve scalability, fault tolence, achieve the SLO/SLI and which data 
+	structures would you use for optimized implementation?
+	
+	
+	
