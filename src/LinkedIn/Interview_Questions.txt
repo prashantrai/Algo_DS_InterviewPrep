@@ -1,0 +1,113 @@
+### July 18, 2025 [https://leetcode.com/discuss/post/6974432/linkedin-staff-infra-interview-experienc-ca0u/]
+
+Linkedin Staff Infra interview Experience
+Screening Rounds
+Round 1(Coding):
+
+Behavioural questions: Why do you want to switch, why linkedin, Discussion on one of the projects.
+Coding Problem: https://leetcode.com/problems/all-oone-data-structure/
+Round 2 (Staff Host Leader)
+
+Behavioural questions similar to above with examples of any project
+Leadership questions such as explain any complex project you have led
+Onsite
+
+Coding Round 1:
+
+Tree has keys and values, values represent sum of this and child node values
+When merging - absent branches should be created, and values for existing branches are summed
+Keys are unique among child nodes of a single parent
+Child nodes could be stored in any order
+// #     Root:10
+// #     /  |  \
+// #    A:2 B:2 M:6 
+// #     |  |
+// #    L:2 L:2
+
+// # Target tree T
+
+// #      Root:13
+// #     /  |   \
+// #    A:4 B:3 D:6
+// #    /        \
+// #.  L:4        M:6
+
+// # Result tree RT
+
+// #          Root:23
+// #      /     |   \    \
+// #    A:6    B:5   D:6  M:6 
+// #    /       |     |
+// #   L:6     L:2   M:6
+
+
+Coding Round 2:
+
+You have given users and its direct connections. For a given two users S and P, find minimum degree of connection. Degree of directly connected users is 1.
+Expected ans: Bidirectional bfs
+Follow up: Find the path
+Staff Software Design and Architecture Round:
+
+Design metrics aggregation system
+Staff Infrastructure Design and Implementation:
+
+Design a system which takes stream of linkedin posts and form a inverted index of all the words in the post. The user will query a list of words, you have to return all the post ids which has all the given list of words.
+
+
+
+------------------------------------------------------------------------------------------------------
+### July 15, 2025 [https://leetcode.com/discuss/post/6963306/linkedin-phone-interview-staff-infra-by-bqw8z/]
+
+LinkedIn Phone interview (Staff Infra)
+
+Phone interview:
+How big is my team?
+Talk about a project that had large scale impact
+What's the most challenging aspect of that project.
+Some other question, can't recall now
+
+All One Data Structure - Leetcode 432
+
+Host Leader:
+Detailed discussion about projects.
+Challenging project, Resume related questions
+
+
+
+------------------------------------------------------------------------------------------------------
+### July 14, 2025 [https://leetcode.com/discuss/post/6957300/linkedin-software-engineer-by-anonymous_-eshy/]
+
+LinkedIn| Software Engineer
+
+Total Rounds - 6
+
+Phone screen
+Two DSA question
+
+1. Similar to https://leetcode.com/problems/bulb-switcher.
+2. https://leetcode.com/problems/shortest-word-distance-ii.
+
+
+Round 1 - DSA
+
+Question related to turning tree upside down with 0 /1 right child.
+Question similar to number of island.
+
+
+Round 2 -DSA
+
+1. max consecutive one , similar to this with wrap around follow up.
+2. falling leaves question https://leetcode.com/problems/find-leaves-of-binary-tree/
+
+Technical Communication - was asked to explain a project we did and went into
+details along with follow ups and trade off discussion, most interesting and had a good discussion.
+
+System Design - Design Calendar, discussed mainly about API, also asked SQL query 
+(I wasnt prepared for this hence it took some time to figure out), API discussion 
+and DB Schema design took sometime couldn’t discuss HLD much.
+
+
+
+
+------------------------------------------------------------------------------------------------------
+
