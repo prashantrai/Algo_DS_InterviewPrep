@@ -1,3 +1,17 @@
+
+### July 26, 2025 [https://leetcode.com/discuss/post/7009996/linkedin-staff-infra-interview-experienc-jx2g/]
+
+Round 1(Coding):
+Behavioural questions: 
+	- what is the one thing you have done technically which has improved system? 
+	- what is the thing you have done where you think you have created an impact?
+	- how have you removed yourself in some bottleneck situations?
+
+Coding Problem: 
+		https://leetcode.com/problems/all-oone-data-structure/
+
+
+
 ### July 18, 2025 [https://leetcode.com/discuss/post/6974432/linkedin-staff-infra-interview-experienc-ca0u/]
 
 Linkedin Staff Infra interview Experience
