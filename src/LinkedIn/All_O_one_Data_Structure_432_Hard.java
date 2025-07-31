@@ -150,6 +150,9 @@ public class All_O_one_Data_Structure_432_Hard {
 	    private void insertNodeAfter(Node prev, Node node) {
 	        node.next = prev.next;
 	        node.prev = prev;
+	        
+	        // keep below code in same sequance
+	        // changig order of both lines will curropt the node/list mapping
 	        prev.next.prev = node;
 	        prev.next = node;
 	    }

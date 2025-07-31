@@ -57,15 +57,23 @@ Child nodes could be stored in any order
 
 Coding Round 2:
 
-You have given users and its direct connections. For a given two users S and P, find minimum degree of connection. Degree of directly connected users is 1.
+You have given users and its direct connections. 
+For a given two users S and P, find minimum degree of connection. 
+Degree of directly connected users is 1.
+
 Expected ans: Bidirectional bfs
 Follow up: Find the path
+
 Staff Software Design and Architecture Round:
 
-Design metrics aggregation system
+	- Design metrics aggregation system
+
+
 Staff Infrastructure Design and Implementation:
 
-Design a system which takes stream of linkedin posts and form a inverted index of all the words in the post. The user will query a list of words, you have to return all the post ids which has all the given list of words.
+	- Design a system which takes stream of linkedin posts and form 
+	a inverted index of all the words in the post. The user will query 
+	a list of words, you have to return all the post ids which has all the given list of words.
 
 
 
