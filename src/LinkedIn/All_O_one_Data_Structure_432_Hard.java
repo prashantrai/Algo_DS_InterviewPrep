@@ -29,6 +29,14 @@ public class All_O_one_Data_Structure_432_Hard {
 		- a linked list of buckets sorted by count, 
 			allowing O(1) min/max access,
 		- O(1) operations by moving keys between buckets in the list.
+		
+		
+	 * Why use LinkedHashSet vs HashSet? 
+    	- You could use HashSet if you only care about any arbitrary key for 
+      	  getMaxKey() and getMinKey().    
+    	- But LinkedHashSet guarantees predictable iteration order 
+      	  (insertion order), which can be useful for determinism in 
+          testing or returning consistent results.
 	 */
 	
 	
