@@ -20,6 +20,18 @@ public class All_O_one_Data_Structure_432_Hard {
 		System.out.println(obj.getMinKey()); // "hello"
 	}
 	
+	/*
+	 * Use a Doubly Linked List of Buckets, 
+	 * where each bucket has a unique count and a Set<String> 
+	 * of keys with that count. 
+	 * Keep:
+		- a map of keys to their node (bucket),
+		- a linked list of buckets sorted by count, 
+			allowing O(1) min/max access,
+		- O(1) operations by moving keys between buckets in the list.
+	 */
+	
+	
 	// Time: O(1), Space: (N)
 	
 	static class AllOne { // static added just use here from main
