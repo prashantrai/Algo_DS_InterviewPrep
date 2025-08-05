@@ -100,8 +100,11 @@ public class BinaryTreeUpsideDown_156_Medium {
     Space: O(1) for iterative, O(N) for recursive (due to recursion stack).
 
     Iterative Approach:
-    - Traverse down the left subtree, keeping track of the current node, its parent, and its right sibling.
-    - At each step, restructure the tree by making the current node's left child point to its right sibling and the right child point to its parent.
+    - Traverse down the left subtree, keeping track of the current node, 
+    	its parent, and its right sibling.
+    - At each step, restructure the tree by making the current node's 
+    left child point to its right sibling and the right child point to 
+    its parent.
 
     - Continue until all nodes are processed.
     */

@@ -37,11 +37,35 @@ public class TreeMerger {
         merged.print("");
     }
     
+    
+    /*
+     Algorithm: Step-by-Step
+		
+	 1. Create a TreeNode class with:
+		- String key
+		- int value
+		- Map<String, TreeNode> children to map unique 
+			child keys to child nodes (unordered).
+		
+	 2. Recursive Merge Function:
+		- If one of the nodes is null, return the other.
+		- Create a new merged node with:
+		   -- key = same as input nodes.
+		   -- value = sum of the values of the two input nodes.
+		
+		- For all keys in both children maps:
+		  -- Recursively merge child nodes.
+		
+	 3. Update Node Value:
+		- After merging children, recalculate the merged node’s value as:
+		  -- own value = sum of all merged children's 
+		     values + original value from inputs.
+     * */
+    
+    
 //    Time Complexity: O(n + m) — Each node is visited once.
 //
 //    Space Complexity: O(n + m) — Space for merged tree.
-
-
 
 	public static TreeNode merge(TreeNode t1, TreeNode t2) {
 		if(t1 == null) return cloneTree(t2);
