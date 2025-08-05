@@ -67,13 +67,13 @@ public class All_O_one_Data_Structure_432_Hard {
 	        - Check if a bucket with count = 1 exists.
 	        - If not, create a new one after head.
 	        - Add key to that bucket.
-	        - Update keyToNode.
+	        - Update map(i.e. keyToNode).
 	    If key exists:
 	        - Move it to the next bucket with count + 1.
 	        - Create it if it doesn’t exist.
 	        - Remove key from current bucket.
 	        - Delete current bucket if it's empty.
-	        - Update keyToNode.
+	        - Update map(i.e. keyToNode).
 	     */
 	    public void inc(String key) {
 	        if(!map.containsKey(key)) {
@@ -110,7 +110,7 @@ public class All_O_one_Data_Structure_432_Hard {
 	    1. If key not present → return.
 	    2. If key’s count = 1:
 	        - Remove key from current bucket.
-	        - Remove key from keyToNode.
+	        - Remove key from map(i.e. keyToNode).
 	    3. Else:
 	        - Move key to previous bucket with count - 1.
 	        - Create if it doesn’t exist.
