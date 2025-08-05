@@ -1,9 +1,12 @@
 package LinkedIn;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
@@ -66,7 +69,7 @@ public class WordLadder_127_Hard {
 					
 					if(arr[i] == c) continue;
 					
-					char temp = arr[i];
+					char temp = arr[i]; // it works here but as we are updating the same index under this look, this line can be moved up right before this loop and after for(int i=0;...).
 					arr[i] = c;
 					
 					String newWord = new String(arr);
@@ -75,7 +78,7 @@ public class WordLadder_127_Hard {
 						dict.remove(newWord); // dict also works as visited set, to avoid infinite loop
 					}
 					
-					arr[i] = temp;
+					arr[i] = temp; // it works here but as we are updating the same index under this look, this line can be moved up right before this loop but inside for(int i=0;...).
 				}
 			}
 			
@@ -151,6 +154,73 @@ public class WordLadder_127_Hard {
         return 0; // no path found
 
 	}
+	
+	// Bi-Directional BFS + Wildcards
+	   // This is the most efficient approach for large inputs
+	   /*
+	   Time: O(N × L²) (preprocessing) 
+	            + O((N/2) × L) (bidirectional BFS) → ≈ O(N × L²).
+
+	    Space: O(N × L²) (wildcard map) 
+	            + O(N × L) (visited sets) → ≈ O(N × L²).
+	    */
+
+	public int ladderLength3(String beginWord, String endWord, List<String> wordList) {
+        Set<String> dict = new HashSet<>(wordList);
+        if (!dict.contains(endWord)) return 0;
+
+        /* 
+        Step 1: Preprocessing with Wildcards
+        - Replace each letter in the word with * to generate 
+        generic/intermediate patterns (wildcards).
+        Example: "hot" becomes "*ot", "h*t", "ho*".
+
+        - Store a map of these wildcard patterns to actual words
+        (wildcardMap), to enable O(1) neighbor lookups.
+        
+        For each word, generate L wildcards → O(N * L²), 
+            Here, L² because of String operation.
+        */
+        Map<String, List<String>> wildcardMap = new HashMap<>();
+        for (String word : dict) {
+            for (int i = 0; i < word.length(); i++) {
+                String wildcard = word.substring(0, i) + "*" + word.substring(i + 1);
+                wildcardMap.computeIfAbsent(wildcard, k -> new ArrayList<>()).add(word);
+            }
+        }
+
+        // Bidirectional BFS setup
+        Set<String> beginVisited = new HashSet<>(), endVisited = new HashSet<>();
+        beginVisited.add(beginWord);
+        endVisited.add(endWord);
+        int steps = 1;
+
+        while (!beginVisited.isEmpty() && !endVisited.isEmpty()) {
+            // Always expand the smaller set first (optimization)
+            if (beginVisited.size() > endVisited.size()) {
+                Set<String> temp = beginVisited;
+                beginVisited = endVisited;
+                endVisited = temp;
+            }
+
+            Set<String> nextLevel = new HashSet<>();
+            for (String word : beginVisited) {
+                for (int i = 0; i < word.length(); i++) {
+                    String wildcard = word.substring(0, i) + "*" + word.substring(i + 1);
+                    for (String neighbor : wildcardMap.getOrDefault(wildcard, new ArrayList<>())) {
+                        if (endVisited.contains(neighbor)) return steps + 1;
+                        if (dict.contains(neighbor)) {
+                            nextLevel.add(neighbor);
+                            dict.remove(neighbor); // Mark as visited
+                        }
+                    }
+                }
+            }
+            beginVisited = nextLevel;
+            steps++;
+        }
+        return 0;
+    }
 	
 }
 

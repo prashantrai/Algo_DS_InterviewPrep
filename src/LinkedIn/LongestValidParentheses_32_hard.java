@@ -26,6 +26,110 @@ public class LongestValidParentheses_32_hard {
 
 	}
 	
+	// Tow Pointers Approach
+    /* 
+     * We do this twice:
+		Left to right (handles cases like "(()"). When too many '('.
+		Right to left (handles cases like ")()())"). When too many ')'.
+     * 
+     * Step-by-Step Algorithm:
+		>Left to Right Pass:
+			Initialize left = 0, right = 0, maxLen = 0
+			For each character:
+				If '(', increment left
+				If ')', increment right
+				If left == right, update maxLen = max(maxLen, 2 * right)
+				If right > left, reset both left and right
+		>Right to Left Pass:
+			Reset left = 0, right = 0
+			Scan string in reverse:
+				If ')', increment right
+				If '(', increment left
+				If left == right, update maxLen = max(maxLen, 2 * left)
+				If left > right, reset both
+     * 
+     */
+    
+    // Time: O(N), Space: O(1)
+    public int longestValidParentheses2(String s) {
+        int left = 0, right = 0;
+        int maxLen = 0;
+        // Left to right scan
+        for(int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            if(c == '(') left++;
+            else right++;
+            if(left == right) {
+                maxLen = Math.max(maxLen, 2*right);
+            } else if(right > left) {
+                // Invalid state: too many ')'
+                left = right = 0; //reset
+            }
+        }
+        // Right to left scan (for cases like "(()")
+        left = right = 0;
+        for(int i=s.length()-1; i>=0; i--) {
+            char c = s.charAt(i);
+            if(c == '(') left++;
+            else right++;
+            if(left == right) {
+                maxLen = Math.max(maxLen, 2*left);
+            } else if(left > right) {
+                // Invalid state: too many '('
+                left = right = 0; //reset
+            }
+        }
+        return maxLen;
+    }
+    
+    // When we need to return the string instead of len
+    public String longestValidParentheses3(String s) {
+        int left = 0, right = 0;
+        int maxLen = 0;
+        int endIndex = -1; // 🔄 NEW: Store the end index of the longest valid substring
+
+        // 🔁 Left to Right scan
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '(')	left++;
+            else	right++;
+
+            if (left == right) {
+                int len = 2 * right;
+                if (len > maxLen) {
+                    maxLen = len;
+                    endIndex = i; // 🔄 Track end of longest valid substring
+                }
+            } else if (right > left) {
+                left = right = 0; // Reset on imbalance
+            }
+        }
+        // 🔁 Right to Left scan
+        left = right = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            char c = s.charAt(i);
+            if (c == ')')  right++;
+            else  left++;
+
+            if (left == right) {
+                int len = 2 * left;
+                if (len > maxLen) {
+                    maxLen = len;
+                    endIndex = i + len - 1; // 🔄 Update end index in reverse pass
+                }
+            } else if (left > right) {
+                left = right = 0; // Reset on imbalance
+            }
+        }
+        // 🔚 Return the substring from calculated start index
+        if (maxLen > 0 && endIndex != -1) {
+            int startIndex = endIndex - maxLen + 1; // 🔄 NEW: calculate start index
+            return s.substring(startIndex, endIndex + 1); // 🔄 Extract and return valid substring
+        }
+        return ""; // 🔄 No valid substring found
+    }
+	
+	/** Solution 2: Using Stack */
 	// Time & Space: O(N)
 	// Using Stack
     public static int longestValidParentheses(String s) {
@@ -96,99 +200,5 @@ public class LongestValidParentheses_32_hard {
         return s.substring(startIndex, startIndex + maxLen);
     }
     
-    
-    // Tow Pointes Approach
-    // Time: O(N), Space: O(1)
-    public int longestValidParentheses2(String s) {
-        int left = 0, right = 0;
-        int maxLen = 0;
-
-        // Left to right scan
-        for(int i=0; i<s.length(); i++) {
-            char c = s.charAt(i);
-            if(c == '(') left++;
-            else right++;
-            if(left == right) {
-                maxLen = Math.max(maxLen, 2*right);
-            } else if(right > left) {
-                // Invalid state: too many ')'
-                left = right = 0; //reset
-            }
-        }
-
-        // Right to left scan (for cases like "(()")
-        left = right = 0;
-        for(int i=s.length()-1; i>=0; i--) {
-            char c = s.charAt(i);
-            if(c == '(') left++;
-            else right++;
-            if(left == right) {
-                maxLen = Math.max(maxLen, 2*left);
-            } else if(left > right) {
-                // Invalid state: too many '('
-                left = right = 0; //reset
-            }
-        }
-        return maxLen;
-    }
-    
-    // When we need to return the string instead of len
-    public String longestValidParentheses3(String s) {
-        int left = 0, right = 0;
-        int maxLen = 0;
-        int endIndex = -1; // 🔄 NEW: Store the end index of the longest valid substring
-
-        // 🔁 Left to Right scan
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-
-            if (c == '(') {
-                left++;
-            } else {
-                right++;
-            }
-
-            if (left == right) {
-                int len = 2 * right;
-                if (len > maxLen) {
-                    maxLen = len;
-                    endIndex = i; // 🔄 Track end of longest valid substring
-                }
-            } else if (right > left) {
-                left = right = 0; // Reset on imbalance
-            }
-        }
-
-        // 🔁 Right to Left scan
-        left = right = 0;
-
-        for (int i = s.length() - 1; i >= 0; i--) {
-            char c = s.charAt(i);
-
-            if (c == ')') {
-                right++;
-            } else {
-                left++;
-            }
-
-            if (left == right) {
-                int len = 2 * left;
-                if (len > maxLen) {
-                    maxLen = len;
-                    endIndex = i + len - 1; // 🔄 Update end index in reverse pass
-                }
-            } else if (left > right) {
-                left = right = 0; // Reset on imbalance
-            }
-        }
-
-        // 🔚 Return the substring from calculated start index
-        if (maxLen > 0 && endIndex != -1) {
-            int startIndex = endIndex - maxLen + 1; // 🔄 NEW: calculate start index
-            return s.substring(startIndex, endIndex + 1); // 🔄 Extract and return valid substring
-        }
-
-        return ""; // 🔄 No valid substring found
-    }
 
 }
