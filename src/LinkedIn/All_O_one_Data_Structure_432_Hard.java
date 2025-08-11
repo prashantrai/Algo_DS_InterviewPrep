@@ -40,6 +40,19 @@ public class All_O_one_Data_Structure_432_Hard {
 	 */
 	
 	
+	/* Follow-up: 
+	 * 1. How will you execute this in an concurrent environment.
+	 * 2. How will you apply locks. 
+	 * 3. How will you handle if there are multiple threads and some 
+	 * 	  has too many data to process while others have only few? 
+	 *    If we apply prioritization then might lead to starvation for threads with lower priority. 
+	 *    Time bound queue could be one option.
+	 * 4. If you apply a single lock on entire list them it will put all other threads in waiting condition.
+	 *    How will you handle this to allow multiple thread to perform operation (add/update) if they are 
+	 *    working on different node. -- Segmentation could be the right answer here.  
+	 *
+	 */
+	
 	// Time: O(1), Space: (N)
 	
 	static class AllOne { // static added just use here from main

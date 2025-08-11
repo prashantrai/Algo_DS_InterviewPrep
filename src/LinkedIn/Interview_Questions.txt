@@ -1,4 +1,20 @@
 
+SD Topics: 
+	Design Calendar, 
+	Metrics aggregation system (Metrics Monitoring and Aggregation System),
+	Top K heavy hitters time windown 5 min , 1 hour , 24 hours 
+	Design rate Limiter
+
+
+For Host Manager Round Frame Answers Like Below: 
+	-> Team and My role
+	-> Customer Problem & Business impact
+	-> Key architectural decisions led/taken by me
+	-> Biggest challenges faced and how did I overcome
+	-> How did I maintain timely execution of the project
+	-> Changes in reqs/unexpected blockers
+	-> Ensuring alignment with stakeholders
+
 ### July 26, 2025 [https://leetcode.com/discuss/post/7009996/linkedin-staff-infra-interview-experienc-jx2g/]
 
 Round 1(Coding):
@@ -15,19 +31,22 @@ Coding Problem:
 ### July 18, 2025 [https://leetcode.com/discuss/post/6974432/linkedin-staff-infra-interview-experienc-ca0u/]
 
 Linkedin Staff Infra interview Experience
-Screening Rounds
-Round 1(Coding):
 
+Screening Rounds
+
+Round 1(Coding):
 Behavioural questions: Why do you want to switch, why linkedin, Discussion on one of the projects.
 Coding Problem: https://leetcode.com/problems/all-oone-data-structure/
-Round 2 (Staff Host Leader)
 
+Round 2 (Staff Host Leader)
 Behavioural questions similar to above with examples of any project
 Leadership questions such as explain any complex project you have led
-Onsite
+
+Onsite: 
 
 Coding Round 1:
 
+Tree Merger: 
 Tree has keys and values, values represent sum of this and child node values
 When merging - absent branches should be created, and values for existing branches are summed
 Keys are unique among child nodes of a single parent
@@ -77,24 +96,6 @@ Staff Infrastructure Design and Implementation:
 
 
 
-------------------------------------------------------------------------------------------------------
-### July 15, 2025 [https://leetcode.com/discuss/post/6963306/linkedin-phone-interview-staff-infra-by-bqw8z/]
-
-LinkedIn Phone interview (Staff Infra)
-
-Phone interview:
-How big is my team?
-Talk about a project that had large scale impact
-What's the most challenging aspect of that project.
-Some other question, can't recall now
-
-All One Data Structure - Leetcode 432
-
-Host Leader:
-Detailed discussion about projects.
-Challenging project, Resume related questions
-
-
 
 ------------------------------------------------------------------------------------------------------
 ### July 14, 2025 [https://leetcode.com/discuss/post/6957300/linkedin-software-engineer-by-anonymous_-eshy/]
@@ -124,12 +125,219 @@ Round 2 -DSA
 Technical Communication - was asked to explain a project we did and went into
 details along with follow ups and trade off discussion, most interesting and had a good discussion.
 
-System Design - Design Calendar, discussed mainly about API, also asked SQL query 
-(I wasnt prepared for this hence it took some time to figure out), API discussion 
-and DB Schema design took sometime couldn’t discuss HLD much.
+System Design - Design Calendar, discussed mainly about API, also asked SQL query, API discussion 
+and DB Schema design.
 
 
 
 
 ------------------------------------------------------------------------------------------------------
+
+LinkedIn | Software Engineer (India) | July 5, 2025
+
+Phone Screen: 
+	Q1: Given Mapping of english sentence to numerical values 
+	have to  find  all sentence associated with a given 
+	numerical value
+
+	Q2: valid parentheses. 
+	((AbNC)()) -> valid
+	()(NFJDH)(() -> invalid.
+	Follow up : do it in o(1) space:
+
+Onsites:
+Round: Coding 1
+
+	Q1: Valid tree : find conditions and implement that 
+	
+	Q2: form compact tree from a given tree 
+	compact tree(every node will have N nodes and atleast node 
+	can have   nodes 0-N);
+
+Round: Coding 2
+
+	Q1: given sorted array find a valid traingle and return 
+	their sides  (sum of 2 side should greater than third) 
+	follow up : find no of traingles
+	constant time complexity needed
+	
+	Q2: upside down binary tree:
+	Did well in this round ended interview 10 min before.
+
+
+Round: System Design
+	top K heavy hitters time windown 5 min , 1 hour , 24 hours
+
+
+------------------------------------------------------------------------------------------------------
+
+Onsite - Jun 26, 2025 [https://leetcode.com/discuss/post/6888512/linkedin-onsite-round-by-anonymous_user-ayri/]
+ 
+1. Valid tree
+2. Compact tree
+
+
+------------------------------------------------------------------------------------------------------
+US Staff Infra | June 1, 2025 [https://leetcode.com/discuss/post/6803030/us-staff-infra-by-anonymous_user-tzg9/]
+
+Onsite Experience
+
+Design:
+	- InMemory Key-Value Store and value may not fit in memory
+	- Aggregate topics from all posts and report top K on dashboard
+
+Code:
+	- Max Stack(phone screen)
+	- Max consecutive ones iii
+	- "489. Robot Room Cleaner" - start at (0,0) and reach goal (x, y)
+
+
+------------------------------------------------------------------------------------------------------
+
+Linkedin US Staff Infra | April 2025 [https://leetcode.com/discuss/post/6664968/linkedin-us-staff-infra-by-anonymous_use-qe87/]
+
+Phone Screen: Max Stack
+
+Onsite
+HM Screen: Mentorship, Leadership, Craftsmanship behavioral
+System Design 1: Rate Limiter
+System Design 2: Job scheduler
+
+Coding1: Find Linkedin connection distance: Shortest path between LinkedIn connections. 
+		 An adjacency list is given, a source and a target. 
+		 Find the connection distance between source and target. Follow-up: Print the path as well.
+
+I discussed the optimal solution : Bi-directional BFS and coded for the same.
+
+
+Coding2: Max consecutive ones iii with circular array follow up and word ladder
+
+
+
+------------------------------------------------------------------------------------------------------
+
+Staff SE | Linkedin | April 2025 [https://leetcode.com/discuss/post/6715722/staff-se-linkedin-april-2025-by-anonymou-n10t/]
+
+Phone Screen: 
+	https://leetcode.com/problems/max-stack/description/
+	multiple iteration to improve efficiency
+
+Onsite Coding Round 1
+	https://leetcode.com/problems/max-consecutive-ones-iii/description/
+	multiple followups
+
+Onsite Coding Round 2
+	question1: https://leetcode.com/problems/nested-list-weight-sum-ii/description
+	followup: What if the list is of big size which cant be stored in memory
+
+	question2: https://leetcode.com/problems/all-oone-data-structure/description
+	followup: How to handle concurrency
+
+
+System Design Round 1
+	Design rate Limiter
+
+System Design Round 2
+	first half questions about past experience , explain a project which was challenging. 
+	
+	second half: Metrics aggregation system
+
+
+------------------------------------------------------------------------------------------------------
+
+
+
+India | Staff Software Engineer | Interview Experience | June 2025 [https://leetcode.com/discuss/post/6858262/linkedin-staff-software-engineer-intervi-mg5c/]
+
+Screening: https://leetcode.com/problems/max-stack/
+
+Onsite:: 
+DSA 1: Staff Coding - Apps
+
+Q1: https://leetcode.com/problems/minimum-window-substring
+The problem was extended to a condition when the source string is wrapped around.
+
+Q2: Shortest path between LinkedIn connections. An adjacency list is given, a source and a target. 
+Find the connection distance between source and target. Print the path as well.
+
+I discussed the optimal solution : Bi-directional BFS and coded for the same.
+
+
+
+DSA 2: Staff Coding & Algorithms 2
+
+Q1: https://leetcode.com/problems/word-ladder
+	I gave the most optimized O(M*N) approach inspired by the below link:
+	https://leetcode.com/problems/word-ladder/submissions/1595132398
+
+Q2: https://leetcode.com/problems/shortest-word-distance-ii
+	Gave the optimal 2-pointer approach.
+	Extension: For the scenario if one string's occurences are less than other, 
+	used binary search for the more frequent string.
+
+SD: [LLD]
+Design a flexible in-memory cache with customizable capacity and eviction policies.
+
+The cache should allow users to define:
+
+Capacity: Specify how much data the cache can hold based on memory resources and data size.
+
+Eviction Policy: Choose strategies for removing items when the cache is full, 
+such as Least Recently Used (LRU) or Lowest Priority.
+
+This flexibility ensures the cache can be tailored to meet specific requirements, 
+balancing resource usage and performance.
+
+Once the LLD created was agreed with the interviewer, 
+it was extended from HLD perspective for multiple nodes in distributed system setup covering 
+all the challenges and other adhoc scenarios like hot key issue for a write-heavy setup. 
+Also, discussion went around few Redis related internals.
+
+
+Host Manager: 	
+
+This round started with an elaborate introduction of both me and the interviewer.
+
+Questions were as follows:
+
+Talk in detail about the most complex and challenging project I led in the recent times which had a very large scale. I framed my answer step-by-step as follows (along with few follow-ups from the HM):
+-> Team and My role
+-> Customer Problem & Business impact
+-> Key architectural decisions led/taken by me
+-> Biggest challenges faced and how did I overcome
+-> How did I maintain timely execution of the project
+-> Changes in reqs/unexpected blockers
+-> Ensuring alignment with stakeholders
+
+Why looking for change? Why LinkedIn?
+
+Describe a situation where you showed operational excellence.
+
+Describe a situation where you suggested improvements in the project which other engineers in the team could leverage from.
+
+Then at the end, he threw a HLD problem for designing a LinkedIn internal notification system which can handle a very large scale.
+There were few cross-questions regarding the different internal microservices and Kafka being used for async handling.
+This just had 10-15 mins at the end. Luckily, I was able to create the HLD diagram covering all the components.
+
+
+
+------------------------------------------------------------------------------------------------------
+Phone Screen | L2/Junior | June 23
+
+A variation of https://leetcode.com/problems/can-place-flowers/description/ in place of flowers it was people
+
+Given the standard mapping from English letters to digits on a phone keypad (1 → "" 2 -> a,b,c 3 -> d,e,f 4 -> g,h,i 5 -> j,k,l 6 -> m,n,o 7 -> p,q,r,s 8 -> t,u,v 9 -> w,x,y,z),
+write a program that outputs all words that can be formed from any n-digit phone number from the list of given KNOWN_WORDS considering the mapping mentioned above.
+KNOWN_WORDS= ['careers', 'linkedin', 'hiring', 'interview', 'linkedgo']
+phoneNumber: 2273377
+Output: ['careers']
+phoneNumber: 54653346
+Output: ['linkedin', 'linkedgo']
+
+
+
+
+
+
+
 

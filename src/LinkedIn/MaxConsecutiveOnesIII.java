@@ -12,7 +12,9 @@ public class MaxConsecutiveOnesIII {
         System.out.println(sol.longestOnes(new int[]{}, 1));                      // 0 (edge case: empty array)
     }
 	
-	/* Time: O(n) — each element is visited at 
+	/* Follow-up (not solved): What if the array is circular array (i.e. wrapped around)
+	 * 
+	 * Time: O(n) — each element is visited at 
         most twice (once by right, once by left).
 
        Space: O(1) — constant extra space.

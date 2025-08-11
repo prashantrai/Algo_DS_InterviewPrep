@@ -1,0 +1,272 @@
+### SYSTEM DESIGN ### 
+	- Design Calendar, 
+	- Metrics aggregation system (Metrics Monitoring and Aggregation System),
+	- Top K heavy hitters time windown 5 min , 1 hour , 24 hours 
+	- Design rate Limiter
+	- [July 18, 2025] Design a system which takes stream of linkedin posts and form 
+		a inverted index of all the words in the post. The user will query 
+		a list of words, you have to return all the post ids which has all the given list of words.
+	- InMemory Key-Value Store and value may not fit in memory
+	- Aggregate topics from all posts and report top K on dashboard
+	
+	- [India] Design a flexible in-memory cache with customizable capacity and eviction policies.
+		The cache should allow users to define:
+			Capacity: Specify how much data the cache can hold based on memory resources and data size.
+		
+			Eviction Policy: Choose strategies for removing items when the cache is full, 
+			such as Least Recently Used (LRU) or Lowest Priority.
+		
+		This flexibility ensures the cache can be tailored to meet specific requirements, 
+		balancing resource usage and performance.
+		 
+		It was extended from HLD perspective for multiple nodes in distributed system setup covering 
+		all the challenges and other adhoc scenarios like HOT KEY issue for a write-heavy setup. 
+		Also, discussion went around few Redis related internals.
+
+
+### CODING ###
+
+Tree Merger: 
+	Tree has keys and values, values represent sum of this and child node values
+	When merging - absent branches should be created, and values for existing branches are summed
+	Keys are unique among child nodes of a single parent
+	Child nodes could be stored in any order
+	// #     Root:10
+	// #     /  |  \
+	// #    A:2 B:2 M:6 
+	// #     |  |
+	// #    L:2 L:2
+	
+	// # Target tree T
+	
+	// #      Root:13
+	// #     /  |   \
+	// #    A:4 B:3 D:6
+	// #    /        \
+	// #.  L:4        M:6
+	
+	// # Result tree RT
+	
+	// #          Root:23
+	// #      /     |   \    \
+	// #    A:6    B:5   D:6  M:6 
+	// #    /       |     |
+	// #   L:6     L:2   M:6
+
+
+---
+see: UserConnectionPath_BidirectionalBFS.java
+
+You have given users and its direct connections. 
+For a given two users S and P, find minimum degree of connection. 
+Degree of directly connected users is 1.
+
+Expected ans: Bidirectional bfs
+Follow up: Find the path
+
+
+--
+1. Similar to https://leetcode.com/problems/bulb-switcher. [LC easy]
+2. https://leetcode.com/problems/shortest-word-distance-ii.
+
+Question related to turning tree upside down with 0 /1 right child.
+Question similar to number of island.
+
+1. max consecutive one , with circular array follow up
+2. falling leaves question https://leetcode.com/problems/find-leaves-of-binary-tree/
+
+
+-- India 
+Q1: Given Mapping of english sentence to numerical values 
+	have to  find  all sentence associated with a given 
+	numerical value
+
+	Q2: valid parentheses. 
+	((AbNC)()) -> valid
+	()(NFJDH)(() -> invalid.
+	Follow up : do it in o(1) space:
+	
+	
+	Q1: Valid tree : find conditions and implement that 
+	
+	Q2: Compact tree: form compact tree from a given tree 
+	compact tree(every node will have N nodes and atleast node 
+	can have   nodes 0-N);
+
+	Q1: given sorted array find a valid traingle and return 
+	their sides  (sum of 2 side should greater than third) 
+	follow up : find no of traingles
+	constant time complexity needed
+	
+	Q2: upside down binary tree:
+	
+https://leetcode.com/problems/shortest-word-distance-ii
+	Gave the optimal 2-pointer approach.
+	Extension: For the scenario if one string's occurences are less than other, 
+	used binary search for the more frequent string.
+
+
+--- US
+- Max Stack(phone screen)
+- Max consecutive ones iii with circular array follow up 
+- word ladder
+- "489. Robot Room Cleaner" - start at (0,0) and reach goal (x, y)
+
+- Find Linkedin connection distance: Shortest path between LinkedIn connections. 
+		 An adjacency list is given, a source and a target. 
+		 Find the connection distance between source and target. Follow-up: Print the path as well.
+
+- https://leetcode.com/problems/nested-list-weight-sum-ii/description
+	followup: What if the list is of big size which cant be stored in memory
+	
+-- Asked for Jr (L2) level ---
+A variation of https://leetcode.com/problems/can-place-flowers/description/ in place of flowers it was people
+
+Given the standard mapping from English letters to digits on a phone keypad (1 → "" 2 -> a,b,c 3 -> d,e,f 4 -> g,h,i 5 -> j,k,l 6 -> m,n,o 7 -> p,q,r,s 8 -> t,u,v 9 -> w,x,y,z),
+write a program that outputs all words that can be formed from any n-digit phone number from the list of given KNOWN_WORDS considering the mapping mentioned above.
+KNOWN_WORDS= ['careers', 'linkedin', 'hiring', 'interview', 'linkedgo']
+phoneNumber: 2273377
+Output: ['careers']
+phoneNumber: 54653346
+Output: ['linkedin', 'linkedgo']
+
+
+
+---- Bi-directional BFS questions collection (also available above) ----
+
+1. 	[BiDirBfs_ConnectionPathBetweenTwoUsers.java]
+	Given a graph of users, return the connection_path between them. 
+	Bob -> Alice -> Franck.. connection length is 2. 
+ 
+ 	Follow up: What if Bob has multiple users or bob is a celeb and Frank is 
+ 	also a celeb. 
+     
+2.  [  see: BiDirBfs_ConnectionDegreeAndPathFinder.java  ]
+	You have given users and its direct connections. 
+	For a given two users S and P, find minimum degree of connection. 
+	Degree of directly connected users is 1.
+
+	Follow up: Find the path
+	
+	
+3.  [ BiDirBfs_LinkedInShortestPath.java ]
+	Find Linkedin connection distance: Shortest path between LinkedIn connections. 
+
+	An adjacency list is given, a source and a target. 
+	Find the connection distance between source and target. 
+	
+	Follow-up: Print the path as well.
+
+
+
+
+
+
+
+
+
+
+
+
+---------
+Prompt:: 
+
+Below problem could be asked in Staff Engineer interview coding round. 
+Keep the solution short. without changing or compromising the simplicity of solution.
+I should be able to implement the solution in 20-25 mins.
+
+Give simple and efficient Java solution of below problem along with time and space 
+complexity. 
+- Explain the algorithm step by step before the solution in simple terms. 
+- Add all necessary comments in the code. 
+- Add more complex test cases along with edge cases, which should be good fit for the interview. including edge cases. 
+- At the end give a dry run for the test cases. 
+
+Question has follow-up as well, and for every change added for follow-up, add comment as "follow-up". 
+
+Give bi-directional BFS solution and provide step by step explanation of the BFS too.
+
+Given a graph of users, return the connection_path between them. 
+	Bob -> Alice -> Franck.. connection length is 2. 
+ 
+Follow up: What if Bob has multiple users or bob is a celeb and Frank is 
+ 	also a celeb.
+ 	
+--- 
+Prompt:
+This problem could be asked in a Staff Engineer interview coding round.
+The solution must be short and simple, without losing clarity or correctness.
+I should be able to implement the solution within 20–25 minutes during an interview.
+
+Requirements:
+
+Language: Java
+
+Approach: Use Bi-directional BFS.
+
+Explanation before code:
+Clearly explain the algorithm step-by-step in simple terms before presenting the solution.
+Provide a step-by-step explanation of the Bi-directional BFS process.
+
+Code Guidelines:
+Include all necessary comments for clarity.
+Keep the implementation concise but clear.
+
+Complexity Analysis:
+Provide Time and Space complexity.
+
+Testing:
+Include complex test cases and edge cases relevant to interviews.
+At the end, provide a dry run for the test cases.
+
+Follow-up Handling:
+The problem has a follow-up scenario.
+For every change made to handle the follow-up, mark it in the code with a comment: // follow-up.
+
+Problem Statement:
+Given a graph of users, return the connection path between two users.
+Example:
+
+Bob -> Alice -> Frank  
+Connection length = 2
+
+Follow-up Scenario:
+What if Bob has multiple users (multiple direct connections) or Bob is a celebrity and Frank is also a celebrity? 	
+ 
+
+--------------------
+
+Prompt:
+This problem could be asked in a Staff Engineer interview coding round.
+The solution must be short and simple, without losing clarity or correctness.
+I should be able to implement the solution within 20–25 minutes during an interview.
+
+Requirements:
+Language: Java
+Approach: Use Bi-directional BFS.
+
+Below listed 3 problems along with their folllw-up questions
+and all of them are solved using bi-directional BFS. 
+Problem and solution for each problem are given below.
+
+You job is to build a generic solution that works for all 3 problems.
+If any problem needs specific implementation separate that to a new 
+method and add comment on that method about the problem it belongs 
+to (e.g. Q1, Q2, Q3 followed by problem name).
+
+Add all necessary comments in the code. For code which is specific to a
+a given problem/question add that in the comment. 
+
+Add more complex test cases along with edge cases, which should be good fit for the interview.
+
+For follow-ups, add comment as "Follow-up" followed by the question/problem name/no.
+
+Solution should be simple and efficient along with time and space complexity. 
+Explain the algorithm step by step before the solution in simple terms, add all necessary comments in the code and additional test case including edge cases. At the end give a dry run using couple of test cases.  
+
+
+
+ 
+
+
+
