@@ -1,9 +1,9 @@
 package LinkedIn;
-public class MaxConsecutiveOnesIII {
+public class MaxConsecutiveOnes_III_1004_Medium {
 	
 	// Test cases
     public static void main(String[] args) {
-        MaxConsecutiveOnesIII sol = new MaxConsecutiveOnesIII();
+        MaxConsecutiveOnes_III_1004_Medium sol = new MaxConsecutiveOnes_III_1004_Medium();
         
         System.out.println(sol.longestOnes(new int[]{1,1,1,0,0,0,1,1,1,1,0}, 2)); // 6
         System.out.println(sol.longestOnes(new int[]{0,0,1,1,1,0,0}, 0));         // 3
@@ -12,14 +12,64 @@ public class MaxConsecutiveOnesIII {
         System.out.println(sol.longestOnes(new int[]{}, 1));                      // 0 (edge case: empty array)
     }
 	
-	/* Follow-up (not solved): What if the array is circular array (i.e. wrapped around)
+    /* 
+    Approach: Sliding Window
+	- Initialize pointers: Use left and right pointers to represent the current window.
+	- Expand window: Move right pointer to include new elements.
+	- Count zeros: For each 0 encountered, increment a zero count.
+	- Shrink window: If zero count exceeds k, move left pointer to reduce zeros in window.
+	- Track maximum: Keep track of the maximum window size seen so far.
+    
+    Time and Space Complexity
+        Time: O(n) — each element is visited at 
+        most twice (once by right, once by left).
+
+    Space: O(1) — constant extra space.
+    */
+    public int longestOnes (int[] nums, int k) {
+        int left = 0;
+        int maxCount = 0;
+        int zeroCount = 0;
+
+        for(int right = 0; right < nums.length; right++) {
+            // If current element is 0, increment zeroCount
+            if(nums[right] == 0) {
+                zeroCount++;
+            }
+
+            // If zeroCount exceeds k, move left pointer to right
+            // until zeroCount is back to <= k
+            while (zeroCount > k) {
+                if(nums[left] == 0) {
+                    zeroCount--;
+                }    
+                left++;
+            }
+
+            // Update maxLength if current window is larger
+            maxCount = Math.max(maxCount, right - left + 1);
+        }
+
+        return maxCount;
+    }
+    
+    // Follow-up: Handling Circular Array for Max Consecutive Ones III
+    
+    
+    
+    
+    
+    
+	/* Another approach: without follow-up
+	 * 
+	 * Follow-up (not solved): What if the array is circular array (i.e. wrapped around)
 	 * 
 	 * Time: O(n) — each element is visited at 
         most twice (once by right, once by left).
 
        Space: O(1) — constant extra space.
     */
-    public int longestOnes(int[] nums, int k) {
+    public int longestOnes2(int[] nums, int k) {
         int left = 0;  // Left boundary of window
 
         for (int right = 0; right < nums.length; right++) {
@@ -63,10 +113,6 @@ At right = 4 → nums[4] = 1 → continue, still only 2 zeros flipped.
 
 At right = 5 → nums[5] = 1 → continue.
 
-Now:
-
-pgsql
-Copy code
 Window: [0 to 5] → [1, 1, 0, 0, 1, 1]
 zeroCount = 2 → valid (within k)
 window size = 6
