@@ -3,13 +3,19 @@ public class MaxConsecutiveOnes_III_1004_Medium {
 	
 	// Test cases
     public static void main(String[] args) {
-        MaxConsecutiveOnes_III_1004_Medium sol = new MaxConsecutiveOnes_III_1004_Medium();
+        System.out.println(longestOnes(new int[]{1,1,1,0,0,0,1,1,1,1,0}, 2)); // 6
+        System.out.println(longestOnes(new int[]{0,0,1,1,1,0,0}, 0));         // 3
+        System.out.println(longestOnes(new int[]{1,1,1,1}, 0));               // 4
+        System.out.println(longestOnes(new int[]{0,0,0,0}, 2));               // 2
+        System.out.println(longestOnes(new int[]{}, 1));                      // 0 (edge case: empty array)
         
-        System.out.println(sol.longestOnes(new int[]{1,1,1,0,0,0,1,1,1,1,0}, 2)); // 6
-        System.out.println(sol.longestOnes(new int[]{0,0,1,1,1,0,0}, 0));         // 3
-        System.out.println(sol.longestOnes(new int[]{1,1,1,1}, 0));               // 4
-        System.out.println(sol.longestOnes(new int[]{0,0,0,0}, 2));               // 2
-        System.out.println(sol.longestOnes(new int[]{}, 1));                      // 0 (edge case: empty array)
+        // Follow-up: Circluar array
+        System.out.println("\n---- Circular Array ---\n");
+        System.out.println(longestOnesCircular(new int[]{1,0,1}, 1));       // 3 (wrap)
+        System.out.println(longestOnesCircular(new int[]{1,1,0,0,1}, 1));   // 4 (wrap)
+        System.out.println(longestOnesCircular(new int[]{1,1,1}, 0));       // 3 (all ones)
+        System.out.println(longestOnesCircular(new int[]{0,0,0}, 2));       // 2 (flip any two)
+        System.out.println(longestOnesCircular(new int[]{}, 3));            // 0 (empty)
     }
 	
     /* 
@@ -26,7 +32,7 @@ public class MaxConsecutiveOnes_III_1004_Medium {
 
     Space: O(1) — constant extra space.
     */
-    public int longestOnes (int[] nums, int k) {
+    public static int longestOnes (int[] nums, int k) {
         int left = 0;
         int maxCount = 0;
         int zeroCount = 0;
@@ -53,8 +59,59 @@ public class MaxConsecutiveOnes_III_1004_Medium {
         return maxCount;
     }
     
-    // Follow-up: Handling Circular Array for Max Consecutive Ones III
+    /*  - Now, the array is circular, meaning: The end connects back to the start.
+		- A consecutive sequence can wrap around the array.
+     *  
+     *  The trick for circular problems:
+		- Simulate circularity by duplicating the array (concatenate it to itself).
+		- Run the same sliding window algorithm on the doubled array.
+		- But make sure window size never exceeds the original array length — 
+		  because even though we doubled it, the real array only has that many distinct elements.
+     * 
+	 *  How we handle circular arrays (quick recap)
+		- Simulate circularity by Duplicating the array: 
+			extended = nums + nums.
+		- Run the same sliding window on doubled array.
+		- Invariant A: keep zeroCount ≤ k.
+		- Invariant B (circular cap): keep window length ≤ n (the original array length).
+		- Track the max window length seen.
+		
+     *  Step-by-Step Algorithm
+		- Let n = nums.length.
+		- Create extended = nums + nums (size 2n).
+		- Use the same sliding window technique:
+		- Track zeroCount and shrink window when zeroCount > k.
+		- Ensure window length ≤ n (since that's the longest possible in a circular array).
+		- Return the maximum valid window length found.
+		
+	
+	Time: O(n) — scanning at most 2n elements with sliding window.
+	Space: O(n) — for extended array.
+     * */
     
+    // Follow-up: Handling Circular Array for Max Consecutive Ones III
+    // Extension of above solution, new lines have comment "Follow-up"
+    public static int longestOnesCircular(int[] nums, int k) {
+    	int n = nums.length;
+    	int[] extended = new int[n * 2]; // Follow-up: simulate circular by doubling
+    	System.arraycopy(nums, 0, extended, 0, n); // Follow-up
+    	System.arraycopy(nums, 0, extended, n, n); // Follow-up
+    	
+    	int left = 0, zeroCount = 0, maxCount = 0;
+    	for(int right=0; right < 2*n; right++) {
+    		if(extended[right] == 0) zeroCount++;
+    		
+    		// Follow-up: keep both invariants — at most 
+    		// k zeros, and window size ≤ n
+    		if(zeroCount > k || (right - left + 1) > n) {
+    			if(extended[left] == 0) zeroCount--; 
+    			left++;
+    		}
+    		maxCount = Math.max(maxCount, right - left + 1);
+    	}
+    	
+    	return maxCount;
+    }
     
     
     

@@ -1,13 +1,22 @@
 ### SYSTEM DESIGN ### 
-	- Design Calendar, 
-	- Metrics aggregation system (Metrics Monitoring and Aggregation System),
+	- Design Calendar, [Read here: https://systemdesignschool.io/problems/google-calendar/solution]
+	
+	- Metrics aggregation system (Metrics Monitoring and Aggregation System), 
+			[Read here: https://books.dwf.dev/docs/system-design/c21]
+			
 	- Top K heavy hitters time windown 5 min , 1 hour , 24 hours 
-	- Design rate Limiter
+	
+	- Design rate Limiter [Read here: https://books.dwf.dev/docs/system-design/c5]
+	
 	- [July 18, 2025] Design a system which takes stream of linkedin posts and form 
 		a inverted index of all the words in the post. The user will query 
 		a list of words, you have to return all the post ids which has all the given list of words.
+	
 	- InMemory Key-Value Store and value may not fit in memory
-	- Aggregate topics from all posts and report top K on dashboard
+	
+	- Aggregate topics from all posts and report top K on dashboard	
+	
+	- [India:8/20/25] design the Job recommendation system as Linkedin.
 	
 	- [India] Design a flexible in-memory cache with customizable capacity and eviction policies.
 		The cache should allow users to define:
@@ -94,7 +103,7 @@ https://leetcode.com/problems/shortest-word-distance-ii
 	Extension: For the scenario if one string's occurences are less than other, 
 	used binary search for the more frequent string.
 
-
+  
 --- US
 - Max Stack(phone screen)
 - Max consecutive ones iii with circular array follow up 
@@ -106,7 +115,7 @@ https://leetcode.com/problems/shortest-word-distance-ii
 		 Find the connection distance between source and target. Follow-up: Print the path as well.
 
 - https://leetcode.com/problems/nested-list-weight-sum-ii/description
-	followup: What if the list is of big size which cant be stored in memory
+	followup: What if the list is of big size which can't be stored in memory
 	
 -- Asked for Jr (L2) level ---
 A variation of https://leetcode.com/problems/can-place-flowers/description/ in place of flowers it was people

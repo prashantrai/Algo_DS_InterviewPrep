@@ -14,6 +14,27 @@ For Host Manager Round Frame Answers Like Below:
 	-> How did I maintain timely execution of the project
 	-> Changes in reqs/unexpected blockers
 	-> Ensuring alignment with stakeholders
+	
+	
+### Aug 20, 2025 [https://leetcode.com/discuss/post/7103345/linkedin-sse-applications-tps-by-debmaly-yruj/]
+
+m booths are setup and n groups of people would be visiting these booths.
+The booths will display robots (type 0) and drones (type 1).
+So in binary format the booth string will look in 0's and 1's format.
+Each group will visit the booths from row i to j'th position only.
+There is an experience factor which is calculated as no of drone booths visited * no of robots booths visited.
+You need to maximize the experience factor.
+
+The interviewer refused to provide any example testcase, which caused more confusion.
+
+This question was given by Staff SE: Given the standard mapping from English letters to digits on a phone keypad (1 → "" 2 -> a,b,c 3 -> d,e,f 4 -> g,h,i 5 -> j,k,l 6 -> m,n,o 7 -> p,q,r,s 8 -> t,u,v 9 -> w,x,y,z),
+write a program that outputs all words that can be formed from any n-digit phone number from the list of given KNOWN_WORDS considering the mapping mentioned above.
+KNOWN_WORDS= ['careers', 'linkedin', 'hiring', 'interview', 'linkedgo']
+phoneNumber: 2273377
+Output: ['careers']
+phoneNumber: 54653346
+Output: ['linkedin', 'linkedgo']	
+
 
 ### July 26, 2025 [https://leetcode.com/discuss/post/7009996/linkedin-staff-infra-interview-experienc-jx2g/]
 
@@ -85,7 +106,7 @@ Follow up: Find the path
 
 Staff Software Design and Architecture Round:
 
-	- Design metrics aggregation system
+	- Design metrics aggregation system [Metrics aggregation system (Metrics Monitoring and Aggregation System)]
 
 
 Staff Infrastructure Design and Implementation:
@@ -245,7 +266,39 @@ System Design Round 2
 
 ------------------------------------------------------------------------------------------------------
 
+India | Staff Software Engineer | Interview Experience | Aug 20th 2025 [https://leetcode.com/discuss/post/7103201/staff-software-engineer-linkedin-by-anon-3ufy/]
 
+Phone: All O-One
+
+Coding 1: Word Ladder
+Coding 2: https://leetcode.com/problems/the-maze/description.
+
+System Design:
+Given a system like Linkedin, you have to design a system where you have to intercept 
+malicious requests and deny them. Assume a service isMaliciousRequest is available.
+
+Craftsmaship: 
+-> How do you define a quality product/system?
+-> Describe your strategy regarding code reviews
+-> As a hypothetical situation, Imagine you join LinkedIn on a massive team that owns a legacy 
+	application. The application lacks adequate testing and monitoring and has slow response times. 
+	Consumers complain about this. Deployment of the application often contains bugs. What efforts 
+	would you do as a Staff SWE?
+-> Rank the following in terms of priority: bugs, no testing, no monitoring, slowness. What do you 
+	tackle first?
+-> What are your principles of mentorship? How do you manage technical and non-technical mentorship?
+
+Host Manager: 
+	Asked about the work where you were regarded well.
+	Asked about a instance where there was a technical disagreement.
+	Asked about a instance where you mentor juniors.
+	
+	> Then he asked to design the Job recommendation system as Linkedin
+
+
+
+
+-------
 
 India | Staff Software Engineer | Interview Experience | June 2025 [https://leetcode.com/discuss/post/6858262/linkedin-staff-software-engineer-intervi-mg5c/]
 

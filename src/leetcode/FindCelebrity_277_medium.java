@@ -1,9 +1,9 @@
-package test.practice.misc;
+package leetcode;
 
 import java.util.HashSet;
 import java.util.Stack;
 
-public class FindCelebrity {
+public class FindCelebrity_277_medium {
 
 	public static void main(String[] args) {
 
@@ -26,6 +26,40 @@ public class FindCelebrity {
 	}
 	
 	
+	
+	/*
+	We want to minimize calls to knows(a, b).
+	
+	1) Single-pass candidate elimination (O(n))
+	- Start with candidate = 0.
+	- Scan i = 1 … n-1:
+		- If knows(candidate, i) is true, then candidate cannot be 
+		  the celebrity (a celeb knows nobody). Set candidate = i.
+		- Otherwise, i cannot be the celebrity (since candidate does not know i), 
+		  keep candidate as-is.
+	- After this pass, candidate is the only possible celebrity.
+	
+	Why this works:
+	Each comparison discards exactly one person from being the celebrity. 
+	After n-1 checks, only one candidate remains.
+	
+	2) Verify the candidate (O(n))
+	
+	- For every i != candidate, check both:
+		- knows(candidate, i) must be false (celebrity knows nobody).
+		- knows(i, candidate) must be true (everyone knows the celebrity).
+	- If any check fails → return -1.
+	- Otherwise → return candidate.
+	
+	Total calls: up to (n-1) in step 1 + up to 2(n-1) in step 2 → O(n) calls.
+	 */
+	
+
+	// 	Time: O(n) knows-queries.
+	//	Space: O(1) extra space.
+	 
+	// Note: signature has been update to test here, actual leetcode question just 
+	// passes the length and alrady provide a Relation class that takes care of knows() implementation
 	//--Leetcode video:: https://www.youtube.com/watch?v=LZJBZEnoYLQ
 	public static int findCelebrity3(boolean[][] celeb) {
 		
@@ -33,14 +67,16 @@ public class FindCelebrity {
 			return -1;
 		}
 		
+		// 1) Candidate elimination in one pass
 		int candidate = 0;
-		
 		for (int i=1; i<celeb.length; i++) {
 			if(knows(candidate, i, celeb)) {
+				// candidate knows i => candidate cannot be celebrity
 				candidate = i;
 			}
 		}
 		
+		// 2) Verification pass
 		for (int i=0; i<celeb.length; i++) {
 			
 			 /**
@@ -50,6 +86,7 @@ public class FindCelebrity {
 			  * OR
 			  * !knows(i, candidate, celeb) :: If the person doesn't know the candidate
 			  */
+			// Candidate must know nobody, and everyone must know candidate
 			if(candidate != i && knows(candidate, i, celeb) || !knows(i, candidate, celeb)) {
 				return -1;
 			}

@@ -22,6 +22,16 @@ public class WordSearch_ii_212_Hard {
 		
 	}
 	
+	
+	
+	
+	
+	/* Not an efficient solution
+	 * 
+	 * Time Complexity: O(W×M×N×4^L)
+	 * Space Complexity: O(L) 
+	 */
+	
 	//-- This solution is O(n^3), find a better solution may be use trie to store words and then search
 	public static List<String> findWords(char[][] board, String[] words) {
         
@@ -48,6 +58,14 @@ public class WordSearch_ii_212_Hard {
 		return false;
 	}
     
+    
+    /*
+	DFS (dfs method):
+	 - The DFS explores up to 4 directions from each cell (up, down, left, right).
+	 - The maximum depth of the DFS is equal to the length of the word L.
+	 - In the worst case, each cell is visited at most once per DFS path, leading to
+	   4^L recursive calls (considering every possible path of length L in the DFS).
+     */
     public static boolean dfs(char[][] board, String word, int i, int j, int count) {
 		if (word.length() == count) {
 			return true;
