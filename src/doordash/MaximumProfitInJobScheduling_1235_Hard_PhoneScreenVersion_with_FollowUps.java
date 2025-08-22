@@ -14,13 +14,13 @@ public class MaximumProfitInJobScheduling_1235_Hard_PhoneScreenVersion_with_Foll
 		int[] endTime = {3,4,5,6}; 
 		int[] profit = {50,10,40,70};
 		
-//		System.out.println("Expected: 120, Actual: " + jobScheduling(startTime, endTime, profit));
+		System.out.println("Expected: 120, Actual: " + jobScheduling(startTime, endTime, profit));
 		
 		int[] startTime2 = {1,2,3,4,6};
 		int[] endTime2 = {3,5,10,6,9};
 		int[] profit2 = {20,20,100,70,60};
 		
-//		System.out.println("Expected: 150, Actual: " + jobScheduling(startTime2, endTime2, profit2));
+		System.out.println("Expected: 150, Actual: " + jobScheduling(startTime2, endTime2, profit2));
 		
 		
 		int[] startTime3 = {2, 3, 5, 7}; 
