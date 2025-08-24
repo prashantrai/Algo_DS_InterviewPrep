@@ -62,6 +62,36 @@ public class TreeMerger {
 		     values + original value from inputs.
      * */
     
+    /*
+     I designed a TreeNode class with three fields: a String key, 
+     an int value, and a Map<String, TreeNode> children. Using a 
+     Map makes merging efficient, because I can directly look up 
+     children by their key rather than iterating through a list. 
+     This keeps complexity low and ensures uniqueness of children under each parent.
+     * */
+    
+    static class TreeNode {
+		String key;
+		int value;
+		Map<String, TreeNode> children;
+		TreeNode(String key, int value) {
+			this.key = key;
+			this.value = value;
+			children = new HashMap<>();
+		}
+		void addChild(TreeNode child) {
+			children.put(child.key, child);
+		}
+		// Utility to print tree for debugging
+	    void print(String indent) {
+	        System.out.println(indent + key + ":" + value);
+	        for (TreeNode child : children.values()) {
+	            child.print(indent + "  ");
+	        }
+	    }
+		
+	}
+    
     
 //    Time Complexity: O(n + m) — Each node is visited once.
 //
@@ -138,7 +168,8 @@ public class TreeMerger {
 	 What’s the problem with not cloning?
 		Let’s say we're merging t1 and t2, and return t2 directly (without cloning).
 		Later, if you modify the merged tree:
-		You will accidentally modify t2, because both the merged tree and t2 share the same objects in memory.
+		You will accidentally modify t2, because both the merged tree and t2 share 
+		the same objects in memory.
 		That breaks data isolation and introduces side effects.
 	 * */
 	private static TreeNode cloneTree(TreeNode node) {
@@ -151,33 +182,6 @@ public class TreeMerger {
 		
 		return newNode;
 	}
-	
-	
-	static class TreeNode {
-		String key;
-		int value;
-		Map<String, TreeNode> children;
-		
-		TreeNode(String key, int value) {
-			this.key = key;
-			this.value = value;
-			children = new HashMap<>();
-		}
-		
-		void addChild(TreeNode child) {
-			children.put(child.key, child);
-		}
-		
-		// Utility to print tree for debugging
-	    void print(String indent) {
-	        System.out.println(indent + key + ":" + value);
-	        for (TreeNode child : children.values()) {
-	            child.print(indent + "  ");
-	        }
-	    }
-		
-	} 
-	
 	
 }
 
@@ -193,7 +197,7 @@ Child nodes could be stored in any order
 // #    L:2 L:2
 
 // # Target tree T
-
+	
 // #      Root:13
 // #     /  |   \
 // #    A:4 B:3 D:6

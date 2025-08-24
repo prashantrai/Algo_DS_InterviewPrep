@@ -53,6 +53,7 @@ public class RobotRoomCleaner_489_Hard {
 	
 	public void cleanRoom(Robot r) {
 		this.robot = r;
+		// dfs(x, y, dir)
 		dfs(0,0,0); // start at (0,0), facing up
 	}
 	private void dfs(int x, int y, int dir) {
@@ -71,7 +72,8 @@ public class RobotRoomCleaner_489_Hard {
             String newKey = newX + "," + newY;
 
             // Only attempt to enter if we haven't visited the target coordinate
-			// and moved successfully into (newX,newY)
+			// and moved successfully into (newX,newY), move() returns false if 
+            // move() returns false if next cell is obstacle, robot can't move
             if(!visited.contains(newKey) && robot.move()) {
                  dfs(newX, newY, d); // explore from there, keeping facing 'd'
 				 goBack(); // backtrack to (x,y) and restore facing 'd'
@@ -140,9 +142,6 @@ public class RobotRoomCleaner_489_Hard {
             robot.turnRight();
         }
     }
-	
-    
-
     
     
     // Robot interface implementation

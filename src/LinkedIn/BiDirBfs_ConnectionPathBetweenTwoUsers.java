@@ -86,7 +86,7 @@ public class BiDirBfs_ConnectionPathBetweenTwoUsers {
 			stop BFS — this guarantees the shortest path.
 		
 		
-		Follow-up Handling
+	  * Follow-up Handling: 
 		Multiple direct connections: 
 			No change — BFS naturally handles branching.
 		
@@ -106,12 +106,32 @@ public class BiDirBfs_ConnectionPathBetweenTwoUsers {
      */
     
     // Finds the shortest connection path between two users
-    public static List<String> findConnectionPath(Map<String, List<String>> graph, String start, String end) {
-        if (!graph.containsKey(start) || !graph.containsKey(end)) return Collections.emptyList();
+    public static List<String> findConnectionPath(Map<String, List<String>> graph, 
+    		String start, String end) {
+        
+    	if (!graph.containsKey(start) || !graph.containsKey(end)) 
+        	return Collections.emptyList();
+        
         if (start.equals(end)) return Arrays.asList(start);
 
         Queue<String> qA = new LinkedList<>(), qB = new LinkedList<>();
-        Map<String, String> parentA = new HashMap<>(), parentB = new HashMap<>();
+        
+        /* TIP: We actually do have a visited-node mechanism in the solution 
+         * — it’s just hidden inside the parentA and parentB maps.
+         * 
+         * Here, instead of a separate visited set, we store each visited 
+         * node in parentA (for BFS from start) or parentB (for BFS from end) 
+         * as soon as we encounter it.
+
+		   This has two purposes:
+			Tracks visitation — If parentA.containsKey(node) is true, 
+			that means we’ve already visited it from side A.
+
+			Stores the parent for path reconstruction later.
+         * */
+        
+        Map<String, String> parentA = new HashMap<>(); 
+        Map<String, String> parentB = new HashMap<>();
 
         qA.add(start); parentA.put(start, null);
         qB.add(end);   parentB.put(end, null);
@@ -119,15 +139,23 @@ public class BiDirBfs_ConnectionPathBetweenTwoUsers {
         while (!qA.isEmpty() && !qB.isEmpty()) {
             // Always expand the smaller queue first // follow-up
             if (qA.size() > qB.size()) {
-                Queue<String> tmpQ = qA; qA = qB; qB = tmpQ;
-                Map<String, String> tmpP = parentA; parentA = parentB; parentB = tmpP;
+                Queue<String> tmpQ = qA; 
+                qA = qB; 
+                qB = tmpQ;
+                
+                Map<String, String> tmpP = parentA; 
+                parentA = parentB; 
+                parentB = tmpP;
             }
-
             int size = qA.size();
             for (int i = 0; i < size; i++) {
                 String node = qA.poll();
+                
                 for (String neighbor : graph.getOrDefault(node, Collections.emptyList())) {
-                    if (parentA.containsKey(neighbor)) continue; // already visited from this side
+                   
+                	if (parentA.containsKey(neighbor)) 
+                    	continue; // already visited from this side
+                    
                     parentA.put(neighbor, node);
 
                     if (parentB.containsKey(neighbor)) {

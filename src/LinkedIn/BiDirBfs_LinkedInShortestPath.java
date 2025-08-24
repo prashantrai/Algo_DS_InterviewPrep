@@ -53,20 +53,68 @@ public class BiDirBfs_LinkedInShortestPath {
         System.out.println("distance 7 (P->Q): " + findConnectionDistance(g3, "P", "Q")); // [P, Q]
         System.out.println("Test 7 (P->Q): " + shortestPath(g3, "P", "Q")); // [P, Q]
     }
-	
-	
-	
-	/* 
-	 * Question: 
+	/* Question: 
 	 	Find Linkedin connection distance: Shortest path between LinkedIn connections. 
 		An adjacency list is given, a source and a target. 
 		Find the connection distance between source and target. 
-	
 		Follow-up: Print the path as well.
-	 * 
-	 * Complexity:
-		Time: O(V + E) worst-case
+	 * */
+	/* Alog/Steps:
+	Initialize:
+	- Two queues (q1 from source, q2 from target).
+	- Two visited maps (visited1, visited2) storing:
+		The parent of each node (for path reconstruction).
+	- Two distance maps (dist1, dist2) storing:
+		Distance from source or target.
+	
+	Expand alternately:
+	- Always pick the queue with fewer nodes to expand first.
+	- For each neighbor:
+		If already visited by the other side, we found a meeting point.
+		Otherwise, add it to the queue, mark visited, and record parent + distance.
+	
+	Meeting point:
+	- Once we find a node visited by both sides, we can reconstruct the path:
+		Walk back using visited1 from source to meeting point.
+		Walk back using visited2 from target to meeting point.
+		Merge them to form the full path.
+
+	Distance: Total distance = dist1[meetingNode] + dist2[meetingNode].
+	
+	🔹 Interview Script (What to Say)
+	
+	I’ll solve this using Bi-directional BFS.
+	
+	A normal BFS from source could be very expensive if the graph is large, 
+	since LinkedIn has millions of users. With Bi-directional BFS, I start 
+	from both source and target and expand outwards. When the searches meet, 
+	I’ve found the shortest path.
+	
+	To optimize further, at each step I always expand the smaller frontier—this 
+	ensures we explore fewer nodes overall.
+	
+	When a node is seen from both sides, I’ll reconstruct the path and 
+	return both the path and the distance.
+	
+	This approach is efficient because the search space grows exponentially 
+	in BFS, and halving the depth reduces nodes visited from O(b^d) to O(b^(d/2)), 
+	where b is branching factor and d is depth. 
+	 * */
+
+	/* Complexity:
+		Time: O(V + E) in worst case, but expected runtime is O(b^(d/2)), 
+			which is significantly smaller in practice.
 		Space: O(V)
+	 * Script: 
+	   	"We are solving shortest path in an unweighted graph using Bi-Dir BFS. 
+	   	We search from both source and target simultaneously. This reduces the 
+	   	search space from exponential O(b^d) to O(b^(d/2)). We keep track of 
+	   	visited nodes and parent pointers on both sides. When the two searches 
+	   	meet, we reconstruct the path and compute the distance. 
+	   	The time complexity is O(V + E) in the worst case, but with bi-dir BFS, 
+	   	it’s much faster in practice. 
+	   	
+	   	The space complexity is O(V) for queues, visited sets, and parent maps." 
 	 * */
 	
 	// Minimum degree (edges) = path.size() - 1, or -1 if no path
@@ -83,30 +131,41 @@ public class BiDirBfs_LinkedInShortestPath {
 		if (!graph.containsKey(src) || !graph.containsKey(dst)) 
 			return List.of();
 
-        Queue<String> q1 = new LinkedList<>(), q2 = new LinkedList<>();
-        Map<String, String> p1 = new HashMap<>(), p2 = new HashMap<>();
-        Set<String> v1 = new HashSet<>(), v2 = new HashSet<>();
+        Queue<String> qSrc = new LinkedList<>(), qDst = new LinkedList<>();
+        
+        Map<String, String> pSrc = new HashMap<>(), pDst = new HashMap<>();
+        
+        Set<String> vSrc = new HashSet<>(), vDst = new HashSet<>();
 
-        q1.add(src); v1.add(src); p1.put(src, null);
-        q2.add(dst); v2.add(dst); p2.put(dst, null);
+        qSrc.add(src); vSrc.add(src); pSrc.put(src, null);
+        qDst.add(dst); vDst.add(dst); pDst.put(dst, null);
 
-        while (!q1.isEmpty() && !q2.isEmpty()) {
-            String meet = bfsStep(graph, q1, v1, v2, p1, p2);
-            if (meet != null) return buildPath(meet, p1, p2);
+        while (!qSrc.isEmpty() && !qDst.isEmpty()) {
+        	// Always expand the smaller frontier for efficiency
+            if (qSrc.size() <= qDst.size()) {
+            	String meet = bfsStep(graph, qSrc, vSrc, vDst, pSrc);
+            	
+            	if (meet != null) 
+            		return buildPath(meet, pSrc, pDst);
+            } else {
 
-            meet = bfsStep(graph, q2, v2, v1, p2, p1);
-            if (meet != null) return buildPath(meet, p1, p2);
+            	String meet = bfsStep(graph, qDst, vDst, vSrc, pDst);
+            	if (meet != null) 
+            		return buildPath(meet, pSrc, pDst);
+            }
         }
-        return List.of();
+        
+        return List.of(); // or Collections.emptyList()
     }
 
-    private static String bfsStep(Map<String, List<String>> g, Queue<String> q,
+	// Expand one BFS frontier
+    private static String bfsStep(Map<String, List<String>> graph, Queue<String> q,
                                   Set<String> visThis, Set<String> visOther,
-                                  Map<String, String> pThis, Map<String, String> pOther) {
+                                  Map<String, String> pThis) {
     	
         for (int sz = q.size(); sz > 0; sz--) {
             String cur = q.poll();
-            for (String nei : g.getOrDefault(cur, List.of())) {
+            for (String nei : graph.getOrDefault(cur, List.of())) { // or Collections.emptyList()
                
             	if (visThis.contains(nei)) continue;
                 
@@ -121,14 +180,27 @@ public class BiDirBfs_LinkedInShortestPath {
         return null;
     }
 
-    private static List<String> buildPath(String meet, Map<String, String> p1, Map<String, String> p2) {
+    private static List<String> buildPath(String meet, 
+    		Map<String, String> parentSrc, Map<String, String> parentDst) {
+    	
         LinkedList<String> path = new LinkedList<>();
         
-        for (String x = meet; x != null; x = p1.get(x)) 
-        	path.addFirst(x);
+        String cur = meet;
+        while (cur != null) {  // Walk back from meeting point to source
+            path.addFirst(cur);
+            cur = parentSrc.get(cur);
+        }
+        cur = parentDst.get(meet); // Skip meet itself on this side
+        while (cur != null) {      // Walk forward from meeting point to target
+            path.addLast(cur);
+            cur = parentDst.get(cur);
+        }
+        System.out.println("Distance: " + (path.size() - 1));
         
-        for (String x = p2.get(meet); x != null; x = p2.get(x)) 
-        	path.addLast(x);
+        /* Other approach - works
+        for (String x = meet; x != null; x = parentSrc.get(x))  path.addFirst(x);
+        for (String x = parentDst.get(meet); x != null; x = parentDst.get(x))  path.addLast(x);
+        */
         
         return path;
     }

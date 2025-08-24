@@ -74,6 +74,7 @@ public class NestedListWeightSum_II_364_medium {
 	public int depthSumInverse(List<NestedInteger> nestedList) {
         if (nestedList == null) return 0;
 
+        // Add nestedList to a queue
         Queue<NestedInteger> queue = new LinkedList<>(nestedList);
         List<Integer> levelSums = new ArrayList<>();
         while (!queue.isEmpty()) {

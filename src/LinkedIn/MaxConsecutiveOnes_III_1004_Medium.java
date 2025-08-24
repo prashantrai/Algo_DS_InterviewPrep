@@ -97,14 +97,19 @@ public class MaxConsecutiveOnes_III_1004_Medium {
     	System.arraycopy(nums, 0, extended, 0, n); // Follow-up
     	System.arraycopy(nums, 0, extended, n, n); // Follow-up
     	
-    	int left = 0, zeroCount = 0, maxCount = 0;
+    	int left = 0; 
+    	int zeroCount = 0; 
+    	int maxCount = 0;
     	for(int right=0; right < 2*n; right++) {
-    		if(extended[right] == 0) zeroCount++;
+    		if(extended[right] == 0) 
+    			zeroCount++;
     		
     		// Follow-up: keep both invariants — at most 
     		// k zeros, and window size ≤ n
     		if(zeroCount > k || (right - left + 1) > n) {
-    			if(extended[left] == 0) zeroCount--; 
+    			if(extended[left] == 0) 
+    				zeroCount--;
+    			
     			left++;
     		}
     		maxCount = Math.max(maxCount, right - left + 1);

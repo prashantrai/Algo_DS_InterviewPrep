@@ -45,8 +45,14 @@ public class WordLadder_127_Hard {
     Space: O(M*N), to store all the transformation for each of N words.
     */
 	
-	public static int ladderLength(String beginWord, String endWord, List<String> wordList) {
+	private static class Word {
+		String word; int step;
+		public Word(String word, int step) {
+			this.word = word;  this.step = step;
+		}
+	}
 	
+	public static int ladderLength(String beginWord, String endWord, List<String> wordList) {
 		Set<String> dict = new HashSet<>(wordList);
 		
 		if(beginWord == null || endWord == null || !dict.contains(endWord) || dict.isEmpty()) 
@@ -87,18 +93,12 @@ public class WordLadder_127_Hard {
 		return 0;
 	}
 	
-	private static class Word {
-		String word;
-		int step;
-		
-		public Word(String word, int step) {
-			this.word = word;
-			this.step = step;
-		}
-	}
 	
 	
-	// Bi-Directional bfs - working solution
+	/** Bi-Directional bfs - working solution  */
+	// Time: O(N * L * 26 * L) → O(N * L^2), 
+	//			we use new String(), which O(L) brings overall time to O(N * L^2).
+	// Space: O(N) for the dictionary + frontier sets.
 
 	public int ladderLength_BiDirectionalBFS(String beginWord, String endWord, List<String> wordList) {
 
@@ -190,9 +190,11 @@ public class WordLadder_127_Hard {
         }
 
         // Bidirectional BFS setup
-        Set<String> beginVisited = new HashSet<>(), endVisited = new HashSet<>();
+        Set<String> beginVisited = new HashSet<>(); 
+        Set<String> endVisited = new HashSet<>();
         beginVisited.add(beginWord);
         endVisited.add(endWord);
+        
         int steps = 1;
 
         while (!beginVisited.isEmpty() && !endVisited.isEmpty()) {
@@ -206,9 +208,12 @@ public class WordLadder_127_Hard {
             Set<String> nextLevel = new HashSet<>();
             for (String word : beginVisited) {
                 for (int i = 0; i < word.length(); i++) {
-                    String wildcard = word.substring(0, i) + "*" + word.substring(i + 1);
-                    for (String neighbor : wildcardMap.getOrDefault(wildcard, new ArrayList<>())) {
-                        if (endVisited.contains(neighbor)) return steps + 1;
+                    
+                	String wildcard = word.substring(0, i) + "*" + word.substring(i + 1);
+                    
+                	for (String neighbor : wildcardMap.getOrDefault(wildcard, new ArrayList<>())) {
+                        if (endVisited.contains(neighbor)) 
+                        	return steps + 1;
                         if (dict.contains(neighbor)) {
                             nextLevel.add(neighbor);
                             dict.remove(neighbor); // Mark as visited

@@ -129,6 +129,18 @@ phoneNumber: 54653346
 Output: ['linkedin', 'linkedgo']
 
 
+m booths are setup and n groups of people would be visiting these booths.
+The booths will display robots (type 0) and drones (type 1).
+So in binary format the booth string will look in 0's and 1's format.
+Each group will visit the booths from row i to j'th position only.
+There is an experience factor which is calculated as no of drone booths visited * no of robots booths visited.
+You need to maximize the experience factor.
+
+The interviewer refused to provide any example testcase, which caused more confusion.
+
+
+
+
 
 ---- Bi-directional BFS questions collection (also available above) ----
 
