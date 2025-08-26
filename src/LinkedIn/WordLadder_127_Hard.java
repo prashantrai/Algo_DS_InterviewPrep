@@ -97,13 +97,16 @@ public class WordLadder_127_Hard {
             Set<String> nextLevel = new HashSet<>();
             for(String word : beginSet) {
                 char[] arr = word.toCharArray();
+                
                 for(int i=0; i<arr.length; i++) {
-                    char original = arr[i];
+                    
+                	char original = arr[i];
                     for(char c='a'; c<='z'; c++) {
                         arr[i] = c;
                         String newWord = new String(arr);
                         
-                        if(endSet.contains(newWord)) {
+                        // If the opposite frontier has this word, we met in the middle
+                        if(endSet.contains(newWord)) { // 
                             return steps + 1; // Found connection/path
                         }
 
