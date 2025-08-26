@@ -23,9 +23,7 @@ public class InsertDeleteGetRandom_380_Medium {
 	/*
 	 * Complexity Analysis: 
 		Time complexity. GetRandom is always O(1). 
-			Insert and Delete both have O(1) average time complexity, 
-			and O(N) in the worst-case scenario when the operation exceeds 
-			the capacity of currently allocated array/hashmap and invokes space reallocation.
+			Insert and Delete both have O(1) average time complexity.
 
 		Space complexity: O(N), to store N elements.
 	 * 
