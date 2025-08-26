@@ -85,8 +85,8 @@ public class DeleteNodeIn_A_BST_450_Medium {
             else 
             	curr = curr.right;
         }
-
-        if (curr == null) return root; // key not found
+        if (curr == null) 
+        	return root; // key not found
 
         // 2. If node has two children
         if (curr.left != null && curr.right != null) {
