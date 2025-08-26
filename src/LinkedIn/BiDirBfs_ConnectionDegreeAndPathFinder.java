@@ -139,9 +139,14 @@ public class BiDirBfs_ConnectionDegreeAndPathFinder {
     }
 
     // Follow-up: return actual path from start to end (inclusive). If no path, return empty list.
-    public static List<String> findConnectionPath(Map<String, List<String>> graph, String start, String end) {
-        if (start == null || end == null) return Collections.emptyList();
-        if (start.equals(end)) return List.of(start);
+    public static List<String> findConnectionPath(Map<String, List<String>> graph, 
+    		String start, String end) {
+        
+    	if (start == null || end == null) 
+        	return List.of(); // or Collections.emptyList();
+        
+        if (start.equals(end)) 
+        	return List.of(start);
 
         // Two frontiers, two visited sets and two predecessor maps (for path reconstruction).
         Queue<String> q1 = new LinkedList<>(); 
@@ -168,6 +173,7 @@ public class BiDirBfs_ConnectionDegreeAndPathFinder {
         Map<String, String> p2 = new HashMap<>();
 
         q1.offer(start); v1.add(start); p1.put(start, null);
+        
         q2.offer(end);   v2.add(end);   p2.put(end, null);
 
         while (!q1.isEmpty() && !q2.isEmpty()) {
@@ -175,7 +181,9 @@ public class BiDirBfs_ConnectionDegreeAndPathFinder {
             String meet = (q1.size() <= q2.size())
                     ? expand(graph, q1, v1, v2, p1)
                     : expand(graph, q2, v2, v1, p2);
-            if (meet != null) return buildPath(p1, p2, meet);
+            
+            if (meet != null) 
+            	return buildPath(p1, p2, meet);
         }
         return Collections.emptyList(); // no connection
     }
@@ -264,9 +272,11 @@ public class BiDirBfs_ConnectionDegreeAndPathFinder {
     // Build full path from start -> ... -> meet -> ... -> end
     private static List<String> buildPath(Map<String, String> prevStart, Map<String, String> prevEnd, String meet) {
         LinkedList<String> left = new LinkedList<>();
+        
         for (String cur = meet; cur != null; cur = prevStart.get(cur)) { 
         	left.addFirst(cur);
         }
+        
         // append nodes after meet toward end (prevEnd maps node -> parent toward end)
         for (String cur = prevEnd.get(meet); cur != null; cur = prevEnd.get(cur)) {
         	left.addLast(cur);

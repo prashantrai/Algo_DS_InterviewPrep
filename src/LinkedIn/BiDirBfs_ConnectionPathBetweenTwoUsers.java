@@ -169,13 +169,17 @@ public class BiDirBfs_ConnectionPathBetweenTwoUsers {
     }
 
     // Builds the path from start to end via meeting point
-    private static List<String> buildPath(String meet, Map<String, String> parentA, Map<String, String> parentB) {
+	private static List<String> buildPath(String meet, Map<String, String> parentA, 
+			Map<String, String> parentB) {
+		
         LinkedList<String> path = new LinkedList<>();
         String cur = meet;
+        
         while (cur != null) { // trace back to start
             path.addFirst(cur);
             cur = parentA.get(cur);
         }
+        
         cur = parentB.get(meet);
         while (cur != null) { // trace forward to end
             path.addLast(cur);
