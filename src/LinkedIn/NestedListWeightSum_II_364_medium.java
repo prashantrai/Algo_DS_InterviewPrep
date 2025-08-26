@@ -28,7 +28,9 @@ public class NestedListWeightSum_II_364_medium {
 		- Use a queue to traverse level by level.
 		- At each level:
 			- Keep a levelSum of all integers found at that level.
-			- Add levelSum to a totalSum after each level — but in a way where the deepest level contributes only once and upper levels accumulate more.
+			- Add levelSum to a totalSum after each level — but in a way 
+			  where the deepest level contributes only once and upper 
+			  levels accumulate more.
 		
 		This way, upper levels get added multiple times, simulating the inverse depth weighting.
 		
