@@ -8,6 +8,20 @@ import java.util.Map;
 
 public class PhoneWords {
 	
+	// Demo
+    public static void main(String[] args) {
+        PhoneWords pw = new PhoneWords();
+
+        System.out.println(pw.query("2273377"));   // [careers]
+        System.out.println(pw.query("54653346"));  // [linkedin, linkedgo]
+
+        // Edge cases
+        System.out.println(pw.query(""));          // []
+        System.out.println(pw.query("123"));       // []
+        System.out.println(pw.query("447464"));    // [hiring]
+    }
+	
+	
 	/*
  	- Build a char → digit mapping using the phone keypad.
 	- For each word in KNOWN_WORDS:
@@ -46,6 +60,18 @@ public class PhoneWords {
         }
     }
 
+    // Return all words that match the phone number
+    public List<String> query(String phoneNumber) {
+        List<String> result = new ArrayList<>();
+        for (Map.Entry<String, String> entry : wordToDigits.entrySet()) {
+            if (entry.getValue().equals(phoneNumber)) {
+                result.add(entry.getKey());
+            }
+        }
+        return result;
+    }
+    
+    
     // Convert a word into digit string using keypad mapping
     private String toDigits(String word) {
         StringBuilder sb = new StringBuilder();
@@ -59,30 +85,7 @@ public class PhoneWords {
         }
         return sb.toString();
     }
-
-    // Return all words that match the phone number
-    public List<String> query(String phoneNumber) {
-        List<String> result = new ArrayList<>();
-        for (Map.Entry<String, String> entry : wordToDigits.entrySet()) {
-            if (entry.getValue().equals(phoneNumber)) {
-                result.add(entry.getKey());
-            }
-        }
-        return result;
-    }
-
-    // Demo
-    public static void main(String[] args) {
-        PhoneWords pw = new PhoneWords();
-
-        System.out.println(pw.query("2273377"));   // [careers]
-        System.out.println(pw.query("54653346"));  // [linkedin, linkedgo]
-
-        // Edge cases
-        System.out.println(pw.query(""));          // []
-        System.out.println(pw.query("123"));       // []
-        System.out.println(pw.query("447464"));    // [hiring]
-    }
+    
 }
 
 /*
