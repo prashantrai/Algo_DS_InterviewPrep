@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class InsertDeleteGetRandom_380_Medium {
 
@@ -91,4 +93,94 @@ public class InsertDeleteGetRandom_380_Medium {
 	       return list.get(rand.nextInt(list.size()));
 	    }
 	}
+	
+	// Concurrent/Thread Safe
+
+	public class RandomizedSet_Concurrent {
+	    private final Map<Integer, Integer> idxMap;
+	    private final List<Integer> list;
+	    private final Random rand;
+//	    private final ReentrantLock lock; // concurrent
+	    
+	    // For fine grain locking where read and write and run in parallel
+	    // concurrent
+	    private final ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
+	    private final ReentrantReadWriteLock.ReadLock readLock = rwLock.readLock();
+	    private final ReentrantReadWriteLock.WriteLock writeLock = rwLock.writeLock();
+
+	    
+
+	    public RandomizedSet_Concurrent() {
+	        idxMap = new HashMap<>();
+	        list = new ArrayList<>();
+	        rand = new Random();
+	        //lock = new ReentrantLock(); // concurrent
+	    }
+
+	    /** Inserts val if not present. Returns true if inserted. */
+	    public boolean insert(int val) {
+	        // lock.lock(); // concurrent
+	    	writeLock.lock(); // concurrent
+	        try { // concurrent
+	            if (idxMap.containsKey(val)) return false;
+	            idxMap.put(val, list.size());
+	            list.add(val);
+	            return true;
+	        } finally {
+	            //lock.unlock(); // concurrent
+	        	writeLock.unlock(); // concurrent
+	        }
+	    }
+
+	    /** Removes val if present. Returns true if removed. */
+	    public boolean remove(int val) {
+	        //lock.lock(); // concurrent
+	    	writeLock.lock(); // concurrent
+	        try { // concurrent
+	            Integer index = idxMap.get(val);
+	            if (index == null) return false;
+
+	            int lastIndex = list.size() - 1;
+	            int lastVal = list.get(lastIndex);
+
+	            if (index != lastIndex) {
+	                list.set(index, lastVal);
+	                idxMap.put(lastVal, index);
+	            }
+	            list.remove(lastIndex);
+	            idxMap.remove(val);
+	            return true;
+	        } finally {
+	            //lock.unlock(); // concurrent
+	        	writeLock.unlock(); // concurrent
+	        }
+	    }
+
+	    /** Returns a random element. Assumes at least one element exists. */
+	    public int getRandom() {
+	        //lock.lock(); // concurrent
+	    	readLock.lock(); // concurrent
+	        try { // concurrent
+	            int i = rand.nextInt(list.size());
+	            return list.get(i);
+	        } finally {
+	            //lock.unlock(); // concurrent
+	        	readLock.lock(); // concurrent
+	        }
+	    }
+
+	    // --- simple tests/demo ---
+	    /*public static void main(String[] args) {
+	        RandomizedSet rs = new RandomizedSet();
+
+	        System.out.println(rs.insert(1));   // true
+	        System.out.println(rs.remove(2));   // false
+	        System.out.println(rs.insert(2));   // true
+	        System.out.println("random: " + rs.getRandom()); // 1 or 2
+	        System.out.println(rs.remove(1));   // true
+	        System.out.println(rs.insert(2));   // false (already present)
+	        System.out.println("random: " + rs.getRandom()); // 2
+	    }*/
+	}
+
 }
