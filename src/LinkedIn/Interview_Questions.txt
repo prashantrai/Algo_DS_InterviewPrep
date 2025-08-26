@@ -15,6 +15,10 @@ For Host Manager Round Frame Answers Like Below:
 	-> Changes in reqs/unexpected blockers
 	-> Ensuring alignment with stakeholders
 	
+	India:
+	Tell me about the work where you were regarded well.
+	Tell me about an instance where there was a technical disagreement.
+	
 	
 ### Aug 20, 2025 [https://leetcode.com/discuss/post/7103345/linkedin-sse-applications-tps-by-debmaly-yruj/]
 
