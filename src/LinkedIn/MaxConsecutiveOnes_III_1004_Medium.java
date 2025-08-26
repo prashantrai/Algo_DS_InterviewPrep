@@ -100,7 +100,7 @@ public class MaxConsecutiveOnes_III_1004_Medium {
     	int left = 0; 
     	int zeroCount = 0; 
     	int maxCount = 0;
-    	for(int right=0; right < 2*n; right++) {
+    	for(int right=0; right < 2*n; right++) {	// Follow-up
     		if(extended[right] == 0) 
     			zeroCount++;
     		
