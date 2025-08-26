@@ -106,7 +106,7 @@ public class MaxConsecutiveOnes_III_1004_Medium {
     		
     		// Follow-up: keep both invariants — at most 
     		// k zeros, and window size ≤ n
-    		if(zeroCount > k || (right - left + 1) > n) {
+    		if(zeroCount > k || (right - left + 1) > n) { 
     			if(extended[left] == 0) 
     				zeroCount--;
     			
