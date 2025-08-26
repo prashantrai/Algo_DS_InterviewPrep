@@ -33,7 +33,99 @@ public class WordLadder_127_Hard {
 		System.out.println("Expected: 0, Actual: " + res4);
 	}
 	
-	/* Working Solution: 
+	// use this in interview
+	/** Bi-Directional bfs - working solution  */
+	
+	/*
+	1.Quick fail: If endWord isn’t in wordList, there’s no valid ladder → return 0.
+	
+	2.Two ends meet in the middle: Start a BFS from both beginWord and endWord.
+		Always expand the smaller frontier to keep the search tiny.
+	
+	3.Generate neighbors on the fly: For a word, try changing each character 
+	to 'a'..'z' (skip same char).
+	
+	If the new word is:
+	- in the other frontier → we met in the middle → return the current length + 1.
+	- in the dictionary → add to next frontier and remove from dictionary so we don’t revisit it.
+	
+	4.Count length: Start at length 1 (the beginWord itself). After expanding a layer, increase length by 1.
+	
+	5.If the two searches never meet → return 0.
+	 * */
+	
+	
+	
+	// Time: O(N * L * 26 * L) → O(N * L^2), 
+	//			we use new String(), which O(L) brings overall time to O(N * L^2).
+	// Space: O(N) for the dictionary + frontier sets.
+
+	public int ladderLength_BiDirectionalBFS(String beginWord, String endWord, List<String> wordList) {
+
+		Set<String> dict = new HashSet<>(wordList);
+
+        if(beginWord == null || endWord == null || dict.isEmpty() || !dict.contains(endWord)) {
+            return 0;
+        }
+
+        // Two sets for bidirectional BFS
+        Set<String> beginSet = new HashSet<>(); 
+        Set<String> endSet = new HashSet<>(); 
+        beginSet.add(beginWord);
+        endSet.add(endWord);
+        dict.remove(beginWord);
+        dict.remove(endWord);
+
+        int steps = 1;
+
+        while (!beginSet.isEmpty() && !endSet.isEmpty()) {
+            // Always expand the smaller set first (optimization)
+            if(beginSet.size() > endSet.size()) {
+                Set<String> temp = beginSet;
+                beginSet = endSet;
+                endSet = temp;
+            }
+
+            /* Generate neighbors on the fly: For a word, try changing each 
+             character to 'a'..'z' (skip same char).
+	
+			 If the new word is:
+				- in the other frontier → we met in the middle → return the 
+					current length + 1.
+				- in the dictionary → add to next frontier and remove from 
+					dictionary so we don’t revisit it. 
+             */
+            
+            Set<String> nextLevel = new HashSet<>();
+            for(String word : beginSet) {
+                char[] arr = word.toCharArray();
+                for(int i=0; i<arr.length; i++) {
+                    char original = arr[i];
+                    for(char c='a'; c<='z'; c++) {
+                        arr[i] = c;
+                        String newWord = new String(arr);
+                        
+                        if(endSet.contains(newWord)) {
+                            return steps + 1; // Found connection/path
+                        }
+
+                        if(dict.contains(newWord)) {
+                            nextLevel.add(newWord);
+                            dict.remove(newWord); // mark as visited
+                        }
+                    }
+                    // revert changes
+                    arr[i] = original;
+                }
+            }
+            beginSet = nextLevel;
+            steps++;
+        }
+        return 0; // no path found
+
+	}
+	
+	/* Working Solution: Traditional BFS
 	 * 
     Time: O(M* (N*N)), where 
     M -> is length of the word 
@@ -94,66 +186,6 @@ public class WordLadder_127_Hard {
 	}
 	
 	
-	
-	/** Bi-Directional bfs - working solution  */
-	// Time: O(N * L * 26 * L) → O(N * L^2), 
-	//			we use new String(), which O(L) brings overall time to O(N * L^2).
-	// Space: O(N) for the dictionary + frontier sets.
-
-	public int ladderLength_BiDirectionalBFS(String beginWord, String endWord, List<String> wordList) {
-
-		Set<String> dict = new HashSet<>(wordList);
-
-        if(beginWord == null || endWord == null || dict.isEmpty() || !dict.contains(endWord)) {
-            return 0;
-        }
-
-        // Two sets for bidirectional BFS
-        Set<String> beginSet = new HashSet<>(); 
-        Set<String> endSet = new HashSet<>(); 
-        beginSet.add(beginWord);
-        endSet.add(endWord);
-        dict.remove(beginWord);
-        dict.remove(endWord);
-
-        int steps = 1;
-
-        while (!beginSet.isEmpty() && !endSet.isEmpty()) {
-            // Always expand the smaller set first (optimization)
-            if(beginSet.size() > endSet.size()) {
-                Set<String> temp = beginSet;
-                beginSet = endSet;
-                endSet = temp;
-            }
-
-            Set<String> nextLevel = new HashSet<>();
-            for(String word : beginSet) {
-                char[] arr = word.toCharArray();
-                for(int i=0; i<arr.length; i++) {
-                    char original = arr[i];
-                    for(char c='a'; c<='z'; c++) {
-                        arr[i] = c;
-                        String newWord = new String(arr);
-                        
-                        if(endSet.contains(newWord)) {
-                            return steps + 1; // Found connection/path
-                        }
-
-                        if(dict.contains(newWord)) {
-                            nextLevel.add(newWord);
-                            dict.remove(newWord); // mark as visited
-                        }
-                    }
-                    // revert changes
-                    arr[i] = original;
-                }
-            }
-            beginSet = nextLevel;
-            steps++;
-        }
-        return 0; // no path found
-
-	}
 	
 	// Bi-Directional BFS + Wildcards
 	   // This is the most efficient approach for large inputs
