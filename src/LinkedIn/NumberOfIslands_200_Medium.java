@@ -1,5 +1,8 @@
 package LinkedIn;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class NumberOfIslands_200_Medium {
 
 	public static void main(String[] args) {
@@ -52,24 +55,63 @@ public class NumberOfIslands_200_Medium {
         for(int r=0; r<m.length; r++) {
             for(int c=0; c<m[0].length; c++) {
                 if(m[r][c] == '1') {
-                    helper(m, r, c);
-                    count++;
+//                    dfs(m, r, c);
+                    bfs(m, r, c);
+                    count++;	
                 }
             }
         }
         return count;
     }
     
-    private static void helper(char[][] m, int r, int c) {
+    
+	/* Time & Space Complexity:
+    Time: O(m * n) → each cell visited once
+    Space: O(min(m,n)) → queue stores one island at a time
+	*/
+	private static void bfs(char[][] grid, int r, int c) {
+	    int rows = grid.length; 
+	    int cols = grid[0].length;
+	    
+	    Queue<int[]> queue = new LinkedList<>();
+	    queue.offer(new int[]{r, c});
+	    
+	    grid[r][c] = '0'; // mark visited
+	
+	    int[][] directions = {{1,0}, {-1,0}, {0,1}, {0,-1}};
+	
+	    while (!queue.isEmpty()) {
+	        int[] cell = queue.poll();
+	        
+	        for (int[] dir : directions) {
+	            int nr = cell[0] + dir[0];
+	            int nc = cell[1] + dir[1];
+	            
+	            if (nr >= 0 && nr < rows && nc >= 0 
+	            		&& nc < cols 
+	            		&& grid[nr][nc] == '1') {
+	            	
+	                queue.offer(new int[]{nr, nc});
+	                grid[nr][nc] = '0'; // mark visited
+	            }
+	        }
+	        
+	    }// while closed
+	
+	}//bfs closed
+	
+	private static void dfs(char[][] m, int r, int c) {
         
         if(r >= m.length || r < 0 || c >= m[0].length || c<0 || m[r][c] != '1') {
             return;
         }
         m[r][c] = '2'; // visited
-        helper(m, r, c+1);
-        helper(m, r, c-1);
-        helper(m, r+1, c);
-        helper(m, r-1, c);
+        dfs(m, r, c+1);
+        dfs(m, r, c-1);
+        dfs(m, r+1, c);
+        dfs(m, r-1, c);
     }
+    
+    
 
 }
