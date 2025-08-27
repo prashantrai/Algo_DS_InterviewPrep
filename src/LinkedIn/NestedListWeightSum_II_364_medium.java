@@ -95,6 +95,11 @@ public class NestedListWeightSum_II_364_medium {
             levelSums.add(curLevelSum);
         }
         // Compute inverse depth sum
+        // in inverse sum, shallower level will have higher weight
+        // that's why start loop from the bottom of the list because
+        // deeper level sum will be at the bottom and shallower will be on top 
+        // of the list, and as we iterate above we'll increment weight by 1
+        // before next iteration
         int totalSum = 0;
         int weight = 1;
         for (int i = levelSums.size() - 1; i >= 0; i--) {
