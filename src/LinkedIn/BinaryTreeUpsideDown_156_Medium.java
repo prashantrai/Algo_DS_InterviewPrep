@@ -60,39 +60,6 @@ public class BinaryTreeUpsideDown_156_Medium {
         printTree(upsideDownRecursive);
     }
 
-    // Helper method to print the tree level by level
-    public static void printTree(TreeNode root) {
-        if (root == null) {
-            System.out.println("[]");
-            return;
-        }
-
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-
-        while (!queue.isEmpty()) {
-            int levelSize = queue.size();
-            for (int i = 0; i < levelSize; i++) {
-                TreeNode node = queue.poll();
-                if (node == null) {
-                    sb.append("null, ");
-                    continue;
-                }
-                sb.append(node.val).append(", ");
-                queue.offer(node.left);
-                queue.offer(node.right);
-            }
-        }
-
-        // Remove the trailing ", " and close the bracket
-        if (sb.length() > 1) {
-            sb.setLength(sb.length() - 2);
-        }
-        sb.append("]");
-        System.out.println(sb.toString());
-    }
 	
 	/* 
     Time: O(N), where N is the number of nodes in the tree. 
@@ -116,18 +83,22 @@ public class BinaryTreeUpsideDown_156_Medium {
         TreeNode rightSibling = null;
 
         while (curr != null) {
-            // Save the left child before modifying it
+           // Save the left child before modifying it
            TreeNode left = curr.left;
 
-            // Reassign the current node's left and right children
+           // Old right sibling becomes new left child
            curr.left = rightSibling;
+           
+           // Save current right for next iteration
            rightSibling = curr.right;
 
-            // Save the right child for the next iteration
-            curr.right = parent;
+           // Old parent becomes new right child
+           curr.right = parent;
            
-            // Move to the left child for the next iteration
+           // Current becomes parent for next iteration
            parent = curr;
+           
+           // Move to left child
            curr = left;
         }
 
@@ -174,6 +145,41 @@ public class BinaryTreeUpsideDown_156_Medium {
             this.left = left;
             this.right = right;
         }
+    }
+    
+    
+    // Helper method to print the tree level by level
+    public static void printTree(TreeNode root) {
+        if (root == null) {
+            System.out.println("[]");
+            return;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode node = queue.poll();
+                if (node == null) {
+                    sb.append("null, ");
+                    continue;
+                }
+                sb.append(node.val).append(", ");
+                queue.offer(node.left);
+                queue.offer(node.right);
+            }
+        }
+
+        // Remove the trailing ", " and close the bracket
+        if (sb.length() > 1) {
+            sb.setLength(sb.length() - 2);
+        }
+        sb.append("]");
+        System.out.println(sb.toString());
     }
 
 }

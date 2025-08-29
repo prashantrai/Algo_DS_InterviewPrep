@@ -44,6 +44,8 @@ public class LowestCommonAncestorOfABinarySearchTree_235_Medium {
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
         // Ensure p.val <= q.val to simplify comparisons (optional)
+    	// You don’t have to check separately p.val < root.val && q.val < root.val.
+    	// Just one bound check (b < root.val or a > root.val).
         int  minNode = Math.min(p.val, q.val);
         int maxNode = Math.max(p.val, q.val);
 

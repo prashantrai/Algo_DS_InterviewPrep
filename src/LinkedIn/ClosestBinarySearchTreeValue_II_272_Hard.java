@@ -15,6 +15,14 @@ public class ClosestBinarySearchTreeValue_II_272_Hard {
 	
 	
 	/* Approach: binary search
+    Inorder traversal of the BST → gives a sorted list of node values
+    (since BST inorder = sorted).
+
+    Binary search on this sorted list to find the starting index of the 
+    k closest elements. Even though we're doing binary search, the overall 
+    time complexity is O(N) due to the inorder traversal. But the binary 
+    search helps reduce the search space efficiently.
+
     Time: O(N)
     Space: O(n), Both arr and the recursion call stack use O(n) space.
     */
