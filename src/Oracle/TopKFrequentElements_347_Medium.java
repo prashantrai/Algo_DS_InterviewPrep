@@ -34,6 +34,51 @@ public class TopKFrequentElements_347_Medium {
 		
 		
 	}
+	
+	/* Bucket Sort : Runtime: O(N), most efficient
+	Algo Steps: 
+    1. Count Frequencies: Use a HashMap to count how often each number appears.
+    2. Bucket Initialization: Create an array of lists (bucket) where 
+    index = frequency, and value = list of numbers with that frequency.
+    3. Populate Buckets: For each number in the frequency map, add it to 
+    the bucket corresponding to its frequency.
+    4. Extract Top K: Traverse buckets from highest frequency to lowest, 
+    collecting elements until you have k.
+	 * */
+
+     // Time and space: O(N)
+    public static int[] topKFrequent(int[] nums, int k) {
+        
+        // 1. Count Frequencies
+        Map<Integer, Integer> freq = new HashMap<>();
+        for(int n : nums) {
+            freq.put(n, freq.getOrDefault(n, 0)+1);
+        }
+
+        // 2. Bucket Initialization: Create an array of lists (bucket) where 
+        // index = frequency, and value = list of numbers with that frequency.
+        List<Integer>[] bucket = new List[nums.length+1]; // +1 because count starts at 1
+        for(int i=0; i<bucket.length; i++) {
+            bucket[i] = new ArrayList<>();
+        }  
+        
+        // 3. Populate Buckets: For each number in the frequency map, add 
+        // it to the bucket corresponding to its frequency.
+        for(int key : freq.keySet()) {
+            int frequency = freq.get(key);
+            bucket[frequency].add(key);
+        }
+
+        // 4. Extract Top K: Traverse buckets from highest frequency to lowest, 
+        // collecting elements until you have k.
+        List<Integer> res = new ArrayList<>();
+        for(int i=bucket.length-1; i>=0; i--) {
+            res.addAll(bucket[i]);
+            if(res.size() >= k) break;
+        }
+
+        return res.stream().mapToInt(i -> i).toArray();
+    }
 
 	/*
 	 * Complexity Analysis
@@ -44,7 +89,7 @@ public class TopKFrequentElements_347_Medium {
 	 * 
 	 * Space complexity : O(N) to store the hash map.
 	 */
-	public static int[] topKFrequent(int[] nums, int k) {
+	public static int[] topKFrequent_PQ(int[] nums, int k) {
 
 		Map<Integer, Integer> map = new HashMap<>();
 
@@ -73,31 +118,5 @@ public class TopKFrequentElements_347_Medium {
 		return res;
 	}
 
-	
-	/* Bucket Sort : Runtime: O(N)
-	 * 
-	 * https://leetcode.com/problems/top-k-frequent-elements/discuss/81602/Java-O(n)-Solution-Bucket-Sort
-	 * */
-	public static int[] topKFrequent2(int[] nums, int k) {
-        // freq map
-        Map<Integer, Integer> freq = new HashMap<Integer, Integer>();
-        for (int n : nums) {
-            freq.put(n, freq.getOrDefault(n, 0) + 1);
-        }
-        // bucket sort on freq
-        List<Integer>[] bucket = new List[nums.length + 1];
-        for (int i = 0; i < bucket.length; i++) bucket[i] = new ArrayList();
-        for (int key : freq.keySet()) {
-            bucket[freq.get(key)].add(key);
-        }
-        // gather result
-        List<Integer> res = new ArrayList();
-        for (int i = bucket.length - 1; i >= 0; i--) {
-            res.addAll(bucket[i]);
-            if (res.size() >= k) break;
-        }
-        //return res;
-        return res.stream().mapToInt(i -> i).toArray();
-    }
 	
 }

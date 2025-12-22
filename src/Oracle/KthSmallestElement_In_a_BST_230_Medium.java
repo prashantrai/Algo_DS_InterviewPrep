@@ -52,7 +52,11 @@ public class KthSmallestElement_In_a_BST_230_Medium {
 	
 	/* Interview Script for Time and Space complexity:: 
 	 
-	Solution performs an in-order traversal of the BST, which naturally visits nodes in ascending order. To optimize, I stop the traversal as soon as I find the k-th smallest element by using a boolean return flag that propagates upward through the recursion stack.
+	Solution performs an in-order traversal of the BST, 
+	which naturally visits nodes in ascending order. 
+	To optimize, I stop the traversal as soon as I find the k-th smallest 
+	element by using a boolean return flag that propagates upward through 
+	the recursion stack.
 
 	In terms of time complexity:
 	In the worst case, I need to descend from the root to the leftmost node — that’s O(H), 
@@ -68,11 +72,6 @@ public class KthSmallestElement_In_a_BST_230_Medium {
 	of recursion is the height of the tree, so O(H) space. Again, that’s O(log N) for 
 	balanced trees and O(N) for skewed ones.
 	 * */
-	
-	/* 
-    1. Perform inorder on the tree and store each node value in a List
-    2. Return (k-1)th value from the list.\
-    */
     // Time and space: O(N)
 	
 	static int count = 0;
@@ -206,4 +205,66 @@ public class KthSmallestElement_In_a_BST_230_Medium {
 		}
 	}
 
+    // FOLLOW-UP
+    /** Follow-up:  If the BST is modified often (i.e., we can do insert and delete operations) 
+     * and you need to find the kth smallest frequently, how would you optimize? */
+    
+    /*
+     * To support frequent inserts/deletes, you must maintain leftSize during mutation. 
+     * Since LeetCode doesn’t expose insert/delete, we describe it:
+     * */
+    
+    // Time: O(H)	Space: O(N)
+    // H = height of tree
+    // 	Balanced BST: H = log N
+    // 	Worst-case (skewed): H = N
+    
+    // Follow-up: new - kthSmallest with O(H) traversal (single path)
+    public int kthSmallest(AugTreeNode root, int k) {
+        AugTreeNode curr = root;
+        while (curr != null) {
+            if (k <= curr.leftSize) {
+                curr = curr.left;
+            } else if (k == curr.leftSize + 1) {
+                return curr.val;
+            } else {
+                k -= (curr.leftSize + 1);
+                curr = curr.right;
+            }
+        }
+        throw new IllegalArgumentException("Invalid k");
+    }
+    
+    // Follow-up: new - Augmented Node (for system design)
+    static class AugTreeNode {
+        int val;
+        AugTreeNode left, right;
+        int leftSize; // number of nodes in left subtree, maintained dynamically
+    }
+    class BST {
+        private AugTreeNode root;
+        // Follow-up: new - Insert with size update
+        public void insert(int val) {
+            root = insertRec(root, val);
+        }
+        private AugTreeNode insertRec(AugTreeNode node, int val) {
+            if (node == null) {
+                AugTreeNode newNode = new AugTreeNode();
+                newNode.val = val;
+                newNode.leftSize = 0;
+                return newNode;
+            }
+            if (val < node.val) {
+                node.left = insertRec(node.left, val);
+                node.leftSize++; // Follow-up: updated
+            } else if (val > node.val) {
+                node.right = insertRec(node.right, val);
+                // leftSize unchanged
+            }
+            return node;
+        }
+        
+    }
+    
+    
 }
