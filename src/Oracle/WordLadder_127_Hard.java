@@ -1,4 +1,4 @@
-package LinkedIn;
+package Oracle;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
