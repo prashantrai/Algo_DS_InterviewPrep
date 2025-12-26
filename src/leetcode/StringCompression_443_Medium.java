@@ -1,6 +1,4 @@
-package Ripple;
-
-import java.util.Arrays;
+package leetcode;
 
 public class StringCompression_443_Medium {
 

@@ -13,6 +13,7 @@ public class MaximumSubarray_53_Easy {
 		System.out.println("Expected: 23, Actual:"+maxSubArray2(nums2));
 	}
 
+	// Time: O(n), Space: O(1)
 	// Kadane's Algorithm
     public static int maxSubArray(int[] nums) {
         int sum = nums[0];

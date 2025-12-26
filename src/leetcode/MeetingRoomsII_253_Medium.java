@@ -1,226 +1,156 @@
 package leetcode;
 
 import java.util.Arrays;
-import java.util.Map;
 import java.util.PriorityQueue;
-import java.util.TreeMap;
 
 public class MeetingRoomsII_253_Medium {
 
-	public static void main(String[] args) {
-		int[][] intervals = {{0, 30},{5, 10},{15, 20}};
-		
-		int res = minMeetingRooms(intervals);
-		System.out.println("Expacted: 2, Actual: "+res);
-		
-		res = minMeetingRooms_UsingPriorityQueue_1(intervals);  // with priority queue
-		System.out.println("Expacted: 2, Actual: "+res);
-		
-		res = minMeetingRooms_UsingTreeMap(intervals);  // with TreeMap
-		System.out.println("Expacted: 2, Actual: "+res);
-		
-		int[][] intervals2 = {{7,10},{2,4}};
-		
-		res = minMeetingRooms(intervals2);
-		System.out.println("Expacted: 1, Actual: "+res);
-		
-		res = minMeetingRooms_UsingPriorityQueue_1(intervals2);	// with priority queue
-		System.out.println("Expacted: 1, Actual: "+res);
-		
-		res = minMeetingRooms_UsingTreeMap(intervals2);  // with TreeMap
-		System.out.println("Expacted: 1, Actual: "+res);
-	}
+	// Main method with test cases
+    public static void main(String[] args) {
+    	MeetingRoomsII_253_Medium solution = new MeetingRoomsII_253_Medium();
+        
+        // Test Case 1: Example from problem statement
+        int[][] intervals1 = {{0, 30}, {5, 10}, {15, 20}};
+        System.out.println("Test Case 1: " + Arrays.deepToString(intervals1));
+        System.out.println("Expected: 2, Got: " + solution.minMeetingRooms(intervals1));
+        System.out.println();
+        
+        // Test Case 2: Example from problem statement
+        int[][] intervals2 = {{7, 10}, {2, 4}};
+        System.out.println("Test Case 2: " + Arrays.deepToString(intervals2));
+        System.out.println("Expected: 1, Got: " + solution.minMeetingRooms(intervals2));
+        System.out.println();
+        
+        // Test Case 3: All meetings overlap
+        int[][] intervals3 = {{1, 5}, {2, 6}, {3, 7}, {4, 8}};
+        System.out.println("Test Case 3: " + Arrays.deepToString(intervals3));
+        System.out.println("Expected: 4, Got: " + solution.minMeetingRooms(intervals3));
+        System.out.println();
+        
+        // Test Case 4: No overlapping meetings
+        int[][] intervals4 = {{1, 2}, {3, 4}, {5, 6}, {7, 8}};
+        System.out.println("Test Case 4: " + Arrays.deepToString(intervals4));
+        System.out.println("Expected: 1, Got: " + solution.minMeetingRooms(intervals4));
+        System.out.println();
+        
+        // Test Case 5: Empty input
+        int[][] intervals5 = {};
+        System.out.println("Test Case 5: " + Arrays.deepToString(intervals5));
+        System.out.println("Expected: 0, Got: " + solution.minMeetingRooms(intervals5));
+        System.out.println();
+        
+        // Test Case 6: Single meeting
+        int[][] intervals6 = {{1, 10}};
+        System.out.println("Test Case 6: " + Arrays.deepToString(intervals6));
+        System.out.println("Expected: 1, Got: " + solution.minMeetingRooms(intervals6));
+        System.out.println();
+        
+        // Test Case 7: Back-to-back meetings (should reuse room)
+        int[][] intervals7 = {{1, 3}, {3, 5}, {5, 7}};
+        System.out.println("Test Case 7: " + Arrays.deepToString(intervals7));
+        System.out.println("Expected: 1, Got: " + solution.minMeetingRooms(intervals7));
+        System.out.println();
+        
+        // Test Case 8: Complex overlapping scenario
+        int[][] intervals8 = {{13, 15}, {1, 13}, {6, 9}, {3, 7}, {8, 10}, {2, 4}};
+        System.out.println("Test Case 8: " + Arrays.deepToString(intervals8));
+        System.out.println("Expected: 3, Got: " + solution.minMeetingRooms(intervals8));
+        System.out.println();
+    }
+    
+    
+	public int minMeetingRooms(int[][] intervals) {
+        return minMeetingRooms_PQ(intervals);
+        // return minMeetingRooms_UsingArray(intervals);
+    }
 
-	
-	/* https://leetcode.com/problems/meeting-rooms-ii/
-	 * Given an array of meeting time intervals consisting of start and end times 
-	 * [[s1,e1],[s2,e2],...] (si < ei), 
-	 * 
-	 * find the minimum number of conference rooms required.
-
-		Example 1:
-		
-		Input: [[0, 30],[5, 10],[15, 20]]
-		Output: 2
-		Example 2:
-		
-		Input: [[7,10],[2,4]]
-		Output: 1
-	 * */
-	
-	/*
-	 * Complexity Analysis
-	 * 
-	 * 
-	 * Time Complexity: O(NlogN) because all we are doing is sorting the
-	 * two arrays for start timings and end timings individually and each of them
-	 * would contain N elements considering there are N intervals.
-	 * 
-	 * Space Complexity: O(N) because we create two separate arrays of size N,
-	 * one for recording the start times and one for the end times.
-	 * 
-	 */
-
-	public static int minMeetingRooms(int[][] intervals) {
-
-		int[] st_time = new int[intervals.length];
-		int[] end_time = new int[intervals.length];
-
-		for (int i = 0; i < intervals.length; i++) {
-			st_time[i] = intervals[i][0];
-			end_time[i] = intervals[i][1];
-		}
-
-		Arrays.sort(st_time);
-		Arrays.sort(end_time);
-
-		int rooms = 0;
-
-		int s_ptr = 0;
-		int e_ptr = 0;
-
-		while (s_ptr < intervals.length) {
-			if (st_time[s_ptr] < end_time[e_ptr]) {
-				rooms++;
-			} else {
-				e_ptr++;
-			}
-			s_ptr++;
-		}
-
-		return rooms;
-	}
-	
-	
-	// https://www.jianshu.com/p/28475d91d54b?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation
-	
-	//https://www.programcreek.com/2014/05/leetcode-meeting-rooms-ii-java/
-	// How to create max heap using priority queue: https://jindongpu.wordpress.com/2015/10/20/implement-max-heap-and-min-heap-using-priorityqueue-in-java/
-	
-	
-	public static int minMeetingRooms_UsingPriorityQueue_1(int[][] intervals) {
-		
-		if(intervals == null || intervals.length ==0) {
-			return 0;
-		}
-		
-		Arrays.sort(intervals, ((arr1, arr2) -> Integer.compare(arr1[0], arr2[0])));
-		
-		PriorityQueue<Integer> minHeap = new PriorityQueue<>(); // min heap
-
-		for(int[] interval : intervals) {
-			if(minHeap.isEmpty()) {
-				minHeap.offer(interval[1]);
-			} else {
-				if(interval[0] >= minHeap.peek()) {
-					minHeap.poll();
-				} 
-				minHeap.offer(interval[1]);
-			}
-			
-		}
-		return minHeap.size();
-	}
-	
-	
-	// another version with PriortiyQueue and count variable to count rooms
-	public static int minMeetingRooms_UsingPriorityQueue_2(int[][] intervals) {
-		
-		if(intervals == null || intervals.length ==0) {
-			return 0;
-		}
-		
-		Arrays.sort(intervals, ((arr1, arr2) -> Integer.compare(arr1[0], arr2[0])));
-		
-		PriorityQueue<Integer> minHeap = new PriorityQueue<>(); // min heap
-		int count = 0;
-		for(int[] interval : intervals) {
-			if(minHeap.isEmpty()) {
-				minHeap.offer(interval[1]);
-				count++;
-			} else {
-				if(interval[0] >= minHeap.peek()) {
-					minHeap.poll();
-				} else {
-					count++;
-				}
-				minHeap.offer(interval[1]);
-			}
-			
-		}
-		return count;
-	}
-	
-	/* Reference: https://leetcode.com/problems/meeting-rooms-ii/discuss/278270/JavaC%2B%2BPython-Sort-All-Time-Point
-	 * Time O(NlogN)
-	 * Space O(N)	
-	 */
-	public static int minMeetingRooms_UsingTreeMap(int[][] intervals) {
-        Map<Integer, Integer> m = new TreeMap<>();
-        for (int[] t : intervals) {
-            m.put(t[0], m.getOrDefault(t[0], 0) + 1);
-            m.put(t[1], m.getOrDefault(t[1], 0) - 1);
+    /**
+     * Alternative approach using Min-Heap (Priority Queue)
+     * 
+     * Time Complexity: O(N log N) - sorting + heap operations
+     * Space Complexity: O(N) - for the priority queue
+     */
+    public int minMeetingRooms_PQ(int[][] intervals) {
+        if (intervals == null || intervals.length == 0) {
+            return 0;
         }
-        int res = 0, cur = 0;
-        for (int v : m.values()) {
-            res = Math.max(res, cur += v);
+        
+        // Sort intervals by start time
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        
+        // Min-heap to store end times of meetings currently using rooms
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        
+        for (int[] interval : intervals) {
+            // If heap is not empty and current meeting starts after 
+            // the earliest ending meeting, reuse that room
+            if (!minHeap.isEmpty() && interval[0] >= minHeap.peek()) {
+                minHeap.poll(); // Remove the finished meeting
+            }
+            // Add current meeting's end time to heap
+            minHeap.offer(interval[1]);
         }
-        return res;
+        
+        // Size of heap represents minimum rooms needed
+        return minHeap.size();
+    }
+
+    /**
+     * Finds the minimum number of conference rooms required for given meeting intervals.
+     * 
+     * Approach: Chronological Ordering with Two Pointers
+     * - Separate start and end times into different arrays
+     * - Sort both arrays independently
+     * - Use two pointers to traverse through start and end times
+     * - Track the number of rooms needed at any point in time
+     * 
+     * Time Complexity: O(N log N) - due to sorting both arrays
+     * Space Complexity: O(N) - for storing separate start and end time arrays
+     * 
+     * @param intervals array of meeting intervals where intervals[i] = [start_i, end_i]
+     * @return minimum number of conference rooms required
+     */
+    public int minMeetingRooms_UsingArray(int[][] intervals) {
+        // Handle edge case
+        if (intervals == null || intervals.length == 0) {
+            return 0;
+        }
+        
+        // Create separate arrays for start times and end times
+        int[] startTimes = new int[intervals.length];
+        int[] endTimes = new int[intervals.length];
+        
+        // Extract start and end times from intervals
+        for (int i = 0; i < intervals.length; i++) {
+            startTimes[i] = intervals[i][0];
+            endTimes[i] = intervals[i][1];
+        }
+        
+        // Sort both arrays independently
+        Arrays.sort(startTimes);
+        Arrays.sort(endTimes);
+        
+        // Initialize pointers and room counter
+        int startPointer = 0;  // pointer for start times array
+        int endPointer = 0;    // pointer for end times array
+        int roomsNeeded = 0;   // current number of rooms needed
+        
+        // Process all meetings by their start times
+        while (startPointer < intervals.length) {
+            // If current meeting starts before the earliest ending meeting finishes,
+            // we need a new room
+            if (startTimes[startPointer] < endTimes[endPointer]) {
+                roomsNeeded++;
+            } else {
+                // Current meeting starts after or when a meeting ends,
+                // so we can reuse that room (move end pointer forward)
+                endPointer++;
+            }
+            // Always move to next meeting start time
+            startPointer++;
+        }
+        
+        return roomsNeeded;
     }
 
 }
-
-
-
-
-
-/*
-// Using Priority Queue  - Code from Article
- * 
- * 
-    public int minMeetingRooms(int[][] intervals) {
-        
-    // Check for the base case. If there are no intervals, return 0
-    if (intervals.length == 0) {
-      return 0;
-    }
-
-    // Min heap
-    PriorityQueue<Integer> allocator =
-        new PriorityQueue<Integer>(
-            intervals.length,
-            new Comparator<Integer>() {
-              public int compare(Integer a, Integer b) {
-                return a - b;
-              }
-            });
-
-    // Sort the intervals by start time
-    Arrays.sort(
-        intervals,
-        new Comparator<int[]>() {
-          public int compare(final int[] a, final int[] b) {
-            return a[0] - b[0];
-          }
-        });
-
-    // Add the first meeting
-    allocator.add(intervals[0][1]);
-
-    // Iterate over remaining intervals
-    for (int i = 1; i < intervals.length; i++) {
-
-      // If the room due to free up the earliest is free, assign that room to this meeting.
-      if (intervals[i][0] >= allocator.peek()) {
-        allocator.poll();
-      }
-
-      // If a new room is to be assigned, then also we add to the heap,
-      // If an old room is allocated, then also we have to add to the heap with updated end time.
-      allocator.add(intervals[i][1]);
-    }
-
-    // The size of the heap tells us the minimum rooms required for all the meetings.
-    return allocator.size();
-  } */
-

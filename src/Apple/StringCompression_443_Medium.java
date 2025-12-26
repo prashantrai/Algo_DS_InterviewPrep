@@ -1,7 +1,5 @@
 package Apple;
 
-import java.util.Arrays;
-
 public class StringCompression_443_Medium {
 
 	public static void main(String[] args) {
@@ -20,37 +18,68 @@ public class StringCompression_443_Medium {
 		
 
 	}
-	
-	/*
-    Reference: https://leetcode.com/problems/string-compression/discuss/92559/Simple-Easy-to-Understand-Java-solution/302657
     
+	/*
     Time: O(N)
     Space: O(1), in place
     */
-    
     public static int compress(char[] chars) {
-        
-        if(chars == null || chars.length == 0) 
-            return 0;
-        
-        int len = 0;    // also a pointer to modify array in-place
-        int count = 1;  //represent the times char appears;
-        
-        for(int i=1; i<=chars.length; i++) {
-            if(i < chars.length && chars[i-1] == chars[i]) {
+        int write = 0; // Position to write compressed characters
+        int i = 0;     // Position to read original characters
+
+        while (i < chars.length) {
+            char currentChar = chars[i];
+            int count = 0;
+
+            // Count occurrences of current character
+            while (i < chars.length && chars[i] == currentChar) {
+                i++;
                 count++;
-            } else {
-                chars[len++] = chars[i-1];  //copy the char
-                if(count < 2) continue;     //do nothing if count < 2 and continue;
-                String s = String.valueOf(count);
-                for(char c : s.toCharArray()) {
-                    chars[len++] = c;
-                }
-                count = 1;//after append, reset to 1
             }
+
+            // Write the character
+            chars[write++] = currentChar;
+
+            // Write count if greater than 1
+            if (count > 1) {
+
+                /* Although String.valueOf(count) creates a temporary string, 
+                its size is bounded by the maximum possible count, which is 
+                limited by the input constraints. Since the number of digits 
+                does not grow with input size asymptotically, it is considered 
+                O(1) auxiliary space. */    
+
+                String countStr = String.valueOf(count);
+                for (int j = 0; j < countStr.length(); j++) {
+                    chars[write++] = countStr.charAt(j);
+                }
+            }
+
+            // Implement below solution only if insisted
+            // It achieves true O(1) space
+            /*
+            if (count > 1) {
+                // Calculate number of digits
+                int digits = 0;
+                int temp = count;
+                while (temp > 0) {
+                    digits++;
+                    temp /= 10;
+                }
+
+                // Write digits in correct order (from highest place)
+                write += digits;
+                temp = count;
+                for (int j = write - 1; j >= write - digits; j--) {
+                    chars[j] = (char)('0' + (temp % 10));
+                    temp /= 10;
+                }
+            } */
+
         }
-        System.out.println(Arrays.toString(chars));
-        return len;
+
+        return write; // New length of compressed array
     }
+
 
 }

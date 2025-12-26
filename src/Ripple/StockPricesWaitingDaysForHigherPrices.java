@@ -40,10 +40,10 @@ public class StockPricesWaitingDaysForHigherPrices {
 
         for(int i=0; i<n; i++) {
         	
-        	// Resolve any previous days that have a lower price than prices[i]
+        	// Resolve any previous days that have a lower price than prices[i]k
         	while(!stack.isEmpty() && prices[i] > prices[stack.peek()]) {
         		int prev = stack.pop();
-        		ans[i] = i - prev;
+        		ans[i] = i - prev;	// days to wait
         	}
         	// Current day might wait for future higher price
         	stack.push(i);
