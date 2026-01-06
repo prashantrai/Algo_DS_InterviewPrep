@@ -1,0 +1,82 @@
+Source: Glassdoor | 12/30/2025 | Jr. SE
+Q. Number of cars that can cross bridge without exceeding the maximum weight. 
+When a driver turns back, all drivers behind him move one position closer. 
+Need to find the min number of drivers that will need to turn back.
+
+Below prob is different from above and possibly asked is OA.
+[https://leetcode.com/discuss/post/5000969/amazon-swe-oa-question-by-anonymous_user-yx0w/]
+There is a small, one way bridge that can carry a maximum weight of U units at a time, there is also a line of N cars waiting to cross the bridge. The weights of the cars are given as an array weight. The weight of the kth car in line is weight[k] (for K in range [0...n-1]. The car that will enter the bridge first weighs weight[0], the car that will enter second weights weight[1] and so on.
+
+At most two cars can be on the bridge at the same time. To begin, the first two cars in line will enter the bridge. Then the third car will enter the bridge as soon as the first car leaves the bridge, the fourth car will enter when the second car leaves, and so on. The cars leave the bridge in the same order they entered it.
+However, this may lead to a situation where cars exceed the bridge's weight limit. To prevent such a situation, some drivers have to turn back. When a driver turns back, all drivers behind them in line move one position closer to the bridge. The driver who turns back is removed from the line and will not try to cross the bridge again.
+Your task is to find the minimum number of drivers that must turn back so that the bridge will not be overloaded.
+Write a function:
+class Solution i public int solution(int U, intll weight) : }
+
+that given an integer U representing the weight limit of the bridge and an array weight of N integers representing the weihts cars in line, returns the minimum number of drivers that must turn back so that the bridge will not be overloaded.
+
+For U = 9 and weight = [5, 3, 8, 1, 8, 7, 7, 6|, the function should return 4. After the 3rd, 5th, 6th
+and 7th cars turn back, the weights of the remaining cars in line are (5, 3, 1, 6]. Notice that instead of the 5th, 6th and 7th cars, any three of the last four cars can turn back to obtain an optimal answer. The cars will then cross the bridge as follows:
+the 1st car (weight 5) enters the bridge;
+the 2nd car (weight 3) enters the bridge, the total weight of cars on the bridge is 5 + 3 = 8;
+the 1st car (weight 5) leaves the bridge;
+the 3rd car (weight 1) enters the bridge, the total weight of cars on the bridge is 3 + 1 = 4;
+the 2nd car (weight 3) leaves the bridge;
+the 4th car (weight 6) enters the bridge, the total weight of cars on the bridge is 1 + 6 = 7;
+the 3rd car (weight 1) leaves the bridge;
+the 4th car (weight 6) leaves the bridge.
+During this process, the total weight of cars on the bridge does not exceed 9.
+For U = 7 and weight = 17, 6, 5, 2, 7, 4, 5, 4], the function should return 5. After the 1st, 2nd, 5th,
+6th and 7th cars turn back, the weights of the remaining cars in line are [5, 2, 4). Notice that instead of the 6th and 7th cars, any two of the last three cars can turn back to obtain an optimal answer.
+For U = 7 and weight = [3, 4, 3, 1], the function should return 0. There is no need for any car to turn back
+write an efficient algorithm for the following assumptions
+N is an integer within the range [1..100,000]
+each element of array weight is an integer within the range [1..1,000,000,000]
+U is an integer within the range [1..1,000,000,000]
+
+
+Source: Glassdoor | 12/07/2025 | Sr. SE
+Q. Given a List of strings print the groups of anagrams
+
+
+
+Source: Glassdoor | 09/30/2025 | AL/ML SE
+Given a sorted array of distinct integers and a target value, return the index if the 
+target is found. If not, return the index where it would be if it were inserted in order. 
+
+	Example 1: Input: nums = [1,3,5,6], target = 5 
+	Output: 2 
+	
+	Example 2: 
+	Input: nums = [1,3,5,6], target = 2 
+	Output: 1 
+	
+	Example 3: 
+	Input: nums = [1,3,5,6], target = 7 
+	Output: 4
+
+
+Source: Glassdoor | 08/26/2025 | SSE	
+word ladder [possible follow-up: multi-thread]
+
+Source: Glassdoor | 08/12/2025 | SSE
+Build a system that books an available seat on a train that has only one line and several stations. 
+You need to ensure there's an available seat for all stations. You can book a ticket from any station 
+to any station.
+
+
+Source: Glassdoor | 07/01/2025 | SE - New Delhi
+	question - given 12 coins with different weight, and a machine that gives output 
+	"too heavy" or "too light", you have to find the real coin among them. 
+	
+	question - given a stream of data ( over 15 GB ) that refreshes in every 15 minutes, 
+	how would you transfer that data to 100 computers, provide your approach 
+
+
+
+
+
+
+# SD
+Source: Glassdoor | 12/12/2025 | SE-1
+System design questions for rate limiter and redis caching
