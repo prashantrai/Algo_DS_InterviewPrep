@@ -31,7 +31,7 @@ public class GroupAnagrams_49_Medium {
 	 * 	k = length of one string
 	 * 	n = number of strings in the input array
 	 */
-	public List<List<String>> groupAnagrams(String[] strs) {
+	public static List<List<String>> groupAnagrams(String[] strs) {
         if(strs.length == 0) return new ArrayList<>();
 
         Map<String, List<String>> ans = new HashMap<>();
@@ -42,7 +42,7 @@ public class GroupAnagrams_49_Medium {
         return new ArrayList<>(ans.values());
     }
 	
-    private String buildAndGetKey(String s) {
+    private static String buildAndGetKey(String s) {
         int[] count = new int[26];
         for(char c : s.toCharArray()) {
             count[c - 'a']++;
