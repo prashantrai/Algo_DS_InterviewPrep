@@ -1,0 +1,5 @@
+Backend coding: Convert an array of maps into a specific format using Java (coding in Java was a requirement)
+
+
+
+System design: Design a price watcher app for stock prices. Focus was on back end of system design.
