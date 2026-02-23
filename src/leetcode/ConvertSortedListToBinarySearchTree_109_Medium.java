@@ -3,6 +3,7 @@ package leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ConvertSortedListToBinarySearchTree_109_Medium {
 
 	public static void main(String[] args) {
@@ -53,6 +54,29 @@ public class ConvertSortedListToBinarySearchTree_109_Medium {
 		node.right = helper(list, mid + 1, end);
 
 		return node;
+	}
+	
+	private static class TreeNode {
+		 int val;
+		 TreeNode left;
+		 TreeNode right;
+		 TreeNode() {}
+		 TreeNode(int val) { this.val = val; }
+		 TreeNode(int val, TreeNode left, TreeNode right) {
+			 this.val = val;
+			 this.left = left;
+			 this.right = right;
+		 }
+	}
+	
+	//Definition for singly-linked list.
+	private static class ListNode {
+	  int val;
+      ListNode next;
+      ListNode() {}
+      ListNode(int val) { this.val = val; }
+      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+	      
 	}
 
 }

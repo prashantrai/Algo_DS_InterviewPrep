@@ -13,6 +13,7 @@ public class TwoSum_1_Easy {
 		System.out.println(Arrays.toString(twoSum(nums, target)));
 	}
 	
+	// Time & Space: O(N)
 	public static int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
         for(int i=0; i<nums.length; i++) {

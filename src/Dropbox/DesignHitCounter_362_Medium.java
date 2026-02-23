@@ -12,8 +12,10 @@ public class DesignHitCounter_362_Medium {
 	 	362. Design Hit Counter
 		
 		Design a hit counter which counts the number of hits received in the past 5 minutes.
-		Each function accepts a timestamp parameter (in seconds granularity) and you may assume that calls are being made to the system in chronological order (ie, the timestamp is monotonically increasing). You may assume that the earliest timestamp starts at 1.
-		It is possible that several hits arrive roughly at the same time.
+		Each function accepts a timestamp parameter (in seconds granularity) and you may assume 
+		that calls are being made to the system in chronological order 
+		(ie, the timestamp is monotonically increasing). You may assume that the earliest timestamp 
+		starts at 1. It is possible that several hits arrive roughly at the same time.
 		
 		Example:
 		HitCounter counter = new HitCounter();
@@ -40,9 +42,7 @@ public class DesignHitCounter_362_Medium {
 		counter.getHits(301); 
 		
 		Follow up:
-		What if the number of hits per second could be very large? Does your design scale?
-		
-		 Note: For follow up 2 arrays can be used. One to store the timestamp and other to store the number of occur at same timestamp.
+		What if the number of hits per second could be very large? Does your design scale? 
 	 * */
 	
 	public static void main(String[] args) {
@@ -78,13 +78,50 @@ public class DesignHitCounter_362_Medium {
 		*/
 	}
 	
-	
-
 	static class HitCounter {
+	    // With fixed-size 300-bucket array
+
+	    // Time & Space: O(1)
+
+	    int[] times;
+	    int[] hits;
+
+	    public HitCounter() {
+	        times = new int[300];
+	        hits = new int[300];
+	    }
+	    
+	    public void hit(int timestamp) {
+	        int idx = timestamp % 300;
+	        if(times[idx] != timestamp) {
+	            // this bucket is stale, reset
+	            times[idx] = timestamp;
+	            hits[idx] = 1;
+	        } 
+	        else {
+	            hits[idx]++; // increase/update hit count of timestamp
+	        }
+	    }
+	    
+	    public int getHits(int timestamp) {
+	        int sum = 0;
+	        for(int i = 0; i<times.length; i++) {
+	            if (timestamp - times[i] < 300) {
+	                sum += hits[i];
+	            }
+	        }
+	        return sum;
+	    }
+	} 
+
+	// Time: O(N)
+	// Space: (N)
+
+	static class HitCounter2 {
 	    private Queue<Integer> q_timestamps;
 	    
 	    /** Initialize your data structure here. */
-	    public HitCounter() {
+	    public HitCounter2() {
 	        q_timestamps = new LinkedList<>();
 	    }
 	    
@@ -108,7 +145,7 @@ public class DesignHitCounter_362_Medium {
         
 		        int total = 0;
 		        for (int i = 0; i < 300; i++) {
-		            if (timestamp - timestamps[i] < 300) {
+		            if (timestamp - 	[i] < 300) {
 		                total += counts[i];        
 		            }
 		        }
@@ -126,50 +163,6 @@ public class DesignHitCounter_362_Medium {
 	 * int param_2 = obj.getHits(timestamp);
 	 */
 
-	
-	/**
-	 * Solution for follow-up:: 
-	 * 
-	 * For follow up 2 arrays can be used. One to store the timestamp and other 
-	 * to store the number of occur at same timestamp.
-	 */
-	public class HitCounter_FollowUp {
-
-	    int[] ts;
-	    int[] hits;
-	    /** Initialize your data structure here. */
-	    public HitCounter_FollowUp() {
-	        ts = new int[300];
-	        hits = new int[300];
-	    }
-
-	    /** Record a hit.
-	        @param timestamp - The current timestamp (in seconds granularity). */
-	    public void hit(int timestamp) {
-	        int i = timestamp % 300;
-	        if (ts[i] != timestamp) {
-	            ts[i] = timestamp;
-	            hits[i] = 1;
-	        }
-	        else {
-	            hits[i] ++;
-	        }
-	    }
-
-	    /** Return the number of hits in the past 5 minutes.
-	        @param timestamp - The current timestamp (in seconds granularity). */
-	    public int getHits(int timestamp) {
-	        int result = 0;
-	        for (int i = 0; i < hits.length; i ++) {
-	            if (timestamp - ts[i] < 300){
-	                result += hits[i];
-	            }
-	        }
-	        return result;
-	    }
-	}
-	
-	
 }
 
 /*
