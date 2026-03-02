@@ -54,6 +54,23 @@ public class RearrangeBalls {
 		This ensures no two balls touch.
 		The solution runs in O(n) time and uses O(n) extra space.”
 		
+		If interviewer asks:
+
+		“Why n+1 and not n?”
+		
+		You say:
+		
+		“Because when the array length is odd, there is one extra safe position at the end.
+		Using n/2 undercounts that position and rejects valid cases.
+		(n+1)/2 correctly counts all even indices where balls can be placed.”
+		
+		Example: when n = 5 then Indexes are "0 1 2 3 4", 
+		Even positions: "0   2   4" which makes Count = 3
+		Now compute:
+		n / 2     = 5 / 2 = 2   ❌ (wrong)
+		(n+1)/2   = 6 / 2 = 3   ✅ (correct)
+		
+		👉 n/2 misses one valid spot.
 	 * */
 
     // The solution runs in O(n) time and uses O(n) extra space.
