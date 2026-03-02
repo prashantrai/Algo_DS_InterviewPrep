@@ -46,6 +46,7 @@ public class RearrangeBalls {
 	 * */
 
 
+    // The solution runs in O(n) time and uses O(n) extra space.
     /**
      * Rearranges the array so that no two "b" are adjacent.
      *
