@@ -43,8 +43,18 @@ public class RearrangeBalls {
 		Output: ["b", "", "b", ""]
 		
 		Goal: Place empty spaces between balls as much as possible.
-	 * */
+		
+		
+		Interview Script (What to Say)
 
+		“First, I count how many balls exist.
+		To avoid adjacency, balls must be separated by empty spaces.
+		If the number of balls is more than (n+1)/2, it’s impossible.
+		Otherwise, I place balls at even indices and fill the rest with empty strings.
+		This ensures no two balls touch.
+		The solution runs in O(n) time and uses O(n) extra space.”
+		
+	 * */
 
     // The solution runs in O(n) time and uses O(n) extra space.
     /**
