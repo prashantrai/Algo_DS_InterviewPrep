@@ -1,0 +1,25 @@
+{
+  "loanId": "LN12345",
+  "merchantId": "M56789",
+  "principalAmount": 10000,
+  "feeAmount": 800,
+  "totalPayback": 10800,
+  "repaymentPercentage": 10,
+  "startDate": "2026-02-01",
+  "currency": "USD",
+
+  "revenues": [
+    {
+      "date": "2026-02-01",
+      "amount": 1200
+    },
+    {
+      "date": "2026-02-02",
+      "amount": 900
+    },
+    {
+      "date": "2026-02-03",
+      "amount": 1500
+    }
+  ]
+}	

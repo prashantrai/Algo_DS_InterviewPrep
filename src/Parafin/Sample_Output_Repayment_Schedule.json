@@ -1,0 +1,25 @@
+{
+  "loanId": "LN12345",
+  "schedule": [
+    {
+      "date": "2026-02-01",
+      "revenue": 1200,
+      "repayment": 120,
+      "remainingBalance": 10680
+    },
+    {
+      "date": "2026-02-02",
+      "revenue": 900,
+      "repayment": 90,
+      "remainingBalance": 10590
+    },
+    {
+      "date": "2026-02-03",
+      "revenue": 1500,
+      "repayment": 150,
+      "remainingBalance": 10440
+    }
+  ],
+  "totalRepaid": 360,
+  "balanceRemaining": 10440
+}
