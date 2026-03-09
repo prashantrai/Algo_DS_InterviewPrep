@@ -2,6 +2,8 @@ package Parafin;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import Parafin.RepaymentCalculator_using_faster_xml.RepaymentEntry;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.file.Files;
@@ -93,4 +95,65 @@ public class LoanPaymentCalculator_with_Fixed_and_RevenueBased_fasterXML {
 
         return bd.doubleValue();
     }
+    
+    // Another option - just for referrence, NOT USED in the solution
+    private double carry = 0.0;
+    public double roundViaCarryForward(double value) {
+        // Add previous rounding remainder
+        double adjusted = value + carry;
+        // Round down to 2 decimal places
+        double rounded = Math.floor(adjusted * 100.0) / 100.0;
+        // Store remainder for next calculation
+        carry = adjusted - rounded;
+        return rounded;
+    }
+    
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private static class LoanData {
+
+        public String loanType;
+
+        public String loanId;
+        public String merchantId;
+
+        public double principalAmount;
+        public double feeAmount;
+        public double totalPayback;
+
+        public double repaymentPercentage;
+
+        public int termDays;
+
+        public String startDate;
+        public String currency;
+
+        public List<Revenue> revenues;
+    }
+
+    class Revenue {
+
+        public String date;
+        public double amount;
+    }
+    
+	 /* =======================
+	    Output JSON Models
+	    ======================= */
+	
+	 class RepaymentResult {
+	
+	     public String loanId;
+	     public List<RepaymentEntry> schedule;
+	
+	     public double totalRepaid;
+	     public double balanceRemaining;
+	 }
+	
+	 class RepaymentEntry {
+	
+	     public String date;
+	     public double revenue;
+	     public double repayment;
+	     public double remainingBalance;
+	 }
 }

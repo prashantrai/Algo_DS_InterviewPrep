@@ -100,6 +100,18 @@ public class RepaymentScheduleCalculator_using_JsonObject_JsonArray {
         bd = bd.setScale(2, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
+    
+    // Another option - just for referrence, NOT USED in the solution
+    private double carry = 0.0;
+    public double roundViaCarryForward(double value) {
+        // Add previous rounding remainder
+        double adjusted = value + carry;
+        // Round down to 2 decimal places
+        double rounded = Math.floor(adjusted * 100.0) / 100.0;
+        // Store remainder for next calculation
+        carry = adjusted - rounded;
+        return rounded;
+    }
 
     
     private static class RepaymentResponse {
