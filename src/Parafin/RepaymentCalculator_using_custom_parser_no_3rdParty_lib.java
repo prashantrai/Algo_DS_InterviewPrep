@@ -12,6 +12,9 @@ import java.util.List;
 
 public class RepaymentCalculator_using_custom_parser_no_3rdParty_lib {
 
+	// Parse JSON (maybe json file)to calculate a repayment schedule. 
+
+	
 	public static void main(String[] args) throws Exception {
         RepaymentResponse response = calculate("loan.json");
 

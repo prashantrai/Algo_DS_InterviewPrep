@@ -12,6 +12,9 @@ import org.json.JSONObject;
 
 public class LoanRepaymentCalculator_Enirely_Using_BigDecimal_JsonObj {
 	
+	// Parse JSON (maybe json file)to calculate a repayment schedule. 
+
+	
 	public static void main(String[] args) throws Exception {
 
         RepaymentResponse response =

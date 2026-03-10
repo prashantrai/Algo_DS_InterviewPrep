@@ -9,6 +9,9 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+// Parse JSON (maybe json file)to calculate a repayment schedule. 
+
+
 public class RepaymentScheduleCalculator_using_JsonObject_JsonArray {
 
 	// Test

@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoanPaymentCalculator_with_Fixed_and_RevenueBased_fasterXML {
+	
+	// Parse JSON (maybe json file)to calculate a repayment schedule. 
+
 
     public static void main(String[] args) throws Exception {
 

@@ -11,6 +11,10 @@ import java.util.List;
 
 
 public class RepaymentCalculator_using_faster_xml {
+	
+	
+	// Parse JSON (maybe json file)to calculate a repayment schedule. 
+
 
 	public static void main(String[] args) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
