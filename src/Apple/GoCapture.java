@@ -153,3 +153,79 @@ public class GoCapture {
     }
 
 }
+
+
+/** Question - Go Capture
+	You play a game of Go. You are given a board with some stones placed on it.
+	'w' is white stone, 'b' is black stone, 'e' is an empty spot, and you are given 
+	a new black stone to be placed on an empty spot. You have to return the number 
+	of enemy stones that this move will capture.
+	
+	Example 1:
+	
+	Input: board = [[e, e, e, e, b, b, b], row = 2, col = 5
+				    [e, e, e, e, b, w, b],
+				    [e, e, e, e, b, e, b],
+				    [e, e, e, e, e, e, e]]
+	
+	Output: 1
+	Explanation: If you place a black stone on (2, 5) then you capture 1 white stone from the enemy.
+	
+	Example 2:
+	
+	Input: board = [[e, e, e, e, b, b, b], row = 2, col = 5
+				    [e, e, e, b, w, w, b],
+				    [e, e, e, e, b, e, b],
+				    [e, e, e, e, e, e, e]]
+	
+	Output: 2
+	Explanation: As u can see, 2 whites are enclosed.
+	
+	Example 3:
+	
+	Input: board = [[e, e, e, e, b, b, b], row = 2, col = 5
+				    [e, e, e, e, w, w, b],
+				    [e, e, e, e, b, e, b],
+				    [e, e, e, e, e, e, e]]
+	
+	Output: 0
+	Explanation: Because the enclosure is not complete, white can escape from the left side.
+	
+	Example 4:
+	
+	Input: board = [[e, e, b, b, b, b, b], row = 2, col = 5
+				    [e, e, b, w, e, w, b],
+				    [e, e, b, b, b, e, b],
+				    [e, e, e, e, e, e, e]]
+	
+	Output: 0
+	Explanation: This one does not qualify as an enclosure, it is an 'eventual enclosure', 
+	meaning that the white regions still have scope for expansion.
+	
+	
+	Follow-up (suggested by ChatGPT): How would you modify the solution to detect a suicidal move (illegal move in Go)?
+	
+	Rule (Suicide in Go)
+	A move is illegal if:
+	- After placing the stone, its own group has no liberties, and
+	- The move does not capture any opponent stones.
+	
+	Algorithm:: 
+		1. Place the new black stone at (row, col).
+		2. Look at 4 directions:
+			-	up
+			-	down
+			-	left
+			-	right
+		3. If a neighbor is white (w):
+			-	Run DFS/BFS to explore the entire white group.
+			-	While exploring:
+				-	Count group stones
+				-	Check if any neighbor is e (liberty).
+		4. If no liberty found:
+			-	Add the group size to captured stones.
+		5. Use a visited matrix so the same group is not processed twice.
+
+ 
+ * */
+
