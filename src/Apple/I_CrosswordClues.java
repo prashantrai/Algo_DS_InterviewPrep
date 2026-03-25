@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CrosswordClues {
+public class I_CrosswordClues {
 	// Test cases
     public static void main(String[] args) {
 

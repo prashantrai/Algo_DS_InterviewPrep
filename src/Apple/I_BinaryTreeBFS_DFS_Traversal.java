@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
-public class BinaryTreeBFS_DFS_Traversal {
+public class I_BinaryTreeBFS_DFS_Traversal {
 
 	public static void main(String[] args) {
         // Construct the tree from Example 1: [1,2,3,4,5,6,7]

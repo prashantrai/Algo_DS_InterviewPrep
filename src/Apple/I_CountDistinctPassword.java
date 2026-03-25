@@ -3,7 +3,7 @@ package Apple;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CountDistinctPassword {
+public class I_CountDistinctPassword {
 
 	public static void main(String[] args) {
         String str = "abc";

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class PrettyOddStatementsIterative {
+public class I_PrettyOddStatementsIterative {
 
     public static void main(String[] args) {
 

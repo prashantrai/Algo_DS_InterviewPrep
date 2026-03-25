@@ -1,9 +1,9 @@
 package Apple;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class GoCapture {
+public class I_GoCapture {
 
 	public static void main(String[] args) {
 		char e='e', b='b', w='w';
@@ -151,6 +151,79 @@ public class GoCapture {
     private static boolean isValid(int r,int c,int m,int n){
         return r>=0 && c>=0 && r<m && c<n;
     }
+    
+    
+    /** BFS */
+    private static class GoCaptureBFS {
+        private static final int[][] DIRS = {{-1,0},{1,0},{0,-1},{0,1}};
+
+        public static int numCaptured(char[][] board, int row, int col) {
+            int m = board.length, n = board[0].length;
+            board[row][col] = 'b'; // place black stone
+            boolean[][] visited = new boolean[m][n];
+            int captured = 0;
+
+            for (int[] d : DIRS) {
+                int r = row + d[0], c = col + d[1];
+                if (r >= 0 && r < m && c >= 0 && c < n && board[r][c] == 'w' && !visited[r][c]) {
+                    if (!bfsHasLiberty(board, r, c, visited)) {
+                        captured += countGroup(board, r, c); // count stones in this captured group
+                    }
+                }
+            }
+            return captured;
+        }
+
+        // BFS to check if a group has any liberty
+        private static boolean bfsHasLiberty(char[][] board, int r, int c, boolean[][] visited) {
+            int m = board.length, n = board[0].length;
+            Queue<int[]> queue = new LinkedList<>();
+            queue.add(new int[]{r, c});
+            visited[r][c] = true;
+
+            while (!queue.isEmpty()) {
+                int[] cur = queue.poll();
+                int cr = cur[0], cc = cur[1];
+                for (int[] d : DIRS) {
+                    int nr = cr + d[0], nc = cc + d[1];
+                    if (nr >= 0 && nr < m && nc >= 0 && nc < n) {
+                        if (board[nr][nc] == 'e') return true; // liberty found
+                        if (board[nr][nc] == 'w' && !visited[nr][nc]) {
+                            visited[nr][nc] = true;
+                            queue.add(new int[]{nr, nc});
+                        }
+                    }
+                }
+            }
+            return false; // no liberty
+        }
+
+        // Count the size of a white group (BFS again)
+        private static int countGroup(char[][] board, int r, int c) {
+            int m = board.length, n = board[0].length;
+            boolean[][] counted = new boolean[m][n];
+            Queue<int[]> queue = new LinkedList<>();
+            queue.add(new int[]{r, c});
+            counted[r][c] = true;
+            int count = 0;
+
+            while (!queue.isEmpty()) {
+                int[] cur = queue.poll();
+                count++;
+                int cr = cur[0], cc = cur[1];
+                for (int[] d : DIRS) {
+                    int nr = cr + d[0], nc = cc + d[1];
+                    if (nr >= 0 && nr < m && nc >= 0 && nc < n && board[nr][nc] == 'w' && !counted[nr][nc]) {
+                        counted[nr][nc] = true;
+                        queue.add(new int[]{nr, nc});
+                    }
+                }
+            }
+            return count;
+        }
+        
+    }
+    
 
 }
 

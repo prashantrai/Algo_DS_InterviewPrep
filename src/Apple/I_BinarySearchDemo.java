@@ -2,7 +2,7 @@ package Apple;
 
 import java.util.Scanner;
 
-public class BinarySearchDemo {
+public class I_BinarySearchDemo {
 
 	public static void main(String[] args) {
 
