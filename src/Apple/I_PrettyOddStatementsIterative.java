@@ -273,33 +273,36 @@ public class I_PrettyOddStatementsIterative {
     
     
     
-    /****** Recursive
-	
-	Interview Script: 
-	- This problem is essentially generating the Cartesian product of multiple word lists.
-	- I solve it using recursion where each recursive level represents choosing a word from one group.
-	- At each step, I append the chosen word and recurse to the next group.
-	- When I reach the final group, I print the constructed sentence.
-	- This approach is simple, scalable, and works for any number of word groups.
-    
-      Recursion Tree: 
-	     The
-		 ├── dog
-		 │     ├── runs
-		 │     │      ├── quickly
-		 │     │      └── slowly
-		 │     └── walks
-		 │            ├── quickly
-		 │            └── slowly
-		 └── cat
-		       ├── runs
-		       │      ├── quickly
-		       │      └── slowly
-		       └── walks
-		              ├── quickly
-		              └── slowly
-      
-     * */
+/****** Recursive
+
+Interview Script: 
+- This problem is essentially generating the Cartesian product of 
+   multiple word lists.
+- I solve it using recursion where each recursive level represents 
+  choosing a word from one group.
+- At each step, I append the chosen word and recurse to the next group.
+- When I reach the final group, I print the constructed sentence.
+- This approach is simple, scalable, and works for any number of 
+  word groups.
+
+  Recursion Tree: 
+     The
+	 ├── dog
+	 │     ├── runs
+	 │     │      ├── quickly
+	 │     │      └── slowly
+	 │     └── walks
+	 │            ├── quickly
+	 │            └── slowly
+	 └── cat
+	       ├── runs
+	       │      ├── quickly
+	       │      └── slowly
+	       └── walks
+	              ├── quickly
+	              └── slowly
+  
+ * */
     
     /*
     Time:  O(k^n) where k is choices per position and n is number of positions.
@@ -374,7 +377,7 @@ public class I_PrettyOddStatementsIterative {
     
     
     
-    // For K sentences only
+    // Follow-up: For K sentences only
     // Time: O(K * n), because it stops early 
     // Space: O(n)
     
