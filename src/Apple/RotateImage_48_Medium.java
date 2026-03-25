@@ -4,30 +4,39 @@ package Apple;
 
 public class RotateImage_48_Medium {
 
-    // Rotates the given n x n matrix by 90 degrees clockwise in-place.
-    //
-    // Approach:
-    // - Step 1: Transpose the matrix across the main diagonal:
-    //   swap matrix[i][j] with matrix[j][i] for all i < j.
-    // - Step 2: Reverse each row in-place using two pointers (left and right)
-    //   moving toward the center.
-    //
-    // This works because a clockwise 90-degree rotation is equivalent to
-    // converting rows into columns (transpose) and then mirroring horizontally
-    // (reverse each row).
-    //
-    // Interview script (what you can say):
-    // 1. "We’re given an n by n matrix and must rotate it 90 degrees clockwise
-    //    in-place, so I can’t use an extra n by n matrix."
-    // 2. "A 90-degree clockwise rotation can be decomposed into
-    //    transpose plus reverse-each-row."
-    // 3. "To transpose, I iterate i from 0 to n-1 and j from i+1 to n-1 and
-    //    swap matrix[i][j] with matrix[j][i]."
-    // 4. "Then for each row I use two pointers (left, right) and swap
-    //    while left is less than right, then move them inward."
-    // 5. "Every element is visited a constant number of times, so the time
-    //    complexity is O(n^2) and the extra space is O(1) because I only use
-    //    a few temporary variables."
+    /*
+	Rotates the given n x n matrix by 90 degrees clockwise in-place.
+    
+     Approach:
+     - Step 1: Transpose the matrix across the main diagonal:
+       swap matrix[i][j] with matrix[j][i] for all i < j.
+     - Step 2: Reverse each row in-place using two pointers (left and right)
+       moving toward the center.
+    
+     This works because a clockwise 90-degree rotation is equivalent to
+     converting rows into columns (transpose) and then mirroring horizontally
+     (reverse each row).
+    
+     Interview script (what you can say):
+     1. "We’re given an n by n matrix and must rotate it 90 degrees clockwise
+        in-place, so I can’t use an extra n by n matrix."
+     2. "A 90-degree clockwise rotation can be decomposed into
+        transpose plus reverse-each-row."
+     3. "To transpose, I iterate i from 0 to n-1 and j from i+1 to n-1 and
+        swap matrix[i][j] with matrix[j][i]."
+     4. "Then for each row I use two pointers (left, right) and swap
+        while left is less than right, then move them inward."
+     5. "Every element is visited a constant number of times, so the time
+        complexity is O(n^2) and the extra space is O(1) because I only use
+        a few temporary variables." */
+	
+	/*
+	 Time: O(n²),  “Both transpose and reverse touch each element 
+	     a constant number of times, so the time complexity is O(n²).
+	     
+	 Space: O(1), We only use a few extra variables for swapping, 
+	     so space is O(1).”
+	 * */
 
     public void rotate(int[][] matrix) {
         int n = matrix.length;
