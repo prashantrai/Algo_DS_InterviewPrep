@@ -1,0 +1,127 @@
+
+Source: https://www.reddit.com/r/leetcode/comments/1r00cf0/amazon_oa_sde2_asked_in_2026_ctcstarts_from_20l30l/
+
+Product Rating System: 
+
+The engineers at Amazon are developing a new rating system for their products. For each product, 
+they maintain an array customer_rating representing the last n customers:
+
+customer_rating[i] = rating given by the i-th customer.
+
+Allowed Operation
+You are allowed to perform the following operation at most k times:
+ - Choose any rating in the array and increase it by 1.
+You may distribute these increments across elements in any way.
+
+Goal
+After performing at most k operations, you must select any subset of size m from the array.
+
+Let new_rating be:
+ - The maximum possible Bitwise AND of any m sized subset of customer_rating after modifications.
+
+Your task is to compute this maximum possible new_rating.
+
+Example
+n = 4, k = 8, m = 2
+customer_rating = [1, 2, 4, 8]
+Input:
+Increase customer_rating[3] = 4 → 10 (6 operations)
+Increase customer_rating[4] = 8 → 10 (2 operations)
+Final optimal subset: {10, 10}
+Bitwise AND: 10
+
+
+
+
+
+
+-----------------------
+
+[Look at here for some questions and practice them for Phone Screen]
+
+My Preparation Advice- May 21, 2026 - [https://leetcode.com/discuss/post/8283668/amazon-sde-2-interview-experience-india-avtvf/]
+If you’re targeting Amazon SDE2:
+
+Trees
+Must do:
+
+LC 124
+LC 236
+LC 297
+LC 968
+Path Sum variants
+Tree DP problems
+Greedy + Stack
+Must do:
+
+LC 316
+LC 1081
+Next Greater Element
+Monotonic stack classics
+
+
+--- Source: Reddit
+
+Question 1: Maximize Perfect Slots
+
+You are given an array where each element represents a product ID in a slot. A slot is considered “perfect” if inventory[i] == i (1-based index).
+
+You can remove elements, and after removal, everything to the right shifts left.
+
+Goal: Maximize the number of perfect slots after any number of removals.
+
+Closest LeetCode patterns:
+• ⁠Longest Increasing Subsequence (LIS)
+• ⁠Delete and Earn (conceptual removal decisions)
+• ⁠Longest Consecutive Sequence (alignment idea)
+
+
+Question 2: Minimum Adjustments to Make Array Zero
+
+You are given an array and can perform operations where you select a prefix (first k elements) 
+and increase or decrease all of them by 1.
+
+Goal: Convert the entire array into zeros using the minimum number of operations.
+
+Closest LeetCode problems:
+• ⁠Minimum Number of Increments on Subarrays to Form a Target Array (LC 1526)
+• ⁠Minimum Operations to Make Array Equal
+• ⁠Minimum Number of Operations to Make Array Continuous (conceptual)
+
+————————————
+
+(5th of January 2026)
+
+**Role:** SDE I
+**Location:** North Europe
+
+# Question 1: [Batch Value Swap with Running Sum / RollingReplaceSum.java] -- name suggested by Calude code
+
+**Input:** A list of integers `entries` and a 2D integer list `transactions` 
+( so a list of lists of integers).
+
+Every transaction inside `transactions` is a pair of two numbers `[old_v, new_v]`. For each pair:
+
+* Find all the indexes in `entries` where `entries[idx] == old_v`
+* Replace the value at those indexes with `new_v`
+* Calculate the sum of all the numbers in `entries` after the update
+
+**Output:** Return a list of sums after each transaction.
+
+
+
+**Solved optimally with a frequency hashmap.**
+
+# Question 2: [LongestAPWithOneChange.java]
+
+**Input:** A list of integers `deviation`.
+
+**Task:** Find the length of the longest contiguous subarray that forms 
+a`n` arithmetic progression (AP), where the difference between consecutive 
+elements is constant. We are allowed at most one element change** in the 
+array to maximize this length.
+
+**Example:** Given the array `[8, 5, 2, 1, 100]`, if you change the 1 to `-1`, 
+you get the progression `[8, 5, 2, -1]` with a constant difference of `-3`, giving a maximum length of 4.
+
+——————-
