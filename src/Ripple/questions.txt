@@ -1,0 +1,25 @@
+
+HM: 
+What would you say is your greatest weakness and strength?
+Tell me about a time when...
+
+-------------------------
+[07/10/2026] - Leetcode Discussion
+The phone interview was an easy arithmetic question paraphrased as block chain sell 
+order question.
+
+
+[3/12/2026] - Glassdoor
+coding problem based on a weighted graph traversal scenario (similar to a 
+currency/crypto conversion problem where the goal is to find the path with the lowest loss).
+Closest match : LeetCode 1514
+
+This is exactly the same as:
+	Find the currency conversion path with the lowest loss (or highest remaining value).
+
+
+[10/20/2025] - Glassdoor
+3 Sum - leetcode 	 words in a sentence
+
+[08/14/2025] - Glassdoor
+LRU cache from scratch
