@@ -1,0 +1,148 @@
+
+Reusable “system design master prompt” for generating interview-ready study notes for any distributed system.
+
+PROMPT: 
+
+
+Act as a Staff Software Engineer preparing for a 30-minute system design interview.
+
+Design the following distributed system: [SYSTEM NAME HERE]
+
+# Instructions
+
+Produce a "single, complete, non-redundant study note" covering all sections below.
+
+Every section must appear exactly once. No section should be repeated or split across multiple versions.
+
+For every major component or service in the design:
+- Explain "what problem it solves".
+- Explain "what happens if we don't include it" (failure mode / gap).
+- Provide an "interview script line" (blockquote) I can say aloud while drawing it.
+
+The design must address:
+- "Parallelism": tasks/jobs that can run concurrently should fan out in parallel, with a barrier/join to finalize (not sequential-only execution).
+- "Concurrency control": mutual exclusion for conflicting operations (e.g., only one deploy to prod at a time), plus per-tenant limits with overflow/backpressure.
+- "Cancel / re-run": ability to cancel in-flight work and re-run only failed subtasks.
+- "Environment / deployment gates": human approval before sensitive operations.
+- "Security boundaries": isolation between tenants; untrusted inputs get restricted access.
+- "Service registry / catalog": a dedicated component to register, cache, and serve definitions (workflows, schemas, configs, etc.).
+- "start/stop timing": all entities must track started_at, completed_at, exposed via API.
+
+## Sections
+
+### 1. Requirements
+- 5–7 Functional Requirements (table: #, requirement name, one-liner).
+- 5–7 Non-Functional Requirements (table: #, requirement name, target metric).
+- A short transition script line (blockquote) to bridge from requirements to estimation.
+
+### 2. Back-of-the-Envelope Estimation
+Estimate:
+- requests/sec
+- storage/day
+- bandwidth
+- peak concurrency
+- instance count
+
+Use realistic round numbers.
+Show all math in a single code block.
+
+### 3. API Endpoints
+Table:
+- Method
+- Endpoint
+- Description
+
+Include both:
+- external (user-facing)
+- internal/worker APIs
+
+Must include endpoints for:
+- list entities
+- trigger
+- cancel
+- re-run
+- approve/reject gates
+- status with timing
+
+### 4. Database Tables
+- Field names only (no types), with PK/FK noted.
+- Include tables for:
+  - core entities
+  - dependencies/DAG edges
+  - concurrency locks
+  - environments
+  - approval reviews
+  - tenant quotas
+- Call out key indexes in a table (Index, reason).
+
+### 5. Design Diagrams — 3 Progressive Sections
+
+Each section must:
+- Be a complete, self-contained Mermaid flowchart LR diagram.
+- Use numbered sequence labels on every arrow (1, 2, 3...).
+- Reference which prior section it builds on.
+- Be followed by a word-for-word interview script (blockquote) walking through each numbered step.
+- After the script, include a brief "what it solves / what happens without it" note for each new component introduced.
+
+Structure:
+- Section 1: Ingestion / write path / storage (happy path core).
+- Section 2: Core scheduling logic, concurrency control, quota enforcement, environment gates.
+- Section 3: Parallel execution, DAG progression, cancel propagation, failure/crash handling, observability.
+
+### 6. Final Combined Diagram
+- Single Mermaid flowchart LR combining all 3 sections.
+- Every arrow must have a sequence number (1 through N) showing end-to-end flow.
+- Must include:
+  - cancel path (user → cancel propagator → runners)
+  - heartbeat/crash detection
+  - DLQ
+- Include a step legend table (step range, description) after the diagram.
+
+### 7. Deep Dive: Key Design Decisions
+5–6 subsections, each explaining one critical architectural choice.
+
+For each:
+- what it is
+- why we chose it
+- what the trade-off is
+
+Written as quotable interview script lines (blockquotes, first person).
+
+### 8. Follow-Up Questions & Answers
+- At least 12 questions an interviewer might ask.
+- Each answer: 3–5 sentences.
+- Technical and precise, in interview script format (blockquote, first person).
+
+Must cover:
+- failure scenarios
+- scaling bottlenecks
+- trade-offs
+- multi-tenancy
+- multi-region
+- consistency model
+- exactly-once semantics
+- monitoring/alerting
+- security
+- "why not use existing system X?"
+
+### 9. Interview Timeline
+Table:
+- time range (0–2 min, 2–4:30 min, etc.)
+- phase
+- action/talking points
+
+Fit into 30 minutes with buffer for follow-ups.
+
+### 10. Quick Reference
+Component Cheat Sheet:
+- Table: Component, What It Solves, What Happens Without It.
+- One row per major component/service in the design.
+
+## Formatting Rules
+- Use Mermaid flowchart LR syntax for all diagrams (no images).
+- Do not use colors in Mermaid diagrams.
+- All Mermaid node labels must be wrapped in double quotes.
+- Interview script lines must be in blockquotes (> ...).
+- Every section appears exactly once.
+- No duplicates.
+- Output must be a single continuous document, not multiple iterations or versions.

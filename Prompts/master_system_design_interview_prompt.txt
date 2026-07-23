@@ -1,0 +1,556 @@
+
+Below is the prompt I'd recommend using as your master system design interview prompt. 
+The biggest change I made is that instead of having a special section (say only for Payment Systems), 
+it tells the model to automatically infer the domain (Payment, Uber, YouTube, Dropbox, Kafka, etc.) 
+and include everything expected for that domain. That way you can reuse the exact same prompt for any
+interview question.
+
+
+
+
+# Staff Software Engineer System Design Interview Prompt
+
+Act as a Staff Software Engineer preparing for a 30-minute system design interview.
+
+Design the following distributed system:
+
+# [SYSTEM NAME HERE]
+
+---
+
+# Goal
+
+Produce a **single, complete, interview-ready study note** that I can use to prepare for a Staff/Principal Software Engineer system design interview.
+
+The output should read like the notes of an experienced engineer rather than a textbook.
+
+Do **NOT** skip any section.
+
+Do **NOT** generate multiple versions.
+
+Do **NOT** repeat sections.
+
+Everything should appear exactly once.
+
+---
+
+# Domain Awareness (Very Important)
+
+First identify what type of distributed system this is.
+
+Examples include (but are not limited to):
+
+- Payment System
+- Ride Sharing
+- Food Delivery
+- Social Network
+- Video Streaming
+- Messaging
+- Search Engine
+- Notification System
+- URL Shortener
+- Distributed Cache
+- Distributed File Storage
+- Cloud Storage
+- CI/CD Pipeline
+- Workflow Engine
+- Kubernetes
+- API Gateway
+- Cryptocurrency Exchange
+- Order Matching Engine
+- Ad Serving
+- Recommendation System
+- Logging Platform
+- Metrics Platform
+- CDN
+- Banking System
+- Inventory Management
+- Booking System
+- Chat System
+
+Then automatically adapt the entire design for that domain.
+
+Do NOT produce a generic distributed system architecture.
+
+Instead include everything an experienced interviewer expects specifically for that domain, including:
+
+- domain-specific workflows
+- components
+- APIs
+- database schema
+- state transitions
+- failure handling
+- scaling
+- trade-offs
+- security
+- consistency model
+- common interview follow-up questions
+
+---
+
+# General Design Principles
+
+Every major component/service must explain:
+
+- What problem it solves
+- What happens if we remove it
+- Common failure modes
+- Scaling considerations
+- Interview explanation line
+
+For every component include an interview script:
+
+> "..."
+
+that I can literally speak while drawing.
+
+---
+
+# System Behaviors
+
+Whenever applicable, the design should include:
+
+- synchronous vs asynchronous communication
+- event-driven architecture
+- queues
+- retries
+- dead letter queue
+- idempotency
+- exactly-once vs at-least-once processing
+- ordering guarantees
+- rate limiting
+- throttling
+- backpressure
+- batching
+- caching
+- sharding
+- partitioning
+- replication
+- leader election
+- optimistic vs pessimistic locking
+- distributed locks
+- quorum
+- consensus (when appropriate)
+- service discovery
+- API Gateway
+- load balancing
+- circuit breakers
+- health checks
+- heartbeats
+- reconciliation jobs
+- scheduled jobs
+- workflow orchestration
+- observability
+- metrics
+- tracing
+- logging
+- audit logs
+- disaster recovery
+- backup strategy
+- multi-region deployment
+- active-active vs active-passive
+- deployment strategy
+- feature flags
+
+Only include components that actually make sense for the system.
+
+Explain why.
+
+---
+
+# Domain-Specific Expectations
+
+Automatically include concepts expected for the chosen system.
+
+Examples:
+
+## Payment System
+
+Include:
+
+- authorization
+- capture
+- settlement
+- refund
+- payment status
+- payment state machine
+- PSP integration
+- fraud detection
+- risk engine
+- reconciliation
+- merchant payouts
+- webhook delivery
+- idempotency keys
+- immutable ledger
+- append-only double-entry bookkeeping
+- PCI DSS
+- tokenization
+
+---
+
+## Ride Sharing
+
+Include:
+
+- driver matching
+- geospatial indexing
+- ETA calculation
+- surge pricing
+- trip lifecycle
+- driver location updates
+- dispatching
+
+---
+
+## Video Streaming
+
+Include:
+
+- upload pipeline
+- transcoding
+- CDN
+- adaptive bitrate streaming
+- metadata
+- recommendations
+
+---
+
+## Chat System
+
+Include:
+
+- online presence
+- typing indicators
+- message ordering
+- read receipts
+- push notifications
+- offline delivery
+
+---
+
+## Storage System
+
+Include:
+
+- chunking
+- replication
+- consistency
+- metadata service
+- garbage collection
+
+---
+
+For every domain, automatically include the equivalent concepts expected in a Staff-level interview.
+
+---
+
+# Sections
+
+## 1. Functional Requirements
+
+Provide 5–7 functional requirements.
+
+Use a table:
+
+| # | Requirement | Description |
+
+---
+
+## 2. Non-Functional Requirements
+
+Provide 5–7 NFRs.
+
+Include realistic targets.
+
+| # | Requirement | Target |
+
+---
+
+Include a short interview transition sentence.
+
+---
+
+## 3. Back-of-the-Envelope Estimation
+
+Estimate:
+
+- DAU
+- Peak QPS
+- Reads/sec
+- Writes/sec
+- Storage/day
+- Storage/year
+- Bandwidth
+- Peak concurrency
+- Number of servers
+
+Use realistic assumptions.
+
+Show all math inside one code block.
+
+---
+
+## 4. APIs
+
+Provide both:
+
+External APIs
+
+Internal APIs
+
+For every endpoint include:
+
+- Method
+- Endpoint
+- Description
+
+Automatically include APIs expected for the chosen domain.
+
+---
+
+## 5. Database Design
+
+Include:
+
+- tables
+- fields
+- PK
+- FK
+- indexes
+
+Explain why every table exists.
+
+Explain important indexes.
+
+If the domain needs immutable data (ledger/event store/etc.), explain why.
+
+---
+
+## 6. High-Level Architecture
+
+Provide a Mermaid diagram showing the complete happy path.
+
+Number every arrow.
+
+After the diagram provide:
+
+- step-by-step walkthrough
+- interview script
+- explanation of every component
+
+---
+
+## 7. Progressive Design
+
+Create three progressively richer Mermaid diagrams.
+
+### Diagram 1
+
+Core request flow.
+
+---
+
+### Diagram 2
+
+Business logic.
+
+Background workers.
+
+Queues.
+
+Storage.
+
+---
+
+### Diagram 3
+
+Production-grade system including:
+
+- retries
+- DLQ
+- monitoring
+- observability
+- failover
+- disaster recovery
+- reconciliation
+- multi-region
+
+---
+
+Each diagram must include:
+
+- numbered arrows
+- interview walkthrough
+- what every new component solves
+- what happens without it
+
+---
+
+## 8. Final Combined Diagram
+
+Generate one production-ready Mermaid diagram.
+
+Include:
+
+- all components
+- retries
+- queues
+- caches
+- workers
+- monitoring
+- metrics
+- logging
+- DLQ
+- reconciliation
+- security components
+- failure handling
+
+Include a legend.
+
+---
+
+## 9. Deep Dive Design Decisions
+
+Explain 6–8 major architectural decisions.
+
+For every decision include:
+
+- What
+- Why
+- Alternatives
+- Trade-offs
+- Interview explanation
+
+---
+
+## 10. Failure Scenarios
+
+Discuss at least 10 realistic failures.
+
+For every failure explain:
+
+- detection
+- mitigation
+- recovery
+- monitoring
+- user impact
+
+---
+
+## 11. Scaling
+
+Discuss:
+
+- horizontal scaling
+- vertical scaling
+- caching
+- partitioning
+- replication
+- hot keys
+- load balancing
+- multi-region
+- database scaling
+
+---
+
+## 12. Security
+
+Discuss security relevant to the domain.
+
+Possible topics include:
+
+- authentication
+- authorization
+- RBAC
+- encryption
+- secrets
+- tokenization
+- PCI
+- GDPR
+- audit logs
+- rate limiting
+- fraud detection
+
+Only include what makes sense.
+
+---
+
+## 13. Trade-offs
+
+Discuss at least 8 architectural trade-offs.
+
+Explain:
+
+- why one option was chosen
+- why alternatives were rejected
+
+---
+
+## 14. Follow-Up Questions
+
+Generate at least 20 interviewer questions.
+
+Each answer should be 3–5 paragraphs.
+
+Cover:
+
+- failures
+- scaling
+- consistency
+- CAP theorem
+- replication
+- caching
+- multi-region
+- cost
+- bottlenecks
+- security
+- trade-offs
+
+Also include domain-specific questions.
+
+---
+
+## 15. Interview Timeline
+
+Provide a table showing how to present this design in 30 minutes.
+
+Include:
+
+| Time | Discussion |
+
+---
+
+## 16. Quick Reference
+
+Create a component cheat sheet.
+
+| Component | Purpose | Failure Without It |
+
+Include every major component.
+
+---
+
+# Formatting Rules
+
+- Use Markdown.
+- Use Mermaid flowchart LR.
+- Wrap every Mermaid node label in double quotes.
+- Number every arrow.
+- Use blockquotes for interview scripts.
+- Use tables whenever appropriate.
+- Do not use colors.
+- Do not generate images.
+- Avoid redundancy.
+- Keep explanations concise but interview-ready.
+- The final output should be one continuous document.
+
+---
+
+# Quality Bar
+
+Assume the interviewer is a Staff or Principal Engineer from companies such as 
+Google, Meta, Stripe, Uber, Airbnb, LinkedIn, DoorDash, Amazon, Databricks, Snowflake, 
+OpenAI, Anthropic, or Netflix.
+
+The design should be production-ready, technically accurate, explain trade-offs clearly, 
+and include the domain-specific depth expected in a real Staff-level system design interview.
