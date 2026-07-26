@@ -1,0 +1,368 @@
+
+Think of it as producing an interview playbook, not a design specification.
+The prompt should generate something you can realistically review in 30–45 minutes before an interview.
+
+This produces a study guide that's comprehensive enough for a Staff/Principal interview while 
+remaining practical to review and use during preparation. It emphasizes the discussions interviewers 
+actually have rather than generating a specification document.
+
+
+
+
+
+# Staff Software Engineer System Design Interview Prompt
+
+Act as a Principal/Staff Software Engineer preparing for a 30–45 minute system design interview.
+
+Design the following distributed system:
+
+# <SYSTEM NAME>
+
+---
+
+# Goal
+
+Produce a concise, interview-ready study guide that covers everything expected in a Staff Software Engineer system design interview.
+
+The output should read like the notes of an experienced engineer preparing for an interview—not a design document or textbook.
+
+Optimize for:
+- interview discussion
+- engineering reasoning
+- trade-offs
+- communication
+
+Avoid unnecessary implementation details.
+
+Focus on the important architectural decisions.
+
+---
+
+# Domain Awareness
+
+First identify the type of distributed system.
+
+Automatically adapt the design to that domain.
+
+For example:
+
+Payment
+Ride Sharing
+Food Delivery
+Streaming
+Storage
+Messaging
+Search
+Notification
+Banking
+Workflow Engine
+Cache
+Exchange
+Booking
+Social Network
+etc.
+
+Include all concepts expected for that domain.
+
+Examples:
+
+Payment
+- authorization
+- capture
+- settlement
+- refunds
+- reconciliation
+- ledger
+- PSP
+- fraud detection
+- PCI
+- tokenization
+- idempotency
+
+Ride Sharing
+- matching
+- ETA
+- dispatch
+- surge pricing
+
+Chat
+- ordering
+- presence
+- read receipts
+
+Storage
+- chunking
+- metadata
+- replication
+
+Automatically include equivalent concepts for any other domain.
+
+---
+
+# Produce the following sections
+
+## 1. Functional Requirements
+
+5–7 requirements.
+
+---
+
+## 2. Non Functional Requirements
+
+Include realistic targets.
+
+Latency
+
+Availability
+
+Durability
+
+Consistency
+
+Scalability
+
+---
+
+## 3. Capacity Estimation
+
+Estimate
+
+- DAU
+- Peak QPS
+- Storage
+- Bandwidth
+
+Show assumptions.
+
+Keep it brief.
+
+---
+
+## 4. APIs
+
+Only the important APIs.
+
+External APIs.
+
+Internal APIs.
+
+---
+
+## 5. Data Model
+
+Only major tables/entities.
+
+Show
+
+- primary fields
+- relationships
+- important indexes
+
+Explain why each exists.
+
+---
+
+## 6. High-Level Architecture
+
+Generate one Mermaid diagram.
+
+Include only important components.
+
+After the diagram explain:
+
+- request flow
+- component responsibilities
+- interview explanation
+
+---
+
+## 7. Component Deep Dive
+
+For each major service explain
+
+- responsibility
+- why needed
+- failure if removed
+- scaling approach
+- common interview questions
+
+---
+
+## 8. Core Workflows
+
+Explain the important workflows for this domain.
+
+Examples:
+
+Payment
+
+- Authorization
+- Capture
+- Settlement
+- Refund
+- Reconciliation
+
+Ride Sharing
+
+- Driver matching
+- Trip lifecycle
+
+Messaging
+
+- Send message
+- Offline delivery
+
+Use sequence diagrams only where they improve understanding.
+
+---
+
+## 9. Data Flow
+
+Explain
+
+Request flow
+
+Async events
+
+Queues
+
+Retries
+
+DLQ
+
+Idempotency
+
+Exactly-once vs At-least-once
+
+---
+
+## 10. Scaling Strategy
+
+Discuss
+
+- horizontal scaling
+- caching
+- sharding
+- replication
+- partitioning
+- load balancing
+- multi-region
+
+Focus on practical decisions.
+
+---
+
+## 11. Failure Handling
+
+Discuss the 8–10 most realistic failures.
+
+Explain
+
+- detection
+- mitigation
+- recovery
+
+---
+
+## 12. Security
+
+Only security relevant to this domain.
+
+Examples
+
+PCI
+
+Fraud Detection
+
+Encryption
+
+RBAC
+
+Audit Logs
+
+Tokenization
+
+Secrets
+
+---
+
+## 13. Trade-offs
+
+Discuss the 8 most important trade-offs.
+
+Explain
+
+- chosen solution
+- alternatives
+- why
+
+---
+
+## 14. Follow-up Questions
+
+Generate the 15 most common Staff-level interviewer questions.
+
+Keep each answer concise (one paragraph).
+
+Focus on reasoning instead of memorization.
+
+---
+
+## 15. Interview Summary
+
+Finish with:
+
+### Architecture Summary
+
+A one-page summary of the entire design.
+
+### Interview Whiteboard Order
+
+The order in which to draw the system.
+
+### Component Cheat Sheet
+
+| Component | Purpose | Key Talking Point |
+
+### Things Interviewers Usually Ask
+
+A quick bullet list.
+
+### Common Mistakes
+
+Mistakes candidates make for this system.
+
+### 5-Minute Revision Notes
+
+A condensed version that can be read in five minutes before the interview.
+
+---
+
+# Writing Style
+
+Write like a senior engineer preparing another senior engineer.
+
+Prefer depth over breadth.
+
+Avoid textbook explanations.
+
+Keep every section concise.
+
+Avoid repeating information.
+
+Only include components that genuinely belong in this system.
+
+Every explanation should answer:
+
+- Why does this component exist?
+- What happens if it fails?
+- How does it scale?
+- What trade-offs does it introduce?
+
+Use Markdown.
+
+Use Mermaid flowchart LR.
+
+Keep diagrams readable.
+
+Optimize the entire output so it can realistically be reviewed in 30–45 minutes before an interview.

@@ -1,0 +1,538 @@
+
+Response of master prompt would easily exceed 100,000+ words, which is well beyond the 
+maximum response size any single ChatGPT message can generate.
+That's why split it into a small number of logically complete parts.
+
+
+Why this split works
+
+This four-part structure follows the natural flow of a Staff-level system design interview:
+
+Part 1: Define the problem and design the data model (requirements, estimates, APIs, database).
+Part 2: Build the architecture incrementally from a simple request flow to a production-ready distributed system.
+Part 3: Demonstrate senior engineering judgment through architectural decisions, failure handling, scalability, security, and trade-offs.
+Part 4: Prepare for the discussion portion with deep follow-up questions, a presentation timeline, and a concise cheat sheet.
+
+Each part is self-contained, avoids repetition, and together they form one cohesive, interview-ready design document.
+
+
+
+
+
+
+
+
+# Split 1 — Requirements, Estimation, APIs, Database Design
+
+Act as a Staff Software Engineer preparing for a 30-minute system design interview.
+
+Design the following distributed system:
+
+# <SYSTEM NAME>
+
+---
+
+# Goal
+
+Produce **Part 1** of a single interview-ready system design document.
+
+This is part of a larger document.
+
+Do NOT include sections from later parts.
+
+Do NOT summarize future sections.
+
+Assume later parts will continue from this design.
+
+Maintain consistent terminology throughout.
+
+---
+
+# Domain Awareness
+
+First identify the type of distributed system.
+
+Adapt the design specifically for this domain.
+
+Do NOT produce a generic architecture.
+
+Automatically include domain-specific concepts.
+
+For example:
+
+Payment:
+- Authorization
+- Capture
+- Settlement
+- Refund
+- PSP
+- Ledger
+- Reconciliation
+- Fraud Detection
+- PCI
+- Tokenization
+
+Ride Sharing:
+- Driver Matching
+- ETA
+- Dispatch
+- Geospatial Index
+
+Video Streaming:
+- Upload
+- Transcoding
+- CDN
+
+Chat:
+- Presence
+- Ordering
+- Read Receipts
+
+Include equivalent concepts for any other domain.
+
+---
+
+# General Design Principles
+
+Whenever introducing a component, explain:
+
+- Purpose
+- Why it exists
+- What happens if removed
+- Failure modes
+- Scaling considerations
+
+---
+
+# Produce ONLY the following sections.
+
+# 1. Functional Requirements
+
+Provide 5–7 requirements.
+
+| # | Requirement | Description |
+
+---
+
+# 2. Non-Functional Requirements
+
+Provide 5–7 realistic targets.
+
+| # | Requirement | Target |
+
+Include an interview transition sentence.
+
+---
+
+# 3. Back-of-the-Envelope Estimation
+
+Estimate:
+
+- DAU
+- Peak QPS
+- Reads/sec
+- Writes/sec
+- Storage/day
+- Storage/year
+- Bandwidth
+- Peak concurrency
+- Number of servers
+
+Show assumptions and math inside one code block.
+
+---
+
+# 4. APIs
+
+Provide:
+
+## External APIs
+
+For every endpoint:
+
+- Method
+- Endpoint
+- Description
+
+## Internal APIs
+
+Include service-to-service APIs.
+
+Automatically include APIs expected for this domain.
+
+---
+
+# 5. Database Design
+
+Include:
+
+- Tables
+- Fields
+- PK
+- FK
+- Indexes
+
+Explain:
+
+- Why every table exists
+- Important indexes
+- Relationships
+- Immutable/event tables if applicable
+- Sharding strategy
+- Retention strategy
+
+---
+
+Formatting Rules
+
+- Markdown
+- Tables where appropriate
+- Keep explanations concise but interview-ready
+- No Mermaid diagrams yet
+- No future sections
+
+
+
+
+---
+
+Split 2 — High-Level Architecture & Progressive Design
+
+Act as a Staff Software Engineer preparing for a 30-minute system design interview.
+
+Continue the system design document for:
+
+# <SYSTEM NAME>
+
+Assume Parts 1 has already been completed.
+
+Do NOT repeat earlier sections.
+
+Use the same terminology and components.
+
+---
+
+# Produce ONLY these sections.
+
+# 6. High-Level Architecture
+
+Generate a Mermaid flowchart LR.
+
+Requirements:
+
+- Wrap every node label in double quotes.
+- Number every arrow.
+- Show complete happy path.
+
+After the diagram include:
+
+- Step-by-step walkthrough
+- Interview script
+- Explain every component:
+  - Purpose
+  - Why needed
+  - Failure if removed
+  - Scaling
+
+---
+
+# 7. Progressive Design
+
+Produce three Mermaid diagrams.
+
+## Diagram 1
+
+Core request flow.
+
+Explain:
+
+- Walkthrough
+- Components
+- Why each exists
+
+---
+
+## Diagram 2
+
+Add:
+
+- Business logic
+- Queues
+- Workers
+- Storage
+- Event-driven communication
+
+Explain every new component.
+
+---
+
+## Diagram 3
+
+Production-ready version including:
+
+- Retries
+- DLQ
+- Monitoring
+- Metrics
+- Logging
+- Tracing
+- Health Checks
+- Circuit Breakers
+- Reconciliation Jobs
+- Scheduled Jobs
+- Multi-region
+- Disaster Recovery
+- Failover
+- Service Discovery
+- Rate Limiting
+- Caching
+
+For every new component explain:
+
+- Why added
+- Failure if absent
+- Scaling considerations
+
+---
+
+# 8. Final Combined Diagram
+
+Produce one complete production architecture.
+
+Include:
+
+- API Gateway
+- Load Balancer
+- All services
+- Queues
+- Workers
+- Cache
+- Databases
+- Monitoring
+- Logging
+- Metrics
+- Tracing
+- DLQ
+- Retry Queue
+- Security components
+- Audit Logging
+- Reconciliation
+- Multi-region
+- Disaster Recovery
+
+Include a legend.
+
+---
+
+Formatting Rules
+
+- Markdown
+- Mermaid flowchart LR
+- Wrap every node label in double quotes
+- Number every arrow
+- Avoid redundancy
+
+
+
+
+
+---
+
+
+Split 3 — Deep Dive, Failures, Scaling, Security & Trade-offs
+
+
+
+Act as a Staff Software Engineer preparing for a 30-minute system design interview.
+
+Continue the existing system design document for:
+
+# <SYSTEM NAME>
+
+Assume previous parts have already been completed.
+
+Do NOT repeat earlier content.
+
+---
+
+# Produce ONLY the following sections.
+
+# 9. Deep Dive Design Decisions
+
+Provide 6–8 major architectural decisions.
+
+For every decision include:
+
+- What
+- Why
+- Alternatives
+- Trade-offs
+- Interview explanation
+
+---
+
+# 10. Failure Scenarios
+
+Discuss at least 10 realistic failures.
+
+For every failure explain:
+
+- Detection
+- Mitigation
+- Recovery
+- Monitoring
+- User Impact
+
+Include domain-specific failures.
+
+---
+
+# 11. Scaling
+
+Discuss:
+
+- Horizontal Scaling
+- Vertical Scaling
+- Partitioning
+- Sharding
+- Replication
+- Leader/Follower
+- Hot Keys
+- Read Replicas
+- Load Balancing
+- Cache Strategy
+- Multi-region
+- Capacity Planning
+
+Explain trade-offs.
+
+---
+
+# 12. Security
+
+Discuss security relevant to this domain.
+
+Possible topics:
+
+- Authentication
+- Authorization
+- RBAC
+- Encryption
+- Secrets Management
+- Audit Logging
+- Rate Limiting
+- PCI
+- GDPR
+- Tokenization
+- Fraud Detection
+- Secure Webhooks
+- HSM
+- Key Rotation
+
+Include only what applies.
+
+---
+
+# 13. Trade-offs
+
+Discuss at least 8 architectural trade-offs.
+
+For every trade-off explain:
+
+- Option chosen
+- Alternatives
+- Pros
+- Cons
+- Why chosen
+- Interview explanation
+
+---
+
+Formatting Rules
+
+- Markdown
+- Tables where appropriate
+- Concise but interview-ready
+- Avoid repeating previous sections
+
+
+
+
+---
+
+
+Split 4 — Staff-Level Interview Preparation
+
+
+Act as a Staff Software Engineer preparing for a 30-minute system design interview.
+
+Continue the existing document for:
+
+# <SYSTEM NAME>
+
+Assume all previous sections have been completed.
+
+Do NOT repeat earlier content.
+
+---
+
+# Produce ONLY the following sections.
+
+# 14. Follow-Up Questions
+
+Generate at least 20 Staff/Principal-level interviewer questions.
+
+For every question provide:
+
+- Short answer
+- Detailed explanation (3–5 paragraphs)
+- Trade-offs
+- Interview talking points
+
+Cover:
+
+- Consistency
+- CAP Theorem
+- Replication
+- Failures
+- Scaling
+- Multi-region
+- Cost Optimization
+- Latency
+- Availability
+- Disaster Recovery
+- Security
+- Caching
+- Data Modeling
+- Domain-specific topics
+
+---
+
+# 15. Interview Timeline
+
+Provide a presentation plan.
+
+| Time | Discussion |
+
+Cover an efficient 30-minute interview.
+
+---
+
+# 16. Quick Reference
+
+Create a component cheat sheet.
+
+| Component | Purpose | Failure Without It |
+
+Include every major component introduced throughout the design.
+
+---
+
+Formatting Rules
+
+- Markdown
+- Tables where appropriate
+- Keep explanations concise but interview-ready
+- Maintain consistency with previous parts
+
+
