@@ -131,8 +131,7 @@ We have to return the maximum secure logs we can.
 
 TestCases:
 
-1.delivery_logs[3,5,9,6] and k=4
-expected output: 9
+1.delivery_logs[3,5,9,6] and k=4 expected output: 8
 
 explanation: From the 3rd delivery log take 5 logs and put in 1st warehouse, pick the entire 
 4th delivery log(6 logs) and place in 2nd warehouse, now pick the remaiaining 4 logs from 
@@ -144,8 +143,7 @@ warehouses became: [5,6,4,5]
 Now that we accomodated all the logs into warehouses, let us calculate the maximum secure logs 
 i.e k/2 those are warehouse 1(5) and 2(6) so the answer is 5+4=9.
 
-2.delivery_logs[5,5,5,5,5,5] and k=4
-expected output: 10
+2.delivery_logs[5,5,5,5,5,5] and k=4 expected output: 10
 
 explaination: pick any four delivery_logs and place each of them into 4 warehouses. 
 So all 4 warehouses are filled with 5 logs each.
@@ -171,7 +169,7 @@ Here when a user is starting to add a particular movie into his watchlist the fr
 that the movie is added but if you go and check in the watchlist page movie is not appearing over there. 
 We are expected to fix that.
 
-Also we need to fix some rate limiting, password length constraints etc..
+Also we need to fix some rate limiting, password length constraints etc.
 
 
 

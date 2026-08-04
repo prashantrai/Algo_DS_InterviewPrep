@@ -32,6 +32,18 @@ public class WarehouseSecureStorage_OA {
         // Small values
         int[] logs7 = {1, 2, 3};
         System.out.println(maximumSecureItems(logs7, 2));
+        
+        //-----
+        
+        // delivery_logs[3,5,9,6] and k=4 expected output: 9
+        int[] logs8 = {3,5,9,6}; int k = 4; 
+        System.out.println("Expected: 8, Actual: " + maximumSecureItems(logs8, 4)); // 8
+        System.out.println("Expected: 8, Actual: " + maximumSecureItems2(logs8, 4)); // 8
+        
+//        delivery_logs[5,5,5,5,5,5] and k=4 expected output: 10
+        int[] logs9 = {5,5,5,5,5,5}; k = 4;
+        System.out.println("Expected: 10, Actual: " + maximumSecureItems(logs9, 4)); // 10
+        System.out.println("Expected: 10, Actual: " + maximumSecureItems2(logs9, 4)); // 10
     }
 	
 	
