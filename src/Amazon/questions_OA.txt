@@ -121,6 +121,15 @@ This is less than 4, so it's impossible.The maximum size we can give to the ware
 
 ---
 
+DSA problem:
+I got a string manipulation problem, about merging branches with conflicts. 
+Tried a two pointer approach but could pass only 3/15, I later seen the solution 
+and it was a HARD DP problem definitly Q4 material (gemini estimate around 1900-2100 rating), 
+WTF, what new grad can solve these problems?
+
+
+---
+
 Que: There is an array of delivery_logs and given k warehouses, each warehouse can store only logs 
 from a single delivery_log, meaning logs belong to different delivery units cannot be stored inside 
 a single warehouse.
@@ -171,9 +180,69 @@ We are expected to fix that.
 
 Also we need to fix some rate limiting, password length constraints etc.
 
+	[source: reddit: https://www.reddit.com/r/leetcode/comments/1t6luym/amazon_oa_list/]
+	
+	It was a MovieDB, had to fix, Notification and Follow Un-follow feature.
+	
+	Notification: Solve the notification part is every time a new movie is launched 
+	for an actor all its followers should get the notification.
+	
+	Total 6 bugs, follow, un-follow, Notification, Watchlist 
 
+	I had the same MovieDB debugging OA and figured out why the tests were failing. The fixes 
+	were all in the Spring Boot backend. 
+	
+	In AdminController, the POST movie endpoint was saving 
+	the movie but never calling NotificationService, so I injected/autowired the service and 
+	triggered the notification after a successful save. 
+	
+	In the follow API, the follow relationship 
+	was never being persisted, so users technically couldn't follow an actor. I added the 
+	repository/database save call and also added a duplicate check that returns 400 Bad Request 
+	if the same user–actor follow record already exists. 
+	
+	In the unfollow API, there was no validation 
+	or deletion logic. I first checked whether the user–actor follow record exists; if it doesn't, 
+	return 404 Not Found, otherwise delete the entry from the database. 
+	
+	After adding notification 
+	sending, persisting follows, preventing duplicate follow entries (400), checking existence before 
+	unfollow (404), and actually deleting the follow record, all 6/6 test cases passed for me. The 
+	debugging wasn't really algorithm-heavy—the main challenge was tracing the codebase and identifying 
+	the missing service/repository calls and validation logic.
+ 
+ 	
+ 
+ 
 
+1. Code Debugging / Repository-Based problem.
 
+I was given a complete movie booking application codebase with a proper project structure.
+frontend
+backend
+
+Along with this, there was a bug report.
+"A user can click "Add to Watch Later" on a movie, but the movie is not being added to 
+the Watch Later List."
+
+The task was to 
+
+󠁯• understand the codebase structure
+󠁯• debug the issue
+• identify the root cause
+• fix the functionality
+
+This felt much closer to real-world software engineering than standard coding rounds. It tested code navigation, debugging ability, frontend / backend understanding, ability to reason through an unfamiliar codebase under time pressure.
+
+2. DSA Question
+
+The second part was a DSA problem based on "merging two commit histories while minimizing merge conflicts".
+
+It felt similar to solving problems like 
+
+󠁯• Shortest Common Subsequence
+󠁯• Interleaving String
+• Merge strings / Sequence DP style problems.
 
 
 
