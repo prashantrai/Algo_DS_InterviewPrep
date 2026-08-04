@@ -119,6 +119,68 @@ If we try 13 items:Total warehouses filled = [14 / 13] + [25 / 13] + [18 / 13] =
 This is less than 4, so it's impossible.The maximum size we can give to the warehouses is 12 items.We set all 4 warehouses to hold exactly 12 items. The 2 largest are compromised, leaving 2 secure warehouses.Secure total = (2 times 12 = 24). (Note: If we distribute tightly as ([12, 12, 13, 12]), the bottom 2 are still 12).
 
 
+---
+
+Que: There is an array of delivery_logs and given k warehouses, each warehouse can store only logs 
+from a single delivery_log, meaning logs belong to different delivery units cannot be stored inside 
+a single warehouse.
+
+There are k/2 secure warehouses.
+
+We have to return the maximum secure logs we can.
+
+TestCases:
+
+1.delivery_logs[3,5,9,6] and k=4
+expected output: 9
+
+explanation: From the 3rd delivery log take 5 logs and put in 1st warehouse, pick the entire 
+4th delivery log(6 logs) and place in 2nd warehouse, now pick the remaiaining 4 logs from 
+the 3rd delivery_log and place them in 3rd warehouse. Now put the entire logs from 2nd into 
+the last warehouse.
+
+warehouses became: [5,6,4,5]
+
+Now that we accomodated all the logs into warehouses, let us calculate the maximum secure logs 
+i.e k/2 those are warehouse 1(5) and 2(6) so the answer is 5+4=9.
+
+2.delivery_logs[5,5,5,5,5,5] and k=4
+expected output: 10
+
+explaination: pick any four delivery_logs and place each of them into 4 warehouses. 
+So all 4 warehouses are filled with 5 logs each.
+
+warehouses became: [5,5,5,5]
+
+Now among them try securing k/2 warehouses with maximum logs, that can be 2 different 
+warehouses and total logs secured are 10. So the remaining 10 is the answer.
+
+
+
+Q2.Backend question - 60min - AI Assist 
+
+At the starting of the assessment itself we have to choose a backend framework that we are 
+comfortable with, I have choosen SpringBoot.
+
+The problem statement is:
+
+Given a fully deployed application called MovieDB where it has all the movies, users can rate, 
+review, discuss about movies there, they can also add them to their watch list etc.
+
+Here when a user is starting to add a particular movie into his watchlist the frontend is showing 
+that the movie is added but if you go and check in the watchlist page movie is not appearing over there. 
+We are expected to fix that.
+
+Also we need to fix some rate limiting, password length constraints etc..
+
+
+
+
+
+
+
+
+
 
 -----------------------
 

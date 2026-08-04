@@ -6,6 +6,7 @@ public class MinimumAdjustmentsToMakeArrayZero {
     /** Source: https://leetcode.com/discuss/post/6577750/amazon-interview-question-minimum-operat-nco3/
      *  https://algo.monster/liteproblems/2772
      *  https://leetcode.com/problems/apply-operations-to-make-all-array-elements-equal-to-zero/description/
+     *  https://www.reddit.com/r/leetcode/comments/1blly1l/oa_question/
      *  
      * Minimum Adjustments to Make Array Zero
 
