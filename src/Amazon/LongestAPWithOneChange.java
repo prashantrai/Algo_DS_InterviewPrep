@@ -6,7 +6,7 @@ public class LongestAPWithOneChange {
      * **Input:** A list of integers `deviation`.
 
 		**Task:** Find the length of the longest contiguous subarray that forms 
-		a`n` arithmetic progression (AP), where the difference between consecutive 
+		a `n` arithmetic progression (AP), where the difference between consecutive 
 		elements is constant. We are allowed at most one element change** in the 
 		array to maximize this length.
 		

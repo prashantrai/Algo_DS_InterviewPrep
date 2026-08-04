@@ -122,3 +122,39 @@ public class ProductRatingSystem {
         // Expected: 7 (3->7: 4ops, 5->7: 2ops, total=6, AND=7)
     }
 }
+
+
+/*
+Source: https://www.reddit.com/r/leetcode/comments/1r00cf0/amazon_oa_sde2_asked_in_2026_ctcstarts_from_20l30l/
+
+Product Rating System: 
+
+The engineers at Amazon are developing a new rating system for their products. 
+For each product, they maintain an array customer_rating representing the last n customers:
+
+customer_rating[i] = rating given by the i-th customer.
+
+Allowed Operation
+You are allowed to perform the following operation at most k times:
+ - Choose any rating in the array and increase it by 1.
+You may distribute these increments across elements in any way.
+
+Goal
+After performing at most k operations, you must select any subset of size m from the array.
+
+Let new_rating be:
+ - The maximum possible Bitwise AND of any m sized subset of customer_rating after modifications.
+
+Your task is to compute this maximum possible new_rating.
+
+Example
+n = 4, k = 8, m = 2
+customer_rating = [1, 2, 4, 8]
+Input:
+Increase customer_rating[3] = 4 → 10 (6 operations)
+Increase customer_rating[4] = 8 → 10 (2 operations)
+Final optimal subset: {10, 10}
+Bitwise AND: 10 
+ 
+ 
+ */

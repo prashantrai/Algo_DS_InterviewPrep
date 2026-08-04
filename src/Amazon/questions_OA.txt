@@ -32,6 +32,91 @@ Bitwise AND: 10
 
 
 
+-------
+
+# Warehouse Secure Storage
+
+An Amazon logistics facility receives a set of bulk shipments, represented as an integer array 
+`deliveryLogs` of size `n`. Each element `deliveryLogs[i]` represents the total number of 
+delivery items contained in the $i$-th shipment log. 
+
+The facility needs to distribute these items across exactly `k` different warehouses subject to 
+specific operational rules:
+
+1. **No Mixing Logs**: A single warehouse can only store items originating from **one specific delivery log**. It cannot mix items from two or more different logs.
+2. **Log Splitting**: A single delivery log's items **can be split** across multiple warehouses.
+3. **Partial Allocation**: It is **not required** to use all items from a delivery log. Any leftover items from a log can be left unallocated.
+4. **Equal Distribution Strategy**: To maintain a balanced inventory distribution, the warehouses assigned to take items from the same log are filled with an equal number of items. Consequently, the optimal allocation strategy relies on establishing a uniform minimum capability threshold across all warehouses.
+
+### The Compromise Scenario
+Once all `k` warehouses are filled, a system vulnerability occurs where the **$k/2$ warehouses with the largest number of stored items are compromised** and their contents are lost. The remaining **$k/2$ warehouses are secure**, and their stored contents are saved.
+
+### Task
+Your goal is to allocate items to the $k$ warehouses such that you **maximize the total number of items stored safely** in the remaining $k/2$ secure warehouses. 
+
+---
+
+### Constraints
+* 1 <= n <= 10^5 (Number of delivery logs)
+* 2 <= k <= 10^5 (Number of warehouses, where $k$ is always an **even** integer)
+* 0 <= deliveryLogs[i] <= 10^9 (Items per log)
+
+---
+
+### Examples
+
+#### Example 1
+**Input:** 
+* `deliveryLogs = [14, 25, 18]`
+* `k = 4`
+
+**Output:** 
+* `24`
+
+Explanation:
+We need to fill (k = 4) warehouses. After allocation, the top (k/2 = 2) warehouses are compromised, 
+and the bottom (k/2 = 2) warehouses are secure.
+
+Suppose we decide that each warehouse should hold at least 8 items. 
+
+Let's see if we can fill 4 warehouses:
+
+From log 14: We can fill [14 / 8] = 1 warehouse.
+From log 25: We can fill [25 / 8] = 3 warehouses.
+From log 18: We can fill [18 / 8] = 2 warehouses.
+
+Total warehouses filled = (1 + 3 + 2 = 6). Since 6 >= 4, a threshold of 8 items per warehouse is 
+completely achievable.
+
+
+If we increase the threshold to 9 items:
+From log 14: [14 / 9] = 1) warehouse.
+From log 25: [25 / 9] = 2) warehouses.
+From log 18: [18 / 9] = 2) warehouses.
+
+Total warehouses filled = (1 + 2 + 2 = 5). Since (5 ge 4), 9 items per warehouse is also achievable.
+
+If we try 10 items:Total warehouses filled = [14 / 10] + [25 / 10] + [18 / 10] = 1 + 2 + 1 = 4). This exactly satisfies (k = 4).
+If we try 11 items:Total warehouses filled = [14 / 11] + [25 / 11] + [18 / 11] = 1 + 2 + 1 = 4). This also satisfies (k = 4).
+If we try 12 items:Total warehouses filled = [14 / 12] + [25 / 12] + [18 / 12] = 1 + 2 + 1 = 4).
+If we try 13 items:Total warehouses filled = [14 / 13] + [25 / 13] + [18 / 13] = 1 + 1 + 1 = 3). 
+
+This is less than 4, so it's impossible.The maximum size we can give to the warehouses is 12 items.We set all 4 warehouses to hold exactly 12 items. The 2 largest are compromised, leaving 2 secure warehouses.Secure total = (2 times 12 = 24). (Note: If we distribute tightly as ([12, 12, 13, 12]), the bottom 2 are still 12).(Note: Depending on the specific variant of the test case, if the maximum size achievable is 8, the secure total would be (2 times 8 = 16).)
+
+
+
+
+Problem Description: Warehouse Secure Storage
+An Amazon logistics facility receives a set of bulk shipments, represented as 
+an integer array deliveryLogs of size n. Each element deliveryLogs[i] represents 
+the total number of delivery items contained in the (i)-th shipment log.The facility 
+needs to distribute these items across exactly k different warehouses subject to specific operational rules:No Mixing Logs: A single warehouse can only store items originating from one specific delivery log. It cannot mix items from two or more different logs.Log Splitting: A single delivery log's items can be split across multiple warehouses.Partial Allocation: It is not required to use all items from a delivery log. Any leftover items from a log can be left unallocated.Equal Distribution (Per Warehouse Strategy): To maintain a balanced inventory distribution, the warehouses assigned to take items from the same log are filled with an equal number of items. Consequently, the optimal allocation strategy relies on establishing a uniform minimum capability threshold across all warehouses.The Compromise ScenarioOnce all k warehouses are filled, a system vulnerability occurs where the (k/2) warehouses with the largest number of stored items are compromised and their contents are lost. The remaining (k/2) warehouses are secure, and their stored contents are saved.TaskYour goal is to allocate items to the (k) warehouses such that you maximize the total number of items stored safely in the remaining (k/2) secure warehouses.Constraints(1 le n le 10^5) (Number of delivery logs)(2 le k le 10^5) (Number of warehouses, where (k) is always an even integer)(0 le deliveryLogs[i] le 10^9) (Items per log)ExamplesExample 1Input:pythondeliveryLogs = [14, 25, 18]
+
+k = 4
+Use code with caution.Output:python16
+Use code with caution.Explanation:We need to fill (k = 4) warehouses. After allocation, the top (k/2 = 2) warehouses are compromised, and the bottom (k/2 = 2) warehouses are secure.Suppose we decide that each warehouse should hold at least 8 items. Let's see if we can fill 4 warehouses:From log 14: We can fill [14 / 8] = 1) warehouse.From log 25: We can fill [25 / 8] = 3) warehouses.From log 18: We can fill [18 / 8] = 2) warehouses.Total warehouses filled = (1 + 3 + 2 = 6). Since (6 ge 4), a threshold of 8 items per warehouse is completely achievable.If we increase the threshold to 9 items:From log 14: [14 / 9] = 1) warehouse.From log 25: [25 / 9] = 2) warehouses.From log 18: [18 / 9] = 2) warehouses.Total warehouses filled = (1 + 2 + 2 = 5). Since (5 ge 4), 9 items per warehouse is also achievable.If we try 10 items:Total warehouses filled = [14 / 10] + [25 / 10] + [18 / 10] = 1 + 2 + 1 = 4). This exactly satisfies (k = 4).If we try 11 items:Total warehouses filled = [14 / 11] + [25 / 11] + [18 / 11] = 1 + 2 + 1 = 4). This also satisfies (k = 4).If we try 12 items:Total warehouses filled = [14 / 12] + [25 / 12] + [18 / 12] = 1 + 2 + 1 = 4.
+If we try 13 items:Total warehouses filled = [14 / 13] + [25 / 13] + [18 / 13] = 1 + 1 + 1 = 3). 
+This is less than 4, so it's impossible.The maximum size we can give to the warehouses is 12 items.We set all 4 warehouses to hold exactly 12 items. The 2 largest are compromised, leaving 2 secure warehouses.Secure total = (2 times 12 = 24). (Note: If we distribute tightly as ([12, 12, 13, 12]), the bottom 2 are still 12).
 
 
 
@@ -124,4 +209,177 @@ array to maximize this length.
 **Example:** Given the array `[8, 5, 2, 1, 100]`, if you change the 1 to `-1`, 
 you get the progression `[8, 5, 2, -1]` with a constant difference of `-3`, giving a maximum length of 4.
 
+
+
 ——————-
+[Amazon SDE 2 - interview experience (source Reddit, 8/2/2026]
+Amazon SDE2 Interview Process - HackerRank OA, Onsite Rounds, GenAI Questions, and Final Selection
+
+Sharing my Amazon SDE2 interview experience in case it helps anyone preparing.
+
+**Background**
+
+* Company: Amazon
+* Role: SDE2
+* Team: Amazon Prime Video
+
+**Online Assessment: HackerRank**
+
+The OA had 3 parts:
+
+* Coding challenge: 90 minutes, 2 LeetCode-style problems
+* Work simulation: 15 minutes, SDE decision-making scenarios
+* Work style surveys: 10 minutes, engineering approach and work style
+
+My assessment followed the older format. I have heard Amazon is now introducing newer assessment formats involving building code/applications with AI agents, so current candidates may see a different experience.
+
+After clearing the OA, I was called for onsite interviews.
+
+
+
+**Round 1: DSA + Leadership Principles + GenAI**
+
+Duration: 1 hour
+
+Technical portion was around 30 minutes, followed by LP and GenAI discussion.
+
+**Question 1: LIS variation**
+
+Given an array of integers and an integer `k`, find the length of the longest subsequence such that:
+
+* Elements are strictly increasing
+* Difference between adjacent elements in the subsequence is at most `k`
+* Relative order from the original array is maintained
+
+This was a variation of Longest Increasing Subsequence with an additional adjacent-difference constraint.
+
+**Question 2: Binary strings subset**
+
+Given an array of binary strings and two integers `m` and `n`, find the largest subset such that:
+
+* Total number of `1`s is at most `m`
+* Total number of `0`s is at most `n`
+
+This was a 0/1 knapsack-style DP problem.
+
+**LP focus:** Ownership, Dive Deep
+**GenAI question:** Tell me about a time you used GenAI to improve personal or team productivity.
+
+**Round 2: System Design + LP**
+
+Duration: 1 hour
+
+**Design a Facebook-like News Feed System at scale**
+
+Requirements included:
+
+* Users can post text, images, and videos
+* Users can view posts in their feed
+* Like counts and view counts should update close to real time
+* Feed should load quickly, even if app/browser cache is cleared
+
+Discussion points:
+
+* API design
+* Push vs pull model for feed generation
+* SQL vs NoSQL tradeoffs
+* Caching strategy and invalidation
+* CDN usage for media
+* Handling viral posts / celebrity problem
+* Async processing for likes and views
+* Rate limiting
+* Sharding and partitioning
+* Monolith vs microservices
+* Service boundaries
+
+**LP focus:** Have Backbone; Disagree and Commit
+**GenAI question:** Tell me about a time you used GenAI to solve a business problem and what measurable result it delivered.
+
+**Round 3: System Design + LP**
+
+Duration: 1 hour
+
+**Design a music streaming application like Spotify**
+
+Requirements included:
+
+* Search songs, artists, and albums
+* Create and manage playlists
+* Like/save songs
+* Maintain user library
+* Low-latency playback
+* High availability
+* Millions of concurrent listeners
+
+Discussion points:
+
+* API design
+* Serving audio efficiently at scale
+* CDN strategy across geographies
+* Object storage for audio files
+* Metadata DB design
+* Playlist and user data storage
+* Listening history and preferences
+* Search system design
+* Indexing / full-text search
+* Load balancing and horizontal scaling
+* Service boundaries
+
+**LP focus:** Learn and Be Curious
+**GenAI question:** Tell me about a time you used GenAI to automate or streamline a workflow.
+
+**Round 4: Bar Raiser**
+
+Virtual, 1 hour
+
+This round was with a senior engineer outside the hiring team. The structure was flexible and mostly interviewer-driven.
+
+**Project deep dive**
+
+I was asked to pick one of the most interesting projects from my resume, especially something that solved a critical issue.
+
+We discussed:
+
+* Architecture
+* Design choices
+* Component interaction at scale
+* Tradeoffs
+* My individual contribution
+* Business/customer impact
+* Metrics and quantified results
+
+**Behavioral / LP**
+
+LP focus: Customer Obsession / Earn Trust
+
+Question: Tell me about a time you directly interacted with a stakeholder for your project or work.
+
+**Quick DSA**
+
+Search in a rotated sorted array.
+
+No compiler was provided, so I had to write and dry run the solution manually.
+
+**GenAI question**
+
+How do you stay a competent software engineer in the era of GenAI?
+
+**Important Tips**
+
+Do not jump straight into coding or designing. Clarify requirements first.
+
+For coding rounds, interviewers may not give all constraints upfront. Ask about duplicates, input size, edge cases, and expected output format.
+
+For design rounds, gather requirements yourself and state assumptions clearly. Many follow-up questions are hints about what the interviewer wants to explore.
+
+The LP section carries serious weight. Usually after 30-40 minutes, the interviewer will move to LPs regardless of where you are technically, so pace yourself.
+
+Prepare 6-8 strong STAR stories that can map to multiple Leadership Principles. Be specific with numbers, outcomes, and impact.
+
+All onsite and virtual rounds used a plain editor or whiteboard. No compiler, IDE, autocomplete, or syntax highlighting. Practice writing clean code and dry running examples manually.
+
+Overall, the process was intense but structured. Technical ability mattered, but LPs, project depth, GenAI awareness, and communication were equally important.
+
+
+
+-------

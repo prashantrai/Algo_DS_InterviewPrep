@@ -41,6 +41,20 @@ public class KokoEatingBananas_875_Medium {
     
 	// Time complexity: O(n · log(maxPile))
     // Space complexity: O(1)
+    
+    /* We need to identify speed at which KoKo can finish all files before guard returns i.e. <=h hours
+     *  In Brute force, we can start with speed = 1, and for each speed value we will compare the 
+     *  if Koko  is able to finish in <= h hours, else increment speed by 1 and repeat.
+     *  
+     *  Binary Search: 
+     *  As we have to find one speed at which Koko can finish the piles, we can start with binary search
+     *  where consider the maxPile as the maxSpeed and lowest speed is 1, i.e., 1 to maxPile
+     *  Then calculate the mid and pass this to method to calculate hours using formula 
+     *   totalHrs += (long) Math.ceil( (double) bananas / speed ) for each pile with the speed (i.e. mid) that was passed
+     *   and then check if hoursNeeded <= h then decrease (high = mid - 1;) to find other values, 
+     *   else increase low = mid + 1 in case it's too slow.
+     *   
+     * */
 
     private static int minEatingSpeed(int[] piles, int h) {
         // Upper bound for speed is the maximum pile size
