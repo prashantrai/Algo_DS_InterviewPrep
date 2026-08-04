@@ -1,0 +1,86 @@
+
+A 60-minute OA round where you are given a buggy full-stack repository and an in-browser AI assistant. 
+You must reproduce the issues, locate the failing modules, prompt the AI for targeted fixes, and pass 
+the test suite. Engineering loop is the scoring axis, not algorithmic insight.
+
+
+Short prompt template we can reuse (Practice typing it fast): 
+	"Here is the failing test output and the relevant file; identify the bug and propose 
+	the smallest patch."
+	
+	
+Another source for full Movie DB question: 
+	https://prachub.com/interview-questions/debug-watch-list-movie-operations
+
+
+[Source: https://www.1point3acres.com/interview/problems/company/amazon/ai-assistant-repo-bug-fix]
+
+Bug list in the prompt typically names 2-4 broken behaviors. Common bug-list framings include (selected, refer above link for full list):
+
+Loan app: user cannot create a loan; user cannot view existing loans; 
+	user can fund a loan with insufficient balance.
+	
+	Example: 
+		Loan repo — three issues listed in the prompt; after the listed fixes 5/6 tests pass 
+		and the remaining failure is repay loan with insufficient balance (not mentioned in the prompt).
+
+
+
+Password reset: verification code is never generated; verification skips 
+	the 30-second expiry window; reset password is not persisted to the user profile.
+	
+	Example: 
+		Password reset repo — fix generate verification code with randint, store generated_at, 
+		then check now <= generated_at + 30s on verify; a separate tests/url file has undefined 
+		variables that must be patched before tests run; persist the new password into the user profile.
+		
+		
+
+Full-stack feature add [Rate limit / blocklist repo]: 
+	implement rate limiting and a keyword/user blocklist on top of an existing repo.
+	Example: 
+		Rate limit / blocklist repo — implement throttling middleware and a moderation hook 
+		that blocks flagged keywords and blacklisted users.
+
+
+
+Return-system fraud scoring: items get flagged as non-returnable by a risk score over rating, 
+	item value, and account age; six numeric thresholds / weighting bugs are seeded across 
+	the scoring path and the AI assistant must help locate them.
+
+
+Comment / issue platform (Jira-like): create-comment and update-comment do not persist or display; 
+	the fix is usually a saved object never written back or never linked to its issue. 
+	Follow the README's API contract — return 401/403 with the right message when the user 
+	is unauthenticated / editing someone else's comment, and the success status on completion.
+	
+Content moderation on reviews: add review and edit review must call an existing bad-content checker, 
+	return 403 instead of 201 on a violation, increment the user's violation count and persist it, 
+	set isFlagged = true after 3 strikes, keep blocking an already-flagged user, and record the violated 
+	words so the count matches the tests.
+	
+* Movie-DB watch-list: * create / delete / update watch lists and add / remove movies; 
+	six unit tests cover 
+		- adding to a missing list, 
+		- adding a duplicate, 
+		- removing, 
+		- and bulk add-then-remove. 
+	
+	Bugs are:  
+		- missing status codes, 
+		- missing existence checks, 
+		- and movies never saved to the DB.
+		
+	Another source for full Movie DB question: 
+		https://prachub.com/interview-questions/debug-watch-list-movie-operations
+
+* Actor / Movie Notification app: * Users follow actors, admins add movies and casts, 
+	and followers must be notified when a followed actor appears in a newly added movie. 
+	The prompt lists broken behaviors; inspect the files involved in each flow and verify 
+	every listed behavior through the UI as well as the bundled tests.
+		
+
+Movie-recommendation full-stack: a single bug hides the recommendations section on the user's home page. 
+The embedded AI assistant can only see the file you have selected, not the whole project.
+
+

@@ -1,0 +1,94 @@
+Source: https://prachub.com/interview-questions/debug-watch-list-movie-operations
+
+You are given a full-stack Movie DB application. Users can log in, create, update, 
+and delete watch lists, and add or remove movies from a watch list.
+
+Several unit tests are failing around watch-list movie operations. Your job is to debug 
+and fix the backend logic so that all of the listed scenarios behave correctly, with 
+the right persistence and the right HTTP responses. This is a debugging exercise: the 
+data model and routing already exist — focus on correcting the handler logic rather than 
+redesigning the system.
+
+The following scenarios must work correctly:
+
+	1. Add a movie to an existing watch list.
+	2. Add a movie that is already present in the watch list.
+	3. Remove a movie from an existing watch list.
+	4. Add many movies to a watch list, then remove them one by one.
+	5. Try to add a movie to a watch list that does not exist.
+	6. Try to remove a movie from a watch list that does not exist.
+
+Constraints & Assumptions
+
+Assume a conventional REST contract such as:
+
+`POST /watchlists/{watchListId}/movies` adds a movie (the movie identifier comes from the request body).
+`DELETE /watchlists/{watchListId}/movies/{movieId}` removes a movie.
+`404 Not Found` is returned when the watch list or movie does not exist.
+`409 Conflict` is returned when attempting to add a duplicate movie.
+`201 Created or 200 OK` is returned for a successful add.
+`200 OK or 204 No Content` is returned for a successful delete, depending on the existing API convention.
+
+Additional working assumptions:
+
+- The watch list stores a collection of movie identifiers, and identifiers may be 
+	object/reference types rather than plain strings.
+- The persistence layer is asynchronous (handlers must wait for a save to complete before responding).
+- Where the contract above leaves a choice (e.g. 201 vs 200 , 200 vs 204 ), match whatever 
+	the existing passing tests and surrounding code already assume — do not introduce a new convention.
+
+
+Assume a conventional REST contract such as:
+
+POST /watchlists/{watchListId}/movies adds a movie (the movie identifier comes from the request body).
+DELETE /watchlists/{watchListId}/movies/{movieId} removes a movie.
+404 Not Found is returned when the watch list or movie does not exist.
+409 Conflict is returned when attempting to add a duplicate movie.
+201 Created or 200 OK is returned for a successful add.
+200 OK or 204 No Content is returned for a successful delete, depending on the existing API convention.
+
+Additional working assumptions:
+
+The watch list stores a collection of movie identifiers, and identifiers may be object/reference types rather than plain strings.
+The persistence layer is asynchronous (handlers must wait for a save to complete before responding).
+Where the contract above leaves a choice (e.g. 201 vs 200 , 200 vs 204 ), match whatever the existing passing tests and surrounding code already assume — do not introduce a new convention.
+
+Clarifying Questions to Ask:: 
+Are movie identifiers stored as plain strings or as object/reference IDs, and how should two identifiers be compared for equality?
+For a successful add, do the tests expect 201 Created or 200 OK , and for a successful delete do they expect 200 OK or 204 No Content ?
+When adding a movie, must the movie itself exist in the database, or is it enough that the identifier is well-formed?
+When the watch list exists but the movie is not currently in it, what status should a delete return — 404 , or a no-op success?
+Is the persistence layer synchronous or asynchronous, and are partial/in-memory mutations automatically saved?
+Should any of these operations be idempotent (e.g. deleting a movie that isn't present), or should they error?
+
+
+Part 1 — Add a movie (scenarios 1, 2, 5)
+	Make the add handler satisfy scenarios 1, 2, and 5. Decide which conditions must be validated 
+	before anything is added, which status each failure maps to under the contract above, and what 
+	a successful add returns once the change is durable. Scenarios 2 and 5 in particular should tell 
+	you which checks are currently missing or in the wrong place.
+	
+
+Part 2 — Remove a movie (scenarios 3, 6)
+	Make the remove handler satisfy scenarios 3 and 6. Work out which validations the remove path 
+	shares with the add path and which are unique to it, how a removal becomes durable, and how the 
+	handler should respond when the watch list is missing versus when the targeted movie simply isn't 
+	in the list (revisit the relevant clarifying question to decide that status).
+	
+Part 3 — Sequential add-then-remove integrity (scenario 4)
+	Make the handlers robust enough that adding many movies and then removing them one by one leaves 
+	the watch list in the correct state at every step.
+	
+
+Follow-up Questions Guidance
+- The current logic does a read, then a mutate, then a save. What concurrency problem appears 
+	if two requests add to the same watch list simultaneously, and how would you make the add atomic?
+	
+- How would you make the delete operation idempotent without losing the ability to report a genuinely 
+	invalid request, and what would change in the contract?
+	
+- If a watch list could hold tens of thousands of movies, what would you change about the 
+	duplicate-check and removal so they don't degrade to a full scan on every call?
+	
+- How would you structure the tests or the handlers so a future bug in one path (e.g. a missing return ) 
+	can't silently send two responses?

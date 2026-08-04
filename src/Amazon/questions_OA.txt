@@ -123,10 +123,12 @@ This is less than 4, so it's impossible.The maximum size we can give to the ware
 
 DSA problem:
 I got a string manipulation problem, about merging branches with conflicts. 
-Tried a two pointer approach but could pass only 3/15, I later seen the solution 
-and it was a HARD DP problem definitly Q4 material (gemini estimate around 1900-2100 rating), 
-WTF, what new grad can solve these problems?
 
+--
+Phone/OA [www.1point3acres.com]
+	circular array prefix sums [source: https://www.1point3acres.com/interview/thread/1176943]
+	drone delivery optimization
+	Merge Intervals coding challenge and AI debugging in a Jira-like project
 
 ---
 
@@ -232,7 +234,9 @@ The task was to
 • identify the root cause
 • fix the functionality
 
-This felt much closer to real-world software engineering than standard coding rounds. It tested code navigation, debugging ability, frontend / backend understanding, ability to reason through an unfamiliar codebase under time pressure.
+This felt much closer to real-world software engineering than standard coding rounds. 
+It tested code navigation, debugging ability, frontend / backend understanding, ability 
+to reason through an unfamiliar codebase under time pressure.
 
 2. DSA Question
 
