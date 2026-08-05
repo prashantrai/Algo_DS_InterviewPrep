@@ -131,7 +131,7 @@ Phone/OA [www.1point3acres.com]
 	Merge Intervals coding challenge and AI debugging in a Jira-like project
 
 ---
-
+[Aug 02, 2026; source: https://leetcode.com/discuss/post/8436217/amazon-sde-online-assessment-by-shanmukh-9jhn/]
 Que: There is an array of delivery_logs and given k warehouses, each warehouse can store only logs 
 from a single delivery_log, meaning logs belong to different delivery units cannot be stored inside 
 a single warehouse.
