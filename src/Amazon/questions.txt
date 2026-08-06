@@ -1,0 +1,59 @@
+
+[8/5/2026, source: https://leetcode.com/discuss/post/8443351/amazon-sde-2-interview-experience-onsite-k126/]
+
+Day 1
+
+1. Round 1 (LLD) (F2F)
+Design a playlist from the DJservice and the Recommendation service to mix the songs .
+Given the list of 10 requirements printed on paper . The core idea is to mix the songs coming from 
+the Djservice and the recommendation service , in a custom proportion or in a equal proportion . 
+Filters can be applied based on the user preferances .
+
+Expectation is to write the production ready classes with proper syntax on paper .
+
+
+Leadership principles - any situation where you pushed the customer back , have u made any thing 
+in thinking long term vision and did u sacrified any short term goals for that .
+
+
+2. Round 2 (DSA) (F2F)
+
+Q1 - Given two boxes of A[] , B[] with size n , where each elements represents the sweetness , 
+Given the M students , distribute the sweetness of A , B to each children and you should minimize 
+the total sweetness .
+
+Q2 - Find the unoccupied seat position with the maximum distance to the occupied site .
+
+seats[] = {'O','U','U','U','O','O'};
+
+Answer - 2nd indexed seat
+
+Leadership principles - outside of your responsiblility , any process you have improved by yourself
+
+
+
+Day - 3 | Round 3 ) DSA (Virtual)
+
+Given the 2 D array with 2 colours validate if it is a valid chessborad .
+
+LCS (longest common subsequence)
+I feel Lucky for both the dsa questions . Interviewer is asking all the approaches and 
+all the time and space complexities and the expectation is to write the optimal code from scratch .
+
+I wrote the recursive , memoization for 2nd , but interviewer asked for the tabulation as well. 
+For these 2 questions the time limit is 45 mins . We have to explain our approaches before the coding .
+
+
+Leadership principles -
+
+Any features that u implemented which u think customers dont know they that they need but they are 
+required for customer.
+
+How do u approach for the complex problems and whom u check with and how u solve it 
+(something don't remeber exactly).
+
+Interviewer is asking for multiple instances for both the questions not the single instance 
+( may be interviewer knows that everyone will have a single instance that they would have framed it)
+
+
+------------------------
