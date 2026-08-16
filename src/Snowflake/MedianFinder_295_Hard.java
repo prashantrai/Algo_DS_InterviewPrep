@@ -47,8 +47,12 @@ public class MedianFinder_295_Hard {
 	}
 
 	public MedianFinder_295_Hard() {
-		maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
-		minHeap = new PriorityQueue<Integer>();
+		/* works
+		 * maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
+		minHeap = new PriorityQueue<Integer>(); */
+		
+		minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a, b));
+		maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
 	}
 	
 	/*
