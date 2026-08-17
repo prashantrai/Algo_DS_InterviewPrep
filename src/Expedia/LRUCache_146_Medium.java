@@ -6,6 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
+import Expedia.GenericLRUCache.Node;
+
 
 public class LRUCache_146_Medium {
 
@@ -125,7 +127,90 @@ public class LRUCache_146_Medium {
 	    
 	}
 	
+	
+	
+	/** Generic Version of LRU Cache */
+	
+	// ---------- Generic Node class ----------
+    private static class Node_Generic<K, V> {
+        private K key;
+        private V value;
+        private Node_Generic<K, V> prev;
+        private Node_Generic<K, V> next;
 
+        public Node_Generic() {}
+
+        public Node_Generic(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    // ---------- Generic LRU Cache ----------
+    // Time: O(1) for both put and get
+    // Space: O(capacity)
+    static class LRUCache_Generic<K, V> {
+        private final int capacity;
+        private final Map<K, Node_Generic<K, V>> map;
+        private final Node_Generic<K, V> head; // dummy head
+        private final Node_Generic<K, V> tail; // dummy tail
+
+        public LRUCache_Generic(int capacity) {
+            this.capacity = capacity;
+            map = new HashMap<>();
+            head = new Node_Generic<>();
+            tail = new Node_Generic<>();
+            head.next = tail;
+            tail.prev = head;
+        }
+
+        public V get(K key) {
+        	Node_Generic<K, V> node = map.get(key);
+            if (node == null) {
+                return null;
+            }
+            moveToHead(node);
+            return node.value;
+        }
+
+        public void put(K key, V value) {
+        	Node_Generic<K, V> node = map.get(key);
+            if (node != null) {
+                node.value = value;
+                moveToHead(node);
+            } else {
+                if (map.size() >= capacity) {
+                	Node_Generic<K, V> last = tail.prev;
+                    removeNode(last);
+                    map.remove(last.key);
+                }
+                Node_Generic<K, V> newNode = new Node_Generic<>(key, value);
+                addNode(newNode);
+                map.put(key, newNode);
+            }
+        }
+
+        private void moveToHead(Node_Generic<K, V> node) {
+            removeNode(node);
+            addNode(node);
+        }
+
+        private void removeNode(Node_Generic<K, V> node) {
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+        }
+
+        private void addNode(Node_Generic<K, V> node) {
+            node.prev = head;
+            node.next = head.next;
+            head.next.prev = node;
+            head.next = node;
+        }
+        
+    }
+	
+	
+	
 	
 	
 }
