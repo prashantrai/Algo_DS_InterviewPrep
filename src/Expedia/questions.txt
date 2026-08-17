@@ -1,14 +1,21 @@
 # https://www.1point3acres.com/interview/thread/1180966
 
 Recent: 
- - mountain array problem similar to LeetCode 2866
+ - mountain array problem [Variant of LC2866 Beautiful Towers II]
+ 
  - prison break problem involving grid line removals and maximum hole calculation -  Prison Break Algorithm Challenge
+ 	[LC 2943. Maximize Area of Square Hole in Grid, not exactly same as above, in this we need to get maximum area of square-shaped hole]
+ 
  - LeetCode 1248 (on-site)
+ 
  - Bar Index Gap Problem [LeetCode 962: Ramp Width], also frequently framed as a "Booking Demand Window"
+ 
  - Merging Intervals and Maximum Profit from Non-overlapping Trades via DP and binary search
   
  
+ - String reduction/compression [Not LC443]
  
+
 # Leetcode - discussion
 
 [Mar 02, 2026 - https://leetcode.com/discuss/post/7620822/expedia-senior-software-engineer-technic-wr9t/]
