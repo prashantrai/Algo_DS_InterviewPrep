@@ -23,15 +23,53 @@ public class LFUCache_460_Hard {
 		//Expected : [null,null,null,1,null,-1,3,null,-1,3,4]
 	}
 	
+	/* Interview script:
+
+	- “I’ll implement this cache using an LFU policy, and when multiple 
+		keys have the same frequency, I’ll break ties by LRU.”
+	
+	- “To get O(1) average time** for both `get` and `put`, I’ll maintain 
+	 	**three maps** plus one variable for the current minimum frequency.”
+	 
+	- “The first map, `vals`, stores key -> value, so I can return or update 
+		the cached value directly.”
+	- “The second map, `counts`, stores "key -> frequency", so I always 
+		know how many times each key has been used.”
+	
+	- “The third map, `lists`, stores "frequency -> set of keys". This groups 
+		keys by usage count. I’ll use a `LinkedHashSet` so that within the same 
+		frequency bucket, I preserve insertion order, which lets me evict 
+		the "Least Recently Used" key among ties.”
+	
+	- “I’ll also maintain `min`, which tracks the **smallest frequency currently 
+		present** in the cache. That allows eviction in O(1), because I can 
+		immediately look at the lowest-frequency bucket.”
+		
+	- “On `get`, I return the value and move the key from frequency `f` to `f+1`. 
+		On `put`, if the cache is full, I evict from the `min` bucket first.”
+
+	Natural spoken version for interviews:: 
+	
+	 * */
+	
 	/* 
 	Time: O(1) for both get() and put()
 	Space: O(capacity)
 	*/
 	static class LFUCache {
-	    private Map<Integer, Integer> vals;
-	    private Map<Integer, Integer> counts;
+		private Map<Integer, Integer> vals; // Stores the actual cache value.
+	    private Map<Integer, Integer> counts; // Stores how many times each key was used.
+
+	    // Groups keys by frequency.
+	    // LinkedHashSet keeps insertion order, so within the same frequency, 
+	    // the oldest key is the LRU one.
 	    private Map<Integer, LinkedHashSet<Integer>> lists;
 	    private int capacity;
+	    
+	    // min stores the smallest frequency currently present in the cache.
+	    // It helps us evict in O(1) by directly looking at the lowest-frequency bucket: lists.get(min).
+	    // We update min when that bucket becomes empty, or reset it to 1 when inserting a new key.
+	    // Tracks the smallest frequency among all keys currently in the cache.
 	    private int min;
 	    
 	    public LFUCache(int capacity) {
