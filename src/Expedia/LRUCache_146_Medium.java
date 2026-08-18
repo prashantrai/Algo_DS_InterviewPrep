@@ -1,13 +1,7 @@
 package Expedia;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
-
-import Expedia.GenericLRUCache.Node;
-
 
 public class LRUCache_146_Medium {
 
