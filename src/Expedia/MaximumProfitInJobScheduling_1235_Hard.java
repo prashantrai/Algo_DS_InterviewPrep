@@ -76,7 +76,29 @@ public class MaximumProfitInJobScheduling_1235_Hard {
     }
 	
     
-    
+   	/*
+	 * Another Variant of the problem:
+	 * 
+	 * You are a quantitative trader analyzing a log of potential automated asset trades for a single
+	 * trading day. You are given three integer arrays of equal length N: 
+	 * startTime, endTime, and profit.
+	 * 
+	 * Each index i represents a single, pre-calculated trade opportunity that:
+	 * 	Opens at startTime[i]
+	 *  Closes at endTime[i]
+	 *  Generates a guaranteed payout of profit[i] if executed.
+	 *  
+	 * You want to
+	 * maximize your total returns, but your trading account can only hold and
+	 * manage one active trade at a time. This means you cannot execute two trades
+	 * if their execution times overlap. 
+	 * A trade closing at time X and another trade opening at time X are not considered 
+	 * overlapping (they can be chained sequentially).
+	 * 
+	 * Return the maximum possible profit you can achieve by selecting
+	 * a subset of non-overlapping trades.
+	 * 
+	 */ 
     
 	
 	
