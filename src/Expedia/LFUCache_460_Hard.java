@@ -103,6 +103,10 @@ public class LFUCache_460_Hard {
 	            lists.remove(count);
 	            // Update min if we removed the last element at minimum frequency
 	            if (count == min) {
+	            	// as this count was the lowest in the cache and now removed
+	                // next possible min only could be `count+1`
+	                // this helps us achieve the min update O(1), wihtout iterating 
+	                // the counts map to find the min count
 	                min = count + 1;
 	            }
 	        }
