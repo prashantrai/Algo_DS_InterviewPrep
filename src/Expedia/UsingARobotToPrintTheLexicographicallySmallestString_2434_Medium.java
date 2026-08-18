@@ -58,7 +58,8 @@ public class UsingARobotToPrintTheLexicographicallySmallestString_2434_Medium {
                 i=0 -> min(b,a)=a
 
             Result: [a a c d]
-            Now while processing index i, we know exactly the smallest character that still exists after this point.
+            Now while processing index i, we know exactly the smallest character that 
+            still exists after this point.
 
             This array takes only O(n).
         */
