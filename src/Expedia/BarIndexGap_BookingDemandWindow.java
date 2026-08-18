@@ -79,6 +79,33 @@ public class BarIndexGap_BookingDemandWindow {
 
 	 * */
 
+    
+    /* Interview Script: 
+     This problem asks us to find the maximum index gap (j - i) where the 
+     value doesn't drop, which we can solve optimally in (O(N)
+	 time using a Monotonic Stack. 
+	 
+	 * Here is what we are seeing and how we implement it:
+	 
+	 * 1. What We Are Seeing (The Core Strategy)
+		- We need to pair a leftmost minimum value with a rightmost maximum value.
+	  	- To do this efficiently, we eliminate useless starting positions. A position 
+	  		is only a candidate if it is smaller than everything to its left.
+	  	- We store these valid starting indices in a strictly decreasing stack.
+	 
+	 * 2. The Implementation Steps
+	 Pass 1 (Left-to-Right): We loop through the array and push indices onto the 
+	 stack only if the current value is smaller than the value at the top of the stack.
+	 
+	 Pass 2 (Right-to-Left): We loop backward from the very last element, treating it 
+	 as our right boundary j.
+	 
+	 The Pop Condition: While the stack isn't empty and the current value is greater 
+	 than or equal to the stack's top value, we calculate the width j - stack.pop() 
+	 and update our max. We pop the index because no future index moving left can 
+	 ever beat this width.
+	 */
+    
     /* Time and space complexity
     	Time: O(n), Each index is pushed at most once and popped at most once
     	Space: O(n), For the stack
