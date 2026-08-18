@@ -77,21 +77,26 @@ public class CountNumberOfNiceSubarrays_1248_Medium {
  atMost(k) - atMost(k - 1) formula lets us reuse a simple window algorithm
  twice to get the perfect answer.
  
- Example: The Interview Analogy: The Concert Ticket ScaleImagine you are
- standing at the entrance of a concert arena. Security is letting people
- inside based on how many cash bills they have in their pockets. You are
- tasked with counting how many people have exactly 2 cash bills. Instead of
- checking everyone's pockets yourself, you stand next to two weight scales:
+ * **Example: The Interview Analogy: The Concert Ticket Scale **
  
- Scale A counts everyone who has 2 or fewer bills (0, 1, or 2 bills). Scale B
- counts everyone who has 1 or fewer bills (0 or 1 bill).
+ Imagine we are standing at the entrance of a concert arena. 
+ Security is letting people inside based on how many cash bills 
+ they have in their pockets. 
+ 
+ We are tasked with counting how many people have exactly 2 cash bills. 
+ Instead of checking everyone's pockets ourself, we stand next to two weight scales:
+ 
+ Scale A: counts everyone who has 2 or fewer bills (0, 1, or 2 bills). 
+ Scale B: counts everyone who has 1 or fewer bills (0 or 1 bill).
  
  If 100 people pass through Scale A, and 80 people pass through Scale B, how
- many people had exactly 2 bills?The answer is 20 (\(100 - 80\)).Why?
+ many people had exactly 2 bills?
  
- Because the only difference between the group of people allowed through Scale
- A and Scale B is that Scale A included the people with exactly 2 bills, while
- Scale B stopped them at the door.
+ The answer is 20 (100 - 80.Why?
+ 
+ Because the only difference between the group of people allowed through 
+ Scale A and Scale B is that Scale A included the people with exactly 2 bills, 
+ while Scale B stopped them at the door.
  * 
  */
 	
