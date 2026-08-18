@@ -85,7 +85,7 @@ public class BarIndexGap_BookingDemandWindow {
     */
 	
 	private static int barIndexGap_BookingDemandWindow(int[] nums) {
-		int n = nums.length-1;
+		int n = nums.length;
 		Deque<Integer> stk = new ArrayDeque<>();
 		
 		int maxWidth = 0;
@@ -102,7 +102,7 @@ public class BarIndexGap_BookingDemandWindow {
 	    // If nums[left] <= nums[right], we found a valid ramp.
 	    // Since right is moving from the far end, this is the best width
 	    // for that left index, so we can pop it.  
-		for(int i=n; i>=0; i--) {
+		for(int i=n-1; i>=0; i--) {
 			while(!stk.isEmpty() && nums[i] >= nums[stk.peek()]) {
 				maxWidth = Math.max(maxWidth, i - stk.pop());
 			}
