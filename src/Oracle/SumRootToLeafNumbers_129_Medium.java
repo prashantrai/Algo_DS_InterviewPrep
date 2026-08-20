@@ -7,6 +7,41 @@ public class SumRootToLeafNumbers_129_Medium {
 
 	}
 	
+	
+	/* Interview Script:: 
+	    “Each root-to-leaf path forms a number.”
+	    “While doing DFS, I carry the number formed so far.”
+	    “At each node, I update it as current * 10 + node.val.”
+	    “When I reach a leaf, I return that full number.”
+	    “The answer is the sum of values returned by left and right subtrees.”
+	    “This visits each node once, so time is O(n) and recursion stack is O(h).”
+    */
+
+    /* 
+    Time: O(n), Each node is visited once.
+    Space: O(h), Recursive call stack, where h is tree height.
+    */
+    public int sumNumbers(TreeNode root) {
+        return dfs(root, 0);
+    }
+
+    // DFS builds the number formed from root to current node
+    private int dfs(TreeNode node, int curNum) {
+        if (node == null) {
+            return 0;
+        }
+
+        curNum = curNum * 10 + node.val;
+
+        // If this is a leaf, this path contributes one complete number
+        if(node.left == null && node.right == null) {
+            return curNum;
+        }
+
+        return dfs(node.left, curNum) + dfs(node.right, curNum);
+    }
+	
+	
 	/*
 	 * Recursive pre-order 
 	 * 
@@ -16,7 +51,7 @@ public class SumRootToLeafNumbers_129_Medium {
 	 */
 	int rootToLeaf = 0;
 
-	public int sumNumbers(TreeNode root) {
+	public int sumNumbers2(TreeNode root) {
 		preOrder(root, 0);
 		return rootToLeaf;
 	}
@@ -39,7 +74,7 @@ public class SumRootToLeafNumbers_129_Medium {
 	
 	
 	// another approach
-	public int sumNumbers2(TreeNode root) {
+	public int sumNumbers3(TreeNode root) {
 		return sum(root, 0);
 	}
 
