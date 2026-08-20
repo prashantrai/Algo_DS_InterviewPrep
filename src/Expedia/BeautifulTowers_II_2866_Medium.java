@@ -11,7 +11,8 @@ public class BeautifulTowers_II_2866_Medium {
 
 	}
 	
-	/** Monotonic Stack - DP version (less code and ideal for interview, only catch is, we should be able to explain the formula) */
+	/** Monotonic Stack - DP version (less code and ideal for interview, only catch is, 
+	 * we should be able to explain the formula) */
 	
 	// comments as interview script
 	public long maximumSumOfHeights(List<Integer> maxHeights) {

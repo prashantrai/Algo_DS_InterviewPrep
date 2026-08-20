@@ -1,0 +1,172 @@
+
+Source: https://www.1point3acres.com/interview/thread/1146259
+
+The candidate designed a throttling mechanism for FPS game event triggers using Java.
+HackerRank with an anagram replacement problem. [Oct2025-DEC 2025]
+
+
+VO: 
+Oracle OCI tech phone screen and VO interview experience including Redis-like 
+data structure and hospital appointment booking API coding challenges.
+
+
+--------------------
+Source: https://voprep.com/oracle-vo-term-finder/
+
+
+VO : 2026-05-04
+Q1 [Build a Trie (prefix tree) from all terms]:  
+Given an array of strings (terms), find the number of occurrences of each 
+term in a string. You need only fill out the Countmethod.
+
+Parameters:
+
+Use any data structures available to you, including ones you create.
+The term count map must be ordered in the order of the terms string array 
+(for example, fizzfirst, buzzsecond, fizzbuzzthird).
+Duplicate terms in the array are not allowed (assume a process has previously de-duped 
+the terms in the array).
+Cannot use any regular expression API/libraries.
+Blank strings (ie "") and nullshould be handled and returned with all terms set to zero.
+No exceptions should be thrown or need to be handled.
+Return a map of each term to its occurrence count in the input string.
+
+This problem requires you to count the occurrences of each term in an input string without 
+using regular expressions, and to return the results while maintaining the original order of 
+the terms array. The most straightforward approach is to iterate through the terms array, 
+using character-by-character matching or a two-pointer method to count the occurrences of 
+each word, and then store the results in an ordered mapping structure (such as a LinkedHashMap). 
+
+Special handling is needed for empty strings and null values: in these two cases, you should directly 
+return a count of 0 for all terms.
+
+
+#VO: 2026-04-28
+Q2: 
+Max Altitude of Islands
+
+Given an m x n 2D grid which represents a map where positive integers represent elevation of land and 0‘s represent water, return the altitude of the highest point for each of the islands.
+
+An island is surrounded by water and is formed by connecting adjacent lands either horizontally or vertically.
+
+You may assume all four edges of the grid are surrounded by water.
+
+Input:
+
+map = [[1,1,1,1,0],
+  [1,8,0,10,0],
+  [1,1,0,0,0],
+  [0,0,0,0,0]
+]
+Output: 1 island with highest point is 10
+
+This problem provides a 2D grid where numbers greater than 0 represent land elevation and 0 
+represents sea elevation. The goal is to find the highest elevation of each island. 
+Islands are formed by connecting adjacent landmasses in all directions, making this essentially 
+a problem of "connected components + finding the maximum value". A common approach is to use 
+Depth-First Search (DFS) or Breadth-First Search (BFS) to traverse each unvisited land cell, 
+updating the maximum elevation as you traverse the same island, ultimately obtaining the 
+island's peak elevation. In the example, the island on the left contains cells 1, 8, etc., 
+with a highest point of 8; the isolated landmass on the right, 10, forms another island, 
+and the answer is the highest point of that corresponding island.
+
+
+
+Q3 | VO | [2025-11-11]: 
+Given two integers, numerator and denominator, return the decimal representation of the 
+fraction numerator/denominator as a string.
+
+If the fractional part terminates, output the exact decimal (trailing zeros are acceptable).
+If the fractional part is repeating, enclose the repeating sequence in parentheses.
+You may assume denominator ≠ 0 and the sign should be handled correctly.
+Examples
+
+input = 12, 5 → output = "2.4" (or "2.40000")
+input = 1, 6 (0.1666…) → output = “0.1(6)”
+
+Simulate using long division : Divide the integer parts directly; record the fractional parts 
+using a hash table of "remainder → starting index of decimal place". If a remainder reappears, 
+it indicates a cycle from the first occurrence to the current position, enclosed in parentheses. 
+
+Note: sign, overflow, removal of leading zeros, and termination condition (remainder is 0).
+
+The VOprep  team has long provided hands-on training for students in various top-tier company 
+online assessment (OA) and interview (VO) sessions, including Oracle, Google, Amazon, Citadel, 
+and SIG. We offer real-time answer support, remote practice sessions, and interview pacing reminders 
+to help you avoid getting stuck at crucial moments.
+
+If you're also preparing for company interviews, you can learn about our customized support 
+program—from programming interviews to system design, providing comprehensive guidance to help 
+you succeed.
+
+
+Q4 | VO | 2025-11-11
+See here for complete problem: https://voprep.com/oracle-%e9%9d%a2%e8%af%95%e9%a2%98%ef%bc%9a%e6%96%87%e6%9c%ac%e4%b8%ad%e7%9a%84%e5%89%aa%e8%b4%b4%e9%87%8d%e5%a4%8d%e9%94%99%e8%af%af%e6%a3%80%e6%b5%8b%e4%b8%8e%e4%bf%ae%e5%a4%8d%ef%bd%9cstring-manipu/
+
+Background
+
+Congratulations! Your next best-selling novel is finally finished. You cut/paste text fragments from your various notes to build the final manuscript. But you are a terrible typist! Often you press the “paste” key multiple times by mistake.
+
+You’d better fix those errors before sending it off to the publisher. Fortunately, you can code better than you can type.
+
+Task Words
+Detect and correct accidental cut/paste errors in the given text.
+
+Example
+What you did
+(The spaces in the text are shown below as“_”for clarity.)
+
+1. Here_is_some — paste
+2. _piece_of_text — paste ×2
+3. that— paste
+4. _was— paste ×2
+5. _accidentally— paste
+5. _double — paste ×4
+7. _pasted.— paste
+
+
+The result
+	Here is some piece of text piece of text that
+	was accidentally double double double double pasted.
+
+The corrected result
+	Here is some piece of text that was accidentally double pasted.
+
+Notes
+- words are groups of alphabetic characters
+- Non-alphabetic characters are considered punctuation and spaces
+- Repeated letters within words are NOT errors
+	address is okay
+- Cutting never breaks words apart
+- Fragments of only punctuation/space are never double-pasted
+	repeated punctuation — allowed
+	repeated spaces — allowed
+- Only detect adjacent double-pasting
+- Only treat the first repetition as the double-paste
+- Remove the longest repetition of the shortest sequence
+- Pasting happens left-to-right
+
+Tricky Examples
+Input				Output			Explanation
+A_X_A_X_O_X_O_X_	A_X_O_X_		Correct（finds the first repeat）
+A_X_A_X_O_X_O_X_	A_X_A_X_O_X_X_	Wrong
+A_A_B_A_A_B_		A_B_A_B_		Correct（finds the first repeat, not the bigger one）
+A_A_B_A_A_B_		A_A_B_			Wrong
+
+
+This question requires you to find and repair duplicate segments in a text that have been 
+pasted multiple times.
+
+The duplicates must satisfy the following conditions:
+
+- Must be adjacent repetitions
+- Repeated segments must be exactly the same.
+- You can't break the word apart
+- Only fix the first occurrence of the duplicate.
+- Remove the longest repetition in the shortest sequence.
+- The final requirement is to output the corrected, normal sentence.
+
+
+
+-----------
+
