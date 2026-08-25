@@ -219,6 +219,9 @@ public class MaximumCoinsFromKConsecutiveBags_3413_Medium {
 			Remove interval i from the maintained sum if necessary.
 		Return the maximum. 
 	 * */
+
+	// O(n log n) solution using 
+	// sorting + a two-pointer/sliding-window scan,
 	
 	public long maximumCoins_2(int[][] coins, int k) {
 
