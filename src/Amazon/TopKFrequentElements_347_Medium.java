@@ -35,6 +35,31 @@ public class TopKFrequentElements_347_Medium {
 		
 	}
 	
+	
+	/* Interview Explanation Before Coding
+	
+	“First, I’ll count the frequency of every number 
+	using a HashMap.
+	
+	Once I have those counts, instead of putting everything 
+	into a heap or sorting the unique values, I can take 
+	advantage of the fact that no element can occur more 
+	than n times.
+	
+	I’ll create a bucket array of size n + 1, where 
+	index i contains all numbers that occur exactly i times.
+	
+	Then I’ll iterate through those buckets from the highest 
+	frequency down. Every time I find elements in a bucket, 
+	I add them to the result until I’ve collected k elements.
+	
+	This avoids sorting completely. Building the frequency 
+	map, building the buckets, and scanning them are all 
+	linear with respect to the input size, so the overall 
+	time complexity is O(n).”
+	
+	* */
+	
 	/* Bucket Sort : Runtime: O(N), most efficient
 	Algo Steps: 
     1. Count Frequencies: Use a HashMap to count how often each number appears.
