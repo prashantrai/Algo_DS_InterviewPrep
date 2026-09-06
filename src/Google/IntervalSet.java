@@ -1,11 +1,225 @@
 package Google;
 
+import java.util.*;
+
 public class IntervalSet {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
+	
+	/* Complexity
+	add():      O((k + 1) log n)
+	contains(): O(log n)
+	
+	space:      O(n)
+	 * */
+	
+	// In TreeMap, every lookup/remove/put is O(log n).
+	private TreeMap<Integer, Integer> ranges;
+	
+	// Follow-up 3: Return total covered length
+    // Keep the total number of covered integer points.
+    private long totalCovered;
+	
+	public IntervalSet() {
+		ranges = new TreeMap();	
+	}
+	
+	// add range
+	public void add(int start, int end) {
+
+        // Merge with the interval immediately before start,
+        // if it overlaps or touches the new interval.
+        Integer left = ranges.floorKey(start);
+        
+        /* Why +1/-1 for touching intervals?
+         	
+         	consider touching/adjacent inclusive integer ranges:
+			existing = [1, 5]
+			new      = [6, 10]
+			
+			There is technically no shared integer:
+			[1 2 3 4 5] [6 7 8 9 10]
+			          ↑ ↑
+			          5 6
+			
+			Normal overlap check says: 5 >= 6     // false
+			
+			But the problem says these should merge:
+			
+			[1,5] + [6,10]
+			        ↓
+			[1,10]
+			
+			Why? Because for integer coordinates, 6 is immediately after 5.
+			
+			So we want to recognize: existing.end + 1 >= new.start
+			
+			For our example:
+			
+			5 + 1 >= 6
+			6 >= 6
+			true
+			
+			That's the entire +1 idea.
+         * */
+        
+        // -1, because statement says touching intervals should also merge.
+        // could also be written like, ranges.get(left)+1 >= start
+        // ranges.get(left) + 1 >= start and ranges.get(left) >= start - 1 are mathematically same
+        if (left != null && ranges.get(left) >= start - 1) {
+        	
+        	int leftEnd = ranges.get(left);
+        	
+        	// Follow-up 3: Return total covered length
+            // Remove the old interval's contribution before merging it.
+            totalCovered -= intervalLength(left, leftEnd);
+        	
+            start = left;
+            end = Math.max(end, leftEnd);
+            ranges.remove(left);
+        }
+        
+        // Merge all following intervals that overlap or touch.
+        Integer next = ranges.ceilingKey(start);
+
+        // +1, because statement says touching intervals should also merge.
+        while (next != null && next <= end + 1) {
+            
+        	int nextEnd = ranges.get(next);
+
+            // Follow-up 3: Return total covered length
+            // This interval will be absorbed into the merged interval,
+            // so remove its previous contribution.
+            totalCovered -= intervalLength(next, nextEnd);
+        	
+        	end = Math.max(end, nextEnd);
+            ranges.remove(next);
+
+            next = ranges.ceilingKey(start); // Returns the least key greater than or equal to the specified key
+        }
+
+        // Store the final merged interval.
+        ranges.put(start, end);
+        
+        // Follow-up 3: Return total covered length
+        // Add the contribution of the final merged interval.
+        totalCovered += intervalLength(start, end);
+    }
+	
+	
+	public boolean contains(int x) {
+
+	    // Find the interval with the largest start <= x.
+	    Integer left = ranges.floorKey(x);
+
+	    // No interval starts before x.
+	    if (left == null) {
+	        return false;
+	    }
+
+	    // x is covered if it does not exceed that interval's end.
+	    return x <= ranges.get(left);
+	}
+	
+	// Follow-up 1: Query an entire interval | Priority: EXTREMELY HIGH
+	// Return true only if every point in [start, end] is currently covered.
+	// O(log n)
+	public boolean contains_EntireInterval(int start, int end) {
+		
+		// Find the only interval that could fully cover [start, end].
+		Integer left = ranges.floorKey(start);
+		
+		if(left == null) return false;
+		
+		return end <= ranges.get(left);
+	}
+	
+	// Follow-up 2: Remove an interval | Priority: VERY HIGH
+	/* Example:
+		Stored: [1,10]
+		remove(4,7)
+
+		Result: [1,3], [8,10]
+	 * */
+	// O((k + 1) log n)
+	public void remove(int start, int end) {
+
+        Integer left = ranges.floorKey(start);
+
+        if (left != null) {
+
+            int right = ranges.get(left);
+
+            if (right >= start) {
+
+                // Follow-up 3: Return total covered length
+                // The original interval is being changed/removed,
+                // so subtract its full old contribution first.
+                totalCovered -= intervalLength(left, right);
+
+                ranges.remove(left);
+
+                // Keep the portion before the removed range.
+                if (left < start) {
+                    ranges.put(left, start - 1);
+
+                    // Follow-up 3: Return total covered length
+                    totalCovered += intervalLength(left, start - 1);
+                }
+
+                // Same interval extends beyond the removal range.
+                if (right > end) {
+                    ranges.put(end + 1, right);
+
+                    // Follow-up 3: Return total covered length
+                    totalCovered += intervalLength(end + 1, right);
+
+                    return;
+                }
+            }
+        }
+
+        Integer next = ranges.ceilingKey(start);
+
+        while (next != null && next <= end) {
+
+            int right = ranges.get(next);
+
+            // Follow-up 3: Return total covered length
+            // This existing interval is being removed/modified.
+            totalCovered -= intervalLength(next, right);
+
+            ranges.remove(next);
+
+            // Preserve the part beyond the removed range.
+            if (right > end) {
+                ranges.put(end + 1, right);
+
+                // Follow-up 3: Return total covered length
+                totalCovered += intervalLength(end + 1, right);
+
+                break;
+            }
+
+            next = ranges.ceilingKey(start);
+        }
+    } // remove() close
+	
+	
+	// Follow-up 3: Return total covered length
+    // O(1) because we maintain the value incrementally.
+    public long coveredLength() {
+        return totalCovered;
+    }
+
+    // Follow-up 3: Return total covered length
+    // Inclusive interval length: [start, end] has end - start + 1 points.
+    private long intervalLength(int start, int end) {
+        return (long) end - start + 1;
+    }
 
 }
 

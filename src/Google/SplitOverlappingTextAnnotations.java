@@ -168,6 +168,39 @@ public class SplitOverlappingTextAnnotations {
 	
 	// Solution Starts...
 	
+	/*
+	 * Here’s a natural interview script you can say before coding:
+	 * 
+	 * “I’m going to use a sweep-line approach here. The key observation is that the
+	 * active set of annotations can only change at a start or end boundary.
+	 * 
+	 * So for every annotation, I’ll create two events: one at the start to add the
+	 * label, and one at the end to remove it.
+	 * 
+	 * Then I’ll sort all events by position and sweep from left to right. Between
+	 * the previous event position and the current one, the active set is constant,
+	 * so if that set is non-empty, I can emit that range as one output segment.
+	 * 
+	 * At each coordinate, I’ll process all events at that same position together
+	 * before moving forward. That’s important for cases where one annotation ends
+	 * exactly where another begins.
+	 * 
+	 * I’ll maintain the currently active labels in a set. Since sorting the 2n
+	 * events dominates the runtime, the overall complexity is O(n log n), with O(n)
+	 * extra space.”
+	 * 
+	 * 
+	 * A shorter version for a faster phone screen:
+	 * 
+	 * “I’ll convert each interval into start and end events, sort those events, and
+	 * sweep from left to right while maintaining the active labels. Between any two
+	 * consecutive event coordinates, the active set cannot change, so that interval
+	 * becomes one output segment. I’ll process all events at the same coordinate
+	 * together. Overall this is O(n log n) because of sorting.”
+	 */
+	
+	
+	
 	static class Annotation {
 		int start, end;
 		String label;

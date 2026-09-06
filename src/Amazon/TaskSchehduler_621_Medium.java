@@ -235,11 +235,17 @@ public class TaskSchehduler_621_Medium {
 	
 	
 	
-	
-	/** For interview use above approach as that's more optimal */
-	
-	// Time: O(N log K), Each task is inserted and removed from the heap once.
-    // O(K), Heap and cooldown queue store unique tasks.
+	/* Time: O(N), max heap gives O(N log K) time, where K is the number of 
+	 * 			distinct task types. Here K is at most 26, a constants. 
+	 * 			Therefore, for this problem, the complexity simplifies to O(N) time.
+       Space: O(1), 
+       		auxiliary space O(K), K is 26, so, overall it's O(1)  
+       
+     * In general, using the max heap gives O(N log K) time and O(K) space, 
+     * where K is the number of distinct task types. Here K is at most 26, 
+     * so log K and K are constants. Therefore, for this problem, the complexity 
+     * simplifies to O(N) time and O(1) auxiliary space.”
+     */
     public int leastInterval2(char[] tasks, int n) {
         int[] freq = new int[26];
 
@@ -252,7 +258,9 @@ public class TaskSchehduler_621_Medium {
                 It needs to be scheduled many times.
                 It is more likely to create future idle time.
 
-            So the natural greedy choice is: Always execute the task with the highest remaining frequency, that's why maxHeap to have the higher frequency on top to execute first
+            So the natural greedy choice is: Always execute the task with 
+            the highest remaining frequency, that's why maxHeap to have the 
+            higher frequency on top to execute first
         */
 
         PriorityQueue<Integer> maxPQ = new PriorityQueue<>((a,b) -> Integer.compare(b, a));
@@ -274,7 +282,8 @@ public class TaskSchehduler_621_Medium {
             if(!maxPQ.isEmpty()) {
                 int remaining = maxPQ.poll() - 1;
                 if(remaining > 0) {
-                    // `time + n`: queue stores the next time the task can be picked, e.g. in 
+                    // `time + n`: queue stores the next time 
+                	// the task can be picked
                     coolDownQueue.offer(new int[] {remaining, time + n});
                 }
             }

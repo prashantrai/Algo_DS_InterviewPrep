@@ -57,3 +57,17 @@ Interviewer is asking for multiple instances for both the questions not the sing
 
 
 ------------------------
+https://www.1point3acres.com/interview/thread/1188166
+
+Max Money in Consecutive Bags
+clock angle and duplicate data question.
+rearranging packages with weights 0-9 so adjacent sums are less than 10. Learn the optimal O(n) solution using frequency arrays
+digit rearrangement challenge
+designing classes to handle package sequences and missing numbers.
+routing and word segmentation
+Edit Distance and a reverse operation 
+
+Domain score calculation problem using a reversed Trie and DFS.
+
+
+

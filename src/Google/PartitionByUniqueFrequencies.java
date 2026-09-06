@@ -12,6 +12,13 @@ public class PartitionByUniqueFrequencies {
 
 	}
 
+	/* Interview script
+	"Since all copies of a value have to stay together, each partition's 
+	size is exactly that value's frequency. So I first build a frequency map. 
+	Then I iterate over those frequencies and put them into a HashSet. 
+	If a frequency is already in the set, two partitions would have the 
+	same size, so I return false. Otherwise, all frequencies are unique."
+	*/
 	// Similar to LC 1207
 	// Time and Space: O(n)
 	public static boolean uniqueOccurrences(int[] arr) {
