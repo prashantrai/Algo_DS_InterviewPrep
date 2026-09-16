@@ -1,4 +1,4 @@
-package Google;
+package Google.extremelyHigh;
 
 import java.util.*;
 
@@ -10,10 +10,10 @@ public class IntervalSet {
 	}
 	
 	/* Complexity
-	add():      O((k + 1) log n)
-	contains(): O(log n)
-	
-	space:      O(n)
+		add():      O((k + 1) log n)
+		contains(): O(log n)
+		
+		space:      O(n)
 	 * */
 	
 	// In TreeMap, every lookup/remove/put is O(log n).
@@ -24,7 +24,7 @@ public class IntervalSet {
     private long totalCovered;
 	
 	public IntervalSet() {
-		ranges = new TreeMap();	
+		ranges = new TreeMap<>();	
 	}
 	
 	// add range
@@ -32,7 +32,8 @@ public class IntervalSet {
 
         // Merge with the interval immediately before start,
         // if it overlaps or touches the new interval.
-        Integer left = ranges.floorKey(start);
+		// floorKey: returns greatest key less than or equal to key, or null if there is no such key
+        Integer left = ranges.floorKey(start); 
         
         /* Why +1/-1 for touching intervals?
          	
@@ -83,6 +84,7 @@ public class IntervalSet {
         }
         
         // Merge all following intervals that overlap or touch.
+        // ceilingKey: Returns least key greater than or equal to the given key, or null if there is no such key.
         Integer next = ranges.ceilingKey(start);
 
         // +1, because statement says touching intervals should also merge.
@@ -293,25 +295,25 @@ public class IntervalSet {
 	contains(10) -> true
 	contains(11) -> false
 	contains(20) -> false
+	
 	Example 2 — Completely disjoint intervals
 	add(2, 4)
 	add(10, 12)
 	add(20, 25)
 	
 	Stored:
-	
 	[2, 4]
 	[10, 12]
 	[20, 25]
 	
 	
 	Queries:
-	
 	contains(3)  -> true
 	contains(5)  -> false
 	contains(12) -> true
 	contains(18) -> false
 	contains(21) -> true
+	
 	Example 3 — New interval contains existing intervals
 	add(3, 5)
 	add(8, 10)

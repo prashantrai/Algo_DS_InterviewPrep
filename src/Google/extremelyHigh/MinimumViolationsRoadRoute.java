@@ -1,4 +1,4 @@
-package Google;
+package Google.extremelyHigh;
 
 import java.util.*;
 
@@ -23,16 +23,6 @@ public class MinimumViolationsRoadRoute {
         // Expected: 1
     }
 
-	
-	static class Edge {
-		int to;
-		int cost;
-		Edge(int to, int cost) {
-            this.to = to;
-            this.cost = cost;
-        }
-	}
-	
 	
 	/* Interview script:  You can explain the approach in roughly 30–40 seconds:
 	
@@ -68,6 +58,15 @@ public class MinimumViolationsRoadRoute {
 	Space: O(V + E), 
 		Adjacency list: O(V + E),  Distance array: O(V),  Deque: O(V)
 	 * */
+	
+	static class Edge {
+		int to;
+		int cost;
+		Edge(int to, int cost) {
+            this.to = to;
+            this.cost = cost;
+        }
+	}
 	
 	public static int minViolations( int n, int[][] roads, int source, int destination) {
 		
@@ -604,7 +603,8 @@ public class MinimumViolationsRoadRoute {
 	
 	There is no exact graph-based LeetCode equivalent, but 1368 is conceptually very close.
 	
-	Follow-up 1 — Return the Actual Route
+  * 
+  * Follow-up 1 — Return the Actual Route
 	Priority: VERY HIGH
 	
 	Instead of returning only:
