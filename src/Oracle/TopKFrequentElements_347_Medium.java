@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+
 public class TopKFrequentElements_347_Medium {
 
 	public static void main(String[] args) {
@@ -35,6 +36,23 @@ public class TopKFrequentElements_347_Medium {
 		
 	}
 	
+	
+	/* Interview Script::  
+	 * 
+	 * First I'll count the frequency of each number using a
+	 * HashMap. Since an input containing N elements means the maximum possible
+	 * frequency is N, I can create N + 1 frequency buckets. The bucket index
+	 * represents a frequency, and each bucket contains all numbers occurring that
+	 * many times.
+	 * 
+	 * Then I'll scan the buckets backwards, starting from frequency N, because
+	 * those are the most frequent elements. I'll keep collecting numbers until I've
+	 * collected exactly K.
+	 * 
+	 * Counting frequencies, populating the buckets, and scanning the buckets are
+	 * each linear, so the total time is O(N), with O(N) extra space.
+	 */
+	
 	/* Bucket Sort : Runtime: O(N), most efficient
 	Algo Steps: 
     1. Count Frequencies: Use a HashMap to count how often each number appears.
@@ -46,7 +64,7 @@ public class TopKFrequentElements_347_Medium {
     collecting elements until you have k.
 	 * */
 
-     // Time and space: O(N)
+    // Time and space: O(N)
     public static int[] topKFrequent(int[] nums, int k) {
         
         // 1. Count Frequencies
@@ -57,30 +75,74 @@ public class TopKFrequentElements_347_Medium {
 
         // 2. Bucket Initialization: Create an array of lists (bucket) where 
         // index = frequency, and value = list of numbers with that frequency.
-        List<Integer>[] bucket = new List[nums.length+1]; // +1 because count starts at 1
+        
+        // This works too but creates potentially N + 1 ArrayList objects 
+        // even though most frequencies may never occur.
+        /* List<Integer>[] bucket = new List[nums.length+1]; // +1 because count starts at 1
         for(int i=0; i<bucket.length; i++) {
             bucket[i] = new ArrayList<>();
-        }  
+        }*/  
         
         // 3. Populate Buckets: For each number in the frequency map, add 
         // it to the bucket corresponding to its frequency.
+        List<Integer>[] bucket = new List[nums.length+1]; // +1 because count starts at 1
+        
         for(int key : freq.keySet()) {
             int frequency = freq.get(key);
+            
+            if(bucket[frequency] == null) {
+            	bucket[frequency] = new ArrayList<>();
+            }
+            
             bucket[frequency].add(key);
         }
 
         // 4. Extract Top K: Traverse buckets from highest frequency to lowest, 
         // collecting elements until you have k.
-        List<Integer> res = new ArrayList<>();
-        for(int i=bucket.length-1; i>=0; i--) {
-            res.addAll(bucket[i]);
-            if(res.size() >= k) break;
+        /*List<Integer> res = new ArrayList<>();
+
+        for(int i=bucket.length-1; i>=0 && res.size() < k; i--) {
+        	if (bucket[i] == null) continue;
+        	
+        	for(int n : bucket[i]) {
+        		res.add(n);
+        		if(res.size() == k) {
+        			break;
+        		}
+        	}
         }
 
         return res.stream().mapToInt(i -> i).toArray();
+        */
+        
+        // Another approach to use result array in place of list, 
+        // this way we can avoid the stream or converting to List to Array
+        
+        // 4. Extract Top K: Traverse buckets from highest frequency to lowest, 
+        // collecting elements until you have k.
+        int[] res = new int[k];
+        int index = 0;
+        
+        for(int i=bucket.length - 1; i>=0 && index < k; i--) {
+        	if(bucket[i] == null) 
+        		continue;
+        	
+        	for(int n : bucket[i]) {
+        		res[index++] = n;
+        		if(index == k) {
+        			break;
+        		}
+        	}
+        	
+        }
+        
+        return res;
+        
     }
+    
 
-	/*
+	/* Not as efficient as Bucket Sort (above) solution
+	 * 
 	 * Complexity Analysis
 	 * 
 	 * Time complexity : O(Nlog(k)). The complexity of Counter method is O(N). To

@@ -1,4 +1,4 @@
-package Google;
+package Oracle;
 
 import java.util.TreeMap;
 
@@ -11,7 +11,7 @@ public class HandOfStraights_846_Medium {
 	/*
 	 * Interview Explanation Before Coding
 	 * 
-	 * “First, if the number of cards is not divisible by groupSize, we can
+	 * First, if the number of cards is not divisible by groupSize, we can
 	 * immediately return false because every card must belong to a complete group.
 	 * 
 	 * Then I’ll build a frequency map using a TreeMap, which keeps card values
@@ -27,7 +27,7 @@ public class HandOfStraights_846_Medium {
 	 * once its count reaches zero.
 	 * 
 	 * If I successfully consume every card, then the hand can be rearranged into
-	 * valid groups.”
+	 * valid groups.
 	 */
 	
 	/* Step-by-Step Algorithm

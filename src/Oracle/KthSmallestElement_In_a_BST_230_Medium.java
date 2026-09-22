@@ -1,9 +1,6 @@
 package Oracle;
 
-import java.util.List;
 import java.util.Stack;
-
-import Amazon.KthSmallestElement_In_a_BST_230_Medium.AugTreeNode;
 
 
 public class KthSmallestElement_In_a_BST_230_Medium {
