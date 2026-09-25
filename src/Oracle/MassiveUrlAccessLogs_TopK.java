@@ -216,9 +216,12 @@ public class MassiveUrlAccessLogs_TopK {
 		});
 
 		/*
-		 * Another approach PriorityQueue<UrlCount> minPQ2 = new PriorityQueue<>(
-		 * Comparator.comparingInt((UrlCount a) -> a.count) .thenComparing(a -> a.url,
-		 * Comparator.reverseOrder()) );
+		 * Another approach 
+		 * PriorityQueue<UrlCount> minPQ2 = new PriorityQueue<>(
+		 * 					Comparator.comparingInt(
+		 * 							(UrlCount a) -> a.count)
+		 * 								.thenComparing(a -> a.url, 
+		 * 												Comparator.reverseOrder()) );
 		 */
 		for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
 			UrlCount item = new UrlCount(entry.getKey(), entry.getValue());
@@ -260,9 +263,25 @@ public class MassiveUrlAccessLogs_TopK {
 	 * 
 	 * Visually:
 	 * 
-	 * Incoming Logs | v Hash by URL | +----------+----------+ | | | v v v Worker 1
-	 * Worker 2 Worker 3 URL counts URL counts URL counts | | | Top K Top K Top K \
-	 * | / \ | / +--------v--------+ Global Aggregator | v Global Top K
+	 *         Incoming Logs
+                     |
+                     v
+               Hash by URL
+                     |
+          +----------+----------+
+          |          |          |
+          v          v          v
+       Worker 1   Worker 2   Worker 3
+       URL counts URL counts URL counts
+          |          |          |
+       Top K       Top K       Top K
+          \          |          /
+           \         |         /
+            +--------v--------+
+             Global Aggregator
+                    |
+                    v
+               Global Top K
 	 *
 	 * 
 	 * Step by step design: 1. Receive access logs.
@@ -448,6 +467,7 @@ public class MassiveUrlAccessLogs_TopK {
 
 /*
  * Massive URL Access Logs / Top K Given a massive volume of URL access logs and
- * limited memory, find: 1. The global Top K most frequently accessed URLs. 2.
- * The Top K URLs with the highest access count during the past 24 hours.
+ * limited memory, find: 
+ * 1. The global Top K most frequently accessed URLs. 
+ * 2. The Top K URLs with the highest access count during the past 24 hours.
  */
