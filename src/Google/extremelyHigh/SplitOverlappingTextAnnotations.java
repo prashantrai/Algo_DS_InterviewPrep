@@ -321,11 +321,27 @@ public class SplitOverlappingTextAnnotations {
 			int currPos = events.get(i).position;
 			
 			/* The active set represents everything active between
-             * previousPosition and currentPosition. */
+             * previousPosition and currentPosition. 
+             * 
+			   This is saying:
+			   Before I process what happens at currentPosition, the 
+			   labels in active describe the entire region from 
+			   previousPosition to currentPosition.
+
+				For example, suppose:
+				previousPosition = 3
+				currentPosition = 4
+				active = [X, Z]
+				
+				Then we know:
+				[3,4) -> [X,Z]
+				
+				That is probably the single most important idea in the solution.
+             * */
 			
 			if(prevPos < currPos && !active.isEmpty()) {
 				
-				// Follow-up 1:
+				// Follow-up 1: ... start
 			    // If the visible label set did not change,
 			    // extend the previous segment instead of creating a new one.
 				List<String> currentLabels = new ArrayList<>(active);
@@ -340,7 +356,7 @@ public class SplitOverlappingTextAnnotations {
 					} else {
 						result.add(new Segment(prevPos, currPos, new ArrayList<>(active)));
 					}
-				}
+				}	// Follow-up 1: ...end
 				else {
 					result.add(new Segment(prevPos, currPos, new ArrayList<>(active)));
 				}

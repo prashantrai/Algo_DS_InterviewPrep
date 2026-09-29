@@ -447,7 +447,10 @@ public class PrefixPathsInAnUndirectedCharacterGraph {
 		
 		Interview Script: What is Delta?
 		
-		“I’m using delta to represent the maximum degree of the graph, meaning the maximum number of neighbors any vertex can have. The problem doesn’t explicitly provide this value, but I introduce it to express the DFS branching factor.”
+		“I’m using delta to represent the maximum degree of the graph, 
+		meaning the maximum number of neighbors any vertex can have. 
+		The problem doesn’t explicitly provide this value, but I introduce 
+		it to express the DFS branching factor.”
 		
 		Shorter version:
 		

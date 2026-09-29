@@ -5,9 +5,169 @@ import java.util.*;
 public class IntervalSet {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+	    IntervalSet set = new IntervalSet();
+
+	    /*
+	     * Test 1 - Base Problem: add() + contains()
+	     *
+	     * add(1,5)
+	     * add(8,10)
+	     * add(4,9)
+	     *
+	     * Final:
+	     * [1,10]
+	     */
+	    set.add(1, 5);
+	    set.add(8, 10);
+	    set.add(4, 9);
+
+	    System.out.println("Test 1 - Base Problem");
+	    System.out.println("contains(7)  Expected: true,  Actual: " + set.contains(7));
+	    System.out.println("contains(20) Expected: false, Actual: " + set.contains(20));
+
+
+	    /*
+	     * Test 2 - Base Problem: touching intervals should merge
+	     *
+	     * [1,10]
+	     * add(11,15)
+	     *
+	     * Since intervals are inclusive and touching intervals merge:
+	     * [1,15]
+	     */
+	    set.add(11, 15);
+
+	    System.out.println("\nTest 2 - Touching Intervals");
+	    System.out.println("contains(11) Expected: true, Actual: " + set.contains(11));
+	    System.out.println("contains(15) Expected: true, Actual: " + set.contains(15));
+
+
+	    /*
+	     * Follow-up 1 - Query Entire Interval
+	     *
+	     * Stored:
+	     * [1,15]
+	     *
+	     * [3,10] is fully covered.
+	     * [10,20] is not fully covered.
+	     */
+	    System.out.println("\nFollow-up 1 - Query Entire Interval");
+	    System.out.println(
+	        "contains_EntireInterval(3,10) Expected: true, Actual: "
+	        + set.contains_EntireInterval(3, 10)
+	    );
+
+	    System.out.println(
+	        "contains_EntireInterval(10,20) Expected: false, Actual: "
+	        + set.contains_EntireInterval(10, 20)
+	    );
+
+
+	    /*
+	     * Follow-up 3 - Total Covered Length
+	     *
+	     * Stored:
+	     * [1,15]
+	     *
+	     * Inclusive length:
+	     * 15 - 1 + 1 = 15
+	     */
+	    System.out.println("\nFollow-up 3 - Total Covered Length");
+	    System.out.println(
+	        "coveredLength() Expected: 15, Actual: "
+	        + set.coveredLength()
+	    );
+
+
+	    /*
+	     * Follow-up 2 - Remove Interval: split one interval
+	     *
+	     * Before:
+	     * [1,15]
+	     *
+	     * remove(5,10)
+	     *
+	     * After:
+	     * [1,4] [11,15]
+	     */
+	    set.remove(5, 10);
+
+	    System.out.println("\nFollow-up 2 - Remove: Split One Interval");
+	    System.out.println("contains(3)  Expected: true,  Actual: " + set.contains(3));
+	    System.out.println("contains(7)  Expected: false, Actual: " + set.contains(7));
+	    System.out.println("contains(12) Expected: true,  Actual: " + set.contains(12));
+
+	    // Follow-up 3 - Total Covered Length after remove()
+	    // [1,4] = 4 points
+	    // [11,15] = 5 points
+	    // Total = 9
+	    System.out.println(
+	        "coveredLength() Expected: 9, Actual: "
+	        + set.coveredLength()
+	    );
+
+
+	    /*
+	     * Follow-up 2 - Remove Interval: spans multiple intervals
+	     *
+	     * Current:
+	     * [1,4] [11,15]
+	     *
+	     * Add:
+	     * [20,25]
+	     *
+	     * Now:
+	     * [1,4] [11,15] [20,25]
+	     *
+	     * remove(3,22)
+	     *
+	     * Result:
+	     * [1,2] [23,25]
+	     */
+	    set.add(20, 25);
+	    set.remove(3, 22);
+
+	    System.out.println("\nFollow-up 2 - Remove: Multiple Intervals");
+	    System.out.println("contains(1)  Expected: true,  Actual: " + set.contains(1));
+	    System.out.println("contains(4)  Expected: false, Actual: " + set.contains(4));
+	    System.out.println("contains(15) Expected: false, Actual: " + set.contains(15));
+	    System.out.println("contains(24) Expected: true,  Actual: " + set.contains(24));
+
+	    // Follow-up 3 - Total Covered Length
+	    // [1,2] = 2
+	    // [23,25] = 3
+	    // Total = 5
+	    System.out.println(
+	        "coveredLength() Expected: 5, Actual: "
+	        + set.coveredLength()
+	    );
+
+
+	    /*
+	     * Follow-up 2 - Remove Interval: no overlap
+	     *
+	     * Current:
+	     * [1,2] [23,25]
+	     *
+	     * remove(10,15)
+	     *
+	     * No change.
+	     */
+	    set.remove(10, 15);
+
+	    System.out.println("\nFollow-up 2 - Remove: No Overlap");
+	    System.out.println("contains(1)  Expected: true, Actual: " + set.contains(1));
+	    System.out.println("contains(24) Expected: true, Actual: " + set.contains(24));
+
+	    // Follow-up 3 - Should remain unchanged.
+	    System.out.println(
+	        "coveredLength() Expected: 5, Actual: "
+	        + set.coveredLength()
+	    );
 	}
+	
+	
 	
 	/* Complexity
 		add():      O((k + 1) log n)
@@ -183,6 +343,23 @@ public class IntervalSet {
                 }
             }
         }
+        
+        // Remove all intervals that start inside [start, end].
+        /* Suppose: 
+         	ranges: [1,5] [10,15] [20,25]
+
+			remove(3,22)
+			
+			Visualization:
+			[1--2 |3--5]  [10------15]  [20--22|23--25]
+       			   <------------- remove ----------->
+			
+			Result: [1,2], [23,25]
+			We also need to remove the rest too, all in between 
+			ranges |3--5]  [10------15]  [20--22]
+			
+         * */
+        
 
         Integer next = ranges.ceilingKey(start);
 

@@ -5,23 +5,159 @@ import java.util.*;
 public class MinimumViolationsRoadRoute {
 
 	public static void main(String[] args) {
-        int n = 4;
 
-        int[][] roads = {
-            {0, 1},
-            {2, 1},
-            {2, 3}
-        };
+	    /*
+	     * Test 1 — All roads follow preferred direction
+	     *
+	     * 0 -> 1 -> 2 -> 3
+	     *
+	     * Expected: 0
+	     */
+	    int[][] roads1 = {
+	        {0, 1},
+	        {1, 2},
+	        {2, 3}
+	    };
 
-        int source = 0;
-        int destination = 3;
+	    System.out.println("Test 1");
+	    System.out.println("Expected: 0");
+	    System.out.println("Actual  : " + minViolations(4, roads1, 0, 3));
+	    System.out.println();
 
-        System.out.println(
-            minViolations(n, roads, source, destination)
-        );
 
-        // Expected: 1
-    }
+	    /*
+	     * Test 2 — One road must be used in reverse
+	     *
+	     * Preferred:
+	     *
+	     * 0 -> 1
+	     * 2 -> 1
+	     * 2 -> 3
+	     *
+	     * Route:
+	     *
+	     * 0 -> 1 -> 2 -> 3
+	     *
+	     * Costs:
+	     * 0 -> 1 = 0
+	     * 1 -> 2 = 1   // reverse of 2 -> 1
+	     * 2 -> 3 = 0
+	     *
+	     * Expected: 1
+	     */
+	    int[][] roads2 = {
+	        {0, 1},
+	        {2, 1},
+	        {2, 3}
+	    };
+
+	    System.out.println("Test 2");
+	    System.out.println("Expected: 1");
+	    System.out.println("Actual  : " + minViolations(4, roads2, 0, 3));
+	    System.out.println();
+
+
+	    /*
+	     * Test 3 — Multiple violations
+	     *
+	     * Preferred:
+	     *
+	     * 1 -> 0
+	     * 1 -> 2
+	     * 3 -> 2
+	     * 3 -> 4
+	     *
+	     * Route:
+	     *
+	     * 0 -> 1 -> 2 -> 3 -> 4
+	     *
+	     * Costs:
+	     * 0 -> 1 = 1
+	     * 1 -> 2 = 0
+	     * 2 -> 3 = 1
+	     * 3 -> 4 = 0
+	     *
+	     * Expected: 2
+	     */
+	    int[][] roads3 = {
+	        {1, 0},
+	        {1, 2},
+	        {3, 2},
+	        {3, 4}
+	    };
+
+	    System.out.println("Test 3");
+	    System.out.println("Expected: 2");
+	    System.out.println("Actual  : " + minViolations(5, roads3, 0, 4));
+	    System.out.println();
+
+
+	    /*
+	     * Test 4 — Choose cheaper route, not fewer/more obvious edges
+	     *
+	     * Route A:
+	     * 0 -> 1 -> 2 -> 4
+	     * cost = 1
+	     *
+	     * Route B:
+	     * 0 -> 3 -> 4
+	     * cost = 0
+	     *
+	     * Expected: 0
+	     */
+	    int[][] roads4 = {
+	        {0, 1},
+	        {2, 1},
+	        {2, 4},
+	        {0, 3},
+	        {3, 4}
+	    };
+
+	    System.out.println("Test 4");
+	    System.out.println("Expected: 0");
+	    System.out.println("Actual  : " + minViolations(5, roads4, 0, 4));
+	    System.out.println();
+
+
+	    /*
+	     * Test 5 — Source == destination
+	     *
+	     * We are already at destination.
+	     *
+	     * Expected: 0
+	     */
+	    int[][] roads5 = {
+	        {0, 1},
+	        {1, 2}
+	    };
+
+	    System.out.println("Test 5");
+	    System.out.println("Expected: 0");
+	    System.out.println("Actual  : " + minViolations(3, roads5, 1, 1));
+	    System.out.println();
+
+
+	    /*
+	     * Test 6 — Single road, travel completely against direction
+	     *
+	     * Preferred:
+	     *
+	     * 1 -> 0
+	     *
+	     * Need:
+	     *
+	     * 0 -> 1
+	     *
+	     * Expected: 1
+	     */
+	    int[][] roads6 = {
+	        {1, 0}
+	    };
+
+	    System.out.println("Test 6");
+	    System.out.println("Expected: 1");
+	    System.out.println("Actual  : " + minViolations(2, roads6, 0, 1));
+	}
 
 	
 	/* Interview script:  You can explain the approach in roughly 30–40 seconds:
@@ -125,14 +261,16 @@ public class MinimumViolationsRoadRoute {
 					That is called relaxing the edge.
         		 * */
         		
+        		// Relax the edge if we found a cheaper route.
         		if(newCost < dist[next]) {
         			dist[next] = newCost;
         			
         			// Follow-up 1: Remember how we reached next on this better path.
                     parent[next] = current; // record the parent
         			
+                    // IMPORTANT: check EDGE COST, not nextCost.
         			// Cost 0 means this node should be processed ASAP.
-        			if(newCost == 0) {
+                    if (edge.cost == 0) {
         				dq.offerFirst(next);
         			} else {
         				// Cost 1 means lower priority, so put at the back.
@@ -149,7 +287,7 @@ public class MinimumViolationsRoadRoute {
 	}
 	
 	
-	/* Follow-up 1
+	/* Follow-up 1 : Return the Actual Route
 	 * “parent[] stores links, not the full path. Starting from the destination, 
 	 * I follow those links backward to the source, which gives the route 
 	 * in reverse order, so I reverse it once at the end.”
@@ -203,7 +341,7 @@ public class MinimumViolationsRoadRoute {
 	
 	
 	
-	/** Follow-up 2 
+	/** Follow-up 2 : Different Violation Costs 
 	Suppose traversing a road backward no longer always costs 1.
 	For every preferred road: u -> v
 	you are given: reverseCost

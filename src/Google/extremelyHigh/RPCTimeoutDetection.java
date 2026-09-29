@@ -317,7 +317,8 @@ public class RPCTimeoutDetection {
 	
 	/** Follow-ups */
 	
-	/* Follow-up 1 — Stale Heap Entries | Priority: EXTREMELY HIGH
+	/* [Already implemented]
+	 * Follow-up 1 — Stale Heap Entries | Priority: EXTREMELY HIGH
 		
 		Suppose an RPC completes before its timeout: START(1, 0)
 		

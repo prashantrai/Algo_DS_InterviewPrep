@@ -5,8 +5,75 @@ import java.util.*;
 public class MinObstacleRemovalToReachCorner_2290_Hard {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+	    int[][][] testCases = {
+	        {
+	            {0, 1, 1},
+	            {1, 1, 0},
+	            {1, 1, 0}
+	        },
+	        {
+	            {0, 1, 0, 0, 0},
+	            {0, 1, 0, 1, 0},
+	            {0, 0, 0, 1, 0}
+	        },
+	        {
+	            {0, 1, 1, 1, 0}
+	        },
+	        {
+	            {0},
+	            {1},
+	            {0},
+	            {1},
+	            {0}
+	        },
+	        {
+	            {0, 0, 0},
+	            {0, 0, 0},
+	            {0, 0, 0}
+	        },
+	        {
+	            {0, 1, 1},
+	            {0, 1, 1},
+	            {0, 0, 0}
+	        },
+	        {
+	            {0, 1, 0},
+	            {1, 1, 0},
+	            {0, 0, 0}
+	        },
+	        {
+	            {0, 1, 1},
+	            {1, 0, 1},
+	            {1, 1, 0}
+	        },
+	        {
+	            {0, 1, 1},
+	            {1, 1, 1},
+	            {1, 1, 0}
+	        },
+	        {
+	            {0, 1, 0},
+	            {1, 0, 1},
+	            {0, 1, 0}
+	        }
+	    };
+
+	    int[] expected = {2, 0, 3, 2, 0, 0, 1, 2, 3, 2};
+
+	    for (int t = 0; t < testCases.length; t++) {
+	        System.out.println("Test Case " + (t + 1) + ":");
+
+	        for (int i = 0; i < testCases[t].length; i++) {
+	            System.out.println(Arrays.toString(testCases[t][i]));
+	        }
+
+	        int actual = minimumObstacles(testCases[t]);
+	        System.out.println("Expected = " + expected[t]);
+	        System.out.println("Actual   = " + actual);
+	        System.out.println(actual == expected[t] ? "PASS" : "FAIL");
+	        System.out.println("--------------------");
+	    }
 	}
 	
 	/* Interview Script: 
@@ -39,7 +106,7 @@ public class MinObstacleRemovalToReachCorner_2290_Hard {
 	
 	    Thus, the space complexity remains O(m⋅n).
 	*/
-	public int minimumObstacles(int[][] grid) {
+	public static int minimumObstacles(int[][] grid) {
         int rows = grid.length;
         int cols = grid[0].length;
         
