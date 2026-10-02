@@ -194,4 +194,44 @@ public class RestoreIPAddresses_93_Medium {
         System.out.println("Actual   : " + actual);
         System.out.println();
     }
+
+    
+    
+    /* dfs */
+    // DFS and Back Tracking solution :: https://blog.csdn.net/mine_song/article/details/70210397
+    public List<String> restoreIpAddresses_DFS(String s) {
+        List<String> result = new ArrayList<>();
+        if(s.length() < 4 || s.length() > 12) // invalid
+            return result;
+        
+        dfs(result, s, "", 1);
+        
+        return result;
+    }
+    
+    private void dfs (List<String> result, String s, String tmp, int count) {
+        
+        if(count == 4 && isValid(s)) {
+            result.add(tmp + s);
+            return;
+        }
+        
+        for(int i=1; i<Math.min(4, s.length()); i++) {
+            String curr = s.substring(0, i);
+            if(isValid(curr)) {
+                dfs(result, s.substring(i), tmp+curr+".", count+1);
+            }
+        }
+    }
+    
+    private boolean isValid(String s) {
+        if(s.charAt(0) == '0')  {
+            return s.equals("0"); // if entire string is ZERO e.g. "0"
+        }
+        
+        int num = Integer.parseInt(s);
+        return num > 0 && num < 256;
+    }
+    
+
 }
