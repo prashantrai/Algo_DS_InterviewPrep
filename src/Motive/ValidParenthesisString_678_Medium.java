@@ -1,6 +1,48 @@
 package Motive;
 public class ValidParenthesisString_678_Medium {
 
+	/* I validate both directions: left-to-right ensures every 
+	 closing parenthesis has a possible opener before it, 
+	 while right-to-left ensures every opening parenthesis has 
+	 a possible closer after it; I let * help in either role.
+	 * */
+	
+	// Time: O(n)
+	// Space: O(1)
+    public boolean checkValidString_LeetCode(String s) {
+        int openCount = 0;
+        int closeCount = 0;
+        int length = s.length() - 1;
+        
+        // Traverse the string from both ends simultaneously
+        for (int i = 0; i <= length; i++) {
+        	// Scan from left
+            // Count open parentheses or asterisks
+            if (s.charAt(i) == '(' || s.charAt(i) == '*') {
+                openCount++;
+            } else {
+                openCount--;
+            }
+            
+            // Scan from right
+            // Count close parentheses or asterisks
+            if (s.charAt(length - i) == ')' || s.charAt(length - i) == '*') {
+                closeCount++;
+            } else {
+                closeCount--;
+            }
+            
+            // If at any point open count or close count goes negative, the string is invalid
+            if (openCount < 0 || closeCount < 0) {
+                return false;
+            }
+        }
+        
+        // If open count and close count are both non-negative, the string is valid
+        return true;
+    }
+	
+	
 	/* Interview Explanation Before Coding: 
 	 * 
 	 * “I'll scan the string once while
