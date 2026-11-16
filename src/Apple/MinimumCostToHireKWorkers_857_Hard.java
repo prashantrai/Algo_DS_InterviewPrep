@@ -42,16 +42,11 @@ public class MinimumCostToHireKWorkers_857_Hard {
             workers[i][1] = quality[i]; 
         }
         
-       // Max-heap: remove largest quality when size exceeds k
-        PriorityQueue<Integer> maxHeap =
-            new PriorityQueue<>(Collections.reverseOrder());
-        ///
-
         // Sort by required wage-to-quality ratio
         Arrays.sort(workers, (a, b) -> Double.compare(a[0], b[0]));
 
         // Max-heap: remove largest quality when size exceeds k
-        PriorityQueue<Integer> maxHeap2 
+        PriorityQueue<Integer> maxHeap 
                 = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
 
         int totalQuality = 0;
